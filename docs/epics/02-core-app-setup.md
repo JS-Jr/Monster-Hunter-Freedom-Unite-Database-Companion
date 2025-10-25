@@ -1,0 +1,24 @@
+# ⚙️ Epic 2: Core Application Setup
+
+### 🎯 Goal
+Set up the React frontend structure, routing, and static data loading.
+
+### 🧱 Deliverables
+- Base React app running with Vite.
+- Folder structure (`src/components`, `src/pages`, `src/data`).
+- Working routes (`/weapons`, `/armor`, `/monsters`, `/materials`, `/maps`).
+- Data loaded from JSON.
+
+### 📋 Tasks
+- [ ] Initialize React + Vite project.
+- [ ] Configure routing (React Router).
+- [ ] Create placeholder pages for each section.
+- [ ] Add reusable components: `DataTable`, `FilterBar`, `DetailCard`.
+- [ ] Implement simple global layout and navigation.
+- [ ] Load sample JSON into tables.
+
+### 🔗 Dependencies
+- Data files from **Epic 1** (or mock versions).
+
+### 📎 Notes
+This phase creates the skeleton for everything else — prioritize structure and clean imports.

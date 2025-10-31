@@ -1,0 +1,441 @@
+{
+  "mapName": "Old Volcano",
+  "areas": [
+    {
+      "areaName": "Base Camp",
+      "areaNumber": null,
+      "nodes": [
+        {
+          "nodeNumber": "1",
+          "nodeType": "Fishing"
+        }
+      ]
+    },
+    {
+      "areaName": "Area 1",
+      "areaNumber": 1,
+      "nodes": [
+        {
+          "nodeNumber": "1",
+          "nodeType": "Mining"
+        },
+        {
+          "nodeNumber": "2",
+          "nodeType": "Gather"
+        },
+        {
+          "nodeNumber": "3",
+          "nodeType": "Gather"
+        },
+        {
+          "nodeNumber": "4",
+          "nodeType": "Gather"
+        }
+      ]
+    },
+    {
+      "areaName": "Area 2",
+      "areaNumber": 2,
+      "nodes": [
+        {
+          "nodeNumber": "1",
+          "nodeType": "Mining"
+        },
+        {
+          "nodeNumber": "2",
+          "nodeType": "Gather"
+        },
+        {
+          "nodeNumber": "3",
+          "nodeType": "Gather"
+        },
+        {
+          "nodeNumber": "4",
+          "nodeType": "Gather"
+        }
+      ]
+    },
+    {
+      "areaName": "Area 3",
+      "areaNumber": 3,
+      "nodes": [
+        {
+          "nodeNumber": "1",
+          "nodeType": "Mining"
+        },
+        {
+          "nodeNumber": "2",
+          "nodeType": "Mining"
+        },
+        {
+          "nodeNumber": "3",
+          "nodeType": "Gather"
+        },
+        {
+          "nodeNumber": "4",
+          "nodeType": "Gather"
+        }
+      ]
+    },
+    {
+      "areaName": "Area 4",
+      "areaNumber": 4,
+      "nodes": [
+        {
+          "nodeNumber": "1",
+          "nodeType": "Mining"
+        },
+        {
+          "nodeNumber": "2",
+          "nodeType": "Mining"
+        },
+        {
+          "nodeNumber": "3",
+          "nodeType": "Gather"
+        },
+        {
+          "nodeNumber": "4",
+          "nodeType": "Gather"
+        },
+        {
+          "nodeNumber": "5",
+          "nodeType": "Fishing"
+        }
+      ]
+    },
+    {
+      "areaName": "Area 5",
+      "areaNumber": 5,
+      "nodes": [
+        {
+          "nodeNumber": "1",
+          "nodeType": "Mining"
+        },
+        {
+          "nodeNumber": "2",
+          "nodeType": "Gather"
+        },
+        {
+          "nodeNumber": "3",
+          "nodeType": "Gather"
+        },
+        {
+          "nodeNumber": "4",
+          "nodeType": "Gather"
+        }
+      ]
+    },
+    {
+      "areaName": "Area 6",
+      "areaNumber": 6,
+      "nodes": [
+        {
+          "nodeNumber": "1",
+          "nodeType": "Gather"
+        },
+        {
+          "nodeNumber": "2",
+          "nodeType": "Gather"
+        },
+        {
+          "nodeNumber": "3",
+          "nodeType": "Gather"
+        },
+        {
+          "nodeNumber": "4",
+          "nodeType": "Gather"
+        }
+      ]
+    },
+    {
+      "areaName": "Area 7",
+      "areaNumber": 7,
+      "nodes": [
+        {
+          "nodeNumber": "1",
+          "nodeType": "Gather"
+        },
+        {
+          "nodeNumber": "2",
+          "nodeType": "Gather"
+        },
+        {
+          "nodeNumber": "3",
+          "nodeType": "Gather"
+        },
+        {
+          "nodeNumber": "4",
+          "nodeType": "Gather"
+        }
+      ]
+    },
+    {
+      "areaName": "Area 8",
+      "areaNumber": 8,
+      "nodes": [
+        {
+          "nodeNumber": "1",
+          "nodeType": "Mining"
+        },
+        {
+          "nodeNumber": "2",
+          "nodeType": "Mining"
+        },
+        {
+          "nodeNumber": "3",
+          "nodeType": "Mining"
+        },
+        {
+          "nodeNumber": "4",
+          "nodeType": "Gather"
+        }
+      ]
+    },
+    {
+      "areaName": "Secret Area",
+      "areaNumber": null,
+      "nodes": [
+        {
+          "nodeNumber": "1",
+          "nodeType": "Mining",
+          "high-rank": {
+            "items": [
+              {
+                "itemName": "Stone"
+              },
+              {
+                "itemName": "Earth Crystal"
+              },
+              {
+                "itemName": "Machalite Ore"
+              },
+              {
+                "itemName": "Rainbow"
+              },
+              {
+                "itemName": "Ore"
+              },
+              {
+                "itemName": "Union Ore"
+              },
+              {
+                "itemName": "Firestone"
+              },
+              {
+                "itemName": "Firecell Stone"
+              },
+              {
+                "itemName": "Hrd"
+              },
+              {
+                "itemName": "Armor Sphere"
+              },
+              {
+                "itemName": "Hvy Armor Sphere"
+              },
+              {
+                "itemName": "Ancient Stone"
+              },
+              {
+                "itemName": "Sm"
+              },
+              {
+                "itemName": "Ancient Stone"
+              },
+              {
+                "itemName": "Lg Ancient Stone"
+              },
+              {
+                "itemName": "AncientFlatstone"
+              }
+            ]
+          },
+          "g-rank": {
+            "items": [
+              {
+                "itemName": "Earth Crystal"
+              },
+              {
+                "itemName": "Eltalite Ore"
+              },
+              {
+                "itemName": "Rainbow Ore"
+              },
+              {
+                "itemName": "Union"
+              },
+              {
+                "itemName": "Ore"
+              },
+              {
+                "itemName": "Mellanje Ore"
+              },
+              {
+                "itemName": "Firestone"
+              },
+              {
+                "itemName": "Firecell"
+              },
+              {
+                "itemName": "Stone"
+              },
+              {
+                "itemName": "Hrd Armor Sphere"
+              },
+              {
+                "itemName": "Tru Armor Sphere"
+              },
+              {
+                "itemName": "Sm"
+              },
+              {
+                "itemName": "Ancient Stone"
+              }
+            ]
+          }
+        },
+        {
+          "nodeNumber": "2",
+          "nodeType": "Mining",
+          "high-rank": {
+            "items": [
+              {
+                "itemName": "Iron Ore"
+              },
+              {
+                "itemName": "Machalite Ore"
+              },
+              {
+                "itemName": "Carbalite Ore"
+              },
+              {
+                "itemName": "Union"
+              },
+              {
+                "itemName": "Ore"
+              },
+              {
+                "itemName": "Firestone"
+              },
+              {
+                "itemName": "Firecell Stone"
+              },
+              {
+                "itemName": "Hrd Armor"
+              },
+              {
+                "itemName": "Sphere"
+              },
+              {
+                "itemName": "Hvy Armor Sphere"
+              },
+              {
+                "itemName": "Ancient Stone"
+              },
+              {
+                "itemName": "AncientFlatstone"
+              },
+              {
+                "itemName": "Lg"
+              },
+              {
+                "itemName": "Ancient Stone"
+              },
+              {
+                "itemName": "Ancient StoneRod"
+              }
+            ]
+          },
+          "g-rank": {
+            "items": [
+              {
+                "itemName": "Machalite Ore"
+              },
+              {
+                "itemName": "Carbalite Ore"
+              },
+              {
+                "itemName": "Eltalite Ore"
+              },
+              {
+                "itemName": "Union Ore"
+              },
+              {
+                "itemName": "Mellanje Ore"
+              },
+              {
+                "itemName": "Firestone"
+              },
+              {
+                "itemName": "Firecell"
+              },
+              {
+                "itemName": "Stone"
+              },
+              {
+                "itemName": "Hvy Armor Sphere"
+              },
+              {
+                "itemName": "Tru Armor Sphere"
+              }
+            ]
+          }
+        },
+        {
+          "nodeNumber": "3",
+          "nodeType": "Gather",
+          "high-rank": {
+            "items": [
+              {
+                "itemName": "Bone"
+              },
+              {
+                "itemName": "Unknown Skull"
+              },
+              {
+                "itemName": "Master's Skull"
+              }
+            ]
+          },
+          "g-rank": {
+            "items": [
+              {
+                "itemName": "Bone"
+              },
+              {
+                "itemName": "Unknown Skull"
+              },
+              {
+                "itemName": "Master's Skull"
+              }
+            ]
+          }
+        },
+        {
+          "nodeNumber": "4",
+          "nodeType": "Gather",
+          "high-rank": {
+            "items": [
+              {
+                "itemName": "Power Seed"
+              },
+              {
+                "itemName": "Dragon Toadstool"
+              }
+            ]
+          },
+          "g-rank": {
+            "items": [
+              {
+                "itemName": "Power Seed"
+              },
+              {
+                "itemName": "Dragon Toadstool"
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}

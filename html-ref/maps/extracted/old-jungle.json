@@ -1,0 +1,241 @@
+{
+  "mapName": "Old Jungle",
+  "areas": [
+    {
+      "areaName": "Area 1",
+      "areaNumber": 1,
+      "nodes": [
+        {
+          "nodeNumber": "1",
+          "nodeType": "Gather"
+        },
+        {
+          "nodeNumber": "2",
+          "nodeType": "Gather"
+        },
+        {
+          "nodeNumber": "3",
+          "nodeType": "Gather"
+        },
+        {
+          "nodeNumber": "4",
+          "nodeType": "Bugnet"
+        }
+      ]
+    },
+    {
+      "areaName": "Area 2",
+      "areaNumber": 2,
+      "nodes": [
+        {
+          "nodeNumber": "1",
+          "nodeType": "Gather"
+        },
+        {
+          "nodeNumber": "2",
+          "nodeType": "Gather"
+        },
+        {
+          "nodeNumber": "3",
+          "nodeType": "Gather"
+        },
+        {
+          "nodeNumber": "4",
+          "nodeType": "Bugnet"
+        }
+      ]
+    },
+    {
+      "areaName": "Area 3",
+      "areaNumber": 3,
+      "nodes": [
+        {
+          "nodeNumber": "1",
+          "nodeType": "Mining"
+        },
+        {
+          "nodeNumber": "2",
+          "nodeType": "Gather"
+        },
+        {
+          "nodeNumber": "3",
+          "nodeType": "Gather"
+        },
+        {
+          "nodeNumber": "4",
+          "nodeType": "Gather"
+        },
+        {
+          "nodeNumber": "5",
+          "nodeType": "Fishing"
+        }
+      ]
+    },
+    {
+      "areaName": "Area 4",
+      "areaNumber": 4,
+      "nodes": [
+        {
+          "nodeNumber": "1",
+          "nodeType": "Mining"
+        },
+        {
+          "nodeNumber": "2",
+          "nodeType": "Mining"
+        },
+        {
+          "nodeNumber": "3",
+          "nodeType": "Mining"
+        },
+        {
+          "nodeNumber": "4",
+          "nodeType": "Gather"
+        }
+      ]
+    },
+    {
+      "areaName": "Area 5",
+      "areaNumber": 5,
+      "nodes": [
+        {
+          "nodeNumber": "1",
+          "nodeType": "Gather"
+        },
+        {
+          "nodeNumber": "2",
+          "nodeType": "Gather"
+        },
+        {
+          "nodeNumber": "3",
+          "nodeType": "Gather"
+        },
+        {
+          "nodeNumber": "4",
+          "nodeType": "Bugnet"
+        }
+      ]
+    },
+    {
+      "areaName": "Area 6",
+      "areaNumber": 6,
+      "nodes": [
+        {
+          "nodeNumber": "1",
+          "nodeType": "Gather"
+        },
+        {
+          "nodeNumber": "2",
+          "nodeType": "Gather"
+        },
+        {
+          "nodeNumber": "3",
+          "nodeType": "Gather"
+        },
+        {
+          "nodeNumber": "4",
+          "nodeType": "Gather"
+        }
+      ]
+    },
+    {
+      "areaName": "Area 7",
+      "areaNumber": 7,
+      "nodes": [
+        {
+          "nodeNumber": "1",
+          "nodeType": "Gather"
+        },
+        {
+          "nodeNumber": "2",
+          "nodeType": "Gather"
+        },
+        {
+          "nodeNumber": "3",
+          "nodeType": "Gather"
+        },
+        {
+          "nodeNumber": "4",
+          "nodeType": "Gather"
+        },
+        {
+          "nodeNumber": "5",
+          "nodeType": "Fishing"
+        }
+      ]
+    },
+    {
+      "areaName": "Area 8",
+      "areaNumber": 8,
+      "nodes": [
+        {
+          "nodeNumber": "1",
+          "nodeType": "Gather"
+        },
+        {
+          "nodeNumber": "2",
+          "nodeType": "Gather"
+        },
+        {
+          "nodeNumber": "3",
+          "nodeType": "Gather"
+        },
+        {
+          "nodeNumber": "4",
+          "nodeType": "Gather"
+        }
+      ]
+    },
+    {
+      "areaName": "Area 9",
+      "areaNumber": 9,
+      "nodes": [
+        {
+          "nodeNumber": "1",
+          "nodeType": "Mining"
+        },
+        {
+          "nodeNumber": "2",
+          "nodeType": "Gather"
+        },
+        {
+          "nodeNumber": "3",
+          "nodeType": "Gather"
+        },
+        {
+          "nodeNumber": "4",
+          "nodeType": "Gather"
+        },
+        {
+          "nodeNumber": "5",
+          "nodeType": "Fishing"
+        }
+      ]
+    },
+    {
+      "areaName": "Area 10",
+      "areaNumber": 10,
+      "nodes": [
+        {
+          "nodeNumber": "1",
+          "nodeType": "Mining"
+        },
+        {
+          "nodeNumber": "2",
+          "nodeType": "Gather"
+        },
+        {
+          "nodeNumber": "3",
+          "nodeType": "Gather"
+        },
+        {
+          "nodeNumber": "4",
+          "nodeType": "Gather"
+        },
+        {
+          "nodeNumber": "5",
+          "nodeType": "Fishing"
+        }
+      ]
+    }
+  ]
+}

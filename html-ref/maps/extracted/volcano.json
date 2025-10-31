@@ -1,0 +1,3785 @@
+{
+  "mapName": "Volcano",
+  "areas": [
+    {
+      "areaName": "Area 1",
+      "areaNumber": 1,
+      "nodes": [
+        {
+          "nodeNumber": "1",
+          "nodeType": "Gather",
+          "low-rank": {
+            "items": [
+              {
+                "itemName": "Huskberry"
+              },
+              {
+                "itemName": "Power Seed"
+              },
+              {
+                "itemName": "Bomberry"
+              }
+            ]
+          },
+          "high-rank": {
+            "items": [
+              {
+                "itemName": "Huskberry"
+              },
+              {
+                "itemName": "Bomberry"
+              }
+            ]
+          },
+          "g-rank": {
+            "items": [
+              {
+                "itemName": "Huskberry"
+              },
+              {
+                "itemName": "Bomberry"
+              }
+            ]
+          },
+          "training-school": {
+            "items": [
+              {
+                "itemName": "Map"
+              }
+            ]
+          },
+          "treasure-hunting": {
+            "items": [
+              {
+                "itemName": "Mega Potion",
+                "points": 0
+              },
+              {
+                "itemName": "Gunpowder",
+                "points": 0
+              },
+              {
+                "itemName": "Sonic Bomb",
+                "points": 0
+              },
+              {
+                "itemName": "Wyvern",
+                "points": 100
+              },
+              {
+                "itemName": "Grass",
+                "points": 1000
+              },
+              {
+                "itemName": "Basarios Peach",
+                "points": 0
+              }
+            ]
+          }
+        },
+        {
+          "nodeNumber": "2",
+          "nodeType": "Gather",
+          "low-rank": {
+            "items": [
+              {
+                "itemName": "Tropical Berry"
+              },
+              {
+                "itemName": "Fire Herb"
+              },
+              {
+                "itemName": "Insect Husk"
+              }
+            ]
+          },
+          "high-rank": {
+            "items": [
+              {
+                "itemName": "Tropical Berry"
+              },
+              {
+                "itemName": "Fire Herb"
+              },
+              {
+                "itemName": "Insect Husk"
+              }
+            ]
+          },
+          "g-rank": {
+            "items": [
+              {
+                "itemName": "Tropical Berry"
+              },
+              {
+                "itemName": "Fire Herb"
+              }
+            ]
+          },
+          "training-school": {
+            "items": [
+              {
+                "itemName": "Potion"
+              }
+            ]
+          },
+          "treasure-hunting": {
+            "items": [
+              {
+                "itemName": "Map",
+                "points": 0
+              },
+              {
+                "itemName": "Psychoserum",
+                "points": 0
+              },
+              {
+                "itemName": "Paintball",
+                "points": 0
+              },
+              {
+                "itemName": "Farcaster",
+                "points": 0
+              },
+              {
+                "itemName": "Large",
+                "points": 0
+              },
+              {
+                "itemName": "Barrel",
+                "points": 100
+              },
+              {
+                "itemName": "Wyvern Grass",
+                "points": 0
+              }
+            ]
+          }
+        },
+        {
+          "nodeNumber": "3",
+          "nodeType": "Gather",
+          "low-rank": {
+            "items": [
+              {
+                "itemName": "Hot Pepper"
+              },
+              {
+                "itemName": "Power Seed"
+              },
+              {
+                "itemName": "Insect Husk"
+              }
+            ]
+          },
+          "high-rank": {
+            "items": [
+              {
+                "itemName": "Hot Pepper"
+              },
+              {
+                "itemName": "Power Seed"
+              },
+              {
+                "itemName": "Insect Husk"
+              }
+            ]
+          },
+          "g-rank": {
+            "items": [
+              {
+                "itemName": "Hot Pepper"
+              },
+              {
+                "itemName": "Power Seed"
+              },
+              {
+                "itemName": "Insect Husk"
+              }
+            ]
+          },
+          "training-school": {
+            "items": [
+              {
+                "itemName": "Paintball"
+              }
+            ]
+          },
+          "treasure-hunting": {
+            "items": [
+              {
+                "itemName": "Old Pickaxe",
+                "points": 0
+              },
+              {
+                "itemName": "BBQ Spit",
+                "points": 0
+              },
+              {
+                "itemName": "Whetstone",
+                "points": 0
+              },
+              {
+                "itemName": "Gravibiscus",
+                "points": 500
+              },
+              {
+                "itemName": "Dragonrock(Transport)",
+                "points": 2000
+              }
+            ]
+          }
+        },
+        {
+          "nodeNumber": "4",
+          "nodeType": "Mining",
+          "low-rank": {
+            "items": [
+              {
+                "itemName": "Disk Stone"
+              },
+              {
+                "itemName": "Iron Ore"
+              },
+              {
+                "itemName": "Earth Crystal"
+              },
+              {
+                "itemName": "Machalite"
+              },
+              {
+                "itemName": "Ore"
+              },
+              {
+                "itemName": "Dragonite Ore"
+              },
+              {
+                "itemName": "BattlefieldJewel"
+              }
+            ]
+          },
+          "high-rank": {
+            "items": [
+              {
+                "itemName": "Disk Stone"
+              },
+              {
+                "itemName": "Iron Ore"
+              },
+              {
+                "itemName": "Dragonite Ore"
+              },
+              {
+                "itemName": "Carbalite"
+              },
+              {
+                "itemName": "Ore"
+              },
+              {
+                "itemName": "Firestone"
+              },
+              {
+                "itemName": "BattlefieldJewel"
+              },
+              {
+                "itemName": "LapisLazuliJewel"
+              }
+            ]
+          },
+          "g-rank": {
+            "items": [
+              {
+                "itemName": "Disk Stone"
+              },
+              {
+                "itemName": "Dragonite Ore"
+              },
+              {
+                "itemName": "Carbalite Ore"
+              },
+              {
+                "itemName": "Eltalite"
+              },
+              {
+                "itemName": "Ore"
+              },
+              {
+                "itemName": "Firecell Stone"
+              },
+              {
+                "itemName": "LapisLazuliJewel"
+              }
+            ]
+          },
+          "training-school": {
+            "items": [
+              {
+                "itemName": "Sply Max Potion"
+              }
+            ]
+          },
+          "treasure-hunting": {
+            "items": [
+              {
+                "itemName": "Old Book Scrap",
+                "points": 300
+              },
+              {
+                "itemName": "Wyvern Ore",
+                "points": 100
+              },
+              {
+                "itemName": "Pure Wyvern Ore",
+                "points": 300
+              },
+              {
+                "itemName": "Dragonrock(Transport)",
+                "points": 2000
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "areaName": "Area 2",
+      "areaNumber": 2,
+      "nodes": [
+        {
+          "nodeNumber": "1",
+          "nodeType": "Gather",
+          "low-rank": {
+            "items": [
+              {
+                "itemName": "Tropical Berry"
+              },
+              {
+                "itemName": "Fire Herb"
+              },
+              {
+                "itemName": "Hot Pepper"
+              }
+            ]
+          },
+          "high-rank": {
+            "items": [
+              {
+                "itemName": "Tropical Berry"
+              },
+              {
+                "itemName": "Fire Herb"
+              }
+            ]
+          },
+          "g-rank": {
+            "items": [
+              {
+                "itemName": "Tropical Berry"
+              },
+              {
+                "itemName": "Fire Herb"
+              }
+            ]
+          },
+          "training-school": {
+            "items": [
+              {
+                "itemName": "Cool Drink"
+              }
+            ]
+          },
+          "treasure-hunting": {
+            "items": [
+              {
+                "itemName": "(Blocked by Rocks)",
+                "points": 0
+              },
+              {
+                "itemName": "Antidote",
+                "points": 0
+              },
+              {
+                "itemName": "Cool Drink",
+                "points": 1000
+              },
+              {
+                "itemName": "Basarios",
+                "points": 300
+              },
+              {
+                "itemName": "Peach",
+                "points": 0
+              },
+              {
+                "itemName": "Old Book Scrap",
+                "points": 0
+              }
+            ]
+          }
+        },
+        {
+          "nodeNumber": "2",
+          "nodeType": "Mining",
+          "low-rank": {
+            "items": [
+              {
+                "itemName": "Disk Stone"
+              },
+              {
+                "itemName": "Iron Ore"
+              },
+              {
+                "itemName": "Earth Crystal"
+              },
+              {
+                "itemName": "Machalite"
+              },
+              {
+                "itemName": "Ore"
+              },
+              {
+                "itemName": "Dragonite Ore"
+              },
+              {
+                "itemName": "BattlefieldJewel"
+              }
+            ]
+          },
+          "high-rank": {
+            "items": [
+              {
+                "itemName": "Disk Stone"
+              },
+              {
+                "itemName": "Iron Ore"
+              },
+              {
+                "itemName": "Dragonite Ore"
+              },
+              {
+                "itemName": "Carbalite"
+              },
+              {
+                "itemName": "Ore"
+              },
+              {
+                "itemName": "Firestone"
+              },
+              {
+                "itemName": "LapisLazuliJewel"
+              }
+            ]
+          },
+          "g-rank": {
+            "items": [
+              {
+                "itemName": "Disk Stone"
+              },
+              {
+                "itemName": "Dragonite Ore"
+              },
+              {
+                "itemName": "Carbalite Ore"
+              },
+              {
+                "itemName": "Eltalite"
+              },
+              {
+                "itemName": "Ore"
+              },
+              {
+                "itemName": "Firecell Stone"
+              },
+              {
+                "itemName": "LapisLazuliJewel"
+              }
+            ]
+          },
+          "training-school": {
+            "items": [
+              {
+                "itemName": "Supply Flash Bmb"
+              }
+            ]
+          },
+          "treasure-hunting": {
+            "items": [
+              {
+                "itemName": "Mega Demondrug",
+                "points": 0
+              },
+              {
+                "itemName": "Powertalon",
+                "points": 0
+              },
+              {
+                "itemName": "Power Juice",
+                "points": 0
+              },
+              {
+                "itemName": "Pure",
+                "points": 300
+              },
+              {
+                "itemName": "Wyvern Ore",
+                "points": 0
+              }
+            ]
+          }
+        },
+        {
+          "nodeNumber": "3",
+          "nodeType": "Mining",
+          "low-rank": {
+            "items": [
+              {
+                "itemName": "Disk Stone"
+              },
+              {
+                "itemName": "Iron Ore"
+              },
+              {
+                "itemName": "Earth Crystal"
+              },
+              {
+                "itemName": "Machalite"
+              },
+              {
+                "itemName": "Ore"
+              },
+              {
+                "itemName": "Dragonite Ore"
+              },
+              {
+                "itemName": "BattlefieldJewel"
+              }
+            ]
+          },
+          "high-rank": {
+            "items": [
+              {
+                "itemName": "Disk Stone"
+              },
+              {
+                "itemName": "Iron Ore"
+              },
+              {
+                "itemName": "Carbalite Ore"
+              },
+              {
+                "itemName": "Firestone"
+              },
+              {
+                "itemName": "LapisLazuliJewel"
+              },
+              {
+                "itemName": "Nothing"
+              }
+            ]
+          },
+          "g-rank": {
+            "items": [
+              {
+                "itemName": "Disk Stone"
+              },
+              {
+                "itemName": "Dragonite Ore"
+              },
+              {
+                "itemName": "Carbalite Ore"
+              },
+              {
+                "itemName": "Firecell"
+              },
+              {
+                "itemName": "Stone"
+              },
+              {
+                "itemName": "LapisLazuliJewel"
+              }
+            ]
+          },
+          "training-school": {
+            "items": [
+              {
+                "itemName": "Lg Barrel-Bomb"
+              },
+              {
+                "itemName": "Sply Lg Brrl Bmb"
+              }
+            ]
+          },
+          "treasure-hunting": {
+            "items": [
+              {
+                "itemName": "Mega Armorskin",
+                "points": 0
+              },
+              {
+                "itemName": "Sleeping Thr Knf",
+                "points": 0
+              },
+              {
+                "itemName": "Armortalon",
+                "points": 0
+              },
+              {
+                "itemName": "Wyvern",
+                "points": 100
+              },
+              {
+                "itemName": "Ore",
+                "points": 300
+              },
+              {
+                "itemName": "Pure Wyvern Ore",
+                "points": 3000
+              },
+              {
+                "itemName": "Dragonrock+(Transport)",
+                "points": 0
+              }
+            ]
+          }
+        },
+        {
+          "nodeNumber": "4",
+          "nodeType": "Bugnet",
+          "low-rank": {
+            "items": [
+              {
+                "itemName": "Insect Husk"
+              },
+              {
+                "itemName": "Flashbug"
+              },
+              {
+                "itemName": "Carpenterbug"
+              },
+              {
+                "itemName": "Killer"
+              },
+              {
+                "itemName": "Beetle"
+              },
+              {
+                "itemName": "Rainbow Insect"
+              },
+              {
+                "itemName": "Hercudrome"
+              },
+              {
+                "itemName": "Royal"
+              },
+              {
+                "itemName": "Rhino"
+              }
+            ]
+          },
+          "high-rank": {
+            "items": [
+              {
+                "itemName": "Insect Husk"
+              },
+              {
+                "itemName": "Flashbug"
+              },
+              {
+                "itemName": "Killer Beetle"
+              },
+              {
+                "itemName": "Rainbow"
+              },
+              {
+                "itemName": "Insect"
+              },
+              {
+                "itemName": "Hercudrome"
+              },
+              {
+                "itemName": "Rare Scarab"
+              },
+              {
+                "itemName": "Royal"
+              },
+              {
+                "itemName": "Rhino"
+              },
+              {
+                "itemName": "Divine Rhino"
+              }
+            ]
+          },
+          "g-rank": {
+            "items": [
+              {
+                "itemName": "Insect Husk"
+              },
+              {
+                "itemName": "Flashbug"
+              },
+              {
+                "itemName": "Rainbow Insect"
+              },
+              {
+                "itemName": "Hercudrome"
+              },
+              {
+                "itemName": "Rare"
+              },
+              {
+                "itemName": "Scarab"
+              },
+              {
+                "itemName": "PhantomButterfly"
+              },
+              {
+                "itemName": "Royal Rhino"
+              },
+              {
+                "itemName": "Divine"
+              },
+              {
+                "itemName": "Rhino"
+              }
+            ]
+          },
+          "training-school": {
+            "items": [
+              {
+                "itemName": "Supply Flash Bmb"
+              }
+            ]
+          },
+          "treasure-hunting": {
+            "items": [
+              {
+                "itemName": "Gunpowder",
+                "points": 0
+              },
+              {
+                "itemName": "Rathian Fly",
+                "points": 300
+              },
+              {
+                "itemName": "Rathalos Fly",
+                "points": 100
+              },
+              {
+                "itemName": "Killer",
+                "points": 500
+              },
+              {
+                "itemName": "Venus",
+                "points": 0
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "areaName": "Area 3",
+      "areaNumber": 3,
+      "nodes": [
+        {
+          "nodeNumber": "1",
+          "nodeType": "Gather",
+          "low-rank": {
+            "items": [
+              {
+                "itemName": "Stone"
+              },
+              {
+                "itemName": "Worm"
+              },
+              {
+                "itemName": "Nothing"
+              }
+            ]
+          },
+          "high-rank": {
+            "items": [
+              {
+                "itemName": "Stone"
+              },
+              {
+                "itemName": "Worm"
+              },
+              {
+                "itemName": "Nothing"
+              }
+            ]
+          },
+          "g-rank": {
+            "items": [
+              {
+                "itemName": "Stone"
+              },
+              {
+                "itemName": "Worm"
+              },
+              {
+                "itemName": "Nothing"
+              }
+            ]
+          },
+          "training-school": {
+            "items": [
+              {
+                "itemName": "Portable Spit"
+              }
+            ]
+          },
+          "treasure-hunting": {
+            "items": [
+              {
+                "itemName": "Old Book Scrap",
+                "points": 300
+              },
+              {
+                "itemName": "Old Pickaxe",
+                "points": 0
+              },
+              {
+                "itemName": "Wyvernshroom",
+                "points": 200
+              },
+              {
+                "itemName": "Beauty",
+                "points": 800
+              },
+              {
+                "itemName": "Shroom",
+                "points": 0
+              }
+            ]
+          }
+        },
+        {
+          "nodeNumber": "2",
+          "nodeType": "Gather",
+          "low-rank": {
+            "items": [
+              {
+                "itemName": "Hot Pepper"
+              },
+              {
+                "itemName": "Insect Husk"
+              },
+              {
+                "itemName": "Power Seed"
+              }
+            ]
+          },
+          "high-rank": {
+            "items": [
+              {
+                "itemName": "Hot Pepper"
+              },
+              {
+                "itemName": "Insect Husk"
+              },
+              {
+                "itemName": "Power Seed"
+              }
+            ]
+          },
+          "g-rank": {
+            "items": [
+              {
+                "itemName": "Hot Pepper"
+              },
+              {
+                "itemName": "Insect Husk"
+              },
+              {
+                "itemName": "Power Seed"
+              }
+            ]
+          },
+          "training-school": {
+            "items": [
+              {
+                "itemName": "Pickaxe Fish"
+              }
+            ]
+          },
+          "treasure-hunting": {
+            "items": [
+              {
+                "itemName": "Power Coating",
+                "points": 0
+              },
+              {
+                "itemName": "Poison Coating",
+                "points": 0
+              },
+              {
+                "itemName": "ParalysisCoating",
+                "points": 0
+              },
+              {
+                "itemName": "Sleep",
+                "points": 0
+              },
+              {
+                "itemName": "Coating",
+                "points": 0
+              },
+              {
+                "itemName": "Old Pickaxe",
+                "points": 0
+              }
+            ]
+          }
+        },
+        {
+          "nodeNumber": "3",
+          "nodeType": "Mining",
+          "low-rank": {
+            "items": [
+              {
+                "itemName": "Coal"
+              },
+              {
+                "itemName": "Disk Stone"
+              },
+              {
+                "itemName": "Iron Ore"
+              },
+              {
+                "itemName": "Machalite Ore"
+              },
+              {
+                "itemName": "Akito"
+              },
+              {
+                "itemName": "Jewel"
+              }
+            ]
+          },
+          "high-rank": {
+            "items": [
+              {
+                "itemName": "Coal"
+              },
+              {
+                "itemName": "Disk Stone"
+              },
+              {
+                "itemName": "Machalite Ore"
+              },
+              {
+                "itemName": "Firestone"
+              },
+              {
+                "itemName": "BattlefieldJewel"
+              },
+              {
+                "itemName": "LapisLazuliJewel"
+              }
+            ]
+          },
+          "g-rank": {
+            "items": [
+              {
+                "itemName": "Coal"
+              },
+              {
+                "itemName": "Union Ore"
+              },
+              {
+                "itemName": "Eltalite Ore"
+              },
+              {
+                "itemName": "Firestone"
+              },
+              {
+                "itemName": "Firecell Stone"
+              },
+              {
+                "itemName": "BattlefieldJewel"
+              }
+            ]
+          },
+          "training-school": {
+            "items": [
+              {
+                "itemName": "Demondrug"
+              }
+            ]
+          },
+          "treasure-hunting": {
+            "items": [
+              {
+                "itemName": "Lg Barrel-Bomb",
+                "points": 0
+              },
+              {
+                "itemName": "Pitfall Trap",
+                "points": 0
+              },
+              {
+                "itemName": "Torn Old Book",
+                "points": 400
+              }
+            ]
+          }
+        },
+        {
+          "nodeNumber": "4",
+          "nodeType": "Gather",
+          "low-rank": {
+            "items": [
+              {
+                "itemName": "Huskberry"
+              },
+              {
+                "itemName": "Needleberry"
+              },
+              {
+                "itemName": "Sap Plant"
+              }
+            ]
+          },
+          "high-rank": {
+            "items": [
+              {
+                "itemName": "Huskberry"
+              },
+              {
+                "itemName": "Needleberry"
+              }
+            ]
+          },
+          "g-rank": {
+            "items": [
+              {
+                "itemName": "Huskberry"
+              },
+              {
+                "itemName": "Needleberry"
+              },
+              {
+                "itemName": "Nothing"
+              }
+            ]
+          },
+          "training-school": {
+            "items": [
+              {
+                "itemName": "Potion"
+              }
+            ]
+          },
+          "treasure-hunting": {
+            "items": [
+              {
+                "itemName": "Dragonrock+(Transport)",
+                "points": 3000
+              },
+              {
+                "itemName": "Hard",
+                "points": 4000
+              },
+              {
+                "itemName": "Dragonrock(Transport)",
+                "points": 8000
+              },
+              {
+                "itemName": "Graviscus Bulb(Transport)",
+                "points": 0
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "areaName": "Area 4",
+      "areaNumber": 4,
+      "nodes": [
+        {
+          "nodeNumber": "1",
+          "nodeType": "Mining",
+          "low-rank": {
+            "items": [
+              {
+                "itemName": "Coal"
+              },
+              {
+                "itemName": "Iron Ore"
+              },
+              {
+                "itemName": "Earth Crystal"
+              },
+              {
+                "itemName": "Dragonite Ore"
+              }
+            ]
+          },
+          "high-rank": {
+            "items": [
+              {
+                "itemName": "Coal"
+              },
+              {
+                "itemName": "Earth Crystal"
+              },
+              {
+                "itemName": "Carbalite Ore"
+              },
+              {
+                "itemName": "Union"
+              },
+              {
+                "itemName": "Ore"
+              },
+              {
+                "itemName": "BattlefieldJewel"
+              }
+            ]
+          },
+          "g-rank": {
+            "items": [
+              {
+                "itemName": "Coal"
+              },
+              {
+                "itemName": "Carbalite Ore"
+              },
+              {
+                "itemName": "Eltalite Ore"
+              },
+              {
+                "itemName": "Union"
+              },
+              {
+                "itemName": "Ore"
+              },
+              {
+                "itemName": "Mellanje Ore"
+              },
+              {
+                "itemName": "BattlefieldJewel"
+              }
+            ]
+          },
+          "training-school": {
+            "items": [
+              {
+                "itemName": "Sply Pitfall Trp"
+              }
+            ]
+          },
+          "treasure-hunting": {
+            "items": [
+              {
+                "itemName": "Gunpowder",
+                "points": 0
+              },
+              {
+                "itemName": "Flash Bomb",
+                "points": 0
+              },
+              {
+                "itemName": "Lg Barrel-Bomb",
+                "points": 0
+              },
+              {
+                "itemName": "Pitfall",
+                "points": 0
+              },
+              {
+                "itemName": "Trap",
+                "points": 0
+              }
+            ]
+          }
+        },
+        {
+          "nodeNumber": "2",
+          "nodeType": "Mining",
+          "low-rank": {
+            "items": [
+              {
+                "itemName": "Coal"
+              },
+              {
+                "itemName": "Iron Ore"
+              },
+              {
+                "itemName": "Earth Crystal"
+              },
+              {
+                "itemName": "Dragonite"
+              },
+              {
+                "itemName": "Ore"
+              },
+              {
+                "itemName": "Suiko Jewel"
+              }
+            ]
+          },
+          "high-rank": {
+            "items": [
+              {
+                "itemName": "Coal"
+              },
+              {
+                "itemName": "Earth Crystal"
+              },
+              {
+                "itemName": "Carbalite Ore"
+              },
+              {
+                "itemName": "Union"
+              },
+              {
+                "itemName": "Ore"
+              },
+              {
+                "itemName": "BattlefieldJewel"
+              }
+            ]
+          },
+          "g-rank": {
+            "items": [
+              {
+                "itemName": "Coal"
+              },
+              {
+                "itemName": "Carbalite Ore"
+              },
+              {
+                "itemName": "Union Ore"
+              },
+              {
+                "itemName": "Eltalite Ore"
+              },
+              {
+                "itemName": "Mellanje Ore"
+              },
+              {
+                "itemName": "BattlefieldJewel"
+              }
+            ]
+          },
+          "training-school": {
+            "items": [
+              {
+                "itemName": "Paralyze Thr Knf"
+              }
+            ]
+          },
+          "treasure-hunting": {
+            "items": [
+              {
+                "itemName": "Cool Drink",
+                "points": 0
+              },
+              {
+                "itemName": "Sonic Bomb",
+                "points": 0
+              },
+              {
+                "itemName": "Wyvern Ore",
+                "points": 100
+              },
+              {
+                "itemName": "Dragonrock(Transport)",
+                "points": 2000
+              }
+            ]
+          }
+        },
+        {
+          "nodeNumber": "3",
+          "nodeType": "Gather",
+          "low-rank": {
+            "items": [
+              {
+                "itemName": "Whetstone"
+              },
+              {
+                "itemName": "Stone"
+              },
+              {
+                "itemName": "Nothing"
+              }
+            ]
+          },
+          "high-rank": {
+            "items": [
+              {
+                "itemName": "Whetstone"
+              },
+              {
+                "itemName": "Stone"
+              }
+            ]
+          },
+          "g-rank": {
+            "items": [
+              {
+                "itemName": "Whetstone"
+              },
+              {
+                "itemName": "Stone"
+              }
+            ]
+          },
+          "training-school": {
+            "items": [
+              {
+                "itemName": "Mini Whetstone"
+              }
+            ]
+          },
+          "treasure-hunting": {
+            "items": [
+              {
+                "itemName": "Mega Potion",
+                "points": 0
+              },
+              {
+                "itemName": "Gunpowder",
+                "points": 0
+              },
+              {
+                "itemName": "Old Bugnet",
+                "points": 0
+              },
+              {
+                "itemName": "Whetstone",
+                "points": 0
+              },
+              {
+                "itemName": "Gravibiscus",
+                "points": 500
+              }
+            ]
+          }
+        },
+        {
+          "nodeNumber": "4",
+          "nodeType": "Gather",
+          "low-rank": {
+            "items": [
+              {
+                "itemName": "Armor Seed"
+              },
+              {
+                "itemName": "Huskberry"
+              }
+            ]
+          },
+          "high-rank": {
+            "items": [
+              {
+                "itemName": "Armor Seed"
+              },
+              {
+                "itemName": "Huskberry"
+              }
+            ]
+          },
+          "g-rank": {
+            "items": [
+              {
+                "itemName": "Armor Seed"
+              }
+            ]
+          },
+          "training-school": {
+            "items": [
+              {
+                "itemName": "Bugnet"
+              }
+            ]
+          },
+          "treasure-hunting": {
+            "items": [
+              {
+                "itemName": "BBQ Spit",
+                "points": 0
+              },
+              {
+                "itemName": "Gourmet BBQ Spit",
+                "points": 0
+              },
+              {
+                "itemName": "Old Book Scrap",
+                "points": 300
+              },
+              {
+                "itemName": "Dragonrock(Transport)",
+                "points": 2000
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "areaName": "Area 5",
+      "areaNumber": 5,
+      "nodes": [
+        {
+          "nodeNumber": "1",
+          "nodeType": "Mining",
+          "low-rank": {
+            "items": [
+              {
+                "itemName": "Coal"
+              },
+              {
+                "itemName": "Iron Ore"
+              },
+              {
+                "itemName": "Earth Crystal"
+              },
+              {
+                "itemName": "Dragonite"
+              },
+              {
+                "itemName": "Ore"
+              },
+              {
+                "itemName": "Suiko Jewel"
+              }
+            ]
+          },
+          "high-rank": {
+            "items": [
+              {
+                "itemName": "Coal"
+              },
+              {
+                "itemName": "Earth Crystal"
+              },
+              {
+                "itemName": "Carbalite Ore"
+              },
+              {
+                "itemName": "Union"
+              },
+              {
+                "itemName": "Ore"
+              },
+              {
+                "itemName": "BattlefieldJewel"
+              }
+            ]
+          },
+          "g-rank": {
+            "items": [
+              {
+                "itemName": "Coal"
+              },
+              {
+                "itemName": "Carbalite Ore"
+              },
+              {
+                "itemName": "Eltalite Ore"
+              },
+              {
+                "itemName": "Union"
+              },
+              {
+                "itemName": "Ore"
+              },
+              {
+                "itemName": "Mellanje Ore"
+              },
+              {
+                "itemName": "BattlefieldJewel"
+              }
+            ]
+          },
+          "training-school": {
+            "items": [
+              {
+                "itemName": "Sm Barrel-Bomb"
+              }
+            ]
+          },
+          "treasure-hunting": {
+            "items": [
+              {
+                "itemName": "Lg Barrel-Bomb",
+                "points": 0
+              },
+              {
+                "itemName": "Wyvern Ore",
+                "points": 100
+              },
+              {
+                "itemName": "Pure Wyvern Ore",
+                "points": 300
+              },
+              {
+                "itemName": "Dondorumin",
+                "points": 500
+              },
+              {
+                "itemName": "Old",
+                "points": 300
+              },
+              {
+                "itemName": "Book Scrap",
+                "points": 0
+              }
+            ]
+          }
+        },
+        {
+          "nodeNumber": "2",
+          "nodeType": "Mining",
+          "low-rank": {
+            "items": [
+              {
+                "itemName": "Coal"
+              },
+              {
+                "itemName": "Iron Ore"
+              },
+              {
+                "itemName": "Machalite Ore"
+              },
+              {
+                "itemName": "Dragonite"
+              },
+              {
+                "itemName": "Ore"
+              },
+              {
+                "itemName": "Akito Jewel"
+              }
+            ]
+          },
+          "high-rank": {
+            "items": [
+              {
+                "itemName": "Coal"
+              },
+              {
+                "itemName": "Iron Ore"
+              },
+              {
+                "itemName": "Machalite Ore"
+              },
+              {
+                "itemName": "Dragonite"
+              },
+              {
+                "itemName": "Ore"
+              },
+              {
+                "itemName": "Firestone"
+              }
+            ]
+          },
+          "g-rank": {
+            "items": [
+              {
+                "itemName": "Coal"
+              },
+              {
+                "itemName": "Carbalite Ore"
+              },
+              {
+                "itemName": "Union Ore"
+              },
+              {
+                "itemName": "Eltalite Ore"
+              },
+              {
+                "itemName": "Firecell Stone"
+              }
+            ]
+          },
+          "training-school": {
+            "items": [
+              {
+                "itemName": "Prtbl Shock Trap"
+              }
+            ]
+          },
+          "treasure-hunting": {
+            "items": [
+              {
+                "itemName": "Wyvern Ore",
+                "points": 100
+              },
+              {
+                "itemName": "Hard Dragonrock(Transport)",
+                "points": 4000
+              }
+            ]
+          }
+        },
+        {
+          "nodeNumber": "3",
+          "nodeType": "Gather",
+          "low-rank": {
+            "items": [
+              {
+                "itemName": "Tropical Berry"
+              },
+              {
+                "itemName": "Fire Herb"
+              },
+              {
+                "itemName": "Insect Husk"
+              }
+            ]
+          },
+          "high-rank": {
+            "items": [
+              {
+                "itemName": "Tropical Berry"
+              },
+              {
+                "itemName": "Fire Herb"
+              }
+            ]
+          },
+          "g-rank": {
+            "items": [
+              {
+                "itemName": "Tropical Berry"
+              },
+              {
+                "itemName": "Fire Herb"
+              }
+            ]
+          },
+          "training-school": {
+            "items": [
+              {
+                "itemName": "Psychoserum"
+              }
+            ]
+          },
+          "treasure-hunting": {
+            "items": [
+              {
+                "itemName": "Antidote",
+                "points": 0
+              },
+              {
+                "itemName": "Cool Drink",
+                "points": 0
+              },
+              {
+                "itemName": "Old Bugnet",
+                "points": 0
+              },
+              {
+                "itemName": "Wyvern",
+                "points": 100
+              },
+              {
+                "itemName": "Grass",
+                "points": 500
+              },
+              {
+                "itemName": "Gravibiscus",
+                "points": 0
+              }
+            ]
+          }
+        },
+        {
+          "nodeNumber": "4",
+          "nodeType": "Gather",
+          "low-rank": {
+            "items": [
+              {
+                "itemName": "Huskberry"
+              },
+              {
+                "itemName": "Sap Plant"
+              },
+              {
+                "itemName": "Needleberry"
+              }
+            ]
+          },
+          "high-rank": {
+            "items": [
+              {
+                "itemName": "Huskberry"
+              },
+              {
+                "itemName": "Sap Plant"
+              },
+              {
+                "itemName": "Needleberry"
+              }
+            ]
+          },
+          "g-rank": {
+            "items": [
+              {
+                "itemName": "Huskberry"
+              },
+              {
+                "itemName": "Needleberry"
+              }
+            ]
+          },
+          "training-school": {
+            "items": [
+              {
+                "itemName": "Cool Drink"
+              }
+            ]
+          },
+          "treasure-hunting": {
+            "items": [
+              {
+                "itemName": "Pierce S Lv1",
+                "points": 0
+              },
+              {
+                "itemName": "Pierce S Lv2",
+                "points": 0
+              },
+              {
+                "itemName": "Pierce S Lv3",
+                "points": 0
+              },
+              {
+                "itemName": "Water",
+                "points": 0
+              },
+              {
+                "itemName": "S",
+                "points": 0
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "areaName": "Area 6",
+      "areaNumber": 6,
+      "nodes": [
+        {
+          "nodeNumber": "1",
+          "nodeType": "Gather",
+          "low-rank": {
+            "items": [
+              {
+                "itemName": "Dragon Toadstool"
+              },
+              {
+                "itemName": "Dragon Seed"
+              }
+            ]
+          },
+          "high-rank": {
+            "items": [
+              {
+                "itemName": "Dragon Toadstool"
+              },
+              {
+                "itemName": "Dragon Seed"
+              }
+            ]
+          },
+          "g-rank": {
+            "items": [
+              {
+                "itemName": "Dragon Toadstool"
+              },
+              {
+                "itemName": "Dragon Seed"
+              }
+            ]
+          },
+          "training-school": {
+            "items": [
+              {
+                "itemName": "Mega Potion"
+              }
+            ]
+          },
+          "treasure-hunting": {
+            "items": [
+              {
+                "itemName": "Crag S Lv1",
+                "points": 0
+              },
+              {
+                "itemName": "Crag S Lv2",
+                "points": 0
+              },
+              {
+                "itemName": "Sleep S Lv1",
+                "points": 0
+              }
+            ]
+          }
+        },
+        {
+          "nodeNumber": "2",
+          "nodeType": "Gather",
+          "low-rank": {
+            "items": [
+              {
+                "itemName": "Stone"
+              },
+              {
+                "itemName": "Earth Crystal"
+              },
+              {
+                "itemName": "Powderstone"
+              }
+            ]
+          },
+          "high-rank": {
+            "items": [
+              {
+                "itemName": "Stone"
+              },
+              {
+                "itemName": "Earth Crystal"
+              },
+              {
+                "itemName": "Powderstone"
+              }
+            ]
+          },
+          "g-rank": {
+            "items": [
+              {
+                "itemName": "Stone"
+              },
+              {
+                "itemName": "Earth Crystal"
+              },
+              {
+                "itemName": "Powderstone"
+              }
+            ]
+          },
+          "training-school": {
+            "items": [
+              {
+                "itemName": "Mini Whetstone"
+              }
+            ]
+          },
+          "treasure-hunting": {
+            "items": [
+              {
+                "itemName": "Lg Barrel-Bomb",
+                "points": 0
+              },
+              {
+                "itemName": "Old Pickaxe",
+                "points": 0
+              },
+              {
+                "itemName": "Torn Old Book",
+                "points": 400
+              },
+              {
+                "itemName": "Beauty",
+                "points": 800
+              },
+              {
+                "itemName": "Shroom",
+                "points": 200
+              },
+              {
+                "itemName": "Wyvernshroom",
+                "points": 0
+              }
+            ]
+          }
+        },
+        {
+          "nodeNumber": "3",
+          "nodeType": "Mining",
+          "low-rank": {
+            "items": [
+              {
+                "itemName": "Machalite Ore"
+              },
+              {
+                "itemName": "Disk Stone"
+              },
+              {
+                "itemName": "Earth Crystal"
+              },
+              {
+                "itemName": "Firestone"
+              },
+              {
+                "itemName": "Ruststone"
+              },
+              {
+                "itemName": "Flat"
+              },
+              {
+                "itemName": "Ruststone"
+              },
+              {
+                "itemName": "Large Ruststone"
+              },
+              {
+                "itemName": "Small Ruststone"
+              },
+              {
+                "itemName": "Ruststone"
+              },
+              {
+                "itemName": "Rod"
+              }
+            ]
+          },
+          "high-rank": {
+            "items": [
+              {
+                "itemName": "Earth Crystal"
+              },
+              {
+                "itemName": "Dragonite Ore"
+              },
+              {
+                "itemName": "Firestone"
+              },
+              {
+                "itemName": "Firecell"
+              },
+              {
+                "itemName": "Stone"
+              },
+              {
+                "itemName": "Union Ore"
+              },
+              {
+                "itemName": "Ancient Stone"
+              },
+              {
+                "itemName": "Lg Ancient"
+              },
+              {
+                "itemName": "Stone"
+              },
+              {
+                "itemName": "Sm Ancient Stone"
+              },
+              {
+                "itemName": "Ancient StoneRod"
+              }
+            ]
+          },
+          "g-rank": {
+            "items": [
+              {
+                "itemName": "Earth Crystal"
+              },
+              {
+                "itemName": "Dragonite Ore"
+              },
+              {
+                "itemName": "Mellanje Ore"
+              },
+              {
+                "itemName": "Firestone"
+              },
+              {
+                "itemName": "Firecell"
+              },
+              {
+                "itemName": "Stone"
+              },
+              {
+                "itemName": "Ancient Stone"
+              },
+              {
+                "itemName": "Lg Ancient Stone"
+              },
+              {
+                "itemName": "Sm"
+              },
+              {
+                "itemName": "Ancient Stone"
+              },
+              {
+                "itemName": "Ancient StoneRod"
+              }
+            ]
+          },
+          "training-school": {
+            "items": [
+              {
+                "itemName": "Lg Barrel-Bomb"
+              },
+              {
+                "itemName": "Sply Lg Brrl Bmb"
+              }
+            ]
+          },
+          "treasure-hunting": {
+            "items": [
+              {
+                "itemName": "Lateobrium",
+                "points": 800
+              },
+              {
+                "itemName": "Dondorumin",
+                "points": 500
+              },
+              {
+                "itemName": "Wyvern Ore",
+                "points": 100
+              },
+              {
+                "itemName": "Pure",
+                "points": 300
+              },
+              {
+                "itemName": "Wyvern Ore",
+                "points": 0
+              }
+            ]
+          }
+        },
+        {
+          "nodeNumber": "4",
+          "nodeType": "Mining",
+          "low-rank": {
+            "items": [
+              {
+                "itemName": "Coal"
+              },
+              {
+                "itemName": "Iron Ore"
+              },
+              {
+                "itemName": "Machalite Ore"
+              },
+              {
+                "itemName": "Dragonite"
+              },
+              {
+                "itemName": "Ore"
+              },
+              {
+                "itemName": "Akito Jewel"
+              }
+            ]
+          },
+          "high-rank": {
+            "items": [
+              {
+                "itemName": "Coal"
+              },
+              {
+                "itemName": "Iron Ore"
+              },
+              {
+                "itemName": "Machalite Ore"
+              },
+              {
+                "itemName": "Dragonite"
+              },
+              {
+                "itemName": "Ore"
+              },
+              {
+                "itemName": "Firestone"
+              }
+            ]
+          },
+          "g-rank": {
+            "items": [
+              {
+                "itemName": "Coal"
+              },
+              {
+                "itemName": "Carbalite Ore"
+              },
+              {
+                "itemName": "Eltalite Ore"
+              },
+              {
+                "itemName": "Union"
+              },
+              {
+                "itemName": "Ore"
+              },
+              {
+                "itemName": "Firecell Stone"
+              }
+            ]
+          },
+          "training-school": {
+            "items": [
+              {
+                "itemName": "Sply Pitfall Trp"
+              }
+            ]
+          },
+          "treasure-hunting": {
+            "items": [
+              {
+                "itemName": "(Blocked by Rocks)",
+                "points": 800
+              },
+              {
+                "itemName": "Lateobrium",
+                "points": 8000
+              },
+              {
+                "itemName": "Graviscus",
+                "points": 4000
+              },
+              {
+                "itemName": "Bulb(Transport)",
+                "points": 0
+              },
+              {
+                "itemName": "Hard Dragonrock(Transport)",
+                "points": 0
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "areaName": "Area 7",
+      "areaNumber": 7,
+      "nodes": [
+        {
+          "nodeNumber": "1",
+          "nodeType": "Gather",
+          "low-rank": {
+            "items": [
+              {
+                "itemName": "Bomberry"
+              },
+              {
+                "itemName": "Huskberry"
+              }
+            ]
+          },
+          "high-rank": {
+            "items": [
+              {
+                "itemName": "Bomberry"
+              },
+              {
+                "itemName": "Power Seed"
+              }
+            ]
+          },
+          "g-rank": {
+            "items": [
+              {
+                "itemName": "Huskberry"
+              },
+              {
+                "itemName": "Bomberry"
+              },
+              {
+                "itemName": "Power Seed"
+              }
+            ]
+          },
+          "training-school": {
+            "items": [
+              {
+                "itemName": "Pickaxe Fish"
+              }
+            ]
+          },
+          "treasure-hunting": {
+            "items": [
+              {
+                "itemName": "Normal S Lv2",
+                "points": 0
+              },
+              {
+                "itemName": "Pellet S Lv1",
+                "points": 0
+              },
+              {
+                "itemName": "Pellet S Lv2",
+                "points": 0
+              }
+            ]
+          }
+        },
+        {
+          "nodeNumber": "2",
+          "nodeType": "Gather",
+          "low-rank": {
+            "items": [
+              {
+                "itemName": "Whetstone"
+              },
+              {
+                "itemName": "Stone"
+              }
+            ]
+          },
+          "high-rank": {
+            "items": [
+              {
+                "itemName": "Whetstone"
+              },
+              {
+                "itemName": "Stone"
+              }
+            ]
+          },
+          "g-rank": {
+            "items": [
+              {
+                "itemName": "Nothing"
+              },
+              {
+                "itemName": "Whetstone"
+              },
+              {
+                "itemName": "Stone"
+              }
+            ]
+          },
+          "training-school": {
+            "items": [
+              {
+                "itemName": "Paintball"
+              }
+            ]
+          },
+          "treasure-hunting": {
+            "items": [
+              {
+                "itemName": "Max Potion",
+                "points": 0
+              },
+              {
+                "itemName": "Lifepowder",
+                "points": 0
+              },
+              {
+                "itemName": "Dragonite (M)",
+                "points": 300
+              },
+              {
+                "itemName": "Torn",
+                "points": 400
+              },
+              {
+                "itemName": "Old Book",
+                "points": 1000
+              },
+              {
+                "itemName": "Basarios Peach",
+                "points": 0
+              }
+            ]
+          }
+        },
+        {
+          "nodeNumber": "3",
+          "nodeType": "Gather",
+          "low-rank": {
+            "items": [
+              {
+                "itemName": "Tropical Berry"
+              },
+              {
+                "itemName": "Fire Herb"
+              },
+              {
+                "itemName": "Insect Husk"
+              }
+            ]
+          },
+          "high-rank": {
+            "items": [
+              {
+                "itemName": "Tropical Berry"
+              },
+              {
+                "itemName": "Fire Herb"
+              }
+            ]
+          },
+          "g-rank": {
+            "items": [
+              {
+                "itemName": "Tropical Berry"
+              },
+              {
+                "itemName": "Fire Herb"
+              }
+            ]
+          },
+          "training-school": {
+            "items": [
+              {
+                "itemName": "Farcaster"
+              }
+            ]
+          },
+          "treasure-hunting": {
+            "items": [
+              {
+                "itemName": "Wyvern Grass",
+                "points": 100
+              },
+              {
+                "itemName": "Gravibiscus",
+                "points": 500
+              },
+              {
+                "itemName": "Graviscus",
+                "points": 8000
+              },
+              {
+                "itemName": "Bulb(Transport)",
+                "points": 0
+              }
+            ]
+          }
+        },
+        {
+          "nodeNumber": "4",
+          "nodeType": "Gather",
+          "low-rank": {
+            "items": [
+              {
+                "itemName": "Huskberry"
+              },
+              {
+                "itemName": "Needleberry"
+              },
+              {
+                "itemName": "Sap Plant"
+              }
+            ]
+          },
+          "high-rank": {
+            "items": [
+              {
+                "itemName": "Huskberry"
+              },
+              {
+                "itemName": "Needleberry"
+              },
+              {
+                "itemName": "Sap Plant"
+              }
+            ]
+          },
+          "g-rank": {
+            "items": [
+              {
+                "itemName": "Huskberry"
+              },
+              {
+                "itemName": "Needleberry"
+              },
+              {
+                "itemName": "Sap Plant"
+              }
+            ]
+          },
+          "training-school": {
+            "items": [
+              {
+                "itemName": "Cool Drink"
+              }
+            ]
+          },
+          "treasure-hunting": {
+            "items": [
+              {
+                "itemName": "Boomerang",
+                "points": 0
+              },
+              {
+                "itemName": "Sleeping Thr Knf",
+                "points": 0
+              },
+              {
+                "itemName": "Old Pickaxe",
+                "points": 0
+              },
+              {
+                "itemName": "Beauty",
+                "points": 800
+              },
+              {
+                "itemName": "Shroom",
+                "points": 0
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "areaName": "Area 8",
+      "areaNumber": 8,
+      "nodes": [
+        {
+          "nodeNumber": "1",
+          "nodeType": "Mining",
+          "low-rank": {
+            "items": [
+              {
+                "itemName": "Coal"
+              },
+              {
+                "itemName": "Disk Stone"
+              },
+              {
+                "itemName": "Iron Ore"
+              },
+              {
+                "itemName": "Machalite Ore"
+              },
+              {
+                "itemName": "Akito"
+              },
+              {
+                "itemName": "Jewel"
+              }
+            ]
+          },
+          "high-rank": {
+            "items": [
+              {
+                "itemName": "Coal"
+              },
+              {
+                "itemName": "Iron Ore"
+              },
+              {
+                "itemName": "Machalite Ore"
+              },
+              {
+                "itemName": "Dragonite"
+              },
+              {
+                "itemName": "Ore"
+              },
+              {
+                "itemName": "Firestone"
+              }
+            ]
+          },
+          "g-rank": {
+            "items": [
+              {
+                "itemName": "Coal"
+              },
+              {
+                "itemName": "Carbalite Ore"
+              },
+              {
+                "itemName": "Eltalite Ore"
+              },
+              {
+                "itemName": "Union"
+              },
+              {
+                "itemName": "Ore"
+              },
+              {
+                "itemName": "Firestone"
+              },
+              {
+                "itemName": "Firecell Stone"
+              }
+            ]
+          },
+          "training-school": {
+            "items": [
+              {
+                "itemName": "Not available"
+              }
+            ]
+          },
+          "treasure-hunting": {
+            "items": [
+              {
+                "itemName": "Lateobrium",
+                "points": 800
+              },
+              {
+                "itemName": "Dondorumin",
+                "points": 500
+              },
+              {
+                "itemName": "Pure Wyvern Ore",
+                "points": 300
+              }
+            ]
+          }
+        },
+        {
+          "nodeNumber": "2",
+          "nodeType": "Mining",
+          "low-rank": {
+            "items": [
+              {
+                "itemName": "Coal"
+              },
+              {
+                "itemName": "Iron Ore"
+              },
+              {
+                "itemName": "Machalite Ore"
+              },
+              {
+                "itemName": "Dragonite"
+              },
+              {
+                "itemName": "Ore"
+              },
+              {
+                "itemName": "Akito Jewel"
+              }
+            ]
+          },
+          "high-rank": {
+            "items": [
+              {
+                "itemName": "Coal"
+              },
+              {
+                "itemName": "Iron Ore"
+              },
+              {
+                "itemName": "Machalite Ore"
+              },
+              {
+                "itemName": "Dragonite"
+              },
+              {
+                "itemName": "Ore"
+              },
+              {
+                "itemName": "Firestone"
+              }
+            ]
+          },
+          "g-rank": {
+            "items": [
+              {
+                "itemName": "Coal"
+              },
+              {
+                "itemName": "Carbalite Ore"
+              },
+              {
+                "itemName": "Union Ore"
+              },
+              {
+                "itemName": "Eltalite Ore"
+              },
+              {
+                "itemName": "Firestone"
+              },
+              {
+                "itemName": "Firecell Stone"
+              }
+            ]
+          },
+          "training-school": {
+            "items": [
+              {
+                "itemName": "Not available"
+              }
+            ]
+          },
+          "treasure-hunting": {
+            "items": [
+              {
+                "itemName": "(Blocked by Rocks)",
+                "points": 4000
+              },
+              {
+                "itemName": "Hard Dragonrock(Transport)",
+                "points": 100
+              },
+              {
+                "itemName": "Wyvern",
+                "points": 0
+              },
+              {
+                "itemName": "Ore",
+                "points": 0
+              }
+            ]
+          }
+        },
+        {
+          "nodeNumber": "3",
+          "nodeType": "Mining",
+          "low-rank": {
+            "items": [
+              {
+                "itemName": "Stone"
+              },
+              {
+                "itemName": "Earth Crystal"
+              },
+              {
+                "itemName": "Machalite Ore"
+              },
+              {
+                "itemName": "Firestone"
+              },
+              {
+                "itemName": "Rainbow"
+              },
+              {
+                "itemName": "Ore"
+              },
+              {
+                "itemName": "Ruststone"
+              },
+              {
+                "itemName": "Flat Ruststone"
+              },
+              {
+                "itemName": "Large"
+              },
+              {
+                "itemName": "Ruststone"
+              },
+              {
+                "itemName": "Small Ruststone"
+              },
+              {
+                "itemName": "Ruststone Rod"
+              }
+            ]
+          },
+          "high-rank": {
+            "items": [
+              {
+                "itemName": "Earth Crystal"
+              },
+              {
+                "itemName": "Carbalite Ore"
+              },
+              {
+                "itemName": "Union Ore"
+              },
+              {
+                "itemName": "Firestone"
+              },
+              {
+                "itemName": "Firecell"
+              },
+              {
+                "itemName": "Stone"
+              },
+              {
+                "itemName": "Rainbow Ore"
+              },
+              {
+                "itemName": "AncientFlatstone"
+              },
+              {
+                "itemName": "Lg"
+              },
+              {
+                "itemName": "Ancient Stone"
+              },
+              {
+                "itemName": "Sm Ancient Stone"
+              },
+              {
+                "itemName": "Ancient"
+              },
+              {
+                "itemName": "StoneRod"
+              }
+            ]
+          },
+          "g-rank": {
+            "items": [
+              {
+                "itemName": "Earth Crystal"
+              },
+              {
+                "itemName": "Rainbow Ore"
+              },
+              {
+                "itemName": "Eltalite Ore"
+              },
+              {
+                "itemName": "Mellanje Ore"
+              },
+              {
+                "itemName": "Firestone"
+              },
+              {
+                "itemName": "Firecell Stone"
+              },
+              {
+                "itemName": "AncientFlatstone"
+              },
+              {
+                "itemName": "Lg"
+              },
+              {
+                "itemName": "Ancient Stone"
+              },
+              {
+                "itemName": "Sm Ancient Stone"
+              },
+              {
+                "itemName": "Ancient"
+              },
+              {
+                "itemName": "StoneRod"
+              }
+            ]
+          },
+          "training-school": {
+            "items": [
+              {
+                "itemName": "Not available"
+              }
+            ]
+          },
+          "treasure-hunting": {
+            "items": [
+              {
+                "itemName": "Hard Dragonrock(Transport)",
+                "points": 4000
+              },
+              {
+                "itemName": "Teostra",
+                "points": 12000
+              },
+              {
+                "itemName": "Meteor(Transport)",
+                "points": 0
+              }
+            ]
+          }
+        },
+        {
+          "nodeNumber": "4",
+          "nodeType": "Gather",
+          "low-rank": {
+            "items": [
+              {
+                "itemName": "Dragon Toadstool"
+              },
+              {
+                "itemName": "Dragon Seed"
+              }
+            ]
+          },
+          "high-rank": {
+            "items": [
+              {
+                "itemName": "Dragon Toadstool"
+              },
+              {
+                "itemName": "Dragon Seed"
+              }
+            ]
+          },
+          "g-rank": {
+            "items": [
+              {
+                "itemName": "Dragon Toadstool"
+              },
+              {
+                "itemName": "Dragon Seed"
+              }
+            ]
+          },
+          "training-school": {
+            "items": [
+              {
+                "itemName": "Not available"
+              }
+            ]
+          },
+          "treasure-hunting": {
+            "items": [
+              {
+                "itemName": "Sonic Bomb",
+                "points": 0
+              },
+              {
+                "itemName": "Farcaster",
+                "points": 0
+              },
+              {
+                "itemName": "Lg Barrel-Bomb",
+                "points": 0
+              },
+              {
+                "itemName": "Torn",
+                "points": 400
+              },
+              {
+                "itemName": "Old Book",
+                "points": 1000
+              },
+              {
+                "itemName": "Basarios Peach",
+                "points": 0
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "areaName": "Area 9",
+      "areaNumber": 9,
+      "nodes": [
+        {
+          "nodeNumber": "1",
+          "nodeType": "Gather",
+          "low-rank": {
+            "items": [
+              {
+                "itemName": "Whetstone"
+              },
+              {
+                "itemName": "Stone"
+              }
+            ]
+          },
+          "high-rank": {
+            "items": [
+              {
+                "itemName": "Whetstone"
+              },
+              {
+                "itemName": "Stone"
+              }
+            ]
+          },
+          "g-rank": {
+            "items": [
+              {
+                "itemName": "Whetstone"
+              },
+              {
+                "itemName": "Stone"
+              }
+            ]
+          },
+          "training-school": {
+            "items": [
+              {
+                "itemName": "Mini Whetstone"
+              }
+            ]
+          },
+          "treasure-hunting": {
+            "items": [
+              {
+                "itemName": "Potion",
+                "points": 0
+              },
+              {
+                "itemName": "Mega Potion",
+                "points": 0
+              },
+              {
+                "itemName": "Cool Drink",
+                "points": 0
+              },
+              {
+                "itemName": "Psychoserum",
+                "points": 0
+              },
+              {
+                "itemName": "Wyvern",
+                "points": 100
+              },
+              {
+                "itemName": "Grass",
+                "points": 0
+              }
+            ]
+          }
+        },
+        {
+          "nodeNumber": "2",
+          "nodeType": "Mining",
+          "low-rank": {
+            "items": [
+              {
+                "itemName": "Coal"
+              },
+              {
+                "itemName": "Iron Ore"
+              },
+              {
+                "itemName": "Earth Crystal"
+              },
+              {
+                "itemName": "Suiko"
+              },
+              {
+                "itemName": "Jewel"
+              },
+              {
+                "itemName": "Dragonite Ore"
+              }
+            ]
+          },
+          "high-rank": {
+            "items": [
+              {
+                "itemName": "Coal"
+              },
+              {
+                "itemName": "Earth Crystal"
+              },
+              {
+                "itemName": "Carbalite Ore"
+              },
+              {
+                "itemName": "Union"
+              },
+              {
+                "itemName": "Ore"
+              },
+              {
+                "itemName": "BattlefieldJewel"
+              }
+            ]
+          },
+          "g-rank": {
+            "items": [
+              {
+                "itemName": "Coal"
+              },
+              {
+                "itemName": "Carbalite Ore"
+              },
+              {
+                "itemName": "Eltalite Ore"
+              },
+              {
+                "itemName": "Union"
+              },
+              {
+                "itemName": "Ore"
+              },
+              {
+                "itemName": "Mellanje Ore"
+              }
+            ]
+          },
+          "training-school": {
+            "items": [
+              {
+                "itemName": "Ration"
+              }
+            ]
+          },
+          "treasure-hunting": {
+            "items": [
+              {
+                "itemName": "Lg Barrel-Bomb",
+                "points": 0
+              },
+              {
+                "itemName": "Power Juice",
+                "points": 0
+              },
+              {
+                "itemName": "Wyvern Ore",
+                "points": 100
+              },
+              {
+                "itemName": "Pure",
+                "points": 300
+              },
+              {
+                "itemName": "Wyvern Ore",
+                "points": 500
+              },
+              {
+                "itemName": "Dondorumin",
+                "points": 0
+              }
+            ]
+          }
+        },
+        {
+          "nodeNumber": "3",
+          "nodeType": "Gather",
+          "low-rank": {
+            "items": [
+              {
+                "itemName": "Sm Bone Husk"
+              },
+              {
+                "itemName": "Bone"
+              },
+              {
+                "itemName": "Unknown Skull"
+              }
+            ]
+          },
+          "high-rank": {
+            "items": [
+              {
+                "itemName": "Sm Bone Husk"
+              },
+              {
+                "itemName": "Unknown Skull"
+              },
+              {
+                "itemName": "Master's Skull"
+              },
+              {
+                "itemName": "Bone"
+              }
+            ]
+          },
+          "g-rank": {
+            "items": [
+              {
+                "itemName": "Sm Bone Husk"
+              },
+              {
+                "itemName": "Unknown Skull"
+              },
+              {
+                "itemName": "Master's Skull"
+              }
+            ]
+          },
+          "training-school": {
+            "items": [
+              {
+                "itemName": "Old Pickaxe"
+              }
+            ]
+          },
+          "treasure-hunting": {
+            "items": [
+              {
+                "itemName": "Farcaster",
+                "points": 0
+              },
+              {
+                "itemName": "Old Pickaxe",
+                "points": 0
+              },
+              {
+                "itemName": "Graviscus",
+                "points": 8000
+              },
+              {
+                "itemName": "Bulb(Transport)",
+                "points": 100
+              },
+              {
+                "itemName": "Wyvern Grass",
+                "points": 0
+              }
+            ]
+          }
+        },
+        {
+          "nodeNumber": "4",
+          "nodeType": "Gather",
+          "low-rank": {
+            "items": [
+              {
+                "itemName": "Whetstone"
+              },
+              {
+                "itemName": "Stone"
+              },
+              {
+                "itemName": "Earth Crystal"
+              }
+            ]
+          },
+          "high-rank": {
+            "items": [
+              {
+                "itemName": "Whetstone"
+              },
+              {
+                "itemName": "Stone"
+              }
+            ]
+          },
+          "g-rank": {
+            "items": [
+              {
+                "itemName": "Whetstone"
+              },
+              {
+                "itemName": "Stone"
+              },
+              {
+                "itemName": "Earth Crystal"
+              }
+            ]
+          },
+          "training-school": {
+            "items": [
+              {
+                "itemName": "Stone"
+              }
+            ]
+          },
+          "treasure-hunting": {
+            "items": [
+              {
+                "itemName": "Old Bugnet",
+                "points": 0
+              },
+              {
+                "itemName": "Wyvernshroom",
+                "points": 200
+              },
+              {
+                "itemName": "Wyvern Ore",
+                "points": 100
+              },
+              {
+                "itemName": "Hard",
+                "points": 4000
+              },
+              {
+                "itemName": "Dragonrock(Transport)",
+                "points": 0
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "areaName": "Area 10",
+      "areaNumber": 10,
+      "nodes": [
+        {
+          "nodeNumber": "1",
+          "nodeType": "Gather",
+          "low-rank": {
+            "items": [
+              {
+                "itemName": "Sm Bone Husk"
+              },
+              {
+                "itemName": "Mystery Bone"
+              },
+              {
+                "itemName": "Bone"
+              }
+            ]
+          },
+          "high-rank": {
+            "items": [
+              {
+                "itemName": "Sm Bone Husk"
+              },
+              {
+                "itemName": "Mystery Bone"
+              },
+              {
+                "itemName": "Bone"
+              }
+            ]
+          },
+          "g-rank": {
+            "items": [
+              {
+                "itemName": "Sm Bone Husk"
+              },
+              {
+                "itemName": "Mystery Bone"
+              },
+              {
+                "itemName": "Bone"
+              }
+            ]
+          },
+          "training-school": {
+            "items": [
+              {
+                "itemName": "Sm Barrel-Bomb"
+              }
+            ]
+          },
+          "treasure-hunting": {
+            "items": [
+              {
+                "itemName": "Clust S Lv1",
+                "points": 0
+              },
+              {
+                "itemName": "Clust S Lv2",
+                "points": 0
+              },
+              {
+                "itemName": "Clust S Lv3",
+                "points": 0
+              }
+            ]
+          }
+        },
+        {
+          "nodeNumber": "2",
+          "nodeType": "Bugnet",
+          "low-rank": {
+            "items": [
+              {
+                "itemName": "Insect Husk"
+              },
+              {
+                "itemName": "Flashbug"
+              },
+              {
+                "itemName": "Godbug"
+              },
+              {
+                "itemName": "Thunderbug"
+              },
+              {
+                "itemName": "Hercudrome"
+              },
+              {
+                "itemName": "Rainbow"
+              },
+              {
+                "itemName": "Insect"
+              },
+              {
+                "itemName": "Royal Rhino"
+              }
+            ]
+          },
+          "high-rank": {
+            "items": [
+              {
+                "itemName": "Insect Husk"
+              },
+              {
+                "itemName": "Godbug"
+              },
+              {
+                "itemName": "Hercudrome"
+              },
+              {
+                "itemName": "Rainbow"
+              },
+              {
+                "itemName": "Insect"
+              },
+              {
+                "itemName": "King Scarab"
+              },
+              {
+                "itemName": "Royal Rhino"
+              },
+              {
+                "itemName": "Divine"
+              },
+              {
+                "itemName": "Rhino"
+              }
+            ]
+          },
+          "g-rank": {
+            "items": [
+              {
+                "itemName": "Insect Husk"
+              },
+              {
+                "itemName": "Godbug"
+              },
+              {
+                "itemName": "Hercudrome"
+              },
+              {
+                "itemName": "Rainbow"
+              },
+              {
+                "itemName": "Insect"
+              },
+              {
+                "itemName": "King Scarab"
+              },
+              {
+                "itemName": "Emperor Cricket"
+              },
+              {
+                "itemName": "Royal"
+              },
+              {
+                "itemName": "Rhino"
+              },
+              {
+                "itemName": "Divine Rhino"
+              }
+            ]
+          },
+          "training-school": {
+            "items": [
+              {
+                "itemName": "Mega Potion"
+              }
+            ]
+          },
+          "treasure-hunting": {
+            "items": [
+              {
+                "itemName": "Rathian Fly",
+                "points": 300
+              },
+              {
+                "itemName": "Rathalos Fly",
+                "points": 100
+              },
+              {
+                "itemName": "Athena Beetle",
+                "points": 1000
+              },
+              {
+                "itemName": "Killer",
+                "points": 500
+              },
+              {
+                "itemName": "Venus",
+                "points": 0
+              }
+            ]
+          }
+        },
+        {
+          "nodeNumber": "3",
+          "nodeType": "Gather",
+          "low-rank": {
+            "items": [
+              {
+                "itemName": "Tropical Berry"
+              },
+              {
+                "itemName": "Fire Herb"
+              },
+              {
+                "itemName": "Hot Pepper"
+              }
+            ]
+          },
+          "high-rank": {
+            "items": [
+              {
+                "itemName": "Tropical Berry"
+              },
+              {
+                "itemName": "Fire Herb"
+              },
+              {
+                "itemName": "Hot Pepper"
+              },
+              {
+                "itemName": "Dragon"
+              },
+              {
+                "itemName": "Toadstool"
+              }
+            ]
+          },
+          "g-rank": {
+            "items": [
+              {
+                "itemName": "Tropical Berry"
+              },
+              {
+                "itemName": "Fire Herb"
+              },
+              {
+                "itemName": "Dragon Toadstool"
+              }
+            ]
+          },
+          "training-school": {
+            "items": [
+              {
+                "itemName": "Psychoserum"
+              }
+            ]
+          },
+          "treasure-hunting": {
+            "items": [
+              {
+                "itemName": "Wyvern Grass",
+                "points": 100
+              },
+              {
+                "itemName": "Wyvernshroom",
+                "points": 200
+              },
+              {
+                "itemName": "Wyvern Ore",
+                "points": 100
+              },
+              {
+                "itemName": "Pure",
+                "points": 300
+              },
+              {
+                "itemName": "Wyvern Ore",
+                "points": 3000
+              },
+              {
+                "itemName": "Dragonrock+(Transport)",
+                "points": 4000
+              },
+              {
+                "itemName": "Hard",
+                "points": 0
+              },
+              {
+                "itemName": "Dragonrock(Transport)",
+                "points": 0
+              }
+            ]
+          }
+        },
+        {
+          "nodeNumber": "4",
+          "nodeType": "Mining",
+          "low-rank": {
+            "items": [
+              {
+                "itemName": "Disk Stone"
+              },
+              {
+                "itemName": "Iron Ore"
+              },
+              {
+                "itemName": "Earth Crystal"
+              },
+              {
+                "itemName": "Machalite"
+              },
+              {
+                "itemName": "Ore"
+              },
+              {
+                "itemName": "Dragonite Ore"
+              },
+              {
+                "itemName": "BattlefieldJewel"
+              }
+            ]
+          },
+          "high-rank": {
+            "items": [
+              {
+                "itemName": "Disk Stone"
+              },
+              {
+                "itemName": "Iron Ore"
+              },
+              {
+                "itemName": "Dragonite Ore"
+              },
+              {
+                "itemName": "Carbalite"
+              },
+              {
+                "itemName": "Ore"
+              },
+              {
+                "itemName": "Firestone"
+              },
+              {
+                "itemName": "LapisLazuliJewel"
+              }
+            ]
+          },
+          "g-rank": {
+            "items": [
+              {
+                "itemName": "Disk Stone"
+              },
+              {
+                "itemName": "Dragonite Ore"
+              },
+              {
+                "itemName": "Carbalite Ore"
+              },
+              {
+                "itemName": "Eltalite"
+              },
+              {
+                "itemName": "Ore"
+              },
+              {
+                "itemName": "Firecell Stone"
+              },
+              {
+                "itemName": "LapisLazuliJewel"
+              }
+            ]
+          },
+          "training-school": {
+            "items": [
+              {
+                "itemName": "Poison Thrw Knf"
+              }
+            ]
+          },
+          "treasure-hunting": {
+            "items": [
+              {
+                "itemName": "Wyvern Ore",
+                "points": 100
+              },
+              {
+                "itemName": "Pure Wyvern Ore",
+                "points": 300
+              },
+              {
+                "itemName": "Old Book Scrap",
+                "points": 300
+              },
+              {
+                "itemName": "Dondorumin",
+                "points": 500
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "areaName": "Secret Area",
+      "areaNumber": null,
+      "nodes": [
+        {
+          "nodeNumber": "1",
+          "nodeType": "Mining",
+          "high-rank": {
+            "items": [
+              {
+                "itemName": "Earth Crystal"
+              },
+              {
+                "itemName": "Carbalite Ore"
+              },
+              {
+                "itemName": "Firestone"
+              },
+              {
+                "itemName": "Firecell"
+              },
+              {
+                "itemName": "Stone"
+              },
+              {
+                "itemName": "Rainbow Ore"
+              },
+              {
+                "itemName": "Ancient Stone"
+              },
+              {
+                "itemName": "AncientFlatstone"
+              },
+              {
+                "itemName": "Ancient"
+              },
+              {
+                "itemName": "StoneRod"
+              },
+              {
+                "itemName": "Lg Ancient Stone"
+              },
+              {
+                "itemName": "Sm Ancient Stone"
+              }
+            ]
+          },
+          "g-rank": {
+            "items": [
+              {
+                "itemName": "Earth Crystal"
+              },
+              {
+                "itemName": "Eltalite Ore"
+              },
+              {
+                "itemName": "Union Ore"
+              },
+              {
+                "itemName": "Mellanje"
+              },
+              {
+                "itemName": "Ore"
+              },
+              {
+                "itemName": "Firecell Stone"
+              },
+              {
+                "itemName": "Rainbow Ore"
+              }
+            ]
+          }
+        },
+        {
+          "nodeNumber": "2",
+          "nodeType": "Mining",
+          "high-rank": {
+            "items": [
+              {
+                "itemName": "Disk Stone"
+              },
+              {
+                "itemName": "Iron Ore"
+              },
+              {
+                "itemName": "Carbalite Ore"
+              },
+              {
+                "itemName": "Firestone"
+              },
+              {
+                "itemName": "LapisLazuliJewel"
+              }
+            ]
+          },
+          "g-rank": {
+            "items": [
+              {
+                "itemName": "Carbalite Ore"
+              },
+              {
+                "itemName": "Union Ore"
+              },
+              {
+                "itemName": "Eltalite Ore"
+              },
+              {
+                "itemName": "Firecell Stone"
+              },
+              {
+                "itemName": "BattlefieldJewel"
+              }
+            ]
+          }
+        },
+        {
+          "nodeNumber": "3",
+          "nodeType": "Mining",
+          "high-rank": {
+            "items": [
+              {
+                "itemName": "Earth Crystal"
+              },
+              {
+                "itemName": "Dragonite Ore"
+              },
+              {
+                "itemName": "Union Ore"
+              },
+              {
+                "itemName": "Firestone"
+              },
+              {
+                "itemName": "Firecell"
+              },
+              {
+                "itemName": "Stone"
+              },
+              {
+                "itemName": "Ancient Stone"
+              },
+              {
+                "itemName": "AncientFlatstone"
+              },
+              {
+                "itemName": "Lg"
+              },
+              {
+                "itemName": "Ancient Stone"
+              },
+              {
+                "itemName": "Sm Ancient Stone"
+              }
+            ]
+          },
+          "g-rank": {
+            "items": [
+              {
+                "itemName": "Earth Crystal"
+              },
+              {
+                "itemName": "Carbalite Ore"
+              },
+              {
+                "itemName": "Eltalite Ore"
+              },
+              {
+                "itemName": "Mellanje Ore"
+              },
+              {
+                "itemName": "Firestone"
+              },
+              {
+                "itemName": "Firecell Stone"
+              }
+            ]
+          }
+        },
+        {
+          "nodeNumber": "4",
+          "nodeType": "Gather",
+          "high-rank": {
+            "items": [
+              {
+                "itemName": "Dragon Toadstool"
+              },
+              {
+                "itemName": "Dragon Seed"
+              }
+            ]
+          },
+          "g-rank": {
+            "items": [
+              {
+                "itemName": "Dragon Toadstool"
+              },
+              {
+                "itemName": "Dragon Seed"
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}

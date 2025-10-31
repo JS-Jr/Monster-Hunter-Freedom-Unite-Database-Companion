@@ -1,0 +1,19 @@
+{
+  "mapName": "Castle Schrade",
+  "areas": [
+    {
+      "areaName": "Base Camp",
+      "areaNumber": null,
+      "nodes": [
+        {
+          "nodeNumber": "1",
+          "nodeType": "Gather"
+        },
+        {
+          "nodeNumber": "2",
+          "nodeType": "Gather"
+        }
+      ]
+    }
+  ]
+}

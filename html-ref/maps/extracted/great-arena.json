@@ -1,0 +1,98 @@
+{
+  "mapName": "Great Arena",
+  "areas": [
+    {
+      "areaName": "Area 1",
+      "areaNumber": 1,
+      "nodes": [
+        {
+          "nodeNumber": "1",
+          "nodeType": "Gather",
+          "high-rank": {
+            "items": [
+              {
+                "itemName": "Supply Flash Bmb"
+              },
+              {
+                "itemName": "Prtbl Shock Trap"
+              }
+            ]
+          },
+          "g-rank": {
+            "items": [
+              {
+                "itemName": "Sm Barrel-Bomb×3～4"
+              }
+            ]
+          }
+        },
+        {
+          "nodeNumber": "2",
+          "nodeType": "Gather",
+          "high-rank": {
+            "items": [
+              {
+                "itemName": "Mini Whetstone"
+              },
+              {
+                "itemName": "Ration"
+              },
+              {
+                "itemName": "Power Seed"
+              }
+            ]
+          },
+          "g-rank": {
+            "items": [
+              {
+                "itemName": "Prtbl Shock Trap×1"
+              }
+            ]
+          }
+        },
+        {
+          "nodeNumber": "3",
+          "nodeType": "Gather",
+          "high-rank": {
+            "items": [
+              {
+                "itemName": "Sm Barrel-Bomb"
+              },
+              {
+                "itemName": "Sply Lg Brrl Bmb"
+              }
+            ]
+          },
+          "g-rank": {
+            "items": [
+              {
+                "itemName": "Sply Lg Brrl Bmb×1"
+              }
+            ]
+          }
+        },
+        {
+          "nodeNumber": "4",
+          "nodeType": "Gather",
+          "high-rank": {
+            "items": [
+              {
+                "itemName": "First-Aid Med"
+              },
+              {
+                "itemName": "Mega Potion"
+              }
+            ]
+          },
+          "g-rank": {
+            "items": [
+              {
+                "itemName": "Mega Potion×3～4"
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}

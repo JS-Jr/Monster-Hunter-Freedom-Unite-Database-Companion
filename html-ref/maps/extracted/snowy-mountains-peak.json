@@ -1,0 +1,27 @@
+{
+  "mapName": "Snowy Mountains Peak",
+  "areas": [
+    {
+      "areaName": "Area 1",
+      "areaNumber": 1,
+      "nodes": [
+        {
+          "nodeNumber": "1",
+          "nodeType": "Gather"
+        },
+        {
+          "nodeNumber": "2",
+          "nodeType": "Mining"
+        },
+        {
+          "nodeNumber": "3",
+          "nodeType": "Gather"
+        },
+        {
+          "nodeNumber": "4",
+          "nodeType": "Gather"
+        }
+      ]
+    }
+  ]
+}

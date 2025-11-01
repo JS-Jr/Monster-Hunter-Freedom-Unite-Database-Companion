@@ -1,0 +1,491 @@
+{
+  "mapName": "Old Desert",
+  "areas": [
+    {
+      "areaName": "Area 1",
+      "areaNumber": 1,
+      "nodes": [
+        {
+          "nodeNumber": "1",
+          "nodeType": "Gather"
+        },
+        {
+          "nodeNumber": "2",
+          "nodeType": "Gather"
+        },
+        {
+          "nodeNumber": "3",
+          "nodeType": "Gather"
+        },
+        {
+          "nodeNumber": "4",
+          "nodeType": "Gather"
+        }
+      ]
+    },
+    {
+      "areaName": "Area 2",
+      "areaNumber": 2,
+      "nodes": [
+        {
+          "nodeNumber": "1",
+          "nodeType": "Gather"
+        },
+        {
+          "nodeNumber": "2",
+          "nodeType": "Gather"
+        },
+        {
+          "nodeNumber": "3",
+          "nodeType": "Gather"
+        },
+        {
+          "nodeNumber": "4",
+          "nodeType": "Gather"
+        }
+      ]
+    },
+    {
+      "areaName": "Area 3",
+      "areaNumber": 3,
+      "nodes": [
+        {
+          "nodeNumber": "1",
+          "nodeType": "Gather"
+        },
+        {
+          "nodeNumber": "2",
+          "nodeType": "Gather"
+        },
+        {
+          "nodeNumber": "3",
+          "nodeType": "Gather"
+        },
+        {
+          "nodeNumber": "4",
+          "nodeType": "Gather"
+        }
+      ]
+    },
+    {
+      "areaName": "Area 4",
+      "areaNumber": 4,
+      "nodes": [
+        {
+          "nodeNumber": "1",
+          "nodeType": "Gather"
+        },
+        {
+          "nodeNumber": "2",
+          "nodeType": "Gather"
+        },
+        {
+          "nodeNumber": "3",
+          "nodeType": "Gather"
+        },
+        {
+          "nodeNumber": "4",
+          "nodeType": "Gather"
+        },
+        {
+          "nodeNumber": "5",
+          "nodeType": "Fishing"
+        }
+      ]
+    },
+    {
+      "areaName": "Area 5",
+      "areaNumber": 5,
+      "nodes": [
+        {
+          "nodeNumber": "1",
+          "nodeType": "Gather"
+        },
+        {
+          "nodeNumber": "2",
+          "nodeType": "Gather"
+        },
+        {
+          "nodeNumber": "3",
+          "nodeType": "Gather"
+        },
+        {
+          "nodeNumber": "4",
+          "nodeType": "Bugnet"
+        },
+        {
+          "nodeNumber": "5",
+          "nodeType": "Fishing"
+        }
+      ]
+    },
+    {
+      "areaName": "Area 6",
+      "areaNumber": 6,
+      "nodes": [
+        {
+          "nodeNumber": "1",
+          "nodeType": "Mining"
+        },
+        {
+          "nodeNumber": "2",
+          "nodeType": "Mining"
+        },
+        {
+          "nodeNumber": "3",
+          "nodeType": "Mining"
+        },
+        {
+          "nodeNumber": "4",
+          "nodeType": "Gather"
+        }
+      ]
+    },
+    {
+      "areaName": "Area 7",
+      "areaNumber": 7,
+      "nodes": [
+        {
+          "nodeNumber": "1",
+          "nodeType": "Gather"
+        },
+        {
+          "nodeNumber": "2",
+          "nodeType": "Gather"
+        },
+        {
+          "nodeNumber": "3",
+          "nodeType": "Gather"
+        },
+        {
+          "nodeNumber": "4",
+          "nodeType": "Gather"
+        }
+      ]
+    },
+    {
+      "areaName": "Area 8",
+      "areaNumber": 8,
+      "nodes": [
+        {
+          "nodeNumber": "1",
+          "nodeType": "Gather"
+        },
+        {
+          "nodeNumber": "2",
+          "nodeType": "Gather"
+        },
+        {
+          "nodeNumber": "3",
+          "nodeType": "Gather"
+        },
+        {
+          "nodeNumber": "4",
+          "nodeType": "Gather"
+        }
+      ]
+    },
+    {
+      "areaName": "Area 9",
+      "areaNumber": 9,
+      "nodes": [
+        {
+          "nodeNumber": "1",
+          "nodeType": "Gather"
+        },
+        {
+          "nodeNumber": "2",
+          "nodeType": "Gather"
+        },
+        {
+          "nodeNumber": "3",
+          "nodeType": "Gather"
+        },
+        {
+          "nodeNumber": "4",
+          "nodeType": "Gather"
+        },
+        {
+          "nodeNumber": "5",
+          "nodeType": "Fishing"
+        }
+      ]
+    },
+    {
+      "areaName": "Area 10",
+      "areaNumber": 10,
+      "nodes": [
+        {
+          "nodeNumber": "1",
+          "nodeType": "Gather"
+        },
+        {
+          "nodeNumber": "2",
+          "nodeType": "Gather"
+        },
+        {
+          "nodeNumber": "3",
+          "nodeType": "Gather"
+        },
+        {
+          "nodeNumber": "4",
+          "nodeType": "Gather"
+        }
+      ]
+    },
+    {
+      "areaName": "Area 11",
+      "areaNumber": 11,
+      "nodes": [
+        {
+          "nodeNumber": "1",
+          "nodeType": "Gather"
+        },
+        {
+          "nodeNumber": "2",
+          "nodeType": "Gather"
+        },
+        {
+          "nodeNumber": "3",
+          "nodeType": "Gather"
+        },
+        {
+          "nodeNumber": "4",
+          "nodeType": "Bugnet"
+        },
+        {
+          "nodeNumber": "5",
+          "nodeType": "Cat"
+        }
+      ]
+    },
+    {
+      "areaName": "Secret Area",
+      "areaNumber": null,
+      "nodes": [
+        {
+          "nodeNumber": "1",
+          "nodeType": "Mining",
+          "high-rank": {
+            "items": [
+              {
+                "itemName": "Iron Ore"
+              },
+              {
+                "itemName": "Machalite Ore"
+              },
+              {
+                "itemName": "Carbalite Ore"
+              },
+              {
+                "itemName": "Firestone"
+              },
+              {
+                "itemName": "Hrd"
+              },
+              {
+                "itemName": "Armor Sphere"
+              },
+              {
+                "itemName": "Ruststone"
+              },
+              {
+                "itemName": "Small Ruststone"
+              },
+              {
+                "itemName": "Large"
+              },
+              {
+                "itemName": "Ruststone"
+              },
+              {
+                "itemName": "Ruststone Rod"
+              },
+              {
+                "itemName": "Flat Ruststone"
+              },
+              {
+                "itemName": "Goldstone"
+              },
+              {
+                "itemName": "Piece"
+              },
+              {
+                "itemName": "Goldstone Hunk"
+              }
+            ]
+          },
+          "g-rank": {
+            "items": [
+              {
+                "itemName": "Machalite Ore"
+              },
+              {
+                "itemName": "Carbalite Ore"
+              },
+              {
+                "itemName": "Eltalite Ore"
+              },
+              {
+                "itemName": "Firecell Stone"
+              },
+              {
+                "itemName": "Hvy Armor Sphere"
+              },
+              {
+                "itemName": "Ancient"
+              },
+              {
+                "itemName": "Stone"
+              },
+              {
+                "itemName": "Sm Ancient Stone"
+              },
+              {
+                "itemName": "Lg Ancient Stone"
+              },
+              {
+                "itemName": "Goldstone"
+              },
+              {
+                "itemName": "Piece"
+              },
+              {
+                "itemName": "Goldstone Hunk"
+              }
+            ]
+          }
+        },
+        {
+          "nodeNumber": "2",
+          "nodeType": "Mining",
+          "high-rank": {
+            "items": [
+              {
+                "itemName": "Iron Ore"
+              },
+              {
+                "itemName": "Machalite Ore"
+              },
+              {
+                "itemName": "Dragonite Ore"
+              },
+              {
+                "itemName": "Carbalite"
+              },
+              {
+                "itemName": "Ore"
+              },
+              {
+                "itemName": "Armor Sphere+"
+              },
+              {
+                "itemName": "Hrd Armor Sphere"
+              },
+              {
+                "itemName": "Goldstone"
+              },
+              {
+                "itemName": "Piece"
+              },
+              {
+                "itemName": "Goldstone Hunk"
+              }
+            ]
+          },
+          "g-rank": {
+            "items": [
+              {
+                "itemName": "Whetstone"
+              },
+              {
+                "itemName": "Dragonite Ore"
+              },
+              {
+                "itemName": "Union Ore"
+              },
+              {
+                "itemName": "Eltalite"
+              },
+              {
+                "itemName": "Ore"
+              },
+              {
+                "itemName": "Hrd Armor Sphere"
+              },
+              {
+                "itemName": "Goldstone Hunk"
+              },
+              {
+                "itemName": "AncientFlatstone"
+              },
+              {
+                "itemName": "Ancient"
+              },
+              {
+                "itemName": "StoneRod"
+              }
+            ]
+          }
+        },
+        {
+          "nodeNumber": "3",
+          "nodeType": "Gather",
+          "high-rank": {
+            "items": [
+              {
+                "itemName": "Dragon Toadstool"
+              },
+              {
+                "itemName": "Power Seed"
+              }
+            ]
+          },
+          "g-rank": {
+            "items": [
+              {
+                "itemName": "Dragon Toadstool"
+              },
+              {
+                "itemName": "Power Seed"
+              },
+              {
+                "itemName": "Felyne Fur Ruby"
+              }
+            ]
+          }
+        },
+        {
+          "nodeNumber": "4",
+          "nodeType": "Gather",
+          "high-rank": {
+            "items": [
+              {
+                "itemName": "Fire Herb"
+              },
+              {
+                "itemName": "Sap Plant"
+              },
+              {
+                "itemName": "Master's Skull"
+              }
+            ]
+          },
+          "g-rank": {
+            "items": [
+              {
+                "itemName": "Fire Herb"
+              },
+              {
+                "itemName": "Sap Plant"
+              },
+              {
+                "itemName": "Master's Skull"
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}

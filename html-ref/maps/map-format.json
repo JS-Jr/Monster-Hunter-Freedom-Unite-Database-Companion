@@ -1,0 +1,57 @@
+{
+  "mapName": "Desert",
+  "areas": [
+    {
+      "areaNumber": 1,
+      "nodes": [
+        {
+          "nodeNumber": 1,
+          "nodeType": "Gather",
+          "low-rank": {
+            "items": [
+              {
+                "itemName": "Huskberry"
+              },
+              {
+                "itemName": "Huskberry"
+              }
+            ]
+          },
+          "high-rank": {
+            "items": [
+              {
+                "itemName": "Sageleaf"
+              },
+              {
+                "itemName": "Sageleaf"
+              }
+            ]
+          },
+          "g-rank": {
+            "items": [
+              {
+                "itemName": "Sageleaf"
+              },
+              {
+                "itemName": "Sageleaf"
+              }
+            ]
+          },
+          "tresure-hunting": {
+            "items": [
+              {
+                "itemName": "Bombs",
+                "points": 0
+              },
+              {
+                "itemName": "Wyvern Grass",
+                "points": 100
+              }
+            ]
+          }
+        }
+      ]
+    },
+    { "areaNumber": 2, "nodes": [] }
+  ]
+}

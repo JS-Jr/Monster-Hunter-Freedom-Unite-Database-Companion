@@ -1,0 +1,573 @@
+{
+  "mapName": "Old Swamp",
+  "areas": [
+    {
+      "areaName": "Base Camp",
+      "areaNumber": null,
+      "nodes": [
+        {
+          "nodeNumber": "1",
+          "nodeType": "Fishing",
+          "high-rank": {
+            "items": [
+              {
+                "itemName": "Rumblefish"
+              },
+              {
+                "itemName": "Sleepyfish"
+              },
+              {
+                "itemName": "Pin Tuna"
+              },
+              {
+                "itemName": "Burst"
+              },
+              {
+                "itemName": "Arrowana"
+              }
+            ]
+          },
+          "g-rank": {
+            "items": [
+              {
+                "itemName": "Rumblefish"
+              },
+              {
+                "itemName": "Sleepyfish"
+              },
+              {
+                "itemName": "Pin Tuna"
+              },
+              {
+                "itemName": "Burst"
+              },
+              {
+                "itemName": "Arrowana"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "areaName": "Area 1",
+      "areaNumber": 1,
+      "nodes": [
+        {
+          "nodeNumber": "1",
+          "nodeType": "Gather"
+        },
+        {
+          "nodeNumber": "2",
+          "nodeType": "Gather"
+        },
+        {
+          "nodeNumber": "3",
+          "nodeType": "Bugnet"
+        },
+        {
+          "nodeNumber": "4",
+          "nodeType": "Bugnet"
+        }
+      ]
+    },
+    {
+      "areaName": "Area 2",
+      "areaNumber": 2,
+      "nodes": [
+        {
+          "nodeNumber": "1",
+          "nodeType": "Gather"
+        },
+        {
+          "nodeNumber": "2",
+          "nodeType": "Gather"
+        },
+        {
+          "nodeNumber": "3",
+          "nodeType": "Gather"
+        },
+        {
+          "nodeNumber": "4",
+          "nodeType": "Bugnet"
+        }
+      ]
+    },
+    {
+      "areaName": "Area 3",
+      "areaNumber": 3,
+      "nodes": [
+        {
+          "nodeNumber": "1",
+          "nodeType": "Gather"
+        },
+        {
+          "nodeNumber": "2",
+          "nodeType": "Gather"
+        },
+        {
+          "nodeNumber": "3",
+          "nodeType": "Bugnet"
+        },
+        {
+          "nodeNumber": "4",
+          "nodeType": "Bugnet"
+        }
+      ]
+    },
+    {
+      "areaName": "Area 4",
+      "areaNumber": 4,
+      "nodes": [
+        {
+          "nodeNumber": "1",
+          "nodeType": "Gather"
+        },
+        {
+          "nodeNumber": "2",
+          "nodeType": "Gather"
+        },
+        {
+          "nodeNumber": "3",
+          "nodeType": "Gather"
+        },
+        {
+          "nodeNumber": "4",
+          "nodeType": "Gather"
+        }
+      ]
+    },
+    {
+      "areaName": "Area 5",
+      "areaNumber": 5,
+      "nodes": [
+        {
+          "nodeNumber": "1",
+          "nodeType": "Gather"
+        },
+        {
+          "nodeNumber": "2",
+          "nodeType": "Gather"
+        },
+        {
+          "nodeNumber": "3",
+          "nodeType": "Gather"
+        },
+        {
+          "nodeNumber": "4",
+          "nodeType": "Gather"
+        }
+      ]
+    },
+    {
+      "areaName": "Area 6",
+      "areaNumber": 6,
+      "nodes": [
+        {
+          "nodeNumber": "1",
+          "nodeType": "Gather"
+        },
+        {
+          "nodeNumber": "2",
+          "nodeType": "Gather"
+        },
+        {
+          "nodeNumber": "3",
+          "nodeType": "Gather"
+        },
+        {
+          "nodeNumber": "4",
+          "nodeType": "Gather"
+        }
+      ]
+    },
+    {
+      "areaName": "Area 7",
+      "areaNumber": 7,
+      "nodes": [
+        {
+          "nodeNumber": "1",
+          "nodeType": "Mining"
+        },
+        {
+          "nodeNumber": "2",
+          "nodeType": "Gather"
+        },
+        {
+          "nodeNumber": "3",
+          "nodeType": "Gather"
+        },
+        {
+          "nodeNumber": "4",
+          "nodeType": "Gather"
+        },
+        {
+          "nodeNumber": "5",
+          "nodeType": "Fishing"
+        }
+      ]
+    },
+    {
+      "areaName": "Area 8",
+      "areaNumber": 8,
+      "nodes": [
+        {
+          "nodeNumber": "1",
+          "nodeType": "Mining"
+        },
+        {
+          "nodeNumber": "2",
+          "nodeType": "Mining"
+        },
+        {
+          "nodeNumber": "3",
+          "nodeType": "Gather"
+        },
+        {
+          "nodeNumber": "4",
+          "nodeType": "Gather"
+        }
+      ]
+    },
+    {
+      "areaName": "Area 9",
+      "areaNumber": 9,
+      "nodes": [
+        {
+          "nodeNumber": "1",
+          "nodeType": "Gather"
+        },
+        {
+          "nodeNumber": "2",
+          "nodeType": "Gather"
+        },
+        {
+          "nodeNumber": "3",
+          "nodeType": "Gather"
+        },
+        {
+          "nodeNumber": "4",
+          "nodeType": "Gather"
+        },
+        {
+          "nodeNumber": "5",
+          "nodeType": "Cat"
+        }
+      ]
+    },
+    {
+      "areaName": "Area 10",
+      "areaNumber": 10,
+      "nodes": [
+        {
+          "nodeNumber": "1",
+          "nodeType": "Gather"
+        },
+        {
+          "nodeNumber": "2",
+          "nodeType": "Gather"
+        },
+        {
+          "nodeNumber": "3",
+          "nodeType": "Gather"
+        },
+        {
+          "nodeNumber": "4",
+          "nodeType": "Gather"
+        }
+      ]
+    },
+    {
+      "areaName": "Area 11",
+      "areaNumber": 11,
+      "nodes": [
+        {
+          "nodeNumber": "1",
+          "nodeType": "Mining"
+        },
+        {
+          "nodeNumber": "2",
+          "nodeType": "Gather"
+        },
+        {
+          "nodeNumber": "3",
+          "nodeType": "Gather"
+        },
+        {
+          "nodeNumber": "4",
+          "nodeType": "Bugnet"
+        }
+      ]
+    },
+    {
+      "areaName": "Secret Area",
+      "areaNumber": null,
+      "nodes": [
+        {
+          "nodeNumber": "1",
+          "nodeType": "Mining",
+          "high-rank": {
+            "items": [
+              {
+                "itemName": "Machalite Ore"
+              },
+              {
+                "itemName": "Carbalite Ore"
+              },
+              {
+                "itemName": "Novacrystal"
+              },
+              {
+                "itemName": "Firestone"
+              },
+              {
+                "itemName": "Armor"
+              },
+              {
+                "itemName": "Sphere+"
+              },
+              {
+                "itemName": "Hrd Armor Sphere"
+              },
+              {
+                "itemName": "Iron Ore"
+              },
+              {
+                "itemName": "Disk"
+              },
+              {
+                "itemName": "Stone"
+              },
+              {
+                "itemName": "Large Ruststone"
+              },
+              {
+                "itemName": "Small Ruststone"
+              },
+              {
+                "itemName": "Ruststone"
+              },
+              {
+                "itemName": "Goldstone"
+              },
+              {
+                "itemName": "Hunk"
+              }
+            ]
+          },
+          "g-rank": {
+            "items": [
+              {
+                "itemName": "Machalite Ore"
+              },
+              {
+                "itemName": "Carbalite Ore"
+              },
+              {
+                "itemName": "Union Ore"
+              },
+              {
+                "itemName": "Firecell"
+              },
+              {
+                "itemName": "Stone"
+              },
+              {
+                "itemName": "Ryl Armor Sphere"
+              },
+              {
+                "itemName": "Goldstone Hunk"
+              },
+              {
+                "itemName": "Ancient"
+              },
+              {
+                "itemName": "Stone"
+              },
+              {
+                "itemName": "Sm Ancient Stone"
+              },
+              {
+                "itemName": "Ancient StoneRod"
+              }
+            ]
+          }
+        },
+        {
+          "nodeNumber": "2",
+          "nodeType": "Gather",
+          "high-rank": {
+            "items": [
+              {
+                "itemName": "Small Barrel"
+              },
+              {
+                "itemName": "Large Barrel"
+              },
+              {
+                "itemName": "Lost Umbrella"
+              }
+            ]
+          },
+          "g-rank": {
+            "items": [
+              {
+                "itemName": "Small Barrel"
+              },
+              {
+                "itemName": "Large Barrel"
+              },
+              {
+                "itemName": "Lost Umbrella"
+              }
+            ]
+          }
+        },
+        {
+          "nodeNumber": "3",
+          "nodeType": "Gather",
+          "high-rank": {
+            "items": [
+              {
+                "itemName": "Dragon Toadstool"
+              },
+              {
+                "itemName": "Power Seed"
+              }
+            ]
+          },
+          "g-rank": {
+            "items": [
+              {
+                "itemName": "Dragon Toadstool"
+              },
+              {
+                "itemName": "Power Seed"
+              }
+            ]
+          }
+        },
+        {
+          "nodeNumber": "4",
+          "nodeType": "Bugnet",
+          "high-rank": {
+            "items": [
+              {
+                "itemName": "Flashbug"
+              },
+              {
+                "itemName": "Hercudrome"
+              },
+              {
+                "itemName": "King Scarab"
+              },
+              {
+                "itemName": "Royal"
+              },
+              {
+                "itemName": "Rhino"
+              },
+              {
+                "itemName": "Divine Rhino"
+              }
+            ]
+          },
+          "g-rank": {
+            "items": [
+              {
+                "itemName": "Flashbug"
+              },
+              {
+                "itemName": "Hercudrome"
+              },
+              {
+                "itemName": "King Scarab"
+              },
+              {
+                "itemName": "Rare"
+              },
+              {
+                "itemName": "Scarab"
+              },
+              {
+                "itemName": "Emperor Cricket"
+              },
+              {
+                "itemName": "Royal Rhino"
+              },
+              {
+                "itemName": "Divine"
+              },
+              {
+                "itemName": "Rhino"
+              }
+            ]
+          }
+        },
+        {
+          "nodeNumber": "5",
+          "nodeType": "Fishing",
+          "high-rank": {
+            "items": [
+              {
+                "itemName": "Goldenfish"
+              },
+              {
+                "itemName": "Rumblefish"
+              },
+              {
+                "itemName": "Knife Mackerel"
+              },
+              {
+                "itemName": "Burst"
+              },
+              {
+                "itemName": "Arrowana"
+              },
+              {
+                "itemName": "Sleepyfish"
+              },
+              {
+                "itemName": "Pin Tuna"
+              }
+            ]
+          },
+          "g-rank": {
+            "items": [
+              {
+                "itemName": "Goldenfish"
+              },
+              {
+                "itemName": "Silverfish"
+              },
+              {
+                "itemName": "Knife Mackerel"
+              },
+              {
+                "itemName": "Sushifish"
+              },
+              {
+                "itemName": "Pin"
+              },
+              {
+                "itemName": "Tuna"
+              },
+              {
+                "itemName": "Burst Arrowana"
+              },
+              {
+                "itemName": "Bomb Arrowana"
+              },
+              {
+                "itemName": "Scatterfish"
+              },
+              {
+                "itemName": "Speartuna"
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}

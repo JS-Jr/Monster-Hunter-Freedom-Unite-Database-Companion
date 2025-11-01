@@ -1,0 +1,104 @@
+{
+  "mapName": "Moat Arena",
+  "areas": [
+    {
+      "areaName": "Area 1",
+      "areaNumber": 1,
+      "nodes": [
+        {
+          "nodeNumber": "1",
+          "nodeType": "Gather",
+          "high-rank": {
+            "items": [
+              {
+                "itemName": "Supply Flash Bmb"
+              },
+              {
+                "itemName": "Prtbl Shock Trap"
+              },
+              {
+                "itemName": "Nitroshroom"
+              }
+            ]
+          },
+          "g-rank": {
+            "items": [
+              {
+                "itemName": "Prtbl Shock Trap"
+              }
+            ]
+          }
+        },
+        {
+          "nodeNumber": "2",
+          "nodeType": "Gather",
+          "high-rank": {
+            "items": [
+              {
+                "itemName": "Sm Barrel-Bomb+"
+              },
+              {
+                "itemName": "Sply Lg Brrl Bmb"
+              }
+            ]
+          },
+          "g-rank": {
+            "items": [
+              {
+                "itemName": "Sm Barrel-Bomb"
+              }
+            ]
+          }
+        },
+        {
+          "nodeNumber": "3",
+          "nodeType": "Gather",
+          "high-rank": {
+            "items": [
+              {
+                "itemName": "Ration"
+              },
+              {
+                "itemName": "Mini Whetstone"
+              },
+              {
+                "itemName": "Power Seed"
+              }
+            ]
+          },
+          "g-rank": {
+            "items": [
+              {
+                "itemName": "Mega Potion"
+              }
+            ]
+          }
+        },
+        {
+          "nodeNumber": "4",
+          "nodeType": "Gather",
+          "high-rank": {
+            "items": [
+              {
+                "itemName": "First-Aid Med"
+              },
+              {
+                "itemName": "Potion"
+              },
+              {
+                "itemName": "Mega Potion"
+              }
+            ]
+          },
+          "g-rank": {
+            "items": [
+              {
+                "itemName": "Sply Lg Brrl Bmb"
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}

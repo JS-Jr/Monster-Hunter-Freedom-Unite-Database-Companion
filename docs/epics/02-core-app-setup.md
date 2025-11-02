@@ -10,8 +10,8 @@ Set up the React frontend structure, routing, and static data loading.
 - Data loaded from JSON.
 
 ### 📋 Tasks
-- [ ] Initialize React + Vite project.
-- [ ] Configure routing (React Router).
+- [ ] Initialize React + Vite project. [Check]
+- [ ] Configure routing (React Router). 
 - [ ] Create placeholder pages for each section.
 - [ ] Add reusable components: `DataTable`, `FilterBar`, `DetailCard`.
 - [ ] Implement simple global layout and navigation.

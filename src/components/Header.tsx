@@ -18,6 +18,7 @@ export default function Header() {
         <Link to="/monsters" style={{ color: "white" }}>Monsters</Link>
         <Link to="/armor" style={{ color: "white" }}>Armor</Link>
         <Link to="/weapons" style={{ color: "white" }}>Weapons</Link>
+        <Link to="/maps" style={{ color: "white" }}>Maps</Link>
       </nav>
     </header>
   );

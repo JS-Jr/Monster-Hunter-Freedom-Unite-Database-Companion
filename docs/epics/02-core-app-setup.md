@@ -4,10 +4,10 @@
 Set up the React frontend structure, routing, and static data loading.
 
 ### 🧱 Deliverables
-- Base React app running with Vite.
-- Folder structure (`src/components`, `src/pages`, `src/data`).
-- Working routes (`/weapons`, `/armor`, `/monsters`, `/materials`, `/maps`).
-- Data loaded from JSON.
+- Base React app running with Vite.                                             [CHECK]
+- Folder structure (`src/components`, `src/pages`, `src/data`).                 [CHECK]
+- Working routes (`/weapons`, `/armor`, `/monsters`, `/materials`, `/maps`).    [CHECK]
+- Data loaded from JSON.                                                        [CHECK]
 
 ### 📋 Tasks
 - [ ] Initialize React + Vite project. [Check]

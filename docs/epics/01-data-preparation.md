@@ -4,11 +4,12 @@
 Collect and normalize all raw MHFU data into clean, structured **JSON** or **CSV** files ready for the frontend.
 
 ### 🧱 Deliverables
-- `/src/data/weapons.json`
-- `/src/data/armor.json`
-- `/src/data/monsters.json`
-- `/src/data/materials.json`
-- `/src/data/maps.json`
+- `/src/data/weapons.json`      [Check]
+- `/src/data/armor.json`        [Check]
+- `/src/data/monsters.json`     [Check]
+<!-- https://monsterhunter.fandom.com/wiki/MHFU:_Monster_Material_List#READ_FIRST -->
+- `/src/data/materials.json`    [Check]
+- `/src/data/maps.json`         [Check]
 - `/docs/DATA_FORMATS.md` (schema reference)
 
 ### 📋 Tasks

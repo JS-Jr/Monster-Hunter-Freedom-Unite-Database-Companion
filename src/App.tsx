@@ -6,6 +6,7 @@ import Armor from "./pages/Armor";
 import Weapons from "./pages/Weapon";
 import Map from "./pages/Map";
 import Header from "./components/Header";
+import WeaponDetail from "./pages/WeaponDetail";
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
           <Route path="/armor" element={<Armor />} />
           <Route path="/weapons" element={<Weapons />} />
           <Route path="/maps" element={<Map />} />
+          <Route path="/weapons/:weaponName" element={<WeaponDetail />} />
         </Routes>
       </main>
     </Router>

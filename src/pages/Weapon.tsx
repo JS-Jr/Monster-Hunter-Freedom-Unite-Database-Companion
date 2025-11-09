@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import type { Weapon } from "../types/Weapon";
 import SearchFilter from "../components/SearchFilter";
 import DataTable from "../components/DataTable";
@@ -10,59 +11,41 @@ export default function Weapons() {
 
   useEffect(() => {
     fetch("/data/weapons.json")
-      .then((res) => {
-        if (!res.ok) throw new Error("Failed to fetch weapons.json");
-        return res.json();
-      })
-      .then((data: any[]) => {
-        console.log("Loaded weapons entries count:", data.length);
-
-        // ✅ Clean & validate the weapon data
-        const cleaned = data
-          .filter((w) => w && typeof w.name === "string")
-          .map((w) => ({
-            ...w,
-            elements: Array.isArray(w.elements) ? w.elements : [],
-            create_mats: Array.isArray(w.create_mats) ? w.create_mats : [],
-            improve_mats: Array.isArray(w.improve_mats) ? w.improve_mats : [],
-          }));
-
-        const invalid = data.filter(
-          (w: any) => !w || typeof w.name !== "string"
-        );
-        if (invalid.length) {
-          console.warn("⚠️ Some invalid weapon entries:", invalid);
-        }
-
-        setWeapons(cleaned);
+      .then((res) => res.json())
+      .then((data: Weapon[]) => {
+        const valid = data.filter((w) => w && typeof w.name === "string");
+        setWeapons(valid);
       })
       .catch((err) => console.error("Error loading weapons:", err));
   }, []);
 
-  // ✅ Compute unique weapon types safely
-  const types = Array.from(new Set(weapons.map((w) => w.type))).filter(
-    Boolean
-  ) as string[];
+  const types = Array.from(
+    new Set(weapons.map((w) => w.type).filter((t): t is string => !!t))
+  );
 
-  // ✅ Search & filter logic
   const filtered = weapons.filter((w) => {
-    const matchName = w.name?.toLowerCase().includes(search.toLowerCase());
-    const matchType = filter ? w.type === filter : true;
-    return matchName && matchType;
+    const nameMatch = w.name.toLowerCase().includes(search.toLowerCase());
+    const typeMatch = filter ? w.type === filter : true;
+    return nameMatch && typeMatch;
   });
 
-  // ✅ Define columns for DataTable
   const columns = [
-    { header: "Name", accessor: "name" },
-    { header: "Type", accessor: "type" },
-    { header: "Attack", accessor: "attack" },
-    { header: "Affinity", accessor: "affinity" },
-    { header: "Rarity", accessor: "rarity" },
+    {
+      header: "Name",
+      accessor: "name" as const,
+      render: (value: string, row: Weapon) => (
+        <Link to={`/weapons/${encodeURIComponent(row.name)}`}>{value}</Link>
+      ),
+    },
+    { header: "Type", accessor: "type" as const },
+    { header: "Attack", accessor: "attack" as const },
+    { header: "Affinity", accessor: "affinity" as const },
+    { header: "Rarity", accessor: "rarity" as const },
     {
       header: "Elements",
-      accessor: "elements",
-      render: (value: Weapon["elements"]) =>
-        value?.map((e) => `${e.name} ${e.attack}`).join(", ") || "—",
+      accessor: "elements" as const,
+      render: (elements: Weapon["elements"]) =>
+        elements?.map((e) => `${e.name} ${e.attack}`).join(", ") || "—",
     },
   ];
 
@@ -78,7 +61,7 @@ export default function Weapons() {
         filterOptions={types}
       />
 
-      <DataTable data={filtered} />
+      <DataTable data={filtered} columns={columns} />
     </div>
   );
 }

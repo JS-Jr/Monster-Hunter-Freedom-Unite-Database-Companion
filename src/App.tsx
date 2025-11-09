@@ -7,6 +7,7 @@ import Weapons from "./pages/Weapon";
 import Map from "./pages/Map";
 import Header from "./components/Header";
 import WeaponDetail from "./pages/WeaponDetail";
+import WeaponTree from "./pages/WeaponTree";
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
           <Route path="/weapons" element={<Weapons />} />
           <Route path="/maps" element={<Map />} />
           <Route path="/weapons/:weaponName" element={<WeaponDetail />} />
+          <Route path="/weapons/tree" element={<WeaponTree />} />
         </Routes>
       </main>
     </Router>

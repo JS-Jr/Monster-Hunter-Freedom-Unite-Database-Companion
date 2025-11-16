@@ -1,9 +1,9 @@
 // src/types/Armor.ts
 
-export type ArmorDefense = {
-  base: number;
-  max: number;
-};
+export type Skills = {
+  name: String;
+  amount: number;
+}
 
 export type ArmorResistances = {
   fire: number;
@@ -23,12 +23,13 @@ export type ArmorMaterial = {
 export type Armor = {
   name: string;
   type: string;            // "head", "body", "arms", "waist", "legs"
-  gender: string | null;   // "male", "female", "both"
+  hunter_type: String,
+  gender: string;          // "male", "female", "both"
   rarity: number;
-  defense: ArmorDefense;
+  defense: number;
   resistances: ArmorResistances;
-  slots: string;           // e.g. "OO-", "---"
-  skills?: Record<string, number>;
-  create_cost: number | null;
+  slots: number;          // 00- -> 2
+  skills: Skills[];
+  create_cost: number;
   create_mats: ArmorMaterial[];
 };

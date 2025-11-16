@@ -10,11 +10,11 @@ Build interactive systems to browse, filter, and view details for weapons and ar
 - Detail pages linking to required materials.
 
 ### 📋 Tasks
-- [ ] Create expandable weapon tree component.
+- [ ] Create expandable weapon tree component. [Use ReactD3] [*CHECK]
 - [ ] Build armor list with sortable stats.
-- [ ] Add filters for weapon and armor attributes.
-- [ ] Design detail view with cost and materials.
-- [ ] Enable navigation from materials → items using them.
+- [ ] Add filters for weapon and armor attributes. [*CHECK]
+- [ ] Design detail view with cost and materials. [*CHECK]-Weapon
+- [ ] Enable navigation from materials → items using them. [Can't do without the material detail page]
 - [ ] Optional: upgrade path visualizer.
 
 ### 🔗 Dependencies

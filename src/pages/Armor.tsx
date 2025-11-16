@@ -1,89 +1,33 @@
-import { useEffect, useState } from "react";
-import type { Armor } from "../types/Armor";
-import SearchFilter from "../components/SearchFilter";
-import DataTable from "../components/DataTable";
+import { useState, useEffect } from 'react';
+import ArmorTable from '../components/ArmorTable';
+import type { Armor } from '../types/Armor';
+import { mapRawArmorToArmor } from '../utils/mapArmor';
+
 
 export default function Armor() {
-  const [armors, setArmors] = useState<Armor[]>([]);
-  const [search, setSearch] = useState("");
-  const [filter, setFilter] = useState("");
+  const [armorData, setArmorData] = useState<Armor[]>([]);
+  const [loading, setLoading] = useState(true);
 
-  // ✅ Load armor data
   useEffect(() => {
-    fetch("/data/armor.json")
-      .then((res) => {
-        if (!res.ok) throw new Error("Failed to fetch armor.json");
-        return res.json();
+    fetch('/data/armor.json')
+      .then(response => response.json())
+      .then(rawData => {
+        const mappedData = rawData.map((item: any) => mapRawArmorToArmor(item));
+        setArmorData(mappedData);
+        setLoading(false);
       })
-      .then((data: any[]) => {
-        const cleaned = data
-          .filter((a) => a && typeof a.name === "string")
-          .map((a) => ({
-            ...a,
-            create_mats: Array.isArray(a.create_mats) ? a.create_mats : [],
-            resistances: a.resistances || {
-              fire: 0,
-              water: 0,
-              thunder: 0,
-              ice: 0,
-              dragon: 0,
-            },
-            defense: a.defense || { base: 0, max: 0 },
-          }));
-
-        setArmors(cleaned);
-      })
-      .catch((err) => console.error("Error loading armor:", err));
+      .catch(err => {
+        console.error('Failed to load armor data:', err);
+        setLoading(false);
+      });
   }, []);
 
-  // ✅ Extract unique armor types (head, body, etc.)
-  const types = Array.from(
-    new Set(armors.map((a) => a.type))
-  ).filter(Boolean) as string[];
-
-  // ✅ Search + filter
-  const filtered = armors.filter((a) => {
-    const matchName = a.name?.toLowerCase().includes(search.toLowerCase());
-    const matchType = filter ? a.type === filter : true;
-    return matchName && matchType;
-  });
-
-  // ✅ Define DataTable columns
-  const columns: {
-    header: string;
-    accessor: keyof Armor;
-    render?: (value: any, row: Armor) => React.ReactNode;
-  }[] = [
-    { header: "Name", accessor: "name" },
-    { header: "Type", accessor: "type" },
-    { header: "Rarity", accessor: "rarity" },
-    {
-      header: "Defense",
-      accessor: "defense",
-      render: (value) => `${value.base} → ${value.max}`,
-    },
-    {
-      header: "Resistances",
-      accessor: "resistances",
-      render: (value) =>
-        `🔥${value.fire} 💧${value.water} ⚡${value.thunder} ❄️${value.ice} 🐉${value.dragon}`,
-    },
-    { header: "Slots", accessor: "slots" },
-  ];
+  if (loading) return <div>Loading armor data...</div>;
 
   return (
-    <div>
-      <h1>Armor</h1>
-
-      <SearchFilter
-        search={search}
-        onSearchChange={setSearch}
-        filter={filter}
-        onFilterChange={setFilter}
-        filterOptions={types}
-      />
-
-      <DataTable data={filtered} columns={columns} />
+    <div className="p-4">
+      <h1 className="text-xl mb-4">Armor List</h1>
+      <ArmorTable data={armorData} />
     </div>
   );
 }

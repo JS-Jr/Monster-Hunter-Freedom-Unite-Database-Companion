@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import SearchFilter from "../components/SearchFilter";
 import DataTable from "../components/DataTable";
-import type { Monster } from "../types/Monster ";
+import type { Monster } from "../types/Monster";
 
 export default function Monsters() {
   const [monsters, setMonsters] = useState<Monster[]>([]);

@@ -15,7 +15,7 @@ Implement a searchable and filterable material database with bidirectional links
   - Drop rates and ranks
   - Used in (weapons/armor)
 - [ ] Implement linking from material → item and vice versa.
-- [ ] Add quick search bar for item names.
+- [ ] Add quick search bar for item names. [done]
 
 ### 🔗 Dependencies
 - Material data (Epic 1)

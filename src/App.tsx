@@ -9,6 +9,7 @@ import Header from "./components/Header";
 import WeaponDetail from "./pages/WeaponDetail";
 import WeaponTree from "./pages/WeaponTree";
 import MonsterDetail from "./pages/MonsterDetail";
+import Item from "./pages/Item";
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
           <Route path="/weapons/:weaponName" element={<WeaponDetail />} />
           <Route path="/weapons/tree" element={<WeaponTree />} />
           <Route path="/monster/:monsterName" element={<MonsterDetail />} />
+          <Route path="/item" element={<Item />} />
         </Routes>
       </main>
     </Router>

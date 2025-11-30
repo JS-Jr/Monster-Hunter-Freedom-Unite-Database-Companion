@@ -9,7 +9,7 @@ Implement a searchable and filterable material database with bidirectional links
 - Cross-navigation (material → weapon/armor/monster).
 
 ### 📋 Tasks
-- [ ] Create material list view with rarity/type filters.
+- [ ] Create material list view with rarity/type filters. [done]
 - [ ] Add detail pages showing:
   - Where to get (monster, map, gather)
   - Drop rates and ranks

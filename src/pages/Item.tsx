@@ -11,8 +11,9 @@ import {
   type ColumnFiltersState,
   type SortingState,
 } from "@tanstack/react-table";
+import { Link } from "react-router-dom";
 
-export default function ItemList() {
+export default function Item() {
   const [itemData, setItemData] = useState<Item[]>([]);
   const [loading, setLoading] = useState(true);
 
@@ -78,7 +79,20 @@ export default function ItemList() {
   const columnHelper = createColumnHelper<Item>();
   const columns = [
     columnHelper.accessor("type", { header: "Type" }),
-    columnHelper.accessor("name", { header: "Name" }),
+    columnHelper.accessor("name", {
+      header: "Name",
+      cell: ({ row }) => {
+        const item = row.original;
+        return (
+          <Link
+            to={`/item/${item.name}`}
+            className="text-blue-600 hover:underline"
+          >
+            {item.name}
+          </Link>
+        );
+      },
+    }),
     columnHelper.accessor("rarity", { header: "Rarity", filterFn: "equals" }),
     columnHelper.accessor("bagCapacity", {
       header: "Bag Capacity",
@@ -120,6 +134,11 @@ export default function ItemList() {
     getPaginationRowModel: getPaginationRowModel(),
   });
 
+  const uniqueTypes = Array.from(new Set(itemData.map((item) => item.type)));
+  const uniqueRarities = Array.from(
+    new Set(itemData.map((item) => item.rarity))
+  );
+
   return (
     <div className="p-4">
       <h1 className="text-xl mb-4">Item List</h1>
@@ -140,41 +159,49 @@ export default function ItemList() {
             />
 
             {/* Type Filter */}
-            {/* <select
-              value={(table.getColumn("type")?.getFilterValue() as string) ?? ""}
-              onChange={(e) =>
-                table.getColumn("type")?.setFilterValue(e.target.value || undefined)
-              }
-              className="border px-3 py-2 rounded shadow-sm"
-            >
-              <option value="">All Types</option>
-              {uniqueTypes.map((type) => (
-                <option key={type} value={type}>
-                  {type.charAt(0).toUpperCase() + type.slice(1)}
-                </option>
-              ))}
-            </select> */}
+            {
+              <select
+                value={
+                  (table.getColumn("type")?.getFilterValue() as string) ?? ""
+                }
+                onChange={(e) =>
+                  table
+                    .getColumn("type")
+                    ?.setFilterValue(e.target.value || undefined)
+                }
+                className="border px-3 py-2 rounded shadow-sm"
+              >
+                <option value="">All Types</option>
+                {uniqueTypes.map((type) => (
+                  <option key={type} value={type}>
+                    {type.charAt(0).toUpperCase() + type.slice(1)}
+                  </option>
+                ))}
+              </select>
+            }
 
             {/* Rarity Filter */}
-            {/* <select
-              value={
-                (table.getColumn("rarity")?.getFilterValue() as string) ?? ""
-              }
-              onChange={(e) => {
-                const value = e.target.value;
-                table
-                  .getColumn("rarity")
-                  ?.setFilterValue(value ? Number(value) : undefined);
-              }}
-              className="border px-3 py-2 rounded shadow-sm"
-            >
-              <option value="">All Rarities</option>
-              {uniqueRarities.map((rarity) => (
-                <option key={rarity} value={rarity}>
-                  {rarity}
-                </option>
-              ))}
-            </select> */}
+            {
+              <select
+                value={
+                  (table.getColumn("rarity")?.getFilterValue() as string) ?? ""
+                }
+                onChange={(e) => {
+                  const value = e.target.value;
+                  table
+                    .getColumn("rarity")
+                    ?.setFilterValue(value ? Number(value) : undefined);
+                }}
+                className="border px-3 py-2 rounded shadow-sm"
+              >
+                <option value="">All Rarities</option>
+                {uniqueRarities.map((rarity) => (
+                  <option key={rarity} value={rarity}>
+                    {rarity}
+                  </option>
+                ))}
+              </select>
+            }
           </div>
 
           {/* Table */}

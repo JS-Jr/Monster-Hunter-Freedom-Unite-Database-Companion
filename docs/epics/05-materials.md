@@ -10,11 +10,11 @@ Implement a searchable and filterable material database with bidirectional links
 
 ### 📋 Tasks
 - [ ] Create material list view with rarity/type filters. [done]
-- [ ] Add detail pages showing:
-  - Where to get (monster, map, gather)
-  - Drop rates and ranks
-  - Used in (weapons/armor)
-- [ ] Implement linking from material → item and vice versa.
+- [ ] Add detail pages showing: [done]
+  - Where to get (monster, map, gather) [done]
+  - Drop rates and ranks [pending]
+  - Used in (weapons/armor) [pending]
+- [ ] Implement linking from material → item and vice versa. [pending]
 - [ ] Add quick search bar for item names. [done]
 
 ### 🔗 Dependencies

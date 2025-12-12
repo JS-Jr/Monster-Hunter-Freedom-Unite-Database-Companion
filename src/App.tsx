@@ -12,6 +12,7 @@ import WeaponTree from "./pages/WeaponTree";
 import MonsterDetail from "./pages/MonsterDetail";
 import Item from "./pages/Item";
 import ItemDetail from "./pages/ItemDetail";
+import SnowyMountainsMap from "./pages/MapDetail-leaflet";
 
 function App() {
   return (
@@ -31,6 +32,7 @@ function App() {
           <Route path="/item" element={<Item />} />
           <Route path="/item/:itemName" element={<ItemDetail />} />
           {/* <Route path="/maps" element={<Map />} /> */}
+          <Route path="/map-detail" element={<SnowyMountainsMap />} />
         </Routes>
       </main>
     </Router>

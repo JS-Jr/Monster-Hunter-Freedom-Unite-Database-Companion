@@ -16,7 +16,8 @@ function App() {
   return (
     <Router>
       <Header />
-        <main style={{ padding: "1rem" }}>
+        {/* <main style={{ padding: "1rem" }}> */}
+        <main>
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/monsters" element={<Monsters />} />

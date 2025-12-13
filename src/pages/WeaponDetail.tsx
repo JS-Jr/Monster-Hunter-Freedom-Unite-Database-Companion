@@ -130,7 +130,12 @@ export default function WeaponDetail() {
                 <ul className="list-disc list-inside mt-1">
                   {weapon.improve_mats.map((mat, idx) => (
                     <li key={idx}>
-                      {mat.name} ×{mat.amount}
+                      <Link
+                        to={`/item/${encodeURIComponent(mat.name)}`}
+                        className="text-[#5A3F28] hover:underline"
+                      >
+                        {mat.name} x{mat.amount}
+                      </Link>
                     </li>
                   ))}
                 </ul>
@@ -174,7 +179,12 @@ function MaterialList({ mats }: { mats: any[] }) {
     <ul className="list-disc list-inside">
       {mats.map((mat, idx) => (
         <li key={idx}>
-          {mat.name} x{mat.amount}
+          <Link
+            to={`/item/${encodeURIComponent(mat.name)}`}
+            className="text-[#5A3F28] hover:underline"
+          >
+            {mat.name} x{mat.amount}
+          </Link>
         </li>
       ))}
     </ul>

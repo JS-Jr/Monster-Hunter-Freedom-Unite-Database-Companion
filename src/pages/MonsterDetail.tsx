@@ -13,108 +13,196 @@ export default function MonsterDetail() {
       .then((res) => res.json())
       .then((data: Monster[]) => {
         const found = data.find(
-          (w) => w.name.toLowerCase() === monsterName?.toLowerCase()
+          (m) => m.name.toLowerCase() === monsterName?.toLowerCase()
         );
         setMonster(found || null);
         setLoading(false);
       })
-      .catch((err) => console.error("Failed to load monster:", err));
+      .catch(() => setLoading(false));
   }, [monsterName]);
 
-  if (loading) return <p className="text-center mt-10">Loading...</p>;
-  if (!monster) return <p className="text-center mt-10">Monster not found.</p>;
+  if (loading)
+    return (
+      <div className="min-h-screen flex items-center justify-center text-lg">
+        Loading…
+      </div>
+    );
+
+  if (!monster)
+    return (
+      <div className="min-h-screen flex items-center justify-center text-lg">
+        Monster not found.
+      </div>
+    );
 
   return (
-    <div className="max-w-5xl mx-auto px-4 py-8">
-      {/* Title */}
-      <h1 className="text-4xl font-bold text-center">{monster.name}</h1>
-      <p className="text-center text-lg text-gray-500">{monster.type}</p>
+    <div
+      className="min-h-screen w-full px-4 py-10"
+      style={{ backgroundColor: "#E9D3B4" }}
+    >
+      <div className="max-w-5xl mx-auto">
+        {/* Title */}
+        <h1
+          className="text-4xl font-extrabold text-center tracking-wide"
+          style={{ color: "#6B3E1B" }}
+        >
+          {monster.name}
+        </h1>
+        <p className="text-center text-lg mt-1" style={{ color: "#5A3F28" }}>
+          {monster.type}
+        </p>
 
-      {/* Image + Description */}
-      <div className="mt-10 flex flex-col md:flex-row gap-8 items-start">
-        {/* Monster Image */}
-        <div className="flex-1 flex justify-center">
-          <img
-            src={monster.image}
-            alt={monster.name}
-            className="w-full max-w-md rounded-xl shadow-lg border"
-          />
+        <div
+          className="mx-auto my-6 h-px w-2/3"
+          style={{ backgroundColor: "#CBA986" }}
+        />
+
+        {/* Image + Description */}
+        <div className="mt-8 flex flex-col md:flex-row gap-8">
+          {/* Image */}
+          <div className="flex-1 flex justify-center">
+            <img
+              src={monster.image}
+              alt={monster.name}
+              className="w-full max-w-md rounded-xl shadow-lg border"
+              style={{ borderColor: "#CBA986" }}
+            />
+          </div>
+
+          {/* Description */}
+          <div
+            className="flex-1 rounded-lg p-6 shadow"
+            style={{ backgroundColor: "#F7E7D0" }}
+          >
+            <h2
+              className="text-2xl font-semibold mb-3"
+              style={{ color: "#6B3E1B" }}
+            >
+              Description
+            </h2>
+            <p className="leading-relaxed text-[#5A3F28]">
+              {monster.description}
+            </p>
+
+            {monster.habitats?.length > 0 && (
+              <div className="mt-6">
+                <h3
+                  className="text-xl font-semibold mb-2"
+                  style={{ color: "#6B3E1B" }}
+                >
+                  Habitats
+                </h3>
+                <ul className="list-disc list-inside text-[#5A3F28]">
+                  {monster.habitats.map((habitat, idx) => (
+                    <li key={idx}>{habitat}</li>
+                  ))}
+                </ul>
+              </div>
+            )}
+          </div>
         </div>
 
-        {/* Description + Habitats */}
-        <div className="flex-1">
-          <h2 className="text-2xl font-semibold mb-3">Description</h2>
-          <p className="text-gray-700 leading-relaxed">{monster.description}</p>
+        {/* Sizes */}
+        {monster.sizes && (
+          <section
+            className="mt-12 rounded-lg p-6 shadow"
+            style={{ backgroundColor: "#F7E7D0" }}
+          >
+            <h2
+              className="text-2xl font-semibold mb-2"
+              style={{ color: "#6B3E1B" }}
+            >
+              Sizes (cm)
+            </h2>
+            <p className="text-[#5A3F28]">
+              Min: {monster.sizes.min.toFixed(2)} — Max:{" "}
+              {monster.sizes.max.toFixed(2)}
+            </p>
+          </section>
+        )}
 
-          {monster.habitats && monster.habitats.length > 0 && (
-            <div className="mt-6">
-              <h3 className="text-xl font-semibold mb-2">Habitats</h3>
-              <ul className="list-disc list-inside text-gray-700">
-                {monster.habitats.map((habitat, idx) => (
-                  <li key={idx}>{habitat}</li>
-                ))}
-              </ul>
-            </div>
-          )}
-        </div>
-      </div>
+        {/* Hitzones */}
+        {monster.hitzones && (
+          <section
+            className="mt-12 rounded-lg p-6 shadow"
+            style={{ backgroundColor: "#F7E7D0" }}
+          >
+            <h2
+              className="text-2xl font-semibold mb-4"
+              style={{ color: "#6B3E1B" }}
+            >
+              Hitzones
+            </h2>
 
-      {/* Sizes */}
-      {monster.sizes && (
-        <div className="mt-12">
-          <h2 className="text-2xl font-semibold mb-4">Sizes (cm)</h2>
-          <p>
-            Min: {monster.sizes.min.toFixed(2)}, Max: {monster.sizes.max.toFixed(2)}
-          </p>
-        </div>
-      )}
+            {Object.entries(monster.hitzones).map(([zone, stats]) => (
+              <div key={zone} className="mb-6">
+                <h3
+                  className="text-xl font-semibold capitalize mb-2"
+                  style={{ color: "#5A3F28" }}
+                >
+                  {zone}
+                </h3>
 
-      {/* Hitzones */}
-      {monster.hitzones && (
-        <div className="mt-12">
-          <h2 className="text-2xl font-semibold mb-4">Hitzones</h2>
-          {Object.entries(monster.hitzones).map(([zone, stats]) => (
-            <div key={zone} className="mb-4">
-              <h3 className="text-xl font-semibold capitalize">{zone}</h3>
-              <div className="grid grid-cols-3 md:grid-cols-6 gap-2">
-                {Object.entries(stats).map(([attack, value]) => (
-                  <div
-                    key={attack}
-                    className="p-2 bg-gray-50 rounded shadow border text-center"
-                  >
-                    <p className="font-semibold capitalize">{attack}</p>
-                    <p>{value}</p>
+                <div className="grid grid-cols-3 md:grid-cols-6 gap-2">
+                  {Object.entries(stats).map(([attack, value]) => (
+                    <div
+                      key={attack}
+                      className="rounded p-2 text-center shadow-sm"
+                      style={{ backgroundColor: "#E9D3B4" }}
+                    >
+                      <p className="font-semibold capitalize text-[#6B3E1B]">
+                        {attack}
+                      </p>
+                      <p className="text-[#5A3F28]">{value}</p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            ))}
+          </section>
+        )}
+
+        {/* Drops */}
+        {monster.drops && (
+          <section
+            className="mt-12 rounded-lg p-6 shadow"
+            style={{ backgroundColor: "#F7E7D0" }}
+          >
+            <h2
+              className="text-2xl font-semibold mb-4"
+              style={{ color: "#6B3E1B" }}
+            >
+              Drops
+            </h2>
+
+            {Object.entries(monster.drops).map(([rank, dropData]) => (
+              <div key={rank} className="mb-6">
+                <h3
+                  className="text-xl font-semibold capitalize mb-2"
+                  style={{ color: "#5A3F28" }}
+                >
+                  {rank}
+                </h3>
+
+                {Object.entries(dropData).map(([category, items]: any) => (
+                  <div key={category} className="mb-2">
+                    <h4 className="font-semibold capitalize text-[#6B3E1B]">
+                      {category}
+                    </h4>
+                    <ul className="list-disc list-inside text-[#5A3F28]">
+                      {items.map((item: any, idx: number) => (
+                        <li key={idx}>
+                          {item.name} ({item.chance})
+                        </li>
+                      ))}
+                    </ul>
                   </div>
                 ))}
               </div>
-            </div>
-          ))}
-        </div>
-      )}
-
-      {/* Drops */}
-      {monster.drops && (
-        <div className="mt-12">
-          <h2 className="text-2xl font-semibold mb-4">Drops</h2>
-          {Object.entries(monster.drops).map(([rank, dropData]) => (
-            <div key={rank} className="mb-6">
-              <h3 className="text-xl font-semibold capitalize">{rank}</h3>
-              {Object.entries(dropData).map(([category, items]: [string, any]) => (
-                <div key={category} className="mt-2">
-                  <h4 className="font-semibold capitalize">{category}</h4>
-                  <ul className="list-disc list-inside text-gray-700">
-                    {items.map((item: any, idx: number) => (
-                      <li key={idx}>
-                        {item.name} ({item.chance})
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              ))}
-            </div>
-          ))}
-        </div>
-      )}
+            ))}
+          </section>
+        )}
+      </div>
     </div>
   );
 }

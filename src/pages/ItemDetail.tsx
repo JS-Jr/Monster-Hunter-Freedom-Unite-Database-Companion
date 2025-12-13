@@ -1,89 +1,107 @@
-// ItemDetail.tsx
-import { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { useParams, Link } from "react-router-dom";
 import type { Item } from "../types/Item";
 
 export default function ItemDetail() {
   const { itemName } = useParams<{ itemName: string }>();
-  const [itemData, setItemData] = useState<Item | null>(null);
+  const [item, setItem] = useState<Item | null>(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    setLoading(true);
-    fetch("/data/item.json")
-      .then((res) => res.json())
-      .then((data: Item[]) => {
-        const found = data.find(
-          (w) => w.itemName.toLowerCase() === itemName?.toLowerCase()
+    const fetchItem = async () => {
+      try {
+        const response = await fetch("/data/item.json");
+        const rawData: any[] = await response.json();
+
+        const mappedData: Item[] = rawData.map((item) => ({
+          type: item.itemType ?? "", // ensure string
+          name: item.itemName ?? "",
+          rarity: Number(item.rarity ?? 0), // ensure number
+          bagCapacity: Number(item.bagCapacity ?? 0),
+          sellValue: item.sellValue ?? "",
+          howToGet: item.howToGet ?? "",
+        }));
+        const decodedName = decodeURIComponent(itemName ?? "");
+        const found = mappedData.find(
+          (i) => i.name.toLowerCase() === decodedName.toLowerCase()
         );
 
-        let mappedData: Item | null = null;
-        if (found) {
-          mappedData = {
-            type: found.itemType ?? "",
-            name: found.itemName ?? "",
-            rarity: Number(found.rarity ?? 0),
-            bagCapacity: Number(found.bagCapacity ?? 0),
-            sellValue: found.sellValue ?? "",
-            howToGet: found.howToGet ?? "",
-            image: found.image ?? "",
-            description: found.description ?? "",
-          };
-        }
-
-        setItemData(mappedData);
-        found || null;
-
-        setItemData(found || null);
+        setItem(found || null);
+      } catch (err) {
+        console.error("Fetch error:", err);
+      } finally {
         setLoading(false);
-      })
+      }
+    };
 
-      .catch((err) => console.error("Failed to load itemData:", err));
+    fetchItem();
   }, [itemName]);
 
-  if (loading) return <p className="text-center mt-10">Loading...</p>;
-  if (!itemData) return <p className="text-center mt-10">Item not found.</p>;
+  if (loading)
+    return (
+      <div className="min-h-[calc(100vh-4rem)] bg-[#E9D3B4] text-[#5A3F28] flex items-center justify-center">
+        Loading item...
+      </div>
+    );
+
+  if (!item)
+    return (
+      <div className="min-h-[calc(100vh-4rem)] bg-[#E9D3B4] text-[#5A3F28] flex flex-col items-center justify-center">
+        <p className="mb-4">Item not found.</p>
+        <Link to="/item" className="underline">
+          Back to Items
+        </Link>
+      </div>
+    );
 
   return (
-    <div className="max-w-3xl mx-auto px-4 py-8">
-      {/* Title */}
-      <h1 className="text-4xl font-bold text-center">{itemData.name}</h1>
-      <p className="text-center text-lg text-gray-500">{itemData.type}</p>
+    <div className="min-h-[calc(100vh-4rem)] bg-[#E9D3B4] text-[#5A3F28] p-6">
+      <div className="max-w-3xl mx-auto">
+        {/* Header */}
+        <h1 className="text-4xl font-extrabold mb-2">{item.name}</h1>
+        <p className="text-lg text-[#6B3E1B] capitalize">
+          {item.type} • Rarity {item.rarity}
+        </p>
 
-      {/* Image */}
-      {itemData.image && (
-        <div className="mt-6 flex justify-center">
-          <img
-            src={itemData.image}
-            alt={itemData.name}
-            className="w-full max-w-sm rounded-xl shadow-lg border"
-          />
+        {/* Stats */}
+        <div className="mt-8 grid grid-cols-2 gap-4">
+          <Stat label="Bag Capacity" value={item.bagCapacity} />
+          <Stat label="Sell Value" value={item.sellValue} />
         </div>
-      )}
 
-      {/* Basic Info */}
-      <div className="mt-10 space-y-4">
-        <p>
-          <strong>Rarity:</strong> {itemData.rarity}
-        </p>
-        <p>
-          <strong>Bag Capacity:</strong> {itemData.bagCapacity}
-        </p>
-        <p>
-          <strong>Sell Value:</strong> {itemData.sellValue}
-        </p>
-        <p>
-          <strong>How to Get:</strong> {itemData.howToGet}
-        </p>
+        {/* How to Get */}
+        {item.howToGet && (
+          <Section title="How to Get">
+            <p>{item.howToGet}</p>
+          </Section>
+        )}
       </div>
+    </div>
+  );
+}
 
-      {/* Description */}
-      {/* {itemData.description && (
-        <div className="mt-10">
-          <h2 className="text-2xl font-semibold mb-2">Description</h2>
-          <p className="text-gray-700 leading-relaxed">{itemData.description}</p>
-        </div>
-      )} */}
+/* ---------------- Small Components ---------------- */
+
+function Section({
+  title,
+  children,
+}: {
+  title: string;
+  children: React.ReactNode;
+}) {
+  return (
+    <div className="mt-10">
+      <h2 className="text-2xl font-semibold mb-3">{title}</h2>
+      <div className="bg-[#F7E7D0] p-4 rounded-lg shadow">{children}</div>
+    </div>
+  );
+}
+
+function Stat({ label, value }: { label: string; value?: any }) {
+  return (
+    <div className="bg-[#F7E7D0] rounded-lg p-4 shadow text-center">
+      <p className="text-sm uppercase tracking-wide text-gray-600">{label}</p>
+      <p className="text-xl font-bold">{value ?? "—"}</p>
     </div>
   );
 }

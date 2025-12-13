@@ -2,13 +2,24 @@ import { useEffect, useState } from "react";
 import type { Monster } from "../types/Monster";
 import { createColumnHelper } from "@tanstack/react-table";
 import { Table } from "../components/Table";
+import { Link } from "react-router-dom";
 
 export default function Monsters() {
   const [monsters, setMonsters] = useState<Monster[]>([]);
   const columnHelper = createColumnHelper<Monster>();
 
   const monsterColumns = [
-    columnHelper.accessor("name", { header: "Name" }),
+    columnHelper.accessor("name", {
+      header: "Name",
+      cell: ({ row }) => (
+        <Link
+          to={`/monster/${encodeURIComponent(row.original.name)}`}
+          className="font-semibold text-[#5A3F28] hover:underline"
+        >
+          {row.original.name}
+        </Link>
+      ),
+    }),
     columnHelper.accessor("type", { header: "Type" }),
     columnHelper.accessor(
       (row) =>

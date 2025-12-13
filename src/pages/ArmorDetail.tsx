@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import type { Armor } from "../types/Armor";
 import { mapRawArmorToArmor } from "../utils/mapArmor";
 
@@ -24,7 +24,7 @@ export default function ArmorDetail() {
 
         // 🔑 then find by name
         const found = mappedArmor.find(
-          (a: { name: string; }) =>
+          (a: { name: string }) =>
             a.name.toLowerCase() ===
             decodeURIComponent(armorName ?? "").toLowerCase()
         );
@@ -127,7 +127,12 @@ export default function ArmorDetail() {
               <ul className="list-disc list-inside">
                 {armor.create_mats.map((mat, i) => (
                   <li key={i}>
-                    {mat.name} ×{mat.amount}
+                    <Link
+                      to={`/item/${encodeURIComponent(mat.name)}`}
+                      className="text-[#5A3F28] hover:underline"
+                    >
+                      {mat.name} x{mat.amount}
+                    </Link>
                   </li>
                 ))}
               </ul>

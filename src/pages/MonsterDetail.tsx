@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import type { Monster } from "../types/Monster";
 
 export default function MonsterDetail() {
@@ -192,7 +192,15 @@ export default function MonsterDetail() {
                     <ul className="list-disc list-inside text-[#5A3F28]">
                       {items.map((item: any, idx: number) => (
                         <li key={idx}>
-                          {item.name} ({item.chance})
+                          <Link
+                            to={`/item/${encodeURIComponent(
+                              item.name
+                            )}`}
+                            className="text-[#5A3F28] hover:underline"
+                          >
+                            {item.name} ({item.chance})
+                          </Link>
+                          
                         </li>
                       ))}
                     </ul>

@@ -22,15 +22,15 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/monsters" element={<Monsters />} />
+          <Route path="/monster/:monsterName" element={<MonsterDetail />} />
           <Route path="/armor" element={<Armor />} />
           <Route path="/armor/:armorName" element={<ArmorDetail />} />
           <Route path="/weapons" element={<Weapons />} />
-          <Route path="/maps" element={<Map />} />
           <Route path="/weapons/:weaponName" element={<WeaponDetail />} />
           <Route path="/weapons/tree" element={<WeaponTree />} />
-          <Route path="/monster/:monsterName" element={<MonsterDetail />} />
           <Route path="/item" element={<Item />} />
           <Route path="/item/:itemName" element={<ItemDetail />} />
+          <Route path="/maps" element={<Map />} />
         </Routes>
       </main>
     </Router>

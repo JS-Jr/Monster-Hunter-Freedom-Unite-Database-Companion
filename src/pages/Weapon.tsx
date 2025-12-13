@@ -1,67 +1,73 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import type { Weapon } from "../types/Weapon";
-import SearchFilter from "../components/SearchFilter";
-import DataTable from "../components/DataTable";
+import { Table } from "../components/Table";
+import { createColumnHelper } from "@tanstack/react-table";
 
 export default function Weapons() {
   const [weapons, setWeapons] = useState<Weapon[]>([]);
-  const [search, setSearch] = useState("");
-  const [filter, setFilter] = useState("");
 
   useEffect(() => {
     fetch("/data/weapons.json")
       .then((res) => res.json())
       .then((data: Weapon[]) => {
-        const valid = data.filter((w) => w && typeof w.name === "string");
-        setWeapons(valid);
+        setWeapons(data);
       })
       .catch((err) => console.error("Error loading weapons:", err));
   }, []);
 
-  const types = Array.from(
-    new Set(weapons.map((w) => w.type).filter((t): t is string => !!t))
-  );
+  const columnHelper = createColumnHelper<Weapon>();
 
-  const filtered = weapons.filter((w) => {
-    const nameMatch = w.name.toLowerCase().includes(search.toLowerCase());
-    const typeMatch = filter ? w.type === filter : true;
-    return nameMatch && typeMatch;
-  });
-
-  const columns = [
-    {
+  const weaponColumns = [
+    columnHelper.accessor("name", {
       header: "Name",
-      accessor: "name" as const,
-      render: (value: string, row: Weapon) => (
-        <Link to={`/weapons/${encodeURIComponent(row.name)}`}>{value}</Link>
+      cell: ({ row, getValue }) => (
+        <Link
+          to={`/weapons/${encodeURIComponent(row.original.name)}`}
+          className="font-semibold text-[#5A3F28] hover:underline"
+        >
+          {getValue()}
+        </Link>
       ),
-    },
-    { header: "Type", accessor: "type" as const },
-    { header: "Attack", accessor: "attack" as const },
-    { header: "Affinity", accessor: "affinity" as const },
-    { header: "Rarity", accessor: "rarity" as const },
-    {
+    }),
+
+    columnHelper.accessor("type", {
+      header: "Type",
+    }),
+
+    columnHelper.accessor("attack", {
+      header: "Attack",
+    }),
+
+    columnHelper.accessor("affinity", {
+      header: "Affinity",
+    }),
+
+    columnHelper.accessor("rarity", {
+      header: "Rarity",
+    }),
+
+    columnHelper.accessor("elements", {
       header: "Elements",
-      accessor: "elements" as const,
-      render: (elements: Weapon["elements"]) =>
-        elements?.map((e) => `${e.name} ${e.attack}`).join(", ") || "—",
-    },
+      cell: ({ getValue }) => {
+        const elements = getValue();
+        return elements?.length
+          ? elements.map((e) => `${e.name} ${e.attack}`).join(", ")
+          : "—";
+      },
+    }),
   ];
 
   return (
-    <div>
-      <h1>Weapons</h1>
+    <div className="p-4 min-h-[calc(100vh-4rem)] bg-[#E9D3B4] text-[#5A3F28]">
+      <h1 className="text-3xl font-bold mb-6">Weapon</h1>
 
-      <SearchFilter
-        search={search}
-        onSearchChange={setSearch}
-        filter={filter}
-        onFilterChange={setFilter}
-        filterOptions={types}
+      <Table
+        data={weapons}
+        columns={weaponColumns}
+        initialPageSize={10}
+        globalFilterable={true} // enables the search input
       />
-
-      <DataTable data={filtered} columns={columns} />
     </div>
   );
 }

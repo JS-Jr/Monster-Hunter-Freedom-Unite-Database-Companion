@@ -1,8 +1,9 @@
 // import "./App.css";
-import { BrowserRouter as Router, Link, Route, Routes } from "react-router-dom";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Home from "./pages/Home";
 import Monsters from "./pages/Monster";
 import Armor from "./pages/Armor";
+import ArmorDetail from "./pages/ArmorDetail";
 import Weapons from "./pages/Weapon";
 import Map from "./pages/Map";
 import Header from "./components/Header";
@@ -16,12 +17,13 @@ function App() {
   return (
     <Router>
       <Header />
-        {/* <main style={{ padding: "1rem" }}> */}
-        <main>
+      {/* <main style={{ padding: "1rem" }}> */}
+      <main>
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/monsters" element={<Monsters />} />
           <Route path="/armor" element={<Armor />} />
+          <Route path="/armor/:armorName" element={<ArmorDetail />} />
           <Route path="/weapons" element={<Weapons />} />
           <Route path="/maps" element={<Map />} />
           <Route path="/weapons/:weaponName" element={<WeaponDetail />} />

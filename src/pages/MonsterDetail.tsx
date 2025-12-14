@@ -61,12 +61,12 @@ export default function MonsterDetail() {
         <div className="mt-8 flex flex-col md:flex-row gap-8">
           {/* Image */}
           <div className="flex-1 flex justify-center">
-            <img
+            {/* <img
               src={monster.image}
               alt={monster.name}
               className="w-full max-w-md rounded-xl shadow-lg border"
               style={{ borderColor: "#CBA986" }}
-            />
+            /> */}
           </div>
 
           {/* Description */}
@@ -103,7 +103,7 @@ export default function MonsterDetail() {
         </div>
 
         {/* Sizes */}
-        {monster.sizes && (
+        {/* {monster.sizes && (
           <section
             className="mt-12 rounded-lg p-6 shadow"
             style={{ backgroundColor: "#F7E7D0" }}
@@ -119,7 +119,7 @@ export default function MonsterDetail() {
               {monster.sizes.max.toFixed(2)}
             </p>
           </section>
-        )}
+        )} */}
 
         {/* Hitzones */}
         {monster.hitzones && (

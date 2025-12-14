@@ -1,12 +1,18 @@
 import { useEffect, useState } from "react";
 import type { Monster } from "../types/Monster";
-import { createColumnHelper } from "@tanstack/react-table";
+import {
+  createColumnHelper,
+  type ColumnFiltersState,
+} from "@tanstack/react-table";
 import { Table } from "../components/Table";
 import { Link } from "react-router-dom";
 
 export default function Monsters() {
   const [monsters, setMonsters] = useState<Monster[]>([]);
   const columnHelper = createColumnHelper<Monster>();
+  const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
+
+  const monsterTypes = Array.from(new Set(monsters.map((m) => m.type)));
 
   const monsterColumns = [
     columnHelper.accessor("name", {
@@ -20,7 +26,14 @@ export default function Monsters() {
         </Link>
       ),
     }),
-    columnHelper.accessor("type", { header: "Type" }),
+    columnHelper.accessor("type", {
+      header: "Type",
+      filterFn: "equalsString",
+      meta: {
+        type: "select",
+        options: Array.from(new Set(monsters.map((m) => m.type))),
+      },
+    }),
     columnHelper.accessor(
       (row) =>
         Object.entries(row.drops)
@@ -68,12 +81,34 @@ export default function Monsters() {
     // <div className="p-4 bg-[#4A2F1F] min-h-screen text-[#f5f5f5]">
     <div className="p-4 min-h-screen bg-[#E9D3B4] text-[#5A3F28]">
       <h1 className="text-3xl font-bold mb-6">Monsters</h1>
+      {/* 
+      <div className="mb-4 flex items-center gap-4">
+        <label className="font-semibold">Filter by Type:</label>
+
+        <select
+          className="border px-3 py-2 rounded bg-[#F9EEDC] text-[#5A3F28] border-[#5A3F28]"
+          value={columnFilters.find((f) => f.id === "type")?.value ?? ""}
+          onChange={(e) => {
+            const value = e.target.value;
+
+            setColumnFilters(value ? [{ id: "type", value }] : []);
+          }}
+        >
+          <option value="">All Types</option>
+          {monsterTypes.map((type) => (
+            <option key={type} value={type}>
+              {type}
+            </option>
+          ))}
+        </select>
+      </div> */}
 
       <Table
         data={monsters}
         columns={monsterColumns}
         initialPageSize={10}
-        globalFilterable={true} // enables the search input
+        globalFilterable={true}
+        columnFilters={columnFilters}
       />
     </div>
   );

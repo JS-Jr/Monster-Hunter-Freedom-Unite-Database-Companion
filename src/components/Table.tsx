@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {
   useReactTable,
   getCoreRowModel,
@@ -26,7 +26,12 @@ interface TableProps<T> {
   columns: ColumnDef<T, any>[];
   initialPageSize?: number;
   globalFilterable?: boolean;
-  columnFilters?: ColumnFiltersState;
+
+  initialColumnFilters?: ColumnFiltersState;
+  onFiltersChange?: (filters: ColumnFiltersState) => void;
+
+  initialGlobalFilter?: string;
+  onGlobalFilterChange?: (value: string) => void;
 }
 
 export function Table<T>({
@@ -34,12 +39,15 @@ export function Table<T>({
   columns,
   initialPageSize = 10,
   globalFilterable = true,
-  columnFilters = [],
+  initialColumnFilters = [],
+  initialGlobalFilter,
+  onFiltersChange,
+  onGlobalFilterChange,
 }: TableProps<T>) {
   const [sorting, setSorting] = useState<SortingState>([]);
-  const [globalFilter, setGlobalFilter] = useState("");
+  const [globalFilter, setGlobalFilter] = useState(initialGlobalFilter ?? "");
   const [filters, setFilters] = useState<ColumnFiltersState>(
-    columnFilters ?? []
+    initialColumnFilters ?? []
   );
   const [pageIndex, setPageIndex] = useState(0);
   const [pageSize, setPageSize] = useState(initialPageSize);
@@ -69,6 +77,22 @@ export function Table<T>({
     getSortedRowModel: getSortedRowModel(),
     getPaginationRowModel: getPaginationRowModel(),
   });
+
+  useEffect(() => {
+    onGlobalFilterChange?.(globalFilter);
+  }, [globalFilter]);
+
+  useEffect(() => {
+    onFiltersChange?.(filters);
+  }, [filters]);
+
+  useEffect(() => {
+    const timeout = setTimeout(() => {
+      onGlobalFilterChange?.(globalFilter);
+    }, 300);
+
+    return () => clearTimeout(timeout);
+  }, [globalFilter]);
 
   return (
     <div className="max-w-full">

@@ -41,15 +41,16 @@ export default function Monsters() {
       (row) =>
         Object.entries(row.hitzones)
           .map(([zone, values]) => {
-            const formattedValues = Object.entries(
-              values as Record<string, number>
-            )
+            const formattedValues = Object.entries(values)
               .map(([type, val]) => `${type}: ${val}`)
               .join(", ");
             return `${zone}: ${formattedValues}`;
           })
           .join(" | "),
-      { id: "hitzones", header: "Hitzones" }
+      {
+        id: "hitzones",
+        header: "Hitzones",
+      }
     ),
   ];
 

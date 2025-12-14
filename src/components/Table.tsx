@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {
   useReactTable,
   getCoreRowModel,
@@ -11,12 +11,27 @@ import {
   type ColumnFiltersState,
 } from "@tanstack/react-table";
 
+type ColumnFilterMeta =
+  | {
+      type: "select";
+      options: string[];
+    }
+  | {
+      type: "text";
+      placeholder?: string;
+    };
+
 interface TableProps<T> {
   data: T[];
   columns: ColumnDef<T, any>[];
   initialPageSize?: number;
   globalFilterable?: boolean;
-  columnFilters?: ColumnFiltersState;
+
+  initialColumnFilters?: ColumnFiltersState;
+  onFiltersChange?: (filters: ColumnFiltersState) => void;
+
+  initialGlobalFilter?: string;
+  onGlobalFilterChange?: (value: string) => void;
 }
 
 export function Table<T>({
@@ -24,12 +39,15 @@ export function Table<T>({
   columns,
   initialPageSize = 10,
   globalFilterable = true,
-  columnFilters = [],
+  initialColumnFilters = [],
+  initialGlobalFilter,
+  onFiltersChange,
+  onGlobalFilterChange,
 }: TableProps<T>) {
   const [sorting, setSorting] = useState<SortingState>([]);
-  const [globalFilter, setGlobalFilter] = useState("");
+  const [globalFilter, setGlobalFilter] = useState(initialGlobalFilter ?? "");
   const [filters, setFilters] = useState<ColumnFiltersState>(
-    columnFilters ?? []
+    initialColumnFilters ?? []
   );
   const [pageIndex, setPageIndex] = useState(0);
   const [pageSize, setPageSize] = useState(initialPageSize);
@@ -60,6 +78,22 @@ export function Table<T>({
     getPaginationRowModel: getPaginationRowModel(),
   });
 
+  useEffect(() => {
+    onGlobalFilterChange?.(globalFilter);
+  }, [globalFilter]);
+
+  useEffect(() => {
+    onFiltersChange?.(filters);
+  }, [filters]);
+
+  useEffect(() => {
+    const timeout = setTimeout(() => {
+      onGlobalFilterChange?.(globalFilter);
+    }, 300);
+
+    return () => clearTimeout(timeout);
+  }, [globalFilter]);
+
   return (
     <div className="max-w-full">
       {/* Global Search */}
@@ -76,30 +110,81 @@ export function Table<T>({
       {/* Table */}
       <div className="overflow-x-auto rounded-xl shadow-md border border-[#5A3F28]">
         <table className="min-w-full text-sm text-[#5A3F28] bg-[#F9EEDC]">
-          <thead className="bg-[#5A3F28] text-white">
-            {table.getHeaderGroups().map((headerGroup) => (
-              <tr key={headerGroup.id}>
-                {headerGroup.headers.map((header) => (
-                  <th
-                    key={header.id}
-                    className="px-4 py-2 border-b border-[#8B6B52] font-semibold cursor-pointer select-none"
-                    onClick={header.column.getToggleSortingHandler()}
-                  >
-                    {flexRender(
-                      header.column.columnDef.header,
-                      header.getContext()
-                    )}
-                    <span>
-                      {header.column.getIsSorted() === "asc"
-                        ? " 🔼"
-                        : header.column.getIsSorted() === "desc"
-                        ? " 🔽"
-                        : ""}
-                    </span>
-                  </th>
-                ))}
-              </tr>
-            ))}
+          <thead>
+            {/* HEADER ROW */}
+            <tr className="bg-[#5A3F28] text-white">
+              {table.getHeaderGroups()[0].headers.map((header) => (
+                <th
+                  key={header.id}
+                  className="px-4 py-2 border-b border-[#8B6B52] font-semibold cursor-pointer select-none"
+                  onClick={header.column.getToggleSortingHandler()}
+                >
+                  {flexRender(
+                    header.column.columnDef.header,
+                    header.getContext()
+                  )}
+                  <span>
+                    {header.column.getIsSorted() === "asc"
+                      ? " 🔼"
+                      : header.column.getIsSorted() === "desc"
+                      ? " 🔽"
+                      : ""}
+                  </span>
+                </th>
+              ))}
+            </tr>
+
+            {/* FILTER ROW */}
+            <tr className="bg-[#E9D3B4] text-[#5A3F28]">
+              {table.getHeaderGroups()[0].headers.map((header) => {
+                const meta = header.column.columnDef.meta as
+                  | ColumnFilterMeta
+                  | undefined;
+
+                if (!meta) {
+                  return <th key={header.id} />;
+                }
+
+                const column = header.column;
+
+                if (meta.type === "select") {
+                  return (
+                    <th key={header.id} className="px-2 py-1">
+                      <select
+                        className="w-full border rounded px-2 py-1 bg-[#F9EEDC]"
+                        value={(column.getFilterValue() as string) ?? ""}
+                        onChange={(e) =>
+                          column.setFilterValue(e.target.value || undefined)
+                        }
+                      >
+                        <option value="">All</option>
+                        {meta.options.map((opt) => (
+                          <option key={opt} value={opt}>
+                            {opt}
+                          </option>
+                        ))}
+                      </select>
+                    </th>
+                  );
+                }
+
+                if (meta.type === "text") {
+                  return (
+                    <th key={header.id} className="px-2 py-1">
+                      <input
+                        type="text"
+                        className="w-full border rounded px-2 py-1 bg-[#F9EEDC]"
+                        placeholder={meta.placeholder ?? "Filter..."}
+                        value={(column.getFilterValue() as string) ?? ""}
+                        onChange={(e) => column.setFilterValue(e.target.value)}
+                      />
+                    </th>
+                  );
+                }
+
+                return <th key={header.id} />;
+              })}
+            </tr>
           </thead>
           <tbody>
             {table.getRowModel().rows.map((row) => (

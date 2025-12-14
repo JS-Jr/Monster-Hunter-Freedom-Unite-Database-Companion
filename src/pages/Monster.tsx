@@ -1,12 +1,59 @@
 import { useEffect, useState } from "react";
 import type { Monster } from "../types/Monster";
-import { createColumnHelper } from "@tanstack/react-table";
+import {
+  createColumnHelper,
+  type ColumnFiltersState,
+} from "@tanstack/react-table";
 import { Table } from "../components/Table";
-import { Link } from "react-router-dom";
+import { Link, useSearchParams } from "react-router-dom";
 
 export default function Monsters() {
   const [monsters, setMonsters] = useState<Monster[]>([]);
   const columnHelper = createColumnHelper<Monster>();
+  const [searchParams, setSearchParams] = useSearchParams();
+
+  const columnFiltersFromUrl: ColumnFiltersState = Array.from(
+    searchParams.entries()
+  )
+    .filter(([key]) => key !== "q")
+    .map(([id, value]) => ({
+      id,
+      value,
+    }));
+
+  const globalFilterFromUrl = searchParams.get("q") ?? "";
+
+  const handleFiltersChange = (filters: ColumnFiltersState) => {
+    const params = new URLSearchParams(searchParams);
+
+    // remove all column filter params first (except q)
+    Array.from(params.keys()).forEach((key) => {
+      if (key !== "q") {
+        params.delete(key);
+      }
+    });
+
+    // add active filters
+    filters.forEach(({ id, value }) => {
+      if (value != null && value !== "") {
+        params.set(id, String(value));
+      }
+    });
+
+    setSearchParams(params, { replace: true });
+  };
+
+  const handleGlobalSearchChange = (value: string) => {
+    const params = new URLSearchParams(searchParams);
+
+    if (value) {
+      params.set("q", value);
+    } else {
+      params.delete("q");
+    }
+
+    setSearchParams(params, { replace: true });
+  };
 
   const monsterColumns = [
     columnHelper.accessor("name", {
@@ -20,7 +67,14 @@ export default function Monsters() {
         </Link>
       ),
     }),
-    columnHelper.accessor("type", { header: "Type" }),
+    columnHelper.accessor("type", {
+      header: "Type",
+      filterFn: "equalsString",
+      meta: {
+        type: "select",
+        options: Array.from(new Set(monsters.map((m) => m.type))),
+      },
+    }),
     columnHelper.accessor(
       (row) =>
         Object.entries(row.drops)
@@ -65,15 +119,17 @@ export default function Monsters() {
   }, []);
 
   return (
-    // <div className="p-4 bg-[#4A2F1F] min-h-screen text-[#f5f5f5]">
     <div className="p-4 min-h-screen bg-[#E9D3B4] text-[#5A3F28]">
       <h1 className="text-3xl font-bold mb-6">Monsters</h1>
-
       <Table
         data={monsters}
         columns={monsterColumns}
         initialPageSize={10}
-        globalFilterable={true} // enables the search input
+        globalFilterable
+        initialColumnFilters={columnFiltersFromUrl}
+        onFiltersChange={handleFiltersChange}
+        initialGlobalFilter={globalFilterFromUrl}
+        onGlobalFilterChange={handleGlobalSearchChange}
       />
     </div>
   );

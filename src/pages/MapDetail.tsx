@@ -1,24 +1,54 @@
-import { MapContainer, ImageOverlay } from "react-leaflet";
+import {
+  MapContainer,
+  ImageOverlay,
+  useMapEvents,
+  Marker,
+  Popup,
+} from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 
-import L from "leaflet";
+import L, { LatLng } from "leaflet";
 import { useEffect, useState } from "react";
 
 import type { MapData, MapsFile } from "../types/MapV2";
 import { useParams } from "react-router-dom";
 
+import MapMarkers from "../components/MapMarkers";
+
+function ClickMarker() {
+  const [pos, setPos] = useState<LatLng | null>(null);
+
+  useMapEvents({
+    click(e) {
+      const pin = `{"x": ${e.latlng.lng}, "y": ${e.latlng.lat}, "label": ""},`;
+      navigator.clipboard.writeText(pin);
+      alert("Pin copied to clipboard!");
+      setPos(e.latlng);
+    },
+  });
+
+  return pos ? (
+    <Marker position={pos}>
+      <Popup>
+        X: {pos.lng.toFixed(0)}, Y: {pos.lat.toFixed(0)}
+      </Popup>
+    </Marker>
+  ) : null;
+}
+
 export default function MapDetail() {
   const { mapName } = useParams<{ mapName: string }>();
   const [maps, setMaps] = useState<MapsFile>([]);
+  const [selectedNode, setSelectedNode] = useState<any | null>(null); // node clicked
 
   const decodedMapName = decodeURIComponent(mapName ?? "").replaceAll(" ", "");
   // console.log(mapName + " vs " + decodedMapName);
   const mapImageUrl = `/img/maps/Map-${decodedMapName}.png`;
 
-  const snowyMap = maps.find((m) => m.mapName === mapName);
+  const selectedMap = maps.find((m) => m.mapName === mapName);
 
   useEffect(() => {
-    fetch("/data/map.json")
+    fetch("/data/map-pins.json")
       .then((res) => {
         if (!res.ok) throw new Error("Failed to fetch map.json");
         return res.json();
@@ -69,35 +99,18 @@ export default function MapDetail() {
             ]}
           />
 
-          {/* <ClickMarker /> */}
-          {/* 
-          {area1Nodes.map((node) => {
-            // Find the pin coordinates for this node
-            const pin = pins.find((p) => p.label === `1-${node.nodeNumber}`);
-            if (!pin) return null;
-
-            return (
-              <Marker
-                key={node.nodeNumber}
-                position={[pin.y, pin.x]}
-                eventHandlers={{
-                  click: () => setSelectedNode(node),
-                }}
-              >
-                <Popup>{`1-${node.nodeNumber}`}</Popup>
-              </Marker>
-            );
-          })} */}
+          <ClickMarker />
+          <MapMarkers map={selectedMap} onSelectNode={setSelectedNode} />
         </MapContainer>
       </div>
 
       {/* Sidebar */}
       <div className="w-64 bg-gray-100 rounded-lg p-4 shadow overflow-y-auto max-h-[750px]">
         <h2 className="text-xl font-bold mb-2">
-          {snowyMap?.mapName || "Loading map..."}
+          {selectedMap?.mapName || "Loading map..."}
         </h2>
 
-        {snowyMap?.areas.map((area) => (
+        {selectedMap?.areas.map((area) => (
           <div key={area.areaName} className="mb-4">
             <h3 className="font-semibold">
               {area.areaName}{" "}
@@ -141,7 +154,7 @@ export default function MapDetail() {
       </div>
 
       {/* Sidebar 2 - selected node */}
-      {/* <div className="w-64 bg-gray-100 rounded-lg p-4 shadow overflow-y-auto max-h-[750px]">
+      <div className="w-64 bg-gray-100 rounded-lg p-4 shadow overflow-y-auto max-h-[750px]">
         <h2 className="text-xl font-bold mb-2">Selected Node</h2>
 
         {selectedNode ? (
@@ -179,7 +192,7 @@ export default function MapDetail() {
         ) : (
           <p className="text-gray-500">Click a node to see details</p>
         )}
-      </div> */}
+      </div>
     </div>
   );
 }

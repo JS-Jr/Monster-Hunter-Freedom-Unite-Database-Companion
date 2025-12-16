@@ -1,3 +1,9 @@
+export type Pin = {
+  x: number; // X-coordinate (image-space)
+  y: number; // Y-coordinate (image-space)
+  label: string; // Optional label
+};
+
 export type MapData = {
   mapName: string;
   areas: Area[];
@@ -19,6 +25,8 @@ export type Node = {
   "g-rank"?: RankData;
   "training-school"?: RankData;
   "treasure-hunting"?: TreasureHuntingData;
+
+  pin?: Pin;
 };
 
 export type RankData = {

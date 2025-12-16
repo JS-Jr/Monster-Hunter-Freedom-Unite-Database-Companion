@@ -1,58 +1,21 @@
-import {
-  MapContainer,
-  ImageOverlay,
-  Popup,
-  Marker,
-  useMapEvents,
-} from "react-leaflet";
+import { MapContainer, ImageOverlay } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 
-import mapImage from "../assets/Map-SnowyMountains.png";
 import L from "leaflet";
 import { useEffect, useState } from "react";
 
-import { LatLng } from "leaflet";
 import type { MapData, MapsFile } from "../types/MapV2";
-
-function ClickMarker() {
-  const [pos, setPos] = useState<LatLng | null>(null);
-
-  useMapEvents({
-    click(e) {
-      const pin = `{"x": ${e.latlng.lng}, "y": ${e.latlng.lat}, "label": ""},`;
-      navigator.clipboard.writeText(pin);
-      alert("Pin copied to clipboard!");
-      setPos(e.latlng);
-    },
-  });
-
-  return pos ? (
-    <Marker position={pos}>
-      <Popup>
-        X: {pos.lng.toFixed(0)}, Y: {pos.lat.toFixed(0)}
-      </Popup>
-    </Marker>
-  ) : null;
-}
+import { useParams } from "react-router-dom";
 
 export default function MapDetail() {
+  const { mapName } = useParams<{ mapName: string }>();
   const [maps, setMaps] = useState<MapsFile>([]);
-  const [selectedNode, setSelectedNode] = useState<any | null>(null); // node clicked
-  const position = [51.505, -0.09];
 
-  const pins = [
-    { x: 743, y: 320, label: "4-1" },
+  const decodedMapName = decodeURIComponent(mapName ?? "").replaceAll(" ", "");
+  // console.log(mapName + " vs " + decodedMapName);
+  const mapImageUrl = `/img/maps/Map-${decodedMapName}.png`;
 
-    { x: 529, y: 214, label: "1-1" },
-    { x: 561, y: 156, label: "1-2" },
-    { x: 458, y: 253, label: "1-3" },
-    { x: 565, y: 264, label: "1-4" },
-    { x: 485, y: 240, label: "1-5" },
-  ];
-
-  const snowyMap = maps.find((m) => m.mapName === "Snowy Mountains");
-  const area1Nodes =
-    snowyMap?.areas.find((a) => a.areaNumber === 1)?.nodes || [];
+  const snowyMap = maps.find((m) => m.mapName === mapName);
 
   useEffect(() => {
     fetch("/data/map.json")
@@ -99,15 +62,15 @@ export default function MapDetail() {
           maxBoundsViscosity={1.0}
         >
           <ImageOverlay
-            url={mapImage}
+            url={mapImageUrl}
             bounds={[
               [0, 0],
               [1000, 1000],
             ]}
           />
 
-          <ClickMarker />
-
+          {/* <ClickMarker /> */}
+          {/* 
           {area1Nodes.map((node) => {
             // Find the pin coordinates for this node
             const pin = pins.find((p) => p.label === `1-${node.nodeNumber}`);
@@ -124,9 +87,8 @@ export default function MapDetail() {
                 <Popup>{`1-${node.nodeNumber}`}</Popup>
               </Marker>
             );
-          })}
+          })} */}
         </MapContainer>
-
       </div>
 
       {/* Sidebar */}
@@ -179,7 +141,7 @@ export default function MapDetail() {
       </div>
 
       {/* Sidebar 2 - selected node */}
-      <div className="w-64 bg-gray-100 rounded-lg p-4 shadow overflow-y-auto max-h-[750px]">
+      {/* <div className="w-64 bg-gray-100 rounded-lg p-4 shadow overflow-y-auto max-h-[750px]">
         <h2 className="text-xl font-bold mb-2">Selected Node</h2>
 
         {selectedNode ? (
@@ -217,7 +179,7 @@ export default function MapDetail() {
         ) : (
           <p className="text-gray-500">Click a node to see details</p>
         )}
-      </div>
+      </div> */}
     </div>
   );
 }

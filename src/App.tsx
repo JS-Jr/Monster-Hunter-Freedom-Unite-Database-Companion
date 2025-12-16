@@ -13,6 +13,7 @@ import MonsterDetail from "./pages/MonsterDetail";
 import Item from "./pages/Item";
 import ItemDetail from "./pages/ItemDetail";
 import SnowyMountainsMap from "./pages/MapDetail-leaflet";
+import MapDetail from "./pages/MapDetail";
 
 function App() {
   return (
@@ -32,6 +33,7 @@ function App() {
           <Route path="/item" element={<Item />} />
           <Route path="/item/:itemName" element={<ItemDetail />} />
           <Route path="/maps" element={<Map />} />
+          <Route path="/maps/:mapName" element={<MapDetail />} />
           <Route path="/map-detail" element={<SnowyMountainsMap />} />
         </Routes>
       </main>

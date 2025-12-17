@@ -4,7 +4,7 @@ import type React from "react";
 
 interface MapMarkersProps {
   map: MapData | undefined;
-  onSelectNode: (node: any) => void; // callback when node is clicked
+  onSelectNode?: (node: any) => void; // callback when node is clicked
 }
 
 function MapMarkers({ map, onSelectNode }: MapMarkersProps) {
@@ -28,7 +28,7 @@ function MapMarkers({ map, onSelectNode }: MapMarkersProps) {
               key={key}
               position={[y, x]}
               eventHandlers={{
-                click: () => onSelectNode(node), // trigger selection
+                click: () => onSelectNode?.(node), // trigger selection
               }}
             >
               <Popup>

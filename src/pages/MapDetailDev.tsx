@@ -18,11 +18,19 @@ import MapMarkers from "../components/MapMarkers";
 /* =======================
    Click-to-create pin
    ======================= */
-function ClickMarker({ onCreatePin }: { onCreatePin: (pin: Pin) => void }) {
+function ClickMarker({
+  onCreatePin,
+  enabled,
+}: {
+  onCreatePin: (pin: Pin) => void;
+  enabled: boolean;
+}) {
   const [pos, setPos] = useState<LatLng | null>(null);
 
   useMapEvents({
     click(e) {
+      if (!enabled) return;
+
       const pin: Pin = {
         x: Math.round(e.latlng.lng),
         y: Math.round(e.latlng.lat),
@@ -42,18 +50,16 @@ function ClickMarker({ onCreatePin }: { onCreatePin: (pin: Pin) => void }) {
     </Marker>
   ) : null;
 }
+
+/* =======================
+   Helpers
+   ======================= */
 function findAreaForNode(map: MapData, nodeNumber: string) {
   return map.areas.find((area) =>
     area.nodes.some((node) => node.nodeNumber === nodeNumber)
   );
 }
 
-function getAreaPinCount(map: MapData, areaName: string) {
-  const area = map.areas.find((a) => a.areaName === areaName);
-  if (!area) return 0;
-
-  return area.nodes.filter((node) => node.pin).length;
-}
 /* =======================
    Main component
    ======================= */
@@ -67,39 +73,29 @@ export default function MapDetailDev() {
   const decodedMapName = decodeURIComponent(mapName ?? "").replaceAll(" ", "");
   const mapImageUrl = `/img/maps/Map-${decodedMapName}.png`;
 
-  var selectedMap = maps.find((m) => m.mapName === mapName);
-  // console.log(selectedMap?.areas[0].nodes[0].pin);
+  const selectedMap = maps.find((m) => m.mapName === mapName);
 
-  // const allNodes: Node[] = maps.flatMap((map) =>
-  //   map.areas.flatMap((area) => area.nodes)
-  // );
-  const allNodes: Node[] =
-    selectedMap?.areas.flatMap((area) => area.nodes) ?? [];
-  console.log("allNodes", allNodes);
-
-  // const pinnedCount =
-  //   selectedMap?.areas
-  //     .flatMap((area) => area.nodes)
-  // //     .filter((node) => node.pin !== undefined).length ?? 0;
-  // const pinnedCount =
-  //   selectedMap?.areas.flatMap((area) => area.nodes).length ?? 0;
-
-  const pinnedCount =
-    selectedMap?.areas.flatMap((area) => area.nodes).filter((node) => node.pin)
-      .length ?? 0;
-  console.log("Pinned nodes:", pinnedCount);
-
+  /* =======================
+     Derived state
+     ======================= */
   const selectedArea =
     selectedMap && selectedNode
       ? findAreaForNode(selectedMap, selectedNode.nodeNumber)
       : null;
 
-  const areaPinCount =
-    selectedArea?.nodes.filter((node) => node.pin).length ?? 0;
+  const areaPinCount = selectedArea?.nodes.filter((n) => n.pin).length ?? 0;
+  console.log(areaPinCount)
 
   const areaMaxPins = selectedArea?.nodes.length ?? 0;
+  console.log(areaMaxPins)
 
-  const canAddPin = !!selectedArea && areaPinCount < areaMaxPins;
+  const canAddPin =
+    !!selectedNode &&
+    !!selectedArea &&
+    areaPinCount < areaMaxPins &&
+    !selectedNode.pin;
+
+    console.log(canAddPin)
 
   /* =======================
      Load maps JSON
@@ -123,7 +119,7 @@ export default function MapDetailDev() {
           )
           .map((m) => ({
             ...m,
-            areas: Array.isArray(m.areas) ? m.areas : [],
+            areas: m.areas ?? [],
           }));
 
         setMaps(cleaned);
@@ -136,6 +132,7 @@ export default function MapDetailDev() {
      ======================= */
   function attachPinToSelectedNode() {
     if (!pendingPin || !selectedNode || !selectedMap) return;
+    if (!canAddPin) return;
 
     setMaps((prev) =>
       prev.map((map) => {
@@ -209,11 +206,18 @@ export default function MapDetailDev() {
           />
 
           <ClickMarker
+            enabled={canAddPin}
             onCreatePin={(pin) => {
+              if (!selectedNode) {
+                alert("Select a node first.");
+                return;
+              }
+
               if (!canAddPin) {
                 alert("This area already has the maximum number of pins.");
                 return;
               }
+
               setPendingPin(pin);
             }}
           />
@@ -236,27 +240,36 @@ export default function MapDetailDev() {
           {selectedMap?.mapName || "Loading map..."}
         </h2>
 
-        {selectedMap?.areas.map((area) => (
-          <div key={area.areaName} className="mb-4">
-            <h3 className="font-semibold">
-              {area.areaName}{" "}
-              {area.areaNumber !== null && `(Area ${area.areaNumber})`}
-            </h3>
+        {selectedMap?.areas.map((area) => {
+          const pins = area.nodes.filter((n) => n.pin).length;
 
-            <ul className="list-disc list-inside text-sm text-gray-700 space-y-1">
-              {area.nodes.map((node) => (
-                <li
-                  key={node.nodeNumber}
-                  className="cursor-pointer"
-                  onClick={() => setSelectedNode(node)}
-                >
-                  <strong>Node {node.nodeNumber}</strong> – {node.nodeType}
-                  {node.pin && <span className="ml-1 text-green-600">📍</span>}
-                </li>
-              ))}
-            </ul>
-          </div>
-        ))}
+          return (
+            <div key={area.areaName} className="mb-4">
+              <h3 className="font-semibold">
+                {area.areaName}{" "}
+                {area.areaNumber !== null && `(Area ${area.areaNumber})`}{" "}
+                <span className="text-sm text-gray-500">
+                  ({pins}/{area.nodes.length})
+                </span>
+              </h3>
+
+              <ul className="list-disc list-inside text-sm text-gray-700 space-y-1">
+                {area.nodes.map((node) => (
+                  <li
+                    key={node.nodeNumber}
+                    className="cursor-pointer"
+                    onClick={() => setSelectedNode(node)}
+                  >
+                    <strong>Node {node.nodeNumber}</strong> – {node.nodeType}
+                    {node.pin && (
+                      <span className="ml-1 text-green-600">📍</span>
+                    )}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          );
+        })}
       </div>
 
       {/* ================= Sidebar: Selected Node ================= */}
@@ -270,13 +283,19 @@ export default function MapDetailDev() {
               {selectedNode.nodeType}
             </p>
 
+            {selectedArea && (
+              <p className="text-sm text-gray-600 mt-1">
+                Area pins: {areaPinCount}/{areaMaxPins}
+              </p>
+            )}
+
             {selectedNode.pin && (
               <p className="text-sm text-gray-600 mt-1">
                 Pin: X {selectedNode.pin.x}, Y {selectedNode.pin.y}
               </p>
             )}
 
-            {pendingPin && (
+            {pendingPin && canAddPin && (
               <button
                 onClick={attachPinToSelectedNode}
                 className="mt-3 px-3 py-1 bg-blue-600 text-white rounded text-sm"
@@ -284,31 +303,6 @@ export default function MapDetailDev() {
                 Attach Pin to Node
               </button>
             )}
-
-            {[
-              "low-rank",
-              "high-rank",
-              "g-rank",
-              "training-school",
-              "treasure-hunting",
-            ].map((rank) => {
-              const rankData = (selectedNode as any)[rank];
-              if (!rankData?.items?.length) return null;
-
-              return (
-                <div key={rank} className="ml-2 mt-2">
-                  <em className="text-gray-500">{rank}</em>
-                  <ul className="list-disc list-inside text-gray-700 text-sm">
-                    {rankData.items.map((item: any, idx: number) => (
-                      <li key={idx}>
-                        {item.itemName}{" "}
-                        {"points" in item && `- ${item.points} pts`}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              );
-            })}
           </>
         ) : (
           <p className="text-gray-500">Click a node to see details</p>

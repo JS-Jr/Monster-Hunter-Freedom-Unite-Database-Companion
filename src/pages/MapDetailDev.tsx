@@ -42,7 +42,18 @@ function ClickMarker({ onCreatePin }: { onCreatePin: (pin: Pin) => void }) {
     </Marker>
   ) : null;
 }
+function findAreaForNode(map: MapData, nodeNumber: string) {
+  return map.areas.find((area) =>
+    area.nodes.some((node) => node.nodeNumber === nodeNumber)
+  );
+}
 
+function getAreaPinCount(map: MapData, areaName: string) {
+  const area = map.areas.find((a) => a.areaName === areaName);
+  if (!area) return 0;
+
+  return area.nodes.filter((node) => node.pin).length;
+}
 /* =======================
    Main component
    ======================= */
@@ -56,7 +67,39 @@ export default function MapDetailDev() {
   const decodedMapName = decodeURIComponent(mapName ?? "").replaceAll(" ", "");
   const mapImageUrl = `/img/maps/Map-${decodedMapName}.png`;
 
-  const selectedMap = maps.find((m) => m.mapName === mapName);
+  var selectedMap = maps.find((m) => m.mapName === mapName);
+  // console.log(selectedMap?.areas[0].nodes[0].pin);
+
+  // const allNodes: Node[] = maps.flatMap((map) =>
+  //   map.areas.flatMap((area) => area.nodes)
+  // );
+  const allNodes: Node[] =
+    selectedMap?.areas.flatMap((area) => area.nodes) ?? [];
+  console.log("allNodes", allNodes);
+
+  // const pinnedCount =
+  //   selectedMap?.areas
+  //     .flatMap((area) => area.nodes)
+  // //     .filter((node) => node.pin !== undefined).length ?? 0;
+  // const pinnedCount =
+  //   selectedMap?.areas.flatMap((area) => area.nodes).length ?? 0;
+
+  const pinnedCount =
+    selectedMap?.areas.flatMap((area) => area.nodes).filter((node) => node.pin)
+      .length ?? 0;
+  console.log("Pinned nodes:", pinnedCount);
+
+  const selectedArea =
+    selectedMap && selectedNode
+      ? findAreaForNode(selectedMap, selectedNode.nodeNumber)
+      : null;
+
+  const areaPinCount =
+    selectedArea?.nodes.filter((node) => node.pin).length ?? 0;
+
+  const areaMaxPins = selectedArea?.nodes.length ?? 0;
+
+  const canAddPin = !!selectedArea && areaPinCount < areaMaxPins;
 
   /* =======================
      Load maps JSON
@@ -165,7 +208,15 @@ export default function MapDetailDev() {
             ]}
           />
 
-          <ClickMarker onCreatePin={setPendingPin} />
+          <ClickMarker
+            onCreatePin={(pin) => {
+              if (!canAddPin) {
+                alert("This area already has the maximum number of pins.");
+                return;
+              }
+              setPendingPin(pin);
+            }}
+          />
 
           <MapMarkers map={selectedMap} onSelectNode={setSelectedNode} />
         </MapContainer>

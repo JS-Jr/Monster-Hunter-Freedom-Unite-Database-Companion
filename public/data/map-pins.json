@@ -39,11 +39,13 @@
         "nodes": [
           {
             "nodeNumber": "1",
-            "nodeType": "Gather"
+            "nodeType": "Gather",
+            "pin": { "x": 194.5, "y": 511.5, "label": "" }
           },
           {
             "nodeNumber": "2",
-            "nodeType": "Gather"
+            "nodeType": "Gather",
+            "pin": { "x": 197.5, "y": 563.5, "label": "" }
           }
         ]
       }
@@ -59,6 +61,7 @@
           {
             "nodeNumber": "1",
             "nodeType": "Gather",
+            "pin": { "x": 795, "y": 360, "label": "" },
             "low-rank": {
               "items": [
                 {
@@ -137,6 +140,7 @@
           {
             "nodeNumber": "2",
             "nodeType": "Bugnet",
+            "pin": {"x": 857, "y": 342, "label": ""},
             "low-rank": {
               "items": [
                 {
@@ -252,6 +256,7 @@
           {
             "nodeNumber": "3",
             "nodeType": "Bugnet",
+            "pin": {"x": 838, "y": 246, "label": ""},
             "low-rank": {
               "items": [
                 {
@@ -360,6 +365,7 @@
           {
             "nodeNumber": "4",
             "nodeType": "Gather",
+            "pin": {"x": 828, "y": 205, "label": ""},
             "low-rank": {
               "items": [
                 {
@@ -421,6 +427,7 @@
           {
             "nodeNumber": "5",
             "nodeType": "Fishing",
+            "pin": {"x": 862, "y": 215, "label": ""},
             "low-rank": {
               "items": [
                 {

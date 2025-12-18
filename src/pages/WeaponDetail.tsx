@@ -7,18 +7,67 @@ export default function WeaponDetail() {
   const [weapon, setWeapon] = useState<Weapon | null>(null);
   const [loading, setLoading] = useState(true);
 
+  console.log("WeaponName:" + weaponName);
+
   useEffect(() => {
-    fetch("/data/weapons.json")
-      .then((res) => res.json())
-      .then((data: Weapon[]) => {
-        const decodedName = decodeURIComponent(weaponName ?? "");
-        const found = data.find(
-          (w) => w.name.toLowerCase() === decodedName.toLowerCase()
+    if (!weaponName) {
+      console.warn("No weaponName provided in URL.");
+      setWeapon(null);
+      setLoading(false);
+      return;
+    }
+
+    const fetchWeapons = async () => {
+      try {
+        const res = await fetch("/data/weapons.json");
+        const data: Weapon[] = await res.json();
+
+        if (!Array.isArray(data)) {
+          console.error("Weapons data is not an array!", data);
+          setWeapon(null);
+          setLoading(false);
+          return;
+        }
+
+        // Normalize weaponName from URL
+        const decodedName = decodeURIComponent(weaponName)
+          .replace(/\+/g, " ")
+          .trim()
+          .toLowerCase();
+
+        console.log("Decoded weaponName:", decodedName);
+        console.log(
+          "Character codes:",
+          [...decodedName].map((c) => c.charCodeAt(0))
         );
+
+        // Find the matching weapon
+        const found = data.find((w) => {
+          if (!w.name) return false;
+          const weaponNameNormalized = w.name.trim().toLowerCase();
+          const isMatch = weaponNameNormalized === decodedName;
+          console.log(
+            `Comparing "${decodedName}" with "${weaponNameNormalized}" => ${isMatch}`
+          );
+          return isMatch;
+        });
+
+        if (found) {
+          console.log("Weapon found:", found);
+        } else {
+          console.warn("Weapon not found for:", decodedName);
+        }
+
         setWeapon(found || null);
         setLoading(false);
-      })
-      .catch(() => setLoading(false));
+      } catch (err) {
+        console.error("Failed to fetch weapons.json", err);
+        setWeapon(null);
+        setLoading(false);
+      }
+    };
+
+    fetchWeapons();
   }, [weaponName]);
 
   if (loading)

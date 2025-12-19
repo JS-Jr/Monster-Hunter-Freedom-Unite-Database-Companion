@@ -52,23 +52,22 @@ function ClickMarker({
 }
 
 /* =======================
-   Helpers
-   ======================= */
-function findAreaForNode(map: MapData, nodeNumber: string) {
-  return map.areas.find((area) =>
-    area.nodes.some((node) => node.nodeNumber === nodeNumber)
-  );
-}
-
-/* =======================
    Main component
    ======================= */
 export default function MapDetailDev() {
   const { mapName } = useParams<{ mapName: string }>();
 
   const [maps, setMaps] = useState<MapsFile>([]);
-  const [selectedNode, setSelectedNode] = useState<Node | null>(null);
   const [pendingPin, setPendingPin] = useState<Pin | null>(null);
+
+  /**
+   * IMPORTANT:
+   * Selected node is now scoped by AREA
+   */
+  const [selectedNode, setSelectedNode] = useState<{
+    areaIndex: number;
+    node: Node;
+  } | null>(null);
 
   const decodedMapName = decodeURIComponent(mapName ?? "").replaceAll(" ", "");
   const mapImageUrl = `/img/maps/Map-${decodedMapName}.png`;
@@ -80,22 +79,18 @@ export default function MapDetailDev() {
      ======================= */
   const selectedArea =
     selectedMap && selectedNode
-      ? findAreaForNode(selectedMap, selectedNode.nodeNumber)
+      ? selectedMap.areas[selectedNode.areaIndex]
       : null;
 
   const areaPinCount = selectedArea?.nodes.filter((n) => n.pin).length ?? 0;
-  console.log(areaPinCount)
 
   const areaMaxPins = selectedArea?.nodes.length ?? 0;
-  console.log(areaMaxPins)
 
   const canAddPin =
     !!selectedNode &&
     !!selectedArea &&
     areaPinCount < areaMaxPins &&
-    !selectedNode.pin;
-
-    console.log(canAddPin)
+    !selectedNode.node.pin;
 
   /* =======================
      Load maps JSON
@@ -140,14 +135,18 @@ export default function MapDetailDev() {
 
         return {
           ...map,
-          areas: map.areas.map((area) => ({
-            ...area,
-            nodes: area.nodes.map((node) =>
-              node.nodeNumber === selectedNode.nodeNumber
-                ? { ...node, pin: pendingPin }
-                : node
-            ),
-          })),
+          areas: map.areas.map((area, areaIndex) => {
+            if (areaIndex !== selectedNode.areaIndex) return area;
+
+            return {
+              ...area,
+              nodes: area.nodes.map((node) =>
+                node.nodeNumber === selectedNode.node.nodeNumber
+                  ? { ...node, pin: pendingPin }
+                  : node
+              ),
+            };
+          }),
         };
       })
     );
@@ -222,7 +221,12 @@ export default function MapDetailDev() {
             }}
           />
 
-          <MapMarkers map={selectedMap} onSelectNode={setSelectedNode} />
+          <MapMarkers
+            map={selectedMap}
+            // onSelectNode={(areaIndex, node) =>
+            //   setSelectedNode({ areaIndex, node })
+            // }
+          />
         </MapContainer>
       </div>
 
@@ -240,7 +244,7 @@ export default function MapDetailDev() {
           {selectedMap?.mapName || "Loading map..."}
         </h2>
 
-        {selectedMap?.areas.map((area) => {
+        {selectedMap?.areas.map((area, areaIndex) => {
           const pins = area.nodes.filter((n) => n.pin).length;
 
           return (
@@ -256,9 +260,9 @@ export default function MapDetailDev() {
               <ul className="list-disc list-inside text-sm text-gray-700 space-y-1">
                 {area.nodes.map((node) => (
                   <li
-                    key={node.nodeNumber}
+                    key={`${areaIndex}-${node.nodeNumber}`}
                     className="cursor-pointer"
-                    onClick={() => setSelectedNode(node)}
+                    onClick={() => setSelectedNode({ areaIndex, node })}
                   >
                     <strong>Node {node.nodeNumber}</strong> – {node.nodeType}
                     {node.pin && (
@@ -279,8 +283,8 @@ export default function MapDetailDev() {
         {selectedNode ? (
           <>
             <p>
-              <strong>Node {selectedNode.nodeNumber}</strong> –{" "}
-              {selectedNode.nodeType}
+              <strong>Node {selectedNode.node.nodeNumber}</strong> –{" "}
+              {selectedNode.node.nodeType}
             </p>
 
             {selectedArea && (
@@ -289,9 +293,9 @@ export default function MapDetailDev() {
               </p>
             )}
 
-            {selectedNode.pin && (
+            {selectedNode.node.pin && (
               <p className="text-sm text-gray-600 mt-1">
-                Pin: X {selectedNode.pin.x}, Y {selectedNode.pin.y}
+                Pin: X {selectedNode.node.pin.x}, Y {selectedNode.node.pin.y}
               </p>
             )}
 

@@ -5,13 +5,16 @@ import Monsters from "./pages/Monster";
 import Armor from "./pages/Armor";
 import ArmorDetail from "./pages/ArmorDetail";
 import Weapons from "./pages/Weapon";
-// import Map from "./pages/Map";
+import Map from "./pages/Map";
 import Header from "./components/Header";
 import WeaponDetail from "./pages/WeaponDetail";
 import WeaponTree from "./pages/WeaponTree";
 import MonsterDetail from "./pages/MonsterDetail";
 import Item from "./pages/Item";
 import ItemDetail from "./pages/ItemDetail";
+import SnowyMountainsMap from "./pages/MapDetail-leaflet";
+import MapDetail from "./pages/MapDetail";
+import MapDetailDev from "./pages/MapDetailDev";
 
 function App() {
   return (
@@ -30,7 +33,10 @@ function App() {
           <Route path="/weapons/tree" element={<WeaponTree />} />
           <Route path="/item" element={<Item />} />
           <Route path="/item/:itemName" element={<ItemDetail />} />
-          {/* <Route path="/maps" element={<Map />} /> */}
+          <Route path="/maps" element={<Map />} />
+          <Route path="/maps/:mapName" element={<MapDetail />} />
+          <Route path="/maps/dev/:mapName" element={<MapDetailDev />} />
+          <Route path="/map-detail" element={<SnowyMountainsMap />} />
         </Routes>
       </main>
     </Router>

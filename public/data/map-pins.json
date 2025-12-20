@@ -14970,7 +14970,12 @@
         "nodes": [
           {
             "nodeNumber": "1",
-            "nodeType": "Fishing"
+            "nodeType": "Fishing",
+            "pin": {
+              "x": 464,
+              "y": 31,
+              "label": ""
+            }
           }
         ]
       },
@@ -14980,19 +14985,39 @@
         "nodes": [
           {
             "nodeNumber": "1",
-            "nodeType": "Mining"
+            "nodeType": "Mining",
+            "pin": {
+              "x": 671,
+              "y": 287,
+              "label": ""
+            }
           },
           {
             "nodeNumber": "2",
-            "nodeType": "Gather"
+            "nodeType": "Gather",
+            "pin": {
+              "x": 628,
+              "y": 259,
+              "label": ""
+            }
           },
           {
             "nodeNumber": "3",
-            "nodeType": "Gather"
+            "nodeType": "Gather",
+            "pin": {
+              "x": 661,
+              "y": 235,
+              "label": ""
+            }
           },
           {
             "nodeNumber": "4",
-            "nodeType": "Gather"
+            "nodeType": "Gather",
+            "pin": {
+              "x": 723,
+              "y": 219,
+              "label": ""
+            }
           }
         ]
       },
@@ -15002,19 +15027,39 @@
         "nodes": [
           {
             "nodeNumber": "1",
-            "nodeType": "Mining"
+            "nodeType": "Mining",
+            "pin": {
+              "x": 320,
+              "y": 135,
+              "label": ""
+            }
           },
           {
             "nodeNumber": "2",
-            "nodeType": "Gather"
+            "nodeType": "Gather",
+            "pin": {
+              "x": 238,
+              "y": 215,
+              "label": ""
+            }
           },
           {
             "nodeNumber": "3",
-            "nodeType": "Gather"
+            "nodeType": "Gather",
+            "pin": {
+              "x": 300,
+              "y": 226,
+              "label": ""
+            }
           },
           {
             "nodeNumber": "4",
-            "nodeType": "Gather"
+            "nodeType": "Gather",
+            "pin": {
+              "x": 232,
+              "y": 153,
+              "label": ""
+            }
           }
         ]
       },
@@ -15024,19 +15069,39 @@
         "nodes": [
           {
             "nodeNumber": "1",
-            "nodeType": "Mining"
+            "nodeType": "Mining",
+            "pin": {
+              "x": 795,
+              "y": 428,
+              "label": ""
+            }
           },
           {
             "nodeNumber": "2",
-            "nodeType": "Mining"
+            "nodeType": "Mining",
+            "pin": {
+              "x": 753,
+              "y": 371,
+              "label": ""
+            }
           },
           {
             "nodeNumber": "3",
-            "nodeType": "Gather"
+            "nodeType": "Gather",
+            "pin": {
+              "x": 702,
+              "y": 424,
+              "label": ""
+            }
           },
           {
             "nodeNumber": "4",
-            "nodeType": "Gather"
+            "nodeType": "Gather",
+            "pin": {
+              "x": 819,
+              "y": 339,
+              "label": ""
+            }
           }
         ]
       },
@@ -15046,23 +15111,48 @@
         "nodes": [
           {
             "nodeNumber": "1",
-            "nodeType": "Mining"
+            "nodeType": "Mining",
+            "pin": {
+              "x": 429,
+              "y": 403,
+              "label": ""
+            }
           },
           {
             "nodeNumber": "2",
-            "nodeType": "Mining"
+            "nodeType": "Mining",
+            "pin": {
+              "x": 439,
+              "y": 320,
+              "label": ""
+            }
           },
           {
             "nodeNumber": "3",
-            "nodeType": "Gather"
+            "nodeType": "Gather",
+            "pin": {
+              "x": 460,
+              "y": 398,
+              "label": ""
+            }
           },
           {
             "nodeNumber": "4",
-            "nodeType": "Gather"
+            "nodeType": "Gather",
+            "pin": {
+              "x": 505,
+              "y": 358,
+              "label": ""
+            }
           },
           {
             "nodeNumber": "5",
-            "nodeType": "Fishing"
+            "nodeType": "Fishing",
+            "pin": {
+              "x": 399,
+              "y": 373,
+              "label": ""
+            }
           }
         ]
       },
@@ -15072,19 +15162,39 @@
         "nodes": [
           {
             "nodeNumber": "1",
-            "nodeType": "Mining"
+            "nodeType": "Mining",
+            "pin": {
+              "x": 587,
+              "y": 524,
+              "label": ""
+            }
           },
           {
             "nodeNumber": "2",
-            "nodeType": "Gather"
+            "nodeType": "Gather",
+            "pin": {
+              "x": 509,
+              "y": 590,
+              "label": ""
+            }
           },
           {
             "nodeNumber": "3",
-            "nodeType": "Gather"
+            "nodeType": "Gather",
+            "pin": {
+              "x": 568,
+              "y": 592,
+              "label": ""
+            }
           },
           {
             "nodeNumber": "4",
-            "nodeType": "Gather"
+            "nodeType": "Gather",
+            "pin": {
+              "x": 537,
+              "y": 520,
+              "label": ""
+            }
           }
         ]
       },
@@ -15094,19 +15204,39 @@
         "nodes": [
           {
             "nodeNumber": "1",
-            "nodeType": "Gather"
+            "nodeType": "Gather",
+            "pin": {
+              "x": 210,
+              "y": 548,
+              "label": ""
+            }
           },
           {
             "nodeNumber": "2",
-            "nodeType": "Gather"
+            "nodeType": "Gather",
+            "pin": {
+              "x": 261,
+              "y": 509,
+              "label": ""
+            }
           },
           {
             "nodeNumber": "3",
-            "nodeType": "Gather"
+            "nodeType": "Gather",
+            "pin": {
+              "x": 146,
+              "y": 467,
+              "label": ""
+            }
           },
           {
             "nodeNumber": "4",
-            "nodeType": "Gather"
+            "nodeType": "Gather",
+            "pin": {
+              "x": 165,
+              "y": 416,
+              "label": ""
+            }
           }
         ]
       },
@@ -15116,19 +15246,39 @@
         "nodes": [
           {
             "nodeNumber": "1",
-            "nodeType": "Gather"
+            "nodeType": "Gather",
+            "pin": {
+              "x": 303,
+              "y": 788,
+              "label": ""
+            }
           },
           {
             "nodeNumber": "2",
-            "nodeType": "Gather"
+            "nodeType": "Gather",
+            "pin": {
+              "x": 382,
+              "y": 795,
+              "label": ""
+            }
           },
           {
             "nodeNumber": "3",
-            "nodeType": "Gather"
+            "nodeType": "Gather",
+            "pin": {
+              "x": 324,
+              "y": 692,
+              "label": ""
+            }
           },
           {
             "nodeNumber": "4",
-            "nodeType": "Gather"
+            "nodeType": "Gather",
+            "pin": {
+              "x": 381,
+              "y": 674,
+              "label": ""
+            }
           }
         ]
       },
@@ -15138,19 +15288,39 @@
         "nodes": [
           {
             "nodeNumber": "1",
-            "nodeType": "Mining"
+            "nodeType": "Mining",
+            "pin": {
+              "x": 226,
+              "y": 961,
+              "label": ""
+            }
           },
           {
             "nodeNumber": "2",
-            "nodeType": "Mining"
+            "nodeType": "Mining",
+            "pin": {
+              "x": 275,
+              "y": 947,
+              "label": ""
+            }
           },
           {
             "nodeNumber": "3",
-            "nodeType": "Mining"
+            "nodeType": "Mining",
+            "pin": {
+              "x": 351,
+              "y": 947,
+              "label": ""
+            }
           },
           {
             "nodeNumber": "4",
-            "nodeType": "Gather"
+            "nodeType": "Gather",
+            "pin": {
+              "x": 190,
+              "y": 975,
+              "label": ""
+            }
           }
         ]
       },
@@ -15255,6 +15425,11 @@
                   "itemName": "Ancient Stone"
                 }
               ]
+            },
+            "pin": {
+              "x": 426,
+              "y": 607,
+              "label": ""
             }
           },
           {
@@ -15342,6 +15517,11 @@
                   "itemName": "Tru Armor Sphere"
                 }
               ]
+            },
+            "pin": {
+              "x": 357,
+              "y": 542,
+              "label": ""
             }
           },
           {
@@ -15372,6 +15552,11 @@
                   "itemName": "Master's Skull"
                 }
               ]
+            },
+            "pin": {
+              "x": 453,
+              "y": 588,
+              "label": ""
             }
           },
           {
@@ -15396,6 +15581,11 @@
                   "itemName": "Dragon Toadstool"
                 }
               ]
+            },
+            "pin": {
+              "x": 388,
+              "y": 532,
+              "label": ""
             }
           }
         ]

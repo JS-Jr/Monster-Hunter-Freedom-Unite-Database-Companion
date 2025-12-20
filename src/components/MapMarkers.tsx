@@ -1,6 +1,5 @@
 import { Marker, Popup } from "react-leaflet";
 import type { MapData } from "../types/MapV2";
-import type React from "react";
 
 interface MapMarkersProps {
   map: MapData | undefined;

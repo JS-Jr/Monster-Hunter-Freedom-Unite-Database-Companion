@@ -12,7 +12,7 @@ import WeaponTree from "./pages/WeaponTree";
 import MonsterDetail from "./pages/MonsterDetail";
 import Item from "./pages/Item";
 import ItemDetail from "./pages/ItemDetail";
-import SnowyMountainsMap from "./pages/MapDetail-leaflet";
+// import SnowyMountainsMap from "./pages/MapDetail-leaflet";
 import MapDetail from "./pages/MapDetail";
 import MapDetailDev from "./pages/MapDetailDev";
 
@@ -36,7 +36,7 @@ function App() {
           <Route path="/maps" element={<Map />} />
           <Route path="/maps/:mapName" element={<MapDetail />} />
           <Route path="/maps/dev/:mapName" element={<MapDetailDev />} />
-          <Route path="/map-detail" element={<SnowyMountainsMap />} />
+          {/* <Route path="/map-detail" element={<SnowyMountainsMap />} /> */}
         </Routes>
       </main>
     </Router>

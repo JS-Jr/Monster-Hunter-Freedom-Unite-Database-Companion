@@ -75,7 +75,7 @@ export function useDataFetchArray<T>(
 
       try {
         // Test loading spiels
-        await sleep(5000);
+        // await sleep(5000);
 
         // cache
         if (cache) {

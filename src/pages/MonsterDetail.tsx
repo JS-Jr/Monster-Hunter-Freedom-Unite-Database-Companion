@@ -1,61 +1,43 @@
-import { useState, useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
 import type { Monster } from "../types/Monster";
+import { useSingleDataFetch } from "../hooks/useDataFetch";
+import { DetailSkeleton } from "../components/DetailSkeleton";
+import { DetailEmptyState } from "../components/DetailEmptyState";
 
 export default function MonsterDetail() {
   const { monsterName } = useParams<{ monsterName: string }>();
-  const [monster, setMonster] = useState<Monster | null>(null);
-  const [loading, setLoading] = useState(true);
 
-  useEffect(() => {
-    setLoading(true);
-    fetch("/data/monster.json")
-      .then((res) => res.json())
-      .then((data: Monster[]) => {
-        const found = data.find(
-          (m) => m.name.toLowerCase() === monsterName?.toLowerCase()
-        );
-        setMonster(found || null);
-        setLoading(false);
-      })
-      .catch(() => setLoading(false));
-  }, [monsterName]);
+  const { data: monster, loading } = useSingleDataFetch<Monster>(
+    "/data/monster.json",
+    monsterName
+  );
 
   if (loading)
     return (
-      <div className="min-h-screen flex items-center justify-center text-lg">
-        Loading…
+      <div className="min-h-screen w-full px-4 py-10 bg-[#E9D3B4]">
+        <DetailSkeleton />
       </div>
     );
 
   if (!monster)
     return (
-      <div className="min-h-screen flex items-center justify-center text-lg">
-        Monster not found.
+      <div className="min-h-screen w-full px-4 py-10 bg-[#E9D3B4]">
+        <DetailEmptyState message="Monster not found" entityName="Monster" />
       </div>
     );
 
   return (
-    <div
-      className="min-h-screen w-full px-4 py-10"
-      style={{ backgroundColor: "#E9D3B4" }}
-    >
+    <div className="min-h-screen w-full px-4 py-10 bg-[#E9D3B4]">
       <div className="max-w-5xl mx-auto">
         {/* Title */}
-        <h1
-          className="text-4xl font-extrabold text-center tracking-wide"
-          style={{ color: "#6B3E1B" }}
-        >
+        <h1 className="text-4xl font-extrabold text-center tracking-wide text-[#6B3E1B]">
           {monster.name}
         </h1>
-        <p className="text-center text-lg mt-1" style={{ color: "#5A3F28" }}>
+        <p className="text-center text-lg mt-1 text-[#5A3F28]">
           {monster.type}
         </p>
 
-        <div
-          className="mx-auto my-6 h-px w-2/3"
-          style={{ backgroundColor: "#CBA986" }}
-        />
+        <div className="mx-auto my-6 h-px w-2/3 bg-[#CBA986]" />
 
         {/* Image + Description */}
         <div className="mt-8 flex flex-col md:flex-row gap-8">
@@ -64,20 +46,13 @@ export default function MonsterDetail() {
             {/* <img
               src={monster.image}
               alt={monster.name}
-              className="w-full max-w-md rounded-xl shadow-lg border"
-              style={{ borderColor: "#CBA986" }}
+              className="w-full max-w-md rounded-xl shadow-lg border border-[#CBA986]"
             /> */}
           </div>
 
           {/* Description */}
-          <div
-            className="flex-1 rounded-lg p-6 shadow"
-            style={{ backgroundColor: "#F7E7D0" }}
-          >
-            <h2
-              className="text-2xl font-semibold mb-3"
-              style={{ color: "#6B3E1B" }}
-            >
+          <div className="flex-1 rounded-lg p-6 shadow bg-[#F7E7D0]">
+            <h2 className="text-2xl font-semibold mb-3 text-[#6B3E1B]">
               Description
             </h2>
             <p className="leading-relaxed text-[#5A3F28]">
@@ -86,10 +61,7 @@ export default function MonsterDetail() {
 
             {monster.habitats?.length > 0 && (
               <div className="mt-6">
-                <h3
-                  className="text-xl font-semibold mb-2"
-                  style={{ color: "#6B3E1B" }}
-                >
+                <h3 className="text-xl font-semibold mb-2 text-[#6B3E1B]">
                   Habitats
                 </h3>
                 <ul className="list-disc list-inside text-[#5A3F28]">
@@ -101,7 +73,7 @@ export default function MonsterDetail() {
             )}
           </div>
         </div>
-
+        
         {/* Sizes */}
         {/* {monster.sizes && (
           <section
@@ -123,23 +95,14 @@ export default function MonsterDetail() {
 
         {/* Hitzones */}
         {monster.hitzones && (
-          <section
-            className="mt-12 rounded-lg p-6 shadow"
-            style={{ backgroundColor: "#F7E7D0" }}
-          >
-            <h2
-              className="text-2xl font-semibold mb-4"
-              style={{ color: "#6B3E1B" }}
-            >
+          <section className="mt-12 rounded-lg p-6 shadow bg-[#F7E7D0]">
+            <h2 className="text-2xl font-semibold mb-4 text-[#6B3E1B]">
               Hitzones
             </h2>
 
             {Object.entries(monster.hitzones).map(([zone, stats]) => (
               <div key={zone} className="mb-6">
-                <h3
-                  className="text-xl font-semibold capitalize mb-2"
-                  style={{ color: "#5A3F28" }}
-                >
+                <h3 className="text-xl font-semibold capitalize mb-2 text-[#5A3F28]">
                   {zone}
                 </h3>
 
@@ -147,8 +110,7 @@ export default function MonsterDetail() {
                   {Object.entries(stats).map(([attack, value]) => (
                     <div
                       key={attack}
-                      className="rounded p-2 text-center shadow-sm"
-                      style={{ backgroundColor: "#E9D3B4" }}
+                      className="rounded p-2 text-center shadow-sm bg-[#E9D3B4]"
                     >
                       <p className="font-semibold capitalize text-[#6B3E1B]">
                         {attack}
@@ -164,23 +126,14 @@ export default function MonsterDetail() {
 
         {/* Drops */}
         {monster.drops && (
-          <section
-            className="mt-12 rounded-lg p-6 shadow"
-            style={{ backgroundColor: "#F7E7D0" }}
-          >
-            <h2
-              className="text-2xl font-semibold mb-4"
-              style={{ color: "#6B3E1B" }}
-            >
+          <section className="mt-12 rounded-lg p-6 shadow bg-[#F7E7D0]">
+            <h2 className="text-2xl font-semibold mb-4 text-[#6B3E1B]">
               Drops
             </h2>
 
             {Object.entries(monster.drops).map(([rank, dropData]) => (
               <div key={rank} className="mb-6">
-                <h3
-                  className="text-xl font-semibold capitalize mb-2"
-                  style={{ color: "#5A3F28" }}
-                >
+                <h3 className="text-xl font-semibold capitalize mb-2 text-[#5A3F28]">
                   {rank}
                 </h3>
 
@@ -193,14 +146,11 @@ export default function MonsterDetail() {
                       {items.map((item: any, idx: number) => (
                         <li key={idx}>
                           <Link
-                            to={`/item/${encodeURIComponent(
-                              item.name
-                            )}`}
+                            to={`/item/${encodeURIComponent(item.name)}`}
                             className="text-[#5A3F28] hover:underline"
                           >
                             {item.name} ({item.chance})
                           </Link>
-                          
                         </li>
                       ))}
                     </ul>

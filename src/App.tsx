@@ -15,31 +15,39 @@ import ItemDetail from "./pages/ItemDetail";
 // import SnowyMountainsMap from "./pages/MapDetail-leaflet";
 import MapDetail from "./pages/MapDetail";
 import MapDetailDev from "./pages/MapDetailDev";
+import { MobilePendingPage } from "./pages/MobilePendingPage";
 
 function App() {
   return (
-    <Router>
-      <Header />
-      {/* <main style={{ padding: "1rem" }}> */}
-      <main>
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/monsters" element={<Monsters />} />
-          <Route path="/monster/:monsterName" element={<MonsterDetail />} />
-          <Route path="/armor" element={<Armor />} />
-          <Route path="/armor/:armorName" element={<ArmorDetail />} />
-          <Route path="/weapons" element={<Weapons />} />
-          <Route path="/weapons/:weaponName" element={<WeaponDetail />} />
-          <Route path="/weapons/tree" element={<WeaponTree />} />
-          <Route path="/item" element={<Item />} />
-          <Route path="/item/:itemName" element={<ItemDetail />} />
-          <Route path="/maps" element={<Map />} />
-          <Route path="/maps/:mapName" element={<MapDetail />} />
-          <Route path="/maps/dev/:mapName" element={<MapDetailDev />} />
-          {/* <Route path="/map-detail" element={<SnowyMountainsMap />} /> */}
-        </Routes>
-      </main>
-    </Router>
+    <>
+      <div className="md:hidden">
+        <MobilePendingPage />
+      </div>
+      <div className="hidden md:block">
+        <Router>
+          <Header />
+          {/* <main style={{ padding: "1rem" }}> */}
+          <main>
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/monsters" element={<Monsters />} />
+              <Route path="/monster/:monsterName" element={<MonsterDetail />} />
+              <Route path="/armor" element={<Armor />} />
+              <Route path="/armor/:armorName" element={<ArmorDetail />} />
+              <Route path="/weapons" element={<Weapons />} />
+              <Route path="/weapons/:weaponName" element={<WeaponDetail />} />
+              <Route path="/weapons/tree" element={<WeaponTree />} />
+              <Route path="/item" element={<Item />} />
+              <Route path="/item/:itemName" element={<ItemDetail />} />
+              <Route path="/maps" element={<Map />} />
+              <Route path="/maps/:mapName" element={<MapDetail />} />
+              <Route path="/maps/dev/:mapName" element={<MapDetailDev />} />
+              {/* <Route path="/map-detail" element={<SnowyMountainsMap />} /> */}
+            </Routes>
+          </main>
+        </Router>
+      </div>
+    </>
   );
 }
 

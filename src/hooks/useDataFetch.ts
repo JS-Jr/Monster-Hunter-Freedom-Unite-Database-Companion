@@ -24,6 +24,12 @@ interface UseDataFetchArrayResult<T> {
   error: Error | null;
 }
 
+interface UseDataFetchSingleResult<T> {
+  data: T | null;
+  loading: boolean;
+  error: Error | null;
+}
+
 // Simple in-memory cache
 const fetchCache = new Map<string, { data: any; timestamp: number }>();
 const CACHE_DURATION = 5 * 60 * 1000; // 5 minutes
@@ -137,27 +143,22 @@ export function useDataFetchArray<T>(
  * Hook variant for fetching a single item by identifier
  * Useful for detail pages
  */
-// export function useSingleDataFetch<T extends { name?: string; id?: string }>(
-//   url: string,
-//   identifier: string | undefined,
-//   options: Omit<UseDataFetchOptions<T>, "filter"> = {}
-// ): UseDataFetchResult<T> {
-//   return useDataFetch<T>(url, {
-//     ...options,
-//     filter: (data: T[]) => {
-//       if (!identifier) return null;
-//       return (
-//         data.find(
-//           (item) => item.name?.toLowerCase() === identifier.toLowerCase()
-//         ) ||
-//         data.find(
-//           (item) => item.id?.toLowerCase() === identifier.toLowerCase()
-//         ) ||
-//         null
-//       );
-//     },
-//   });
-// }
+export function useSingleDataFetch<T extends { name?: string; id?: string }>(
+  url: string,
+  identifier?: string,
+  options: Omit<UseDataFetchOptions<T>, "filter"> = {}
+): UseDataFetchSingleResult<T> {
+  const { data, loading, error } = useDataFetchArray<T>(url, options);
+
+  const singleItem =
+    data?.find(
+      (item) =>
+        item.name?.toLowerCase() === identifier?.toLowerCase() ||
+        item.id?.toLowerCase() === identifier?.toLowerCase()
+    ) || null;
+
+  return { data: singleItem, loading, error };
+}
 
 function sleep(ms: number) {
   return new Promise((resolve) => setTimeout(resolve, ms));

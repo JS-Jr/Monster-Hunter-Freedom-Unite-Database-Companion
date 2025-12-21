@@ -1,37 +1,34 @@
-import { useState, useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
 import type { Monster } from "../types/Monster";
+import { useSingleDataFetch } from "../hooks/useDataFetch";
+import { DetailSkeleton } from "../components/DetailSkeleton";
+import { DetailEmptyState } from "../components/DetailEmptyState";
 
 export default function MonsterDetail() {
   const { monsterName } = useParams<{ monsterName: string }>();
-  const [monster, setMonster] = useState<Monster | null>(null);
-  const [loading, setLoading] = useState(true);
 
-  useEffect(() => {
-    setLoading(true);
-    fetch("/data/monster.json")
-      .then((res) => res.json())
-      .then((data: Monster[]) => {
-        const found = data.find(
-          (m) => m.name.toLowerCase() === monsterName?.toLowerCase()
-        );
-        setMonster(found || null);
-        setLoading(false);
-      })
-      .catch(() => setLoading(false));
-  }, [monsterName]);
+  const { data: monster, loading } = useSingleDataFetch<Monster>(
+    "/data/monster.json",
+    monsterName
+  );
 
   if (loading)
     return (
-      <div className="min-h-screen flex items-center justify-center text-lg">
-        Loading…
+      <div
+        className="min-h-screen w-full px-4 py-10"
+        style={{ backgroundColor: "#E9D3B4" }}
+      >
+        <DetailSkeleton />
       </div>
     );
 
   if (!monster)
     return (
-      <div className="min-h-screen flex items-center justify-center text-lg">
-        Monster not found.
+      <div
+        className="min-h-screen w-full px-4 py-10"
+        style={{ backgroundColor: "#E9D3B4" }}
+      >
+        <DetailEmptyState message="Monster not found" entityName="Monster" />
       </div>
     );
 
@@ -193,14 +190,11 @@ export default function MonsterDetail() {
                       {items.map((item: any, idx: number) => (
                         <li key={idx}>
                           <Link
-                            to={`/item/${encodeURIComponent(
-                              item.name
-                            )}`}
+                            to={`/item/${encodeURIComponent(item.name)}`}
                             className="text-[#5A3F28] hover:underline"
                           >
                             {item.name} ({item.chance})
                           </Link>
-                          
                         </li>
                       ))}
                     </ul>

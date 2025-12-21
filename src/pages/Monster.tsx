@@ -1,10 +1,11 @@
-import { useEffect } from "react";
 import type { Monster } from "../types/Monster";
 import { createColumnHelper } from "@tanstack/react-table";
 import { Table } from "../components/Table";
 import { Link } from "react-router-dom";
 import { useUrlFilters } from "../hooks/useUrlFilters";
-import { useDataFetch } from "../hooks/useDataFetch";
+import { useDataFetchArray } from "../hooks/useDataFetch";
+import { TableSkeleton } from "../components/TableSkeletonProps";
+import { TableEmptyState } from "../components/TableEmptyState";
 
 export default function Monsters() {
   const columnHelper = createColumnHelper<Monster>();
@@ -25,8 +26,9 @@ export default function Monsters() {
     handleGlobalFilterChange,
   } = useUrlFilters();
 
-  const { data: monsters, loading } =
-    useDataFetch<Monster>("/data/monster.json");
+  const { data: monsters, loading } = useDataFetchArray<Monster>(
+    "/data/monster.json"
+  );
 
   const monsterColumns = [
     columnHelper.accessor("name", {
@@ -45,7 +47,7 @@ export default function Monsters() {
       filterFn: "equalsString",
       meta: {
         type: "select",
-        options: Array.from(new Set(monsters.map((m) => m.type))),
+        options: Array.from(new Set(monsters?.map((m) => m.type))),
       },
     }),
     columnHelper.accessor(
@@ -81,7 +83,23 @@ export default function Monsters() {
     ),
   ];
 
-  if (monsters == null) return <h1></h1>;
+  if (loading) {
+    return (
+      <div className="p-4 min-h-screen bg-[#E9D3B4] text-[#5A3F28]">
+        <h1 className="text-3xl font-bold mb-6">Monsters</h1>
+        <TableSkeleton rows={10} columns={monsterColumns.length} />
+      </div>
+    );
+  }
+
+  if (!monsters || monsters.length === 0) {
+    return (
+      <div className="p-4 min-h-screen bg-[#E9D3B4] text-[#5A3F28]">
+        <h1 className="text-3xl font-bold mb-6">Monsters</h1>
+        <TableEmptyState message="No monsters found." />
+      </div>
+    );
+  }
 
   return (
     <div className="p-4 min-h-screen bg-[#E9D3B4] text-[#5A3F28]">

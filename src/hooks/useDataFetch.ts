@@ -5,21 +5,21 @@ interface UseDataFetchOptions<T> {
    * Optional filter function to find a single item
    * Useful for detail pages where you need to find by name or ID
    */
-  filter?: (data: T[]) => T | null | undefined;
-  
+  filter?: (data: T[]) => T[];
+
   /**
    * Optional mapper function to transform raw data
    */
   mapper?: (rawData: any[]) => T[];
-  
+
   /**
    * Enable caching to avoid refetches
    */
   cache?: boolean;
 }
 
-interface UseDataFetchResult<T> {
-  data: T | T[] | null;
+interface UseDataFetchArrayResult<T> {
+  data: T[] | null;
   loading: boolean;
   error: Error | null;
 }
@@ -30,18 +30,18 @@ const CACHE_DURATION = 5 * 60 * 1000; // 5 minutes
 
 /**
  * Generic hook for fetching data from JSON files
- * 
+ *
  * @template T - The data type being fetched
  * @param url - The URL or path to fetch from
  * @param options - Configuration options
  * @returns Object containing data, loading state, and error
- * 
+ *
  * @example
  * // Fetch array of monsters
  * const { data: monsters, loading, error } = useDataFetch<Monster>(
  *   "/data/monster.json"
  * );
- * 
+ *
  * @example
  * // Fetch single monster by name
  * const { data: monster, loading } = useDataFetch<Monster>(
@@ -52,11 +52,11 @@ const CACHE_DURATION = 5 * 60 * 1000; // 5 minutes
  *   }
  * );
  */
-export function useDataFetch<T>(
+export function useDataFetchArray<T>(
   url: string,
   options: UseDataFetchOptions<T> = {}
-): UseDataFetchResult<T> {
-  const [data, setData] = useState<T | T[] | null>(null);
+): UseDataFetchArrayResult<T> {
+  const [data, setData] = useState<T[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<Error | null>(null);
 
@@ -68,51 +68,48 @@ export function useDataFetch<T>(
       setError(null);
 
       try {
-        // Check cache first
+        // Test loading spiels
+        await sleep(5000);
+
+        // cache
         if (cache) {
           const cached = fetchCache.get(url);
           if (cached && Date.now() - cached.timestamp < CACHE_DURATION) {
-            let result: T | T[] | null = cached.data;
+            let result = cached.data as T[];
+
             if (filter) {
-              result = filter(Array.isArray(cached.data) ? cached.data : [cached.data]);
+              result = filter(result);
             }
+
             setData(result);
             setLoading(false);
             return;
           }
         }
 
-        // Fetch fresh data
         const response = await fetch(url);
         if (!response.ok) {
-          throw new Error(`Failed to fetch from ${url}: ${response.statusText}`);
+          throw new Error(`Failed to fetch from ${url}`);
         }
 
-        let rawData = await response.json();
+        let rawData: T[] = await response.json();
 
-        // Apply mapper if provided
         if (mapper) {
           rawData = mapper(rawData);
         }
 
-        // Cache the data
         if (cache) {
           fetchCache.set(url, { data: rawData, timestamp: Date.now() });
         }
 
-        // Apply filter if provided
-        let result: T | T[] | null = rawData;
         if (filter) {
-          result = filter(Array.isArray(rawData) ? rawData : [rawData]);
+          rawData = filter(rawData);
         }
 
-        setData(result);
-        setError(null);
+        setData(rawData);
       } catch (err) {
-        const error = err instanceof Error ? err : new Error(String(err));
-        setError(error);
-        setData(null);
-        console.error(`Error fetching from ${url}:`, error);
+        setError(err instanceof Error ? err : new Error(String(err)));
+        setData([]);
       } finally {
         setLoading(false);
       }
@@ -128,35 +125,40 @@ export function useDataFetch<T>(
  * Clear the fetch cache for a specific URL or all URLs
  * @param url - Optional URL to clear. If not provided, clears entire cache
  */
-export function clearFetchCache(url?: string): void {
-  if (url) {
-    fetchCache.delete(url);
-  } else {
-    fetchCache.clear();
-  }
-}
+// export function clearFetchCache(url?: string): void {
+//   if (url) {
+//     fetchCache.delete(url);
+//   } else {
+//     fetchCache.clear();
+//   }
+// }
 
 /**
  * Hook variant for fetching a single item by identifier
  * Useful for detail pages
  */
-export function useSingleDataFetch<T extends { name?: string; id?: string }>(
-  url: string,
-  identifier: string | undefined,
-  options: Omit<UseDataFetchOptions<T>, "filter"> = {}
-): UseDataFetchResult<T> {
-  return useDataFetch<T>(
-    url,
-    {
-      ...options,
-      filter: (data: T[]) => {
-        if (!identifier) return null;
-        return (
-          data.find((item) => item.name?.toLowerCase() === identifier.toLowerCase()) ||
-          data.find((item) => item.id?.toLowerCase() === identifier.toLowerCase()) ||
-          null
-        );
-      },
-    }
-  );
+// export function useSingleDataFetch<T extends { name?: string; id?: string }>(
+//   url: string,
+//   identifier: string | undefined,
+//   options: Omit<UseDataFetchOptions<T>, "filter"> = {}
+// ): UseDataFetchResult<T> {
+//   return useDataFetch<T>(url, {
+//     ...options,
+//     filter: (data: T[]) => {
+//       if (!identifier) return null;
+//       return (
+//         data.find(
+//           (item) => item.name?.toLowerCase() === identifier.toLowerCase()
+//         ) ||
+//         data.find(
+//           (item) => item.id?.toLowerCase() === identifier.toLowerCase()
+//         ) ||
+//         null
+//       );
+//     },
+//   });
+// }
+
+function sleep(ms: number) {
+  return new Promise((resolve) => setTimeout(resolve, ms));
 }

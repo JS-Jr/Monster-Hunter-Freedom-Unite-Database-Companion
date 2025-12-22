@@ -16,6 +16,7 @@ import ItemDetail from "./pages/ItemDetail";
 import MapDetail from "./pages/MapDetail";
 import MapDetailDev from "./pages/MapDetailDev";
 import { MobilePendingPage } from "./pages/MobilePendingPage";
+import DevBanner from "./components/DevBanner";
 
 function App() {
   return (
@@ -25,6 +26,7 @@ function App() {
       </div>
       <div className="hidden md:block">
         <Router>
+          <DevBanner />
           <Header />
           {/* <main style={{ padding: "1rem" }}> */}
           <main>

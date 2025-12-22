@@ -147,7 +147,7 @@ export function useSingleDataFetch<T extends { name?: string; id?: string }>(
   url: string,
   identifier?: string,
   options: Omit<UseDataFetchOptions<T>, "filter"> = {}
-) {
+): UseDataFetchSingleResult<T> {
   const { data, loading, error } = useDataFetchArray<T>(url, options);
 
   const singleItem = useMemo(

@@ -1,58 +1,39 @@
-import { useEffect, useState } from "react";
+import { useCallback } from "react";
 import { Link, useParams } from "react-router-dom";
-import type { Armor } from "../types/Armor";
 import { mapRawArmorToArmor } from "../utils/mapArmor";
+import { DetailEmptyState } from "../components/DetailEmptyState";
+import { DetailSkeleton } from "../components/DetailSkeleton";
+import { useSingleDataFetch } from "../hooks/useDataFetch";
+import type { Armor } from "../types/Armor";
 
 export default function ArmorDetail() {
   const { armorName } = useParams<{ armorName: string }>();
-  const [armor, setArmor] = useState<Armor | null>(null);
-  const [loading, setLoading] = useState(true);
+  const armorMapper = useCallback(
+    (rawData: any) => rawData.map(mapRawArmorToArmor),
+    []
+  );
 
-  useEffect(() => {
-    setLoading(true);
+  const { data: armor, loading } = useSingleDataFetch<Armor>(
+    "/data/armor.json",
+    armorName,
+    {
+      mapper: armorMapper,
+    }
+  );
 
-    fetch("/data/armor.json")
-      .then((res) => {
-        if (!res.ok) throw new Error("Failed to fetch armor.json");
-        return res.json();
-      })
-      .then((rawData) => {
-        // 🔑 map FIRST
-        const mappedArmor = rawData.map((item: any) =>
-          mapRawArmorToArmor(item)
-        );
-
-        // 🔑 then find by name
-        const found = mappedArmor.find(
-          (a: { name: string }) =>
-            a.name.toLowerCase() ===
-            decodeURIComponent(armorName ?? "").toLowerCase()
-        );
-
-        setArmor(found || null);
-        setLoading(false);
-      })
-      .catch((err) => {
-        console.error("Failed to load armor:", err);
-        setLoading(false);
-      });
-  }, [armorName]);
-
-  if (loading) {
+  if (loading)
     return (
-      <div className="min-h-screen flex items-center justify-center bg-[#E9D3B4]">
-        Loading armor…
+      <div className="min-h-[calc(100vh-4rem)] px-4 py-10 bg-[#E9D3B4] text-[#5A3F28]">
+        <DetailSkeleton />
       </div>
     );
-  }
 
-  if (!armor) {
+  if (!armor)
     return (
-      <div className="min-h-screen flex items-center justify-center bg-[#E9D3B4]">
-        Armor not found.
+      <div className="min-h-[calc(100vh-4rem)] px-4 py-10 bg-[#E9D3B4] text-[#5A3F28]">
+        <DetailEmptyState message="Armor not found" entityName="Armor" />
       </div>
     );
-  }
 
   return (
     <div className="min-h-[calc(100vh-4rem)] px-4 py-10 bg-[#E9D3B4] text-[#5A3F28]">

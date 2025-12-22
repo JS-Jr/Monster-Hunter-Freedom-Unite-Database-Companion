@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 
 interface UseDataFetchOptions<T> {
   /**
@@ -75,7 +75,7 @@ export function useDataFetchArray<T>(
 
       try {
         // Test loading spiels
-        // await sleep(5000);
+        // await sleep(2000);
 
         // cache
         if (cache) {
@@ -150,12 +150,15 @@ export function useSingleDataFetch<T extends { name?: string; id?: string }>(
 ): UseDataFetchSingleResult<T> {
   const { data, loading, error } = useDataFetchArray<T>(url, options);
 
-  const singleItem =
-    data?.find(
-      (item) =>
-        item.name?.toLowerCase() === identifier?.toLowerCase() ||
-        item.id?.toLowerCase() === identifier?.toLowerCase()
-    ) || null;
+  const singleItem = useMemo(
+    () =>
+      data?.find(
+        (item) =>
+          item.name?.toLowerCase() === identifier?.toLowerCase() ||
+          item.id?.toLowerCase() === identifier?.toLowerCase()
+      ) || null,
+    [data, identifier]
+  );
 
   return { data: singleItem, loading, error };
 }

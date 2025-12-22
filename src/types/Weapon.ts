@@ -17,7 +17,7 @@ export type Weapon = {
   affinity?: string;
   slots?: string;
   bonus?: string | null;
-  rarity?: number;
+  rarity: number;
   type?: string;
   create_cost?: number | null;
   improve_cost?: number;

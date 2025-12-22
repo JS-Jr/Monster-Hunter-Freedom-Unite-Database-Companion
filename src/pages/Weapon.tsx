@@ -104,7 +104,7 @@ export default function Weapons() {
   if (loading) {
     return (
       <div className="p-4 min-h-[calc(100vh-4rem)] bg-[#E9D3B4] text-[#5A3F28]">
-        <h1 className="text-3xl font-bold mb-6">Monsters</h1>
+        <h1 className="text-3xl font-bold mb-6">Weapon</h1>
         <TableSkeleton rows={10} columns={weaponColumns.length} />
       </div>
     );
@@ -113,7 +113,7 @@ export default function Weapons() {
   if (!weapons || weapons.length === 0) {
     return (
       <div className="p-4 min-h-[calc(100vh-4rem)] bg-[#E9D3B4] text-[#5A3F28]">
-        <h1 className="text-3xl font-bold mb-6">Monsters</h1>
+        <h1 className="text-3xl font-bold mb-6">Weapon</h1>
         <TableEmptyState message="No weapons found." />
       </div>
     );

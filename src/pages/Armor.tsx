@@ -1,27 +1,35 @@
-import { useState, useEffect } from "react";
 import type { Armor } from "../types/Armor";
 import { mapRawArmorToArmor } from "../utils/mapArmor";
 import { createColumnHelper } from "@tanstack/react-table";
 import { Table } from "../components/Table";
 import { Link } from "react-router-dom";
+import { TableEmptyState } from "../components/TableEmptyState";
+import { TableSkeleton } from "../components/TableSkeletonProps";
+import { useDataFetchArray } from "../hooks/useDataFetch";
+import { useUrlFilters } from "../hooks/useUrlFilters";
+import { useCallback } from "react";
 
 export default function Armor() {
-  const [armorData, setArmorData] = useState<Armor[]>([]);
-  const [loading, setLoading] = useState(true);
+  const {
+    columnFilters,
+    globalFilter,
+    sorting,
+    handleFiltersChange,
+    handleGlobalFilterChange,
+    handleSortingChange,
+  } = useUrlFilters();
 
-  useEffect(() => {
-    fetch("/data/armor.json")
-      .then((response) => response.json())
-      .then((rawData) => {
-        const mappedData = rawData.map((item: any) => mapRawArmorToArmor(item));
-        setArmorData(mappedData);
-        setLoading(false);
-      })
-      .catch((err) => {
-        console.error("Failed to load armor data:", err);
-        setLoading(false);
-      });
-  }, []);
+  const armorMapper = useCallback(
+    (rawData: any[]) => rawData.map(mapRawArmorToArmor),
+    []
+  );
+
+  const { data: armor, loading } = useDataFetchArray<Armor>(
+    "/data/armor.json",
+    {
+      mapper: armorMapper,
+    }
+  );
 
   const columnHelper = createColumnHelper<Armor>();
 
@@ -37,8 +45,24 @@ export default function Armor() {
         </Link>
       ),
     }),
-    columnHelper.accessor("type", { header: "Type" }),
-    columnHelper.accessor("rarity", { header: "Rarity", filterFn: "equals" }),
+    columnHelper.accessor("type", {
+      header: "Type",
+      filterFn: "equalsString",
+      meta: {
+        type: "select",
+        options: Array.from(new Set(armor?.map((armorItem) => armorItem.type))),
+      },
+    }),
+    columnHelper.accessor("rarity", {
+      header: "Rarity",
+      filterFn: "equalsString",
+      meta: {
+        type: "select",
+        options: Array.from(
+          new Set(armor?.map((armorItem) => armorItem.rarity))
+        ).sort((a, b) => a - b),
+      },
+    }),
     columnHelper.accessor("defense", { header: "Defense" }),
     columnHelper.accessor(
       (row: { resistances: { fire: any } }) => row.resistances.fire,
@@ -84,17 +108,38 @@ export default function Armor() {
     ),
   ];
 
-  if (loading) return <div>Loading armor data...</div>;
+  if (loading) {
+    return (
+      <div className="p-4 min-h-[calc(100vh-4rem)] bg-[#E9D3B4] text-[#5A3F28]">
+        <h1 className="text-3xl font-bold mb-6">Armor</h1>
+        <TableSkeleton rows={10} columns={armorColumns.length} />
+      </div>
+    );
+  }
+
+  if (!armor || armor.length === 0) {
+    return (
+      <div className="p-4 min-h-[calc(100vh-4rem)] bg-[#E9D3B4] text-[#5A3F28]">
+        <h1 className="text-3xl font-bold mb-6">Armor</h1>
+        <TableEmptyState message="No armor found." />
+      </div>
+    );
+  }
 
   return (
-    // <div className="p-4 min-h-screen bg-[#E9D3B4] text-[#5A3F28]">
     <div className="p-4 min-h-[calc(100vh-4rem)] bg-[#E9D3B4] text-[#5A3F28]">
       <h1 className="text-3xl font-bold mb-6">Armor</h1>
       <Table
-        data={armorData}
+        data={armor}
         columns={armorColumns}
         initialPageSize={10}
-        globalFilterable={true} // enables the search input
+        globalFilterable
+        initialColumnFilters={columnFilters}
+        onFiltersChange={handleFiltersChange}
+        initialGlobalFilter={globalFilter}
+        onGlobalFilterChange={handleGlobalFilterChange}
+        initialSorting={sorting} // new
+        onSortingChange={handleSortingChange} // new
       />
     </div>
   );

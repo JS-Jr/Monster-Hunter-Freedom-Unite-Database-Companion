@@ -32,6 +32,9 @@ interface TableProps<T> {
 
   initialGlobalFilter?: string;
   onGlobalFilterChange?: (value: string) => void;
+
+  initialSorting?: SortingState;
+  onSortingChange?: (sorting: SortingState) => void;
 }
 
 export function Table<T>({
@@ -43,8 +46,10 @@ export function Table<T>({
   initialGlobalFilter,
   onFiltersChange,
   onGlobalFilterChange,
+  initialSorting,
+  onSortingChange,
 }: TableProps<T>) {
-  const [sorting, setSorting] = useState<SortingState>([]);
+  const [sorting, setSorting] = useState<SortingState>(initialSorting ?? []);
   const [globalFilter, setGlobalFilter] = useState(initialGlobalFilter ?? "");
   const [filters, setFilters] = useState<ColumnFiltersState>(
     initialColumnFilters ?? []
@@ -61,7 +66,13 @@ export function Table<T>({
       columnFilters: filters,
       pagination: { pageIndex, pageSize },
     },
-    onSortingChange: setSorting,
+    onSortingChange: (updater) => {
+      setSorting((old) => {
+        const newState = typeof updater === "function" ? updater(old) : updater;
+        onSortingChange?.(newState); // safe: always array
+        return newState;
+      });
+    },
     onGlobalFilterChange: setGlobalFilter,
     onColumnFiltersChange: setFilters,
     onPaginationChange: (updater) => {

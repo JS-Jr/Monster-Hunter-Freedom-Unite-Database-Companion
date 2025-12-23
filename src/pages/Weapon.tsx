@@ -70,7 +70,7 @@ export default function Weapons() {
         const elements = getValue() as { name: string; attack: number }[];
         const activeFilter = column.getFilterValue() as string | undefined;
 
-        if (!elements?.length) return "—";
+        if (!elements?.length) return "-";
 
         const visibleElements = activeFilter
           ? elements.filter((e) => e.name === activeFilter)
@@ -85,6 +85,10 @@ export default function Weapons() {
           | null
           | undefined;
 
+        if (filterValue === "-") {
+          return !elements || elements.length === 0;
+        }
+
         if (!elements || elements.length === 0) {
           return false; // ⬅️ IMPORTANT
         }
@@ -94,9 +98,14 @@ export default function Weapons() {
 
       meta: {
         type: "select",
-        options: Array.from(
-          new Set(weapons?.flatMap((w) => w.elements?.map((e) => e.name) ?? []))
-        ),
+        options: [
+          "-",
+          ...Array.from(
+            new Set(
+              weapons?.flatMap((w) => w.elements?.map((e) => e.name) ?? [])
+            )
+          ),
+        ],
       },
     }),
   ];

@@ -1,89 +1,29 @@
-import { useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom";
 import type { Weapon } from "../types/Weapon";
+import WeaponSkeleton from "../components/skeletal/WeaponSkeletal";
+import { DetailEmptyState } from "../components/DetailEmptyState";
+import { useSingleDataFetch } from "../hooks/useDataFetch";
 
 export default function WeaponDetail() {
   const { weaponName } = useParams<{ weaponName: string }>();
-  const [weapon, setWeapon] = useState<Weapon | null>(null);
-  const [loading, setLoading] = useState(true);
 
-  console.log("WeaponName:" + weaponName);
+  const { data: weapon, loading } = useSingleDataFetch<Weapon>(
+    "/data/weapons.json",
+    weaponName
+  );
 
-  useEffect(() => {
-    if (!weaponName) {
-      console.warn("No weaponName provided in URL.");
-      setWeapon(null);
-      setLoading(false);
-      return;
-    }
+  // console.log("weaponName", weaponName);
 
-    const fetchWeapons = async () => {
-      try {
-        const res = await fetch("/data/weapons.json");
-        const data: Weapon[] = await res.json();
-
-        if (!Array.isArray(data)) {
-          console.error("Weapons data is not an array!", data);
-          setWeapon(null);
-          setLoading(false);
-          return;
-        }
-
-        // Normalize weaponName from URL
-        const decodedName = decodeURIComponent(weaponName)
-          .replace(/\+/g, " ")
-          .trim()
-          .toLowerCase();
-
-        console.log("Decoded weaponName:", decodedName);
-        console.log(
-          "Character codes:",
-          [...decodedName].map((c) => c.charCodeAt(0))
-        );
-
-        // Find the matching weapon
-        const found = data.find((w) => {
-          if (!w.name) return false;
-          const weaponNameNormalized = w.name.trim().toLowerCase();
-          const isMatch = weaponNameNormalized === decodedName;
-          console.log(
-            `Comparing "${decodedName}" with "${weaponNameNormalized}" => ${isMatch}`
-          );
-          return isMatch;
-        });
-
-        if (found) {
-          console.log("Weapon found:", found);
-        } else {
-          console.warn("Weapon not found for:", decodedName);
-        }
-
-        setWeapon(found || null);
-        setLoading(false);
-      } catch (err) {
-        console.error("Failed to fetch weapons.json", err);
-        setWeapon(null);
-        setLoading(false);
-      }
-    };
-
-    fetchWeapons();
-  }, [weaponName]);
-
-  if (loading)
-    return (
-      <div className="min-h-[calc(100vh-4rem)] bg-[#E9D3B4] text-[#5A3F28] flex items-center justify-center">
-        Loading weapon...
-      </div>
-    );
+  if (loading) return <WeaponSkeleton />;
 
   if (!weapon)
     return (
       <div className="min-h-[calc(100vh-4rem)] bg-[#E9D3B4] text-[#5A3F28] flex flex-col items-center justify-center">
-        <p className="mb-4">Weapon not found.</p>
-        <Link to="/weapons" className="underline">
-          Back to Weapons
-        </Link>
+        <DetailEmptyState
+          message="Weapon not found"
+          entityName="Weapon"
+          returnPath="/weapons"
+        />
       </div>
     );
 

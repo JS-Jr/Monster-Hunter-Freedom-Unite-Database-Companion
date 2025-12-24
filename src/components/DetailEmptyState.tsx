@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 interface DetailEmptyStateProps {
   /** Main message title */
@@ -7,12 +8,14 @@ interface DetailEmptyStateProps {
   entityName?: string;
   /** Optional icon */
   icon?: React.ReactNode;
+  returnPath?: string;
 }
 
 export const DetailEmptyState: React.FC<DetailEmptyStateProps> = ({
   message,
   entityName,
   icon,
+  returnPath,
 }) => {
   return (
     <div className="min-h-screen flex flex-col items-center justify-center text-center px-4">
@@ -26,6 +29,11 @@ export const DetailEmptyState: React.FC<DetailEmptyStateProps> = ({
       <p className="text-[#5A3F28] opacity-70 max-w-md">
         Check your URL or try selecting another {entityName} from the list.
       </p>
+      {returnPath != null && (
+        <Link to={returnPath} className="underline text-[#5A3F28]">
+          Back to {entityName}
+        </Link>
+      )}
     </div>
   );
 };

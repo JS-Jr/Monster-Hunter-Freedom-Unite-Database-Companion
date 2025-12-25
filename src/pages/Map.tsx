@@ -1,25 +1,35 @@
-import { useEffect, useState } from "react";
-import type { GameMap } from "../types/Map";
 import { Table } from "../components/Table";
-import { createColumnHelper } from "@tanstack/react-table";
+import { createColumnHelper, type FilterFn } from "@tanstack/react-table";
 import { Link } from "react-router-dom";
+import { useUrlFilters } from "../hooks/useUrlFilters";
+import type { MapData } from "../types/MapV2";
+import { useDataFetchArray } from "../hooks/useDataFetch";
+import { TableSkeleton } from "../components/TableSkeletonProps";
+import { TableEmptyState } from "../components/TableEmptyState";
+import deepSearch from "../function/deepSearch";
 
 export default function Map() {
-  const [maps, setMaps] = useState<GameMap[]>([]);
+  const deepMapGlobalFilter: FilterFn<MapData> = (row, _, filterValue) => {
+    const search = String(filterValue).toLowerCase().trim();
+    if (!search) return true;
 
-  useEffect(() => {
-    fetch("/data/map.json")
-      .then((res) => {
-        if (!res.ok) throw new Error("Failed to fetch map.json");
-        return res.json();
-      })
-      .then((data: any[]) => {
-        setMaps(data);
-      })
-      .catch((err) => console.error("Error loading maps:", err));
-  }, []);
+    return deepSearch(row.original, search);
+  };
 
-  const columnHelper = createColumnHelper<GameMap>();
+  const {
+    columnFilters,
+    globalFilter,
+    sorting,
+    handleFiltersChange,
+    handleGlobalFilterChange,
+    handleSortingChange,
+  } = useUrlFilters();
+
+  const { data: maps, loading } = useDataFetchArray<MapData>(
+    "/data/map-pins.json"
+  );
+
+  const columnHelper = createColumnHelper<MapData>();
   const mapColumns = [
     columnHelper.accessor("mapName", {
       header: "Map Name",
@@ -38,14 +48,39 @@ export default function Map() {
     }),
   ];
 
+  if (loading) {
+    return (
+      <div className="p-4 min-h-[calc(100vh-4rem)] bg-[#E9D3B4] text-[#5A3F28]">
+        <h1 className="text-3xl font-bold mb-6">Map</h1>
+        <TableSkeleton rows={10} columns={mapColumns.length} />
+      </div>
+    );
+  }
+
+  if (!maps || maps.length === 0) {
+    return (
+      <div className="p-4 min-h-[calc(100vh-4rem)] bg-[#E9D3B4] text-[#5A3F28]">
+        <h1 className="text-3xl font-bold mb-6">Maps</h1>
+        <TableEmptyState message="No Maps found." />
+      </div>
+    );
+  }
+
   return (
     <div className="p-4 min-h-[calc(100vh-4rem)] bg-[#E9D3B4] text-[#5A3F28]">
-      <h1 className="text-3xl font-bold mb-6">Armor</h1>
+      <h1 className="text-3xl font-bold mb-6">Maps</h1>
       <Table
         data={maps}
         columns={mapColumns}
         initialPageSize={10}
-        globalFilterable={true} // enables the search input
+        globalFilterFn={deepMapGlobalFilter}
+        globalFilterable
+        initialColumnFilters={columnFilters}
+        onFiltersChange={handleFiltersChange}
+        initialGlobalFilter={globalFilter}
+        onGlobalFilterChange={handleGlobalFilterChange}
+        initialSorting={sorting}
+        onSortingChange={handleSortingChange}
       />
     </div>
   );

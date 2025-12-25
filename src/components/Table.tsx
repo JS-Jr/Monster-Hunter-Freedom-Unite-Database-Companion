@@ -9,6 +9,7 @@ import {
   type ColumnDef,
   type SortingState,
   type ColumnFiltersState,
+  type FilterFn,
 } from "@tanstack/react-table";
 
 type ColumnFilterMeta =
@@ -25,6 +26,8 @@ interface TableProps<T> {
   data: T[];
   columns: ColumnDef<T, any>[];
   initialPageSize?: number;
+
+  globalFilterFn?: FilterFn<T>;
   globalFilterable?: boolean;
 
   initialColumnFilters?: ColumnFiltersState;
@@ -42,6 +45,7 @@ export function Table<T>({
   columns,
   initialPageSize = 10,
   globalFilterable = true,
+  globalFilterFn,
   initialColumnFilters = [],
   initialGlobalFilter,
   onFiltersChange,
@@ -60,6 +64,7 @@ export function Table<T>({
   const table = useReactTable({
     data,
     columns,
+    globalFilterFn: globalFilterFn ?? "auto",
     state: {
       sorting,
       globalFilter,

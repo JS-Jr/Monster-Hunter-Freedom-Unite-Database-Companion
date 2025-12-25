@@ -2,7 +2,7 @@ import { MapContainer, ImageOverlay } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 
 import L from "leaflet";
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import { useParams } from "react-router-dom";
 
 import type { MapData } from "../types/MapV2";
@@ -20,12 +20,11 @@ export default function MapDetail() {
   if (loading) return <div className="p-4">Loading…</div>;
   if (!maps || maps.length === 0) return <div className="p-4">Empty Map</div>;
 
+  const selectedMap = maps.find((m) => m.mapName === mapName);
+  if (!selectedMap) return <div className="p-4">Map not found</div>;
+
   const decodedMapName = decodeURIComponent(mapName ?? "").replaceAll(" ", "");
   const mapImageUrl = `/img/maps/Map-${decodedMapName}.png`;
-
-  const selectedMap = maps.find((m) => m.mapName === mapName);
-
-  if (!selectedMap) return <div className="p-4">Map not found</div>;
 
   return (
     <div className="flex justify-center p-6">
@@ -53,7 +52,6 @@ export default function MapDetail() {
                 [1000, 1000],
               ]}
             />
-
             <MapMarkers map={selectedMap} onSelectNode={setSelectedNode} />
           </MapContainer>
         </div>
@@ -85,32 +83,69 @@ function NodeList({
   map: MapData;
   onSelectNode: (node: any) => void;
 }) {
+  const [search, setSearch] = useState("");
+  const [nodeTypeFilter, setNodeTypeFilter] = useState("");
+  const [rankFilter, setRankFilter] = useState("");
+
+  const filteredAreas = useMemo(() => {
+    return map.areas
+      .map((area) => {
+        const nodes = area.nodes.filter((node) => {
+          const searchMatch =
+            !search ||
+            node.nodeType.toLowerCase().includes(search.toLowerCase()) ||
+            node.nodeNumber.toString().includes(search);
+
+          const typeMatch = !nodeTypeFilter || node.nodeType === nodeTypeFilter;
+
+          const rankMatch = nodeHasRank(node, rankFilter);
+
+          return searchMatch && typeMatch && rankMatch;
+        });
+
+        return { ...area, nodes };
+      })
+      .filter((area) => area.nodes.length > 0);
+  }, [map.areas, search, nodeTypeFilter, rankFilter]);
+
   return (
     <>
       <h2 className="text-xl font-bold mb-3">{map.mapName}</h2>
 
-      {/* Search (UI only for now) */}
       <input
         type="text"
         placeholder="Search nodes…"
+        value={search}
+        onChange={(e) => setSearch(e.target.value)}
         className="w-full mb-3 px-2 py-1 border rounded"
       />
 
-      {/* Filters (UI only for now) */}
       <div className="flex gap-2 mb-4">
-        <select className="flex-1 border rounded px-2 py-1 text-sm">
-          <option>Node Type</option>
+        <select
+          value={nodeTypeFilter}
+          onChange={(e) => setNodeTypeFilter(e.target.value)}
+          className="flex-1 border rounded px-2 py-1 text-sm"
+        >
+          <option value="">All Types</option>
+          <option value="Mining">Mining</option>
+          <option value="Fishing">Fishing</option>
         </select>
-        <select className="flex-1 border rounded px-2 py-1 text-sm">
-          <option>Rank</option>
+
+        <select
+          value={rankFilter}
+          onChange={(e) => setRankFilter(e.target.value)}
+          className="flex-1 border rounded px-2 py-1 text-sm"
+        >
+          <option value="">All Ranks</option>
+          <option value="low-rank">Low Rank</option>
+          <option value="high-rank">High Rank</option>
+          <option value="g-rank">G Rank</option>
         </select>
       </div>
 
-      {/* Node list */}
       <ul className="space-y-4">
-        {map.areas.map((area) => (
+        {filteredAreas.map((area) => (
           <li key={area.areaName}>
-            {/* Area name */}
             <p className="font-semibold text-gray-700 mb-2">{area.areaName}</p>
 
             <ul className="space-y-2 ml-3">
@@ -172,4 +207,10 @@ function NodeDetails({ node, onBack }: { node: any; onBack: () => void }) {
       })}
     </>
   );
+}
+
+function nodeHasRank(node: any, rank: string) {
+  if (!rank) return true;
+  const data = node[rank];
+  return data?.items?.length > 0;
 }

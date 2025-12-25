@@ -63,7 +63,7 @@ export default function MapDetail() {
   }
 
   const filteredMap = useMemo(() => {
-    if (!selectedMap) return { areas: [] } as MapData;
+    if (!selectedMap) return { areas: [] } as unknown as MapData;
 
     return {
       ...selectedMap,
@@ -268,29 +268,31 @@ function NodeDetails({
         );
       })}
 
-      {node["training-school"]?.items?.length > 0 && (
-        <div>
-          <p className="font-medium">Training School:</p>
-          <ul className="ml-4 list-disc">
-            {node["training-school"].items.map((item: RankItem) => (
-              <li key={item.itemName}>{item.itemName}</li>
-            ))}
-          </ul>
-        </div>
-      )}
+      {node["training-school"] != undefined &&
+        node["training-school"]?.items?.length > 0 && (
+          <div>
+            <p className="font-medium">Training School:</p>
+            <ul className="ml-4 list-disc">
+              {node["training-school"].items.map((item: RankItem) => (
+                <li key={item.itemName}>{item.itemName}</li>
+              ))}
+            </ul>
+          </div>
+        )}
 
-      {node["treasure-hunting"]?.items?.length > 0 && (
-        <div>
-          <p className="font-medium">Treasure Hunting:</p>
-          <ul className="ml-4 list-disc">
-            {node["treasure-hunting"].items.map((item: TreasureItem) => (
-              <li key={item.itemName}>
-                {item.itemName} ({item.points} pts)
-              </li>
-            ))}
-          </ul>
-        </div>
-      )}
+      {node["treasure-hunting"] != undefined &&
+        node["treasure-hunting"]?.items?.length > 0 && (
+          <div>
+            <p className="font-medium">Treasure Hunting:</p>
+            <ul className="ml-4 list-disc">
+              {node["treasure-hunting"].items.map((item: TreasureItem) => (
+                <li key={item.itemName}>
+                  {item.itemName} ({item.points} pts)
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
     </div>
   );
 }

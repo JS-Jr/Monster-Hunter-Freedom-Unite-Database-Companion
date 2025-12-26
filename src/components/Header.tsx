@@ -32,6 +32,12 @@ export default function Header() {
         <Link className="hover:text-[#d0b38a] transition-colors" to="/item">
           Item
         </Link>
+        <Link
+          className="hover:text-[#d0b38a] transition-colors"
+          to="/decorations"
+        >
+          Decoration
+        </Link>
       </nav>
     </header>
   );

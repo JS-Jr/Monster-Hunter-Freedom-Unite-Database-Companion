@@ -3,6 +3,7 @@ import { DetailEmptyState } from "../components/DetailEmptyState";
 import { useSingleDataFetch } from "../hooks/useDataFetch";
 import { decodeName, encodeName } from "../utils/urlSafe";
 import type { Decoration } from "../types/Decoration";
+import { DecorationDetailSkeleton } from "../components/skeletal/DecorationDetailSkeleton";
 
 export default function DecorationDetail() {
   const decorationName = decodeName(
@@ -15,9 +16,12 @@ export default function DecorationDetail() {
     decorationName
   );
 
-  // console.log("weaponName", weaponName);
-
-  if (loading) return <>Hello</>;
+  if (loading)
+    return (
+      <div className="min-h-[calc(100vh-4rem)] bg-[#E9D3B4] text-[#5A3F28] flex flex-col items-center justify-center">
+        <DecorationDetailSkeleton />
+      </div>
+    );
 
   if (!decoration)
     return (

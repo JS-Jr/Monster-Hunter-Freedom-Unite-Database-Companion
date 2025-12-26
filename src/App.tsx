@@ -19,6 +19,7 @@ import Decoration from "./pages/Decoration";
 
 import { MobilePendingPage } from "./pages/MobilePendingPage";
 import DevBanner from "./components/DevBanner";
+import DecorationDetail from "./pages/DecorationDetail";
 
 function App() {
   return (
@@ -48,6 +49,10 @@ function App() {
               <Route path="/maps/dev/:mapName" element={<MapDetailDev />} />
               {/* <Route path="/map-detail" element={<SnowyMountainsMap />} /> */}
               <Route path="/decorations" element={<Decoration />} />
+              <Route
+                path="/decorations/:decorationName"
+                element={<DecorationDetail />}
+              />
             </Routes>
           </main>
         </Router>

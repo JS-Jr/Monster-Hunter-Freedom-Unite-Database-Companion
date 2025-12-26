@@ -15,9 +15,12 @@ import ItemDetail from "./pages/ItemDetail";
 // import SnowyMountainsMap from "./pages/MapDetail-leaflet";
 import MapDetail from "./pages/MapDetail";
 import MapDetailDev from "./pages/MapDetailDev";
+import Decoration from "./pages/Decoration";
+
 import { MobilePendingPage } from "./pages/MobilePendingPage";
 import DevBanner from "./components/DevBanner";
 import { useState } from "react";
+import DecorationDetail from "./pages/DecorationDetail";
 
 function App() {
   const [forceDesktop, setForceDesktop] = useState(false);
@@ -48,6 +51,11 @@ function App() {
               <Route path="/maps/:mapName" element={<MapDetail />} />
               <Route path="/maps/dev/:mapName" element={<MapDetailDev />} />
               {/* <Route path="/map-detail" element={<SnowyMountainsMap />} /> */}
+              <Route path="/decorations" element={<Decoration />} />
+              <Route
+                path="/decorations/:decorationName"
+                element={<DecorationDetail />}
+              />
             </Routes>
           </main>
         </Router>

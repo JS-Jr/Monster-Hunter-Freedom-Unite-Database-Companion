@@ -19,6 +19,7 @@ import Decoration from "./pages/Decoration";
 
 import { MobilePendingPage } from "./pages/MobilePendingPage";
 import DevBanner from "./components/DevBanner";
+import { Status } from "./pages/Status";
 import { useState } from "react";
 import DecorationDetail from "./pages/DecorationDetail";
 import NotFound from "./pages/NotFound";
@@ -52,6 +53,7 @@ function App() {
               <Route path="/maps" element={<Map />} />
               <Route path="/maps/:mapName" element={<MapDetail />} />
               <Route path="/maps/dev/:mapName" element={<MapDetailDev />} />
+              <Route path="/status" element={<Status />} />
               {/* <Route path="/map-detail" element={<SnowyMountainsMap />} /> */}
               <Route path="/decorations" element={<Decoration />} />
               <Route

@@ -44,6 +44,9 @@ export default function Header() {
         >
           Skill
         </Link>
+        <Link className="hover:text-[#d0b38a] transition-colors" to="/status">
+          Status/State
+        </Link>
       </nav>
     </header>
   );

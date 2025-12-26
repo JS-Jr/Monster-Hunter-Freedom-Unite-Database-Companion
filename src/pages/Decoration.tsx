@@ -1,5 +1,3 @@
-import type { Armor } from "../types/Armor";
-import { mapRawArmorToArmor } from "../utils/mapArmor";
 import { createColumnHelper } from "@tanstack/react-table";
 import { Table } from "../components/Table";
 import { Link } from "react-router-dom";
@@ -7,8 +5,8 @@ import { TableEmptyState } from "../components/TableEmptyState";
 import { TableSkeleton } from "../components/TableSkeletonProps";
 import { useDataFetchArray } from "../hooks/useDataFetch";
 import { useUrlFilters } from "../hooks/useUrlFilters";
-import { useCallback } from "react";
 import type { Decoration } from "../types/Decoration";
+import { encodeName } from "../utils/urlSafe";
 
 export default function Decoration() {
   const {
@@ -31,7 +29,7 @@ export default function Decoration() {
       header: "Name",
       cell: ({ row }) => (
         <Link
-          to={`/decoration/${encodeURIComponent(row.original.name)}`}
+          to={`/decorations/${encodeName(row.original.name)}`}
           className="font-semibold text-[#5A3F28] hover:underline"
         >
           {row.original.name}

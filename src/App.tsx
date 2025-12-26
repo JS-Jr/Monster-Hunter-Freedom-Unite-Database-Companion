@@ -19,15 +19,18 @@ import Decoration from "./pages/Decoration";
 
 import { MobilePendingPage } from "./pages/MobilePendingPage";
 import DevBanner from "./components/DevBanner";
+import { useState } from "react";
 import DecorationDetail from "./pages/DecorationDetail";
 
 function App() {
+  const [forceDesktop, setForceDesktop] = useState(false);
+
   return (
     <>
-      <div className="md:hidden">
-        <MobilePendingPage />
+      <div className={`${forceDesktop ? "hidden" : "md:hidden"}`}>
+        <MobilePendingPage onContinue={() => setForceDesktop(true)} />
       </div>
-      <div className="hidden md:block">
+      <div className={`${forceDesktop ? "block" : "hidden md:block"}`}>
         <Router>
           <DevBanner />
           <Header />

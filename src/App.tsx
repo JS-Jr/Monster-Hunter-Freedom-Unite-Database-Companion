@@ -22,6 +22,7 @@ import DevBanner from "./components/DevBanner";
 import { useState } from "react";
 import DecorationDetail from "./pages/DecorationDetail";
 import NotFound from "./pages/NotFound";
+import Skill from "./pages/Skill";
 
 function App() {
   const [forceDesktop, setForceDesktop] = useState(false);
@@ -57,6 +58,7 @@ function App() {
                 path="/decorations/:decorationName"
                 element={<DecorationDetail />}
               />
+              <Route path="/skills" element={<Skill />} />
               <Route path="*" element={<NotFound />} />
             </Routes>
           </main>

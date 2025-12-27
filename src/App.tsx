@@ -21,6 +21,7 @@ import { MobilePendingPage } from "./pages/MobilePendingPage";
 import DevBanner from "./components/DevBanner";
 import { useState } from "react";
 import DecorationDetail from "./pages/DecorationDetail";
+import NotFound from "./pages/NotFound";
 
 function App() {
   const [forceDesktop, setForceDesktop] = useState(false);
@@ -56,6 +57,7 @@ function App() {
                 path="/decorations/:decorationName"
                 element={<DecorationDetail />}
               />
+              <Route path="*" element={<NotFound />} />
             </Routes>
           </main>
         </Router>

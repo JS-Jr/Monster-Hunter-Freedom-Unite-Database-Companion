@@ -7,6 +7,7 @@ import { useDataFetchArray } from "../hooks/useDataFetch";
 import { TableSkeleton } from "../components/TableSkeletonProps";
 import { TableEmptyState } from "../components/TableEmptyState";
 import deepSearch from "../function/deepSearch";
+import { encodeName } from "../utils/urlSafe";
 
 export default function Map() {
   const deepMapGlobalFilter: FilterFn<MapData> = (row, _, filterValue) => {
@@ -35,7 +36,7 @@ export default function Map() {
       header: "Map Name",
       cell: ({ row }) => (
         <Link
-          to={`/maps/${encodeURIComponent(row.original.mapName)}`}
+          to={`/maps/${encodeName(row.original.mapName)}`}
           className="font-semibold text-[#5A3F28] hover:underline"
         >
           {row.original.mapName}

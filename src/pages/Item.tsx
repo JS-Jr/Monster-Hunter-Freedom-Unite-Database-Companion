@@ -3,6 +3,7 @@ import type { Item } from "../types/Item";
 import { createColumnHelper } from "@tanstack/react-table";
 import { Link } from "react-router-dom";
 import { Table } from "../components/Table";
+import { encodeName } from "../utils/urlSafe";
 
 export default function Item() {
   const [itemData, setItemData] = useState<Item[]>([]);
@@ -43,7 +44,7 @@ export default function Item() {
         const item = row.original;
         return (
           <Link
-            to={`/item/${item.name}`}
+            to={`/item/${encodeName(item.name)}`}
             className="text-blue-600 hover:underline"
           >
             {item.name}

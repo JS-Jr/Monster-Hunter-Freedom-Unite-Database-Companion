@@ -6,6 +6,7 @@ import { useUrlFilters } from "../hooks/useUrlFilters";
 import { useDataFetchArray } from "../hooks/useDataFetch";
 import { TableSkeleton } from "../components/TableSkeletonProps";
 import { TableEmptyState } from "../components/TableEmptyState";
+import { encodeName } from "../utils/urlSafe";
 
 export default function Monsters() {
   const columnHelper = createColumnHelper<Monster>();
@@ -35,7 +36,7 @@ export default function Monsters() {
       header: "Name",
       cell: ({ row }) => (
         <Link
-          to={`/monster/${encodeURIComponent(row.original.name)}`}
+          to={`/monster/${encodeName(row.original.name)}`}
           className="font-semibold text-[#5A3F28] hover:underline"
         >
           {row.original.name}

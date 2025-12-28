@@ -1,12 +1,12 @@
 // src/types/Item.ts
 
 export type Item = {
-    type: String;
-    name: String;
+    type: string;
+    name: string;
     rarity: number;
     bagCapacity: number;
-    sellValue: String;
-    howToGet: String;
+    sellValue: string;
+    howToGet: string;
 }
 
 // "itemType": "Consumable Items",

@@ -8,6 +8,7 @@ import { TableSkeleton } from "../components/TableSkeletonProps";
 import { useDataFetchArray } from "../hooks/useDataFetch";
 import { useUrlFilters } from "../hooks/useUrlFilters";
 import { useCallback } from "react";
+import { encodeName } from "../utils/urlSafe";
 
 export default function Armor() {
   const {
@@ -38,7 +39,7 @@ export default function Armor() {
       header: "Armor Name",
       cell: ({ row }) => (
         <Link
-          to={`/armor/${encodeURIComponent(row.original.name)}`}
+          to={`/armor/${encodeName(row.original.name)}`}
           className="font-semibold text-[#5A3F28] hover:underline"
         >
           {row.original.name}

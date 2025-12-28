@@ -1,7 +1,7 @@
 // src/types/Armor.ts
 
 export type Skills = {
-  name: String;
+  name: string;
   amount: number;
 }
 
@@ -23,7 +23,7 @@ export type ArmorMaterial = {
 export type Armor = {
   name: string;
   type: string;            // "head", "body", "arms", "waist", "legs"
-  hunter_type: String,
+  hunter_type: string,
   gender: string;          // "male", "female", "both"
   rarity: number;
   defense: number;

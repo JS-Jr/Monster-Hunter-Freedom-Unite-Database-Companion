@@ -6,6 +6,7 @@ import { useUrlFilters } from "../hooks/useUrlFilters";
 import { useDataFetchArray } from "../hooks/useDataFetch";
 import { TableSkeleton } from "../components/TableSkeletonProps";
 import { TableEmptyState } from "../components/TableEmptyState";
+import { encodeName } from "../utils/urlSafe";
 
 export default function Weapons() {
   const columnHelper = createColumnHelper<Weapon>();
@@ -27,7 +28,7 @@ export default function Weapons() {
       header: "Name",
       cell: ({ row, getValue }) => (
         <Link
-          to={`/weapons/${encodeURIComponent(row.original.name)}`}
+          to={`/weapons/${encodeName(row.original.name)}`}
           className="font-semibold text-[#5A3F28] hover:underline"
         >
           {getValue()}

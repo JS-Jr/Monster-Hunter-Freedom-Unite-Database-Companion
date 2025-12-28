@@ -3,6 +3,7 @@ import type { Weapon } from "../types/Weapon";
 import WeaponSkeleton from "../components/skeletal/WeaponSkeletal";
 import { DetailEmptyState } from "../components/DetailEmptyState";
 import { useSingleDataFetch } from "../hooks/useDataFetch";
+import { encodeName } from "../utils/urlSafe";
 
 export default function WeaponDetail() {
   const { weaponName } = useParams<{ weaponName: string }>();
@@ -85,7 +86,7 @@ export default function WeaponDetail() {
               <p className="mb-2">
                 <strong>Upgrades from:</strong>{" "}
                 <Link
-                  to={`/weapons/${encodeURIComponent(weapon.improve_from)}`}
+                  to={`/weapons/${encodeName(weapon.improve_from)}`}
                   className="text-[#6B3E1B] font-semibold hover:underline"
                 >
                   {weapon.improve_from}
@@ -101,7 +102,7 @@ export default function WeaponDetail() {
                   {weapon.improve_to.map((name) => (
                     <li key={name}>
                       <Link
-                        to={`/weapons/${encodeURIComponent(name)}`}
+                        to={`/weapons/${encodeName(name)}`}
                         className="text-[#6B3E1B] font-semibold hover:underline"
                       >
                         {name}
@@ -120,7 +121,7 @@ export default function WeaponDetail() {
                   {weapon.improve_mats.map((mat, idx) => (
                     <li key={idx}>
                       <Link
-                        to={`/item/${encodeURIComponent(mat.name)}`}
+                        to={`/item/${encodeName(mat.name)}`}
                         className="text-[#5A3F28] hover:underline"
                       >
                         {mat.name} x{mat.amount}
@@ -169,7 +170,7 @@ function MaterialList({ mats }: { mats: any[] }) {
       {mats.map((mat, idx) => (
         <li key={idx}>
           <Link
-            to={`/item/${encodeURIComponent(mat.name)}`}
+            to={`/item/${encodeName(mat.name)}`}
             className="text-[#5A3F28] hover:underline"
           >
             {mat.name} x{mat.amount}

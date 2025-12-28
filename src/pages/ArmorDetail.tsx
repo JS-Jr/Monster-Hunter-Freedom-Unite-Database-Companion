@@ -5,6 +5,7 @@ import { DetailEmptyState } from "../components/DetailEmptyState";
 import { DetailSkeleton } from "../components/DetailSkeleton";
 import { useSingleDataFetch } from "../hooks/useDataFetch";
 import type { Armor } from "../types/Armor";
+import { encodeName } from "../utils/urlSafe";
 
 export default function ArmorDetail() {
   const { armorName } = useParams<{ armorName: string }>();
@@ -109,7 +110,7 @@ export default function ArmorDetail() {
                 {armor.create_mats.map((mat, i) => (
                   <li key={i}>
                     <Link
-                      to={`/item/${encodeURIComponent(mat.name)}`}
+                      to={`/item/${encodeName(mat.name)}`}
                       className="text-[#5A3F28] hover:underline"
                     >
                       {mat.name} x{mat.amount}

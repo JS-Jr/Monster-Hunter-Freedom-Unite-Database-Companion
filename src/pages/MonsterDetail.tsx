@@ -3,6 +3,7 @@ import type { Monster } from "../types/Monster";
 import { useSingleDataFetch } from "../hooks/useDataFetch";
 import { DetailSkeleton } from "../components/DetailSkeleton";
 import { DetailEmptyState } from "../components/DetailEmptyState";
+import { encodeName } from "../utils/urlSafe";
 
 export default function MonsterDetail() {
   const { monsterName } = useParams<{ monsterName: string }>();
@@ -146,7 +147,7 @@ export default function MonsterDetail() {
                       {items.map((item: any, idx: number) => (
                         <li key={idx}>
                           <Link
-                            to={`/item/${encodeURIComponent(item.name)}`}
+                            to={`/item/${encodeName(item.name)}`}
                             className="text-[#5A3F28] hover:underline"
                           >
                             {item.name} ({item.chance})

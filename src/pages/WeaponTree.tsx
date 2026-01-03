@@ -158,7 +158,7 @@ export default function WeaponTree() {
               data={treeData}
               zoomable
               zoom={zoom}
-              scaleExtent={[0.2, 3]}
+              // scaleExtent={[0.2, 3]}
               separation={{ siblings: 1.5, nonSiblings: 2 }}
               translate={translate}
               collapsible={true}

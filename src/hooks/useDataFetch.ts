@@ -143,7 +143,9 @@ export function useDataFetchArray<T>(
  * Hook variant for fetching a single item by identifier
  * Useful for detail pages
  */
-export function useSingleDataFetch<T extends { name?: string; id?: string }>(
+export function useSingleDataFetch<
+  T extends { name?: string; id?: string; identifier?: string }
+>(
   url: string,
   identifier?: string,
   options: Omit<UseDataFetchOptions<T>, "filter"> = {}
@@ -155,7 +157,8 @@ export function useSingleDataFetch<T extends { name?: string; id?: string }>(
       data?.find(
         (item) =>
           item.name?.toLowerCase() === identifier?.toLowerCase() ||
-          item.id?.toLowerCase() === identifier?.toLowerCase()
+          item.id?.toLowerCase() === identifier?.toLowerCase() ||
+          item.identifier?.toLowerCase() === identifier?.toLowerCase()
       ) || null,
     [data, identifier]
   );

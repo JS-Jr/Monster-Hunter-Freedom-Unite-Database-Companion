@@ -5,10 +5,12 @@ import { DetailEmptyState } from "../components/DetailEmptyState";
 import { DetailSkeleton } from "../components/DetailSkeleton";
 import { useSingleDataFetch } from "../hooks/useDataFetch";
 import type { Armor } from "../types/Armor";
-import { encodeName } from "../utils/urlSafe";
+import { decodeName, encodeName } from "../utils/urlSafe";
 
 export default function ArmorDetail() {
-  const { armorName } = useParams<{ armorName: string }>();
+  const armorName = decodeName(
+    useParams<{ armorName: string }>().armorName ?? ""
+  );
   const armorMapper = useCallback(
     (rawData: any) => rawData.map(mapRawArmorToArmor),
     []

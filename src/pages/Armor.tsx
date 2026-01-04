@@ -39,7 +39,7 @@ export default function Armor() {
       header: "Armor Name",
       cell: ({ row }) => (
         <Link
-          to={`/armor/${encodeName(row.original.name)}`}
+          to={`/armor/${encodeName(row.original.identifier)}`}
           className="font-semibold text-[#5A3F28] hover:underline"
         >
           {row.original.name}

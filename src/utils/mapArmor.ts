@@ -1,5 +1,4 @@
 import type { Armor, ArmorType, Gender } from "../types/Armor";
-import { encodeName } from "./urlSafe";
 
 const armorTypeMap: Record<string, ArmorType> = {
   helmet: "Helmet",
@@ -49,7 +48,8 @@ export function mapRawArmorToArmor(raw: any): Armor {
     slots: slots,
     skills: (raw.skills || []).map((s: any) => ({
       name: s.name,
-      amount: Number(s.amount),
+      amount: Math.abs(Number(s.amount)), // always positive
+      positive: Number(s.amount) >= 0, // store original sign
     })),
     create_cost: Number(raw.create_cost),
     create_mats: (raw.create_mats || []).map((m: any) => ({

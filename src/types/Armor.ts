@@ -6,6 +6,7 @@ export type HunterType = "Blademaster" | "Gunner";
 export type Skills = {
   name: string;
   amount: number;
+  positive: boolean;
 };
 
 export type ArmorResistances = {
@@ -19,7 +20,7 @@ export type ArmorResistances = {
 export type ArmorMaterial = {
   name: string;
   amount: string;
-  type: string;  // e.g. "ore", "pelt"
+  type: string; // e.g. "ore", "pelt"
   color: string; // display color hint
 };
 

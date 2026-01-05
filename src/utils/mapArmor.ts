@@ -1,11 +1,41 @@
-import type { Armor } from '../types/Armor';
+import type { Armor, ArmorType, Gender } from "../types/Armor";
+
+const armorTypeMap: Record<string, ArmorType> = {
+  helmet: "Helmet",
+  plate: "Plate",
+  gauntlets: "Gauntlets",
+  waist: "Waist",
+  leggings: "Leggings",
+};
+
+const genderMap: Record<string, Gender> = {
+  male: "Male",
+  female: "Female",
+  "male/female": "Both",
+  both: "Both",
+};
 
 export function mapRawArmorToArmor(raw: any): Armor {
+  // normalize type
+  const rawType = raw.type?.toLowerCase() || "";
+  const type: ArmorType = armorTypeMap[rawType] ?? "Body"; // fallback
+
+  // normalize gender
+  const rawSex = raw.sex?.toLowerCase() || "male";
+  const gender: Gender = genderMap[rawSex] ?? "Male";
+
+  // convert slots from string like "OO-" to number
+  const slotsString: string = raw.slots || "";
+  const slots = (slotsString.match(/O/g) || []).length;
+
+  const identifier = raw.name + " " + gender;
+
   return {
+    identifier: identifier,
     name: raw.name,
-    type: raw.type, // ideally normalize "gauntlets" to "arms", etc.
+    type: type,
     hunter_type: raw.hunter_type,
-    gender: raw.sex.toLowerCase() === 'male/female' ? 'both' : raw.sex.toLowerCase(),
+    gender: gender,
     rarity: Number(raw.rarity),
     defense: Number(raw.defence),
     resistances: {
@@ -15,10 +45,11 @@ export function mapRawArmorToArmor(raw: any): Armor {
       ice: Number(raw.ice_res),
       dragon: Number(raw.dragon_res),
     },
-    slots: raw.slots.length, // "OO-" means 2 slots
+    slots: slots,
     skills: (raw.skills || []).map((s: any) => ({
       name: s.name,
-      amount: Number(s.amount),
+      amount: Math.abs(Number(s.amount)), // always positive
+      positive: Number(s.amount) >= 0, // store original sign
     })),
     create_cost: Number(raw.create_cost),
     create_mats: (raw.create_mats || []).map((m: any) => ({

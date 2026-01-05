@@ -25,6 +25,9 @@ import DecorationDetail from "./pages/DecorationDetail";
 import NotFound from "./pages/NotFound";
 import Skill from "./pages/Skill";
 
+import ArmorSkillBuilder from "./pages/ArmorSkillBuilder";
+import SelectRedirect from "./pages/SelectRedirect";
+
 function App() {
   const [forceDesktop, setForceDesktop] = useState(false);
 
@@ -61,6 +64,8 @@ function App() {
                 element={<DecorationDetail />}
               />
               <Route path="/skills" element={<Skill />} />
+              <Route path="/skill-builder" element={<ArmorSkillBuilder />} />
+              <Route path="/select/:type" element={<SelectRedirect />} />
               <Route path="*" element={<NotFound />} />
             </Routes>
           </main>

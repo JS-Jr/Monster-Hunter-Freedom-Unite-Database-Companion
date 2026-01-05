@@ -1,14 +1,16 @@
 import { useCallback } from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import { mapRawArmorToArmor } from "../utils/mapArmor";
 import { DetailEmptyState } from "../components/DetailEmptyState";
 import { DetailSkeleton } from "../components/DetailSkeleton";
 import { useSingleDataFetch } from "../hooks/useDataFetch";
 import type { Armor } from "../types/Armor";
-import { encodeName } from "../utils/urlSafe";
+import { decodeName, encodeName } from "../utils/urlSafe";
 
 export default function ArmorDetail() {
-  const { armorName } = useParams<{ armorName: string }>();
+  const armorName = decodeName(
+    useParams<{ armorName: string }>().armorName ?? ""
+  );
   const armorMapper = useCallback(
     (rawData: any) => rawData.map(mapRawArmorToArmor),
     []
@@ -21,6 +23,14 @@ export default function ArmorDetail() {
       mapper: armorMapper,
     }
   );
+
+  const navigate = useNavigate();
+  const handleAddToBuilder = () => {
+    const armorType = armor?.type;
+    localStorage.setItem("selected" + armorType, encodeName(armorName));
+
+    navigate("/skill-builder");
+  };
 
   if (loading)
     return (
@@ -48,6 +58,19 @@ export default function ArmorDetail() {
         </p>
 
         <div className="my-6 h-px bg-[#CBA986]" />
+
+        <div className="flex justify-center my-6">
+          <button
+            onClick={handleAddToBuilder}
+            className="px-6 py-3 rounded-lg font-semibold
+               bg-[#6B3E1B] text-[#F7E7D0]
+               hover:bg-[#5A3215]
+               active:scale-95
+               transition-all shadow-md"
+          >
+            Add to Skill Builder
+          </button>
+        </div>
 
         {/* Main Card */}
         <section className="bg-[#F7E7D0] rounded-lg shadow p-6 space-y-6">

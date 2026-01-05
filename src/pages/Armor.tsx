@@ -2,7 +2,7 @@ import type { Armor } from "../types/Armor";
 import { mapRawArmorToArmor } from "../utils/mapArmor";
 import { createColumnHelper } from "@tanstack/react-table";
 import { Table } from "../components/Table";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { TableEmptyState } from "../components/TableEmptyState";
 import { TableSkeleton } from "../components/TableSkeletonProps";
 import { useDataFetchArray } from "../hooks/useDataFetch";
@@ -32,6 +32,12 @@ export default function Armor() {
     }
   );
 
+  const navigate = useNavigate();
+  const handleAddToBuilder = (armorItem: Armor) => {
+    localStorage.setItem(`selected${armorItem.type}`, armorItem.identifier);
+    navigate("/skill-builder");
+  };
+
   const columnHelper = createColumnHelper<Armor>();
 
   const armorColumns = [
@@ -39,7 +45,7 @@ export default function Armor() {
       header: "Armor Name",
       cell: ({ row }) => (
         <Link
-          to={`/armor/${encodeName(row.original.name)}`}
+          to={`/armor/${encodeName(row.original.identifier)}`}
           className="font-semibold text-[#5A3F28] hover:underline"
         >
           {row.original.name}
@@ -101,12 +107,27 @@ export default function Armor() {
       }
     ),
     columnHelper.accessor(
-      (row: { skills: { name: any; amount: any }[] }) =>
+      (row) =>
         row.skills
-          .map((s: { name: any; amount: any }) => `${s.name} +${s.amount}`)
+          .map((s) => `${s.name} ${s.positive ? "+" : "-"}${s.amount}`)
           .join(", "),
       { id: "skills", header: "Skills" }
     ),
+    // ---------------- Add to Skill Builder button ----------------
+    columnHelper.display({
+      id: "addToBuilder",
+      header: "Builder",
+      cell: ({ row }) => (
+        <button
+          onClick={() => handleAddToBuilder(row.original)}
+          className="px-3 py-1 rounded-md text-sm font-semibold
+                     bg-[#6B3E1B] text-[#F7E7D0]
+                     hover:bg-[#5A3215] transition-all"
+        >
+          Add to Builder
+        </button>
+      ),
+    }),
   ];
 
   if (loading) {

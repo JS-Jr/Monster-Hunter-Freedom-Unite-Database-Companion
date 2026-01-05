@@ -1,224 +1,191 @@
-import { useCallback, useMemo, useState } from "react";
-import type { Armor, ArmorType } from "../types/Armor";
+import { useEffect, useMemo, useState } from "react";
+import { Link } from "react-router-dom";
+import ContentWrapperProps from "../components/ContentWrapper";
+import type { Armor, ArmorType, Skills } from "../types/Armor";
+import { decodeName } from "../utils/urlSafe";
 import { mapRawArmorToArmor } from "../utils/mapArmor";
-import { useDataFetchArray } from "../hooks/useDataFetch";
-import ContentWrapper from "../components/ContentWrapper";
-import { TableSkeleton } from "../components/TableSkeletonProps";
 
-// 🔹 UI slots (NOT the same as ArmorType)
-type ArmorSlot = "head" | "body" | "arms" | "waist" | "legs";
-
-// 🔹 Slot → ArmorType mapping
-const SLOT_TO_ARMOR_TYPE: Record<ArmorSlot, ArmorType> = {
-  head: "Helmet",
-  body: "Plate",
-  arms: "Gauntlets",
-  waist: "Waist",
-  legs: "Leggings",
+type SlotConfig = {
+  type: ArmorType;
+  label: string;
+  selectPath: string;
 };
 
+const SLOTS: SlotConfig[] = [
+  { type: "Helmet", label: "Helmet", selectPath: "/select/helmet" },
+  { type: "Plate", label: "Plate", selectPath: "/select/plate" },
+  { type: "Gauntlets", label: "Gauntlets", selectPath: "/select/gauntlets" },
+  { type: "Waist", label: "Waist", selectPath: "/select/waist" },
+  { type: "Leggings", label: "Leggings", selectPath: "/select/leggings" },
+];
+
 export default function ArmorSkillBuilder() {
-  // -------------------------------
-  // Selected armor per slot
-  // -------------------------------
-  const [selectedArmor, setSelectedArmor] = useState<
-    Record<ArmorSlot, Armor | null>
-  >({
-    head: null,
-    body: null,
-    arms: null,
-    waist: null,
-    legs: null,
-  });
+  const [armors, setArmors] = useState<Armor[]>([]);
 
-  // -------------------------------
-  // Fetch + map armor data
-  // -------------------------------
-  const armorMapper = useCallback(
-    (rawData: any[]) => rawData.map(mapRawArmorToArmor),
-    []
-  );
+  /* ---------------- Load armor data once ---------------- */
+  useEffect(() => {
+    fetch("/data/armor.json")
+      .then((res) => res.json())
+      .then((data: any[]) => {
+        const mapped = data.map(mapRawArmorToArmor); // 🔹 map the raw data
+        setArmors(mapped); // 🔹 set mapped data
+      })
+      .catch((err) => console.error("Failed to load armor data:", err));
+  }, []);
 
-  const { data: allArmor, loading } = useDataFetchArray<Armor>(
-    "/data/armor.json",
-    { mapper: armorMapper }
-  );
+  /* ---------------- Selected armor per slot ---------------- */
+  const selectedArmorBySlot = useMemo(() => {
+    return SLOTS.reduce<Record<ArmorType, Armor | null>>((acc, slot) => {
+      const stored = localStorage.getItem(`selected${slot.type}`);
 
-  // -------------------------------
-  // Group armor by slot
-  // -------------------------------
-  const armorBySlot = useMemo<Record<ArmorSlot, Armor[]>>(() => {
-    if (!allArmor) {
-      return {
-        head: [],
-        body: [],
-        arms: [],
-        waist: [],
-        legs: [],
-      };
-    }
+      // console.log("stored", stored);
 
-    return {
-      head: allArmor.filter((a) => a.type === SLOT_TO_ARMOR_TYPE.head),
-      body: allArmor.filter((a) => a.type === SLOT_TO_ARMOR_TYPE.body),
-      arms: allArmor.filter((a) => a.type === SLOT_TO_ARMOR_TYPE.arms),
-      waist: allArmor.filter((a) => a.type === SLOT_TO_ARMOR_TYPE.waist),
-      legs: allArmor.filter((a) => a.type === SLOT_TO_ARMOR_TYPE.legs),
-    };
-  }, [allArmor]);
+      // selectedHelmet
+      if (!stored) {
+        acc[slot.type] = null;
+        return acc;
+      }
 
-  // -------------------------------
-  // Calculate total defense + skills
-  // -------------------------------
-  const totalStats = useMemo(() => {
-    let totalDefense = 0;
-    const skillMap = new Map<string, number>();
+      const identifier = decodeName(stored);
 
-    Object.values(selectedArmor).forEach((armor) => {
-      if (!armor) return;
+      // console.log("identifier", identifier);
+      // console.log("armors", armors);
+      acc[slot.type] =
+        armors.find(
+          (a) =>
+            a.identifier?.toLowerCase() === identifier.toLowerCase() ||
+            a.name?.toLowerCase() === identifier.toLowerCase()
+        ) ?? null;
 
-      totalDefense += armor.defense;
+      // console.log("acc[slot.type]", acc[slot.type]);
 
-      armor.skills.forEach((skill) => {
-        skillMap.set(
-          skill.name,
-          (skillMap.get(skill.name) ?? 0) + skill.amount
-        );
+      return acc;
+    }, {} as any);
+  }, [armors]);
+
+  /* ---------------- Totals ---------------- */
+  const totalDefense = useMemo(() => {
+    return Object.values(selectedArmorBySlot).reduce(
+      (sum, armor) => sum + (armor?.defense ?? 0),
+      0
+    );
+  }, [selectedArmorBySlot]);
+
+  const totalSkills = useMemo(() => {
+    const skillMap: Record<string, number> = {};
+
+    Object.values(selectedArmorBySlot).forEach((armor) => {
+      armor?.skills?.forEach((skill) => {
+        skillMap[skill.name] = (skillMap[skill.name] ?? 0) + skill.amount;
       });
     });
 
-    return {
-      defense: totalDefense,
-      skills: Array.from(skillMap.entries()).map(([name, amount]) => ({
-        name,
-        amount,
-      })),
-    };
-  }, [selectedArmor]);
+    return Object.entries(skillMap).map(([name, amount]) => ({
+      name,
+      amount,
+    })) as Skills[];
+  }, [selectedArmorBySlot]);
 
-  // -------------------------------
-  // Loading state
-  // -------------------------------
-  if (loading) {
-    return (
-      <ContentWrapper>
-        <h1 className="text-3xl font-bold mb-6">Armor Skill Builder</h1>
-        <TableSkeleton rows={5} columns={3} />
-      </ContentWrapper>
-    );
-  }
-
-  // -------------------------------
-  // Slot metadata for UI
-  // -------------------------------
-  const armorSlots: Array<{ key: ArmorSlot; label: string }> = [
-    { key: "head", label: "Helmet" },
-    { key: "body", label: "Plate" },
-    { key: "arms", label: "Gauntlets" },
-    { key: "waist", label: "Waist" },
-    { key: "legs", label: "Leggings" },
-  ];
-
-  // -------------------------------
-  // Render
-  // -------------------------------
   return (
-    <ContentWrapper>
-      <h1 className="text-3xl font-bold mb-6">Armor Skill Builder</h1>
+    <ContentWrapperProps>
+      <div className="max-w-5xl mx-auto px-4 py-8 text-[#5A3F28]">
+        <h1 className="text-3xl font-extrabold text-center text-[#6B3E1B] mb-6">
+          Skill Builder
+        </h1>
 
-      {/* Armor Selection */}
-      <div className="space-y-4 mb-8">
-        {armorSlots.map(({ key, label }) => (
-          <div
-            key={key}
-            className="bg-[#F7E7D0] rounded-lg shadow p-6 border border-[#D4AF86]"
-          >
-            <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-              <h3 className="font-semibold text-lg text-[#6B3E1B]">{label}</h3>
+        {/* ---------------- Builder Table ---------------- */}
+        <div className="overflow-x-auto">
+          <table className="w-full bg-[#F7E7D0] rounded-lg shadow border-collapse">
+            <thead>
+              <tr className="bg-[#E9D3B4] text-left">
+                <th className="px-4 py-3">Type</th>
+                <th className="px-4 py-3">Selection</th>
+                <th className="px-4 py-3">Defense</th>
+                <th className="px-4 py-3">Skills</th>
+              </tr>
+            </thead>
 
-              <div className="md:col-span-3">
-                {selectedArmor[key] ? (
-                  <div className="space-y-2">
-                    <div className="flex justify-between items-center">
-                      <p className="font-semibold">
-                        {selectedArmor[key]!.name}
-                      </p>
-                      <button
-                        onClick={() =>
-                          setSelectedArmor((prev) => ({
-                            ...prev,
-                            [key]: null,
-                          }))
-                        }
-                        className="px-3 py-1 bg-red-500 text-white rounded"
-                      >
-                        Clear
-                      </button>
-                    </div>
+            <tbody>
+              {SLOTS.map((slot) => {
+                const armor = selectedArmorBySlot[slot.type];
 
-                    <p>Defense: {selectedArmor[key]!.defense}</p>
-                    <p>Rarity: {selectedArmor[key]!.rarity}</p>
-                    <p>Slots: {selectedArmor[key]!.slots}</p>
-
-                    {selectedArmor[key]!.skills.length > 0 && (
-                      <ul className="list-disc ml-4">
-                        {selectedArmor[key]!.skills.map((s, i) => (
-                          <li key={i}>
-                            {s.name} +{s.amount}
-                          </li>
-                        ))}
-                      </ul>
-                    )}
-                  </div>
-                ) : (
-                  <select
-                    className="w-full p-2 border rounded"
-                    onChange={(e) => {
-                      const selected = armorBySlot[key].find(
-                        (a) => a.name === e.target.value
-                      );
-                      if (selected) {
-                        setSelectedArmor((prev) => ({
-                          ...prev,
-                          [key]: selected,
-                        }));
-                      }
-                    }}
+                return (
+                  <tr
+                    key={slot.type}
+                    className="border-t border-[#CBA986] hover:bg-[#F3DFC4]"
                   >
-                    <option value="">+ Select {label.toLowerCase()}...</option>
-                    {armorBySlot[key].map((armor) => (
-                      <option key={armor.name} value={armor.name}>
-                        {armor.name} (Def: {armor.defense}, Rarity:{" "}
-                        {armor.rarity})
-                      </option>
-                    ))}
-                  </select>
-                )}
-              </div>
-            </div>
-          </div>
-        ))}
-      </div>
+                    <td className="px-4 py-4 font-semibold">{slot.label}</td>
 
-      {/* Summary */}
-      <div className="max-w-4xl mx-auto">
-        <section className="bg-[#F7E7D0] rounded-lg shadow p-6 border border-[#D4AF86]">
-          <h2 className="text-2xl font-bold mb-4">Build Summary</h2>
+                    <td className="px-4 py-4">
+                      {armor ? (
+                        <div className="flex justify-between items-center gap-2">
+                          <span className="font-medium">{armor.name}</span>
+                          <Link
+                            to={slot.selectPath}
+                            className="text-sm text-[#6B3E1B] hover:underline"
+                          >
+                            Change
+                          </Link>
+                        </div>
+                      ) : (
+                        <Link to={slot.selectPath}>
+                          <button
+                            className="px-4 py-2 rounded-md text-sm font-semibold
+                                       bg-[#6B3E1B] text-[#F7E7D0]
+                                       hover:bg-[#5A3215]
+                                       active:scale-95 transition-all"
+                          >
+                            + Choose {slot.label}
+                          </button>
+                        </Link>
+                      )}
+                    </td>
 
-          <p>Total Defense: {totalStats.defense}</p>
-          <p>
-            Selected Pieces:{" "}
-            {Object.values(selectedArmor).filter(Boolean).length}/5
+                    <td className="px-4 py-4">{armor ? armor.defense : "—"}</td>
+
+                    <td className="px-4 py-4 text-sm">
+                      {armor?.skills?.length ? (
+                        <ul className="list-disc list-inside">
+                          {armor.skills.map((s, i) => (
+                            <li key={i}>
+                              {s.name} +{s.amount}
+                            </li>
+                          ))}
+                        </ul>
+                      ) : (
+                        <span className="italic text-[#8A6A4A]">—</span>
+                      )}
+                    </td>
+                  </tr>
+                );
+              })}
+            </tbody>
+          </table>
+        </div>
+
+        {/* ---------------- Totals ---------------- */}
+        <section className="mt-8 bg-[#F7E7D0] rounded-lg shadow p-6">
+          <h2 className="text-2xl font-bold text-[#6B3E1B] mb-4">
+            Total Stats
+          </h2>
+
+          <p className="mb-4 font-semibold">
+            Total Defense: <span className="text-lg">{totalDefense}</span>
           </p>
-          <p>Active Skills: {totalStats.skills.length}</p>
 
-          {totalStats.skills.map((s) => (
-            <div key={s.name}>
-              {s.name}: +{s.amount}
-            </div>
-          ))}
+          {totalSkills.length > 0 ? (
+            <ul className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+              {totalSkills.map((skill) => (
+                <li key={skill.name} className="bg-[#E9D3B4] rounded px-3 py-2">
+                  {skill.name} +{skill.amount}
+                </li>
+              ))}
+            </ul>
+          ) : (
+            <p className="italic text-[#8A6A4A]">No skills yet</p>
+          )}
         </section>
       </div>
-    </ContentWrapper>
+    </ContentWrapperProps>
   );
 }

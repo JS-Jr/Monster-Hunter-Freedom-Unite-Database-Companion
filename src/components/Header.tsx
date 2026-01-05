@@ -38,11 +38,14 @@ export default function Header() {
         >
           Decoration
         </Link>
+        <Link className="hover:text-[#d0b38a] transition-colors" to="/skills">
+          Skill
+        </Link>
         <Link
           className="hover:text-[#d0b38a] transition-colors"
-          to="/skills"
+          to="/skill-builder"
         >
-          Skill
+          Armor Skill Builder
         </Link>
         <Link className="hover:text-[#d0b38a] transition-colors" to="/status">
           Status/State

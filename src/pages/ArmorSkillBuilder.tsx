@@ -23,7 +23,7 @@ const SLOTS: SlotConfig[] = [
 
 export default function ArmorSkillBuilder() {
   // const [armors, setArmors] = useState<Armor[]>([]);
-  const [refresh, setRefresh] = useState(0);
+  const [_refresh, setRefresh] = useState(0);
 
   const armorMapper = useCallback(
     (rawData: any[]) => rawData.map(mapRawArmorToArmor),

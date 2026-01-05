@@ -1,9 +1,11 @@
-import { useEffect, useMemo, useState } from "react";
+import { useCallback, useMemo, useState } from "react";
 import { Link } from "react-router-dom";
 import ContentWrapperProps from "../components/ContentWrapper";
-import type { Armor, ArmorType, Skills } from "../types/Armor";
+import type { Armor, ArmorType } from "../types/Armor";
 import { decodeName } from "../utils/urlSafe";
 import { mapRawArmorToArmor } from "../utils/mapArmor";
+import { useDataFetchArray } from "../hooks/useDataFetch";
+import { ArmorSkillBuilderSkeleton } from "../components/skeletal/ArmorSkillBuilderSkeleton";
 
 type SlotConfig = {
   type: ArmorType;
@@ -20,17 +22,30 @@ const SLOTS: SlotConfig[] = [
 ];
 
 export default function ArmorSkillBuilder() {
-  const [armors, setArmors] = useState<Armor[]>([]);
+  // const [armors, setArmors] = useState<Armor[]>([]);
+  const [refresh, setRefresh] = useState(0);
+
+  const armorMapper = useCallback(
+    (rawData: any[]) => rawData.map(mapRawArmorToArmor),
+    []
+  );
+
+  const { data: armors, loading } = useDataFetchArray<Armor>(
+    "/data/armor.json",
+    {
+      mapper: armorMapper,
+    }
+  );
 
   /* ---------------- Load armor data ---------------- */
-  useEffect(() => {
-    fetch("/data/armor.json")
-      .then((res) => res.json())
-      .then((data: any[]) => {
-        setArmors(data.map(mapRawArmorToArmor));
-      })
-      .catch((err) => console.error("Failed to load armor data:", err));
-  }, []);
+  // useEffect(() => {
+  //   fetch("/data/armor.json")
+  //     .then((res) => res.json())
+  //     .then((data: any[]) => {
+  //       setArmors(data.map(mapRawArmorToArmor));
+  //     })
+  //     .catch((err) => console.error("Failed to load armor data:", err));
+  // }, []);
 
   /* ---------------- Selected armor per slot ---------------- */
   const selectedArmorBySlot = useMemo(() => {
@@ -43,7 +58,7 @@ export default function ArmorSkillBuilder() {
 
       const identifier = decodeName(stored);
       acc[slot.type] =
-        armors.find(
+        armors?.find(
           (a) =>
             a.identifier?.toLowerCase() === identifier.toLowerCase() ||
             a.name?.toLowerCase() === identifier.toLowerCase()
@@ -80,13 +95,37 @@ export default function ArmorSkillBuilder() {
   const removeSlot = (slotType: ArmorType) => {
     localStorage.removeItem(`selected${slotType}`);
     // force update by setting state
-    setArmors((prev) => [...prev]);
+    // setArmors((prev) => [...prev]);
+    setRefresh((r) => r + 1);
   };
 
   const clearAll = () => {
     SLOTS.forEach((slot) => localStorage.removeItem(`selected${slot.type}`));
-    setArmors((prev) => [...prev]);
+    // setArmors((prev) => [...prev]);
+    setRefresh((r) => r + 1);
   };
+
+  if (loading) {
+    return <ArmorSkillBuilderSkeleton />;
+  }
+
+  if (!armors || armors.length === 0) {
+    return (
+      <ContentWrapperProps>
+        <div className="max-w-5xl mx-auto px-4 py-8 text-[#5A3F28]">
+          <h1 className="text-3xl font-extrabold text-center text-[#6B3E1B] mb-6">
+            Skill Builder
+          </h1>
+
+          <div className="bg-[#F7E7D0] rounded-lg shadow p-6 text-center">
+            <p className="text-[#8A6A4A] italic">
+              No armor data found. Please try again later.
+            </p>
+          </div>
+        </div>
+      </ContentWrapperProps>
+    );
+  }
 
   /* ---------------- Render ---------------- */
   return (

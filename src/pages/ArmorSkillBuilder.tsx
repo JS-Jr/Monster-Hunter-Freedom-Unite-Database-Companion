@@ -22,13 +22,12 @@ const SLOTS: SlotConfig[] = [
 export default function ArmorSkillBuilder() {
   const [armors, setArmors] = useState<Armor[]>([]);
 
-  /* ---------------- Load armor data once ---------------- */
+  /* ---------------- Load armor data ---------------- */
   useEffect(() => {
     fetch("/data/armor.json")
       .then((res) => res.json())
       .then((data: any[]) => {
-        const mapped = data.map(mapRawArmorToArmor); // 🔹 map the raw data
-        setArmors(mapped); // 🔹 set mapped data
+        setArmors(data.map(mapRawArmorToArmor));
       })
       .catch((err) => console.error("Failed to load armor data:", err));
   }, []);
@@ -37,27 +36,18 @@ export default function ArmorSkillBuilder() {
   const selectedArmorBySlot = useMemo(() => {
     return SLOTS.reduce<Record<ArmorType, Armor | null>>((acc, slot) => {
       const stored = localStorage.getItem(`selected${slot.type}`);
-
-      // console.log("stored", stored);
-
-      // selectedHelmet
       if (!stored) {
         acc[slot.type] = null;
         return acc;
       }
 
       const identifier = decodeName(stored);
-
-      // console.log("identifier", identifier);
-      // console.log("armors", armors);
       acc[slot.type] =
         armors.find(
           (a) =>
             a.identifier?.toLowerCase() === identifier.toLowerCase() ||
             a.name?.toLowerCase() === identifier.toLowerCase()
         ) ?? null;
-
-      // console.log("acc[slot.type]", acc[slot.type]);
 
       return acc;
     }, {} as any);
@@ -73,19 +63,32 @@ export default function ArmorSkillBuilder() {
 
   const totalSkills = useMemo(() => {
     const skillMap: Record<string, number> = {};
-
     Object.values(selectedArmorBySlot).forEach((armor) => {
       armor?.skills?.forEach((skill) => {
-        skillMap[skill.name] = (skillMap[skill.name] ?? 0) + skill.amount;
+        const signedAmount = skill.positive ? skill.amount : -skill.amount;
+        skillMap[skill.name] = (skillMap[skill.name] ?? 0) + signedAmount;
       });
     });
-
     return Object.entries(skillMap).map(([name, amount]) => ({
       name,
-      amount,
-    })) as Skills[];
+      amount: Math.abs(amount),
+      positive: amount >= 0,
+    }));
   }, [selectedArmorBySlot]);
 
+  /* ---------------- Handlers ---------------- */
+  const removeSlot = (slotType: ArmorType) => {
+    localStorage.removeItem(`selected${slotType}`);
+    // force update by setting state
+    setArmors((prev) => [...prev]);
+  };
+
+  const clearAll = () => {
+    SLOTS.forEach((slot) => localStorage.removeItem(`selected${slot.type}`));
+    setArmors((prev) => [...prev]);
+  };
+
+  /* ---------------- Render ---------------- */
   return (
     <ContentWrapperProps>
       <div className="max-w-5xl mx-auto px-4 py-8 text-[#5A3F28]">
@@ -93,13 +96,12 @@ export default function ArmorSkillBuilder() {
           Skill Builder
         </h1>
 
-        {/* ---------------- Builder Table ---------------- */}
         <div className="overflow-x-auto">
           <table className="w-full bg-[#F7E7D0] rounded-lg shadow border-collapse">
             <thead>
               <tr className="bg-[#E9D3B4] text-left">
                 <th className="px-4 py-3">Type</th>
-                <th className="px-4 py-3">Selection</th>
+                <th className="px-4 py-3">Selection / Actions</th>
                 <th className="px-4 py-3">Defense</th>
                 <th className="px-4 py-3">Skills</th>
               </tr>
@@ -116,24 +118,32 @@ export default function ArmorSkillBuilder() {
                   >
                     <td className="px-4 py-4 font-semibold">{slot.label}</td>
 
-                    <td className="px-4 py-4">
+                    <td className="px-4 py-4 align-middle">
                       {armor ? (
-                        <div className="flex justify-between items-center gap-2">
+                        <div className="flex items-center justify-between gap-2">
                           <span className="font-medium">{armor.name}</span>
-                          <Link
-                            to={slot.selectPath}
-                            className="text-sm text-[#6B3E1B] hover:underline"
-                          >
-                            Change
-                          </Link>
+                          <div className="flex gap-2">
+                            <Link
+                              to={slot.selectPath}
+                              className="text-sm text-[#6B3E1B] hover:underline"
+                            >
+                              Change
+                            </Link>
+                            <button
+                              onClick={() => removeSlot(slot.type)}
+                              className="text-sm text-red-600 hover:underline"
+                            >
+                              Remove
+                            </button>
+                          </div>
                         </div>
                       ) : (
                         <Link to={slot.selectPath}>
                           <button
                             className="px-4 py-2 rounded-md text-sm font-semibold
-                                       bg-[#6B3E1B] text-[#F7E7D0]
-                                       hover:bg-[#5A3215]
-                                       active:scale-95 transition-all"
+                   bg-[#6B3E1B] text-[#F7E7D0]
+                   hover:bg-[#5A3215]
+                   active:scale-95 transition-all"
                           >
                             + Choose {slot.label}
                           </button>
@@ -147,8 +157,14 @@ export default function ArmorSkillBuilder() {
                       {armor?.skills?.length ? (
                         <ul className="list-disc list-inside">
                           {armor.skills.map((s, i) => (
-                            <li key={i}>
-                              {s.name} +{s.amount}
+                            <li
+                              key={i}
+                              className={
+                                s.positive ? "text-green-700" : "text-red-600"
+                              }
+                            >
+                              {s.name} {s.positive ? "+" : "-"}
+                              {s.amount}
                             </li>
                           ))}
                         </ul>
@@ -165,9 +181,17 @@ export default function ArmorSkillBuilder() {
 
         {/* ---------------- Totals ---------------- */}
         <section className="mt-8 bg-[#F7E7D0] rounded-lg shadow p-6">
-          <h2 className="text-2xl font-bold text-[#6B3E1B] mb-4">
-            Total Stats
-          </h2>
+          <div className="flex justify-between items-center mb-4">
+            <h2 className="text-2xl font-bold text-[#6B3E1B]">Total Stats</h2>
+            <button
+              onClick={clearAll}
+              className="px-3 py-1 rounded-md text-sm font-semibold
+                         bg-red-600 text-[#F7E7D0]
+                         hover:bg-red-700 transition-all"
+            >
+              Clear All
+            </button>
+          </div>
 
           <p className="mb-4 font-semibold">
             Total Defense: <span className="text-lg">{totalDefense}</span>
@@ -176,8 +200,16 @@ export default function ArmorSkillBuilder() {
           {totalSkills.length > 0 ? (
             <ul className="grid grid-cols-1 sm:grid-cols-2 gap-2">
               {totalSkills.map((skill) => (
-                <li key={skill.name} className="bg-[#E9D3B4] rounded px-3 py-2">
-                  {skill.name} +{skill.amount}
+                <li
+                  key={skill.name}
+                  className={`rounded px-3 py-2 ${
+                    skill.positive
+                      ? "bg-green-200 text-green-800"
+                      : "bg-red-200 text-red-800"
+                  }`}
+                >
+                  {skill.name} {skill.positive ? "+" : "-"}
+                  {skill.amount}
                 </li>
               ))}
             </ul>

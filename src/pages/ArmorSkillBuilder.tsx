@@ -1,25 +1,39 @@
 import { useCallback, useMemo, useState } from "react";
-import type { Armor } from "../types/Armor";
+import type { Armor, ArmorType } from "../types/Armor";
 import { mapRawArmorToArmor } from "../utils/mapArmor";
 import { useDataFetchArray } from "../hooks/useDataFetch";
-import { Link } from "react-router-dom";
 import ContentWrapper from "../components/ContentWrapper";
 import { TableSkeleton } from "../components/TableSkeletonProps";
-import { encodeName } from "../utils/urlSafe";
 
+// 🔹 UI slots (NOT the same as ArmorType)
 type ArmorSlot = "head" | "body" | "arms" | "waist" | "legs";
 
-export default function ArmorSkillBuilder() {
-  const [selectedArmor, setSelectedArmor] = useState<Record<ArmorSlot, Armor | null>>(
-    {
-      head: null,
-      body: null,
-      arms: null,
-      waist: null,
-      legs: null,
-    }
-  );
+// 🔹 Slot → ArmorType mapping
+const SLOT_TO_ARMOR_TYPE: Record<ArmorSlot, ArmorType> = {
+  head: "Helmet",
+  body: "Plate",
+  arms: "Gauntlets",
+  waist: "Waist",
+  legs: "Leggings",
+};
 
+export default function ArmorSkillBuilder() {
+  // -------------------------------
+  // Selected armor per slot
+  // -------------------------------
+  const [selectedArmor, setSelectedArmor] = useState<
+    Record<ArmorSlot, Armor | null>
+  >({
+    head: null,
+    body: null,
+    arms: null,
+    waist: null,
+    legs: null,
+  });
+
+  // -------------------------------
+  // Fetch + map armor data
+  // -------------------------------
   const armorMapper = useCallback(
     (rawData: any[]) => rawData.map(mapRawArmorToArmor),
     []
@@ -27,34 +41,50 @@ export default function ArmorSkillBuilder() {
 
   const { data: allArmor, loading } = useDataFetchArray<Armor>(
     "/data/armor.json",
-    {
-      mapper: armorMapper,
-    }
+    { mapper: armorMapper }
   );
 
-  const armorByType = useMemo(() => {
-    if (!allArmor) return {} as Record<ArmorSlot, Armor[]>;
+  // -------------------------------
+  // Group armor by slot
+  // -------------------------------
+  const armorBySlot = useMemo<Record<ArmorSlot, Armor[]>>(() => {
+    if (!allArmor) {
+      return {
+        head: [],
+        body: [],
+        arms: [],
+        waist: [],
+        legs: [],
+      };
+    }
 
     return {
-      head: allArmor.filter((a) => a.type === "head"),
-      body: allArmor.filter((a) => a.type === "body"),
-      arms: allArmor.filter((a) => a.type === "arms"),
-      waist: allArmor.filter((a) => a.type === "waist"),
-      legs: allArmor.filter((a) => a.type === "legs"),
+      head: allArmor.filter((a) => a.type === SLOT_TO_ARMOR_TYPE.head),
+      body: allArmor.filter((a) => a.type === SLOT_TO_ARMOR_TYPE.body),
+      arms: allArmor.filter((a) => a.type === SLOT_TO_ARMOR_TYPE.arms),
+      waist: allArmor.filter((a) => a.type === SLOT_TO_ARMOR_TYPE.waist),
+      legs: allArmor.filter((a) => a.type === SLOT_TO_ARMOR_TYPE.legs),
     };
   }, [allArmor]);
 
+  // -------------------------------
+  // Calculate total defense + skills
+  // -------------------------------
   const totalStats = useMemo(() => {
     let totalDefense = 0;
     const skillMap = new Map<string, number>();
 
     Object.values(selectedArmor).forEach((armor) => {
-      if (armor) {
-        totalDefense += armor.defense;
-        armor.skills.forEach((skill) => {
-          skillMap.set(skill.name, (skillMap.get(skill.name) || 0) + skill.amount);
-        });
-      }
+      if (!armor) return;
+
+      totalDefense += armor.defense;
+
+      armor.skills.forEach((skill) => {
+        skillMap.set(
+          skill.name,
+          (skillMap.get(skill.name) ?? 0) + skill.amount
+        );
+      });
     });
 
     return {
@@ -66,6 +96,9 @@ export default function ArmorSkillBuilder() {
     };
   }, [selectedArmor]);
 
+  // -------------------------------
+  // Loading state
+  // -------------------------------
   if (loading) {
     return (
       <ContentWrapper>
@@ -75,6 +108,9 @@ export default function ArmorSkillBuilder() {
     );
   }
 
+  // -------------------------------
+  // Slot metadata for UI
+  // -------------------------------
   const armorSlots: Array<{ key: ArmorSlot; label: string }> = [
     { key: "head", label: "Helmet" },
     { key: "body", label: "Plate" },
@@ -83,29 +119,28 @@ export default function ArmorSkillBuilder() {
     { key: "legs", label: "Leggings" },
   ];
 
+  // -------------------------------
+  // Render
+  // -------------------------------
   return (
     <ContentWrapper>
       <h1 className="text-3xl font-bold mb-6">Armor Skill Builder</h1>
 
-      {/* Armor Selection Grid */}
+      {/* Armor Selection */}
       <div className="space-y-4 mb-8">
         {armorSlots.map(({ key, label }) => (
           <div
             key={key}
             className="bg-[#F7E7D0] rounded-lg shadow p-6 border border-[#D4AF86]"
           >
-            <div className="grid grid-cols-1 md:grid-cols-4 gap-4 items-start">
-              <div>
-                <h3 className="font-semibold text-[#6B3E1B] text-lg mb-2">
-                  {label}
-                </h3>
-              </div>
+            <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+              <h3 className="font-semibold text-lg text-[#6B3E1B]">{label}</h3>
 
               <div className="md:col-span-3">
                 {selectedArmor[key] ? (
                   <div className="space-y-2">
-                    <div className="flex items-center justify-between">
-                      <p className="font-semibold text-[#5A3F28]">
+                    <div className="flex justify-between items-center">
+                      <p className="font-semibold">
                         {selectedArmor[key]!.name}
                       </p>
                       <button
@@ -115,64 +150,49 @@ export default function ArmorSkillBuilder() {
                             [key]: null,
                           }))
                         }
-                        className="px-3 py-1 bg-[#D9534F] text-white rounded text-sm hover:bg-[#C9302C] transition"
+                        className="px-3 py-1 bg-red-500 text-white rounded"
                       >
                         Clear
                       </button>
                     </div>
-                    <div className="grid grid-cols-3 gap-2 text-sm text-[#5A3F28]">
-                      <p>
-                        <strong>Defense:</strong> {selectedArmor[key]!.defense}
-                      </p>
-                      <p>
-                        <strong>Rarity:</strong> {selectedArmor[key]!.rarity}
-                      </p>
-                      <p>
-                        <strong>Slots:</strong> {selectedArmor[key]!.slots}
-                      </p>
-                    </div>
+
+                    <p>Defense: {selectedArmor[key]!.defense}</p>
+                    <p>Rarity: {selectedArmor[key]!.rarity}</p>
+                    <p>Slots: {selectedArmor[key]!.slots}</p>
+
                     {selectedArmor[key]!.skills.length > 0 && (
-                      <div>
-                        <p className="text-sm font-semibold text-[#6B3E1B] mb-1">
-                          Skills:
-                        </p>
-                        <ul className="text-sm space-y-1">
-                          {selectedArmor[key]!.skills.map((skill, i) => (
-                            <li key={i} className="text-[#5A3F28]">
-                              {skill.name} +{skill.amount}
-                            </li>
-                          ))}
-                        </ul>
-                      </div>
+                      <ul className="list-disc ml-4">
+                        {selectedArmor[key]!.skills.map((s, i) => (
+                          <li key={i}>
+                            {s.name} +{s.amount}
+                          </li>
+                        ))}
+                      </ul>
                     )}
                   </div>
                 ) : (
-                  <div>
-                    <select
-                      value=""
-                      onChange={(e) => {
-                        if (e.target.value) {
-                          const selected = armorByType[key].find(
-                            (a) => a.name === e.target.value
-                          );
-                          if (selected) {
-                            setSelectedArmor((prev) => ({
-                              ...prev,
-                              [key]: selected,
-                            }));
-                          }
-                        }
-                      }}
-                      className="w-full p-2 border border-[#CBA986] rounded bg-white text-[#5A3F28]"
-                    >
-                      <option value="">+ Select {label.toLowerCase()}...</option>
-                      {armorByType[key]?.map((armor) => (
-                        <option key={armor.name} value={armor.name}>
-                          {armor.name} (Def: {armor.defense}, Rarity: {armor.rarity})
-                        </option>
-                      ))}
-                    </select>
-                  </div>
+                  <select
+                    className="w-full p-2 border rounded"
+                    onChange={(e) => {
+                      const selected = armorBySlot[key].find(
+                        (a) => a.name === e.target.value
+                      );
+                      if (selected) {
+                        setSelectedArmor((prev) => ({
+                          ...prev,
+                          [key]: selected,
+                        }));
+                      }
+                    }}
+                  >
+                    <option value="">+ Select {label.toLowerCase()}...</option>
+                    {armorBySlot[key].map((armor) => (
+                      <option key={armor.name} value={armor.name}>
+                        {armor.name} (Def: {armor.defense}, Rarity:{" "}
+                        {armor.rarity})
+                      </option>
+                    ))}
+                  </select>
                 )}
               </div>
             </div>
@@ -180,74 +200,23 @@ export default function ArmorSkillBuilder() {
         ))}
       </div>
 
-      {/* Summary Section */}
+      {/* Summary */}
       <div className="max-w-4xl mx-auto">
         <section className="bg-[#F7E7D0] rounded-lg shadow p-6 border border-[#D4AF86]">
-          <h2 className="text-2xl font-bold text-[#6B3E1B] mb-4">Build Summary</h2>
+          <h2 className="text-2xl font-bold mb-4">Build Summary</h2>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {/* Total Defense */}
-            <div className="bg-[#E9D3B4] rounded p-4 text-center">
-              <p className="text-sm font-semibold text-[#6B3E1B] mb-1">
-                Total Defense
-              </p>
-              <p className="text-4xl font-bold text-[#5A3F28]">
-                {totalStats.defense}
-              </p>
+          <p>Total Defense: {totalStats.defense}</p>
+          <p>
+            Selected Pieces:{" "}
+            {Object.values(selectedArmor).filter(Boolean).length}/5
+          </p>
+          <p>Active Skills: {totalStats.skills.length}</p>
+
+          {totalStats.skills.map((s) => (
+            <div key={s.name}>
+              {s.name}: +{s.amount}
             </div>
-
-            {/* Selected Items Count */}
-            <div className="bg-[#E9D3B4] rounded p-4 text-center">
-              <p className="text-sm font-semibold text-[#6B3E1B] mb-1">
-                Selected Pieces
-              </p>
-              <p className="text-4xl font-bold text-[#5A3F28]">
-                {Object.values(selectedArmor).filter((a) => a !== null).length}/5
-              </p>
-            </div>
-
-            {/* Total Skills Count */}
-            <div className="bg-[#E9D3B4] rounded p-4 text-center">
-              <p className="text-sm font-semibold text-[#6B3E1B] mb-1">
-                Active Skills
-              </p>
-              <p className="text-4xl font-bold text-[#5A3F28]">
-                {totalStats.skills.length}
-              </p>
-            </div>
-          </div>
-
-          {/* Skills List */}
-          {totalStats.skills.length > 0 && (
-            <div className="mt-6 pt-6 border-t border-[#D4AF86]">
-              <h3 className="font-semibold text-[#6B3E1B] mb-3">
-                Combined Skills
-              </h3>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
-                {totalStats.skills
-                  .sort((a, b) => b.amount - a.amount)
-                  .map((skill) => (
-                    <div
-                      key={skill.name}
-                      className="flex items-center justify-between bg-[#E9D3B4] rounded p-3"
-                    >
-                      <span className="text-[#5A3F28]">{skill.name}</span>
-                      <span className="font-semibold text-[#6B3E1B]">
-                        +{skill.amount}
-                      </span>
-                    </div>
-                  ))}
-              </div>
-            </div>
-          )}
-
-          {/* Empty State */}
-          {totalStats.skills.length === 0 &&
-            Object.values(selectedArmor).some((a) => a !== null) && (
-              <div className="mt-6 pt-6 border-t border-[#D4AF86] text-center text-[#5A3F28] italic">
-                <p>No skills from selected armor pieces.</p>
-              </div>
-            )}
+          ))}
         </section>
       </div>
     </ContentWrapper>

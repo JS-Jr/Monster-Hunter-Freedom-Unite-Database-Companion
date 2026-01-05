@@ -115,8 +115,14 @@ export default function ArmorDetail() {
               <h2 className="font-semibold text-[#6B3E1B] mb-2">Skills</h2>
               <ul className="list-disc list-inside">
                 {armor.skills.map((skill, i) => (
-                  <li key={i}>
-                    {skill.name} +{skill.amount}
+                  <li
+                    key={i}
+                    className={
+                      skill.positive ? "text-green-700" : "text-red-600"
+                    }
+                  >
+                    {skill.name} {skill.positive ? "+" : "-"}
+                    {skill.amount}
                   </li>
                 ))}
               </ul>

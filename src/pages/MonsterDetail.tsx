@@ -1,5 +1,5 @@
 import { Link, useParams } from "react-router-dom";
-import type { Monster } from "../types/Monster";
+import type { HitzoneStats, Monster } from "../types/Monster";
 import { useSingleDataFetch } from "../hooks/useDataFetch";
 import { DetailSkeleton } from "../components/DetailSkeleton";
 import { DetailEmptyState } from "../components/DetailEmptyState";
@@ -32,6 +32,21 @@ export default function MonsterDetail() {
 
   type WeaponType = (typeof WEAPON_TYPES)[number];
   type ElementType = (typeof ELEMENT_TYPES)[number];
+
+  const WEAPON_LABELS: Record<WeaponType, string> = {
+    cut: "Cut",
+    bash: "Bash",
+    shot: "Shot",
+  };
+
+  const ELEMENT_LABELS: Record<ElementType, string> = {
+    fir: "Fire",
+    wtr: "Water",
+    thn: "Thunder",
+    ice: "Ice",
+    drg: "Dragon",
+  };
+  
   const getBestAverageType = <T extends readonly string[]>(
     hitzones: Record<string, HitzoneStats>,
     types: T
@@ -152,28 +167,32 @@ export default function MonsterDetail() {
             </h2>
 
             {(suggestedWeapon || suggestedElement) && (
-              <div className="mb-6 rounded-lg p-4 bg-[#E2C29B] shadow-inner">
-                <h3 className="text-lg font-semibold text-[#6B3E1B] mb-3">
-                  Suggested Damage Types
+              <div className="mb-8 rounded-xl p-5 bg-gradient-to-br from-[#E2C29B] to-[#D6B183] shadow-inner border border-[#CBA986]">
+                <h3 className="text-lg font-semibold text-[#6B3E1B] mb-4 tracking-wide">
+                  Recommended Damage
                 </h3>
 
-                <div className="flex flex-col gap-2 text-[#5A3F28] font-medium">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   {suggestedWeapon && (
-                    <p>
-                      <span className="font-semibold text-[#6B3E1B]">
-                        Suggested weapon damage:
-                      </span>{" "}
-                      {suggestedWeapon.toUpperCase()}
-                    </p>
+                    <div className="rounded-lg bg-[#F7E7D0] p-4 shadow-sm">
+                      <p className="text-sm uppercase tracking-wide text-[#8A5A2D] mb-1">
+                        Weapon Type
+                      </p>
+                      <p className="text-xl font-bold text-[#6B3E1B]">
+                        {WEAPON_LABELS[suggestedWeapon]}
+                      </p>
+                    </div>
                   )}
 
                   {suggestedElement && (
-                    <p>
-                      <span className="font-semibold text-[#6B3E1B]">
-                        Suggested elemental damage:
-                      </span>{" "}
-                      {suggestedElement.toUpperCase()}
-                    </p>
+                    <div className="rounded-lg bg-[#F7E7D0] p-4 shadow-sm">
+                      <p className="text-sm uppercase tracking-wide text-[#8A5A2D] mb-1">
+                        Element
+                      </p>
+                      <p className="text-xl font-bold text-[#6B3E1B]">
+                        {ELEMENT_LABELS[suggestedElement]}
+                      </p>
+                    </div>
                   )}
                 </div>
               </div>

@@ -27,6 +27,56 @@ export default function MonsterDetail() {
       </div>
     );
 
+  const WEAPON_TYPES = ["cut", "bash", "shot"] as const;
+  const ELEMENT_TYPES = ["fir", "wtr", "thn", "ice", "drg"] as const;
+
+  type WeaponType = (typeof WEAPON_TYPES)[number];
+  type ElementType = (typeof ELEMENT_TYPES)[number];
+  const getBestAverageType = <T extends readonly string[]>(
+    hitzones: Record<string, HitzoneStats>,
+    types: T
+  ): T[number] | null => {
+    const totals: Record<string, number> = {};
+    const counts: Record<string, number> = {};
+
+    types.forEach((type) => {
+      totals[type] = 0;
+      counts[type] = 0;
+    });
+
+    Object.values(hitzones).forEach((stats) => {
+      types.forEach((type) => {
+        const value = Number(stats[type]);
+        if (!Number.isNaN(value)) {
+          totals[type] += value;
+          counts[type] += 1;
+        }
+      });
+    });
+
+    let bestType: T[number] | null = null;
+    let bestAvg = -Infinity;
+
+    types.forEach((type) => {
+      if (counts[type] === 0) return;
+
+      const avg = totals[type] / counts[type];
+      if (avg > bestAvg) {
+        bestAvg = avg;
+        bestType = type;
+      }
+    });
+
+    return bestType;
+  };
+  const suggestedWeapon = monster.hitzones
+    ? getBestAverageType(monster.hitzones, WEAPON_TYPES)
+    : null;
+
+  const suggestedElement = monster.hitzones
+    ? getBestAverageType(monster.hitzones, ELEMENT_TYPES)
+    : null;
+
   return (
     <div className="min-h-screen w-full px-4 py-10 bg-[#E9D3B4]">
       <div className="max-w-5xl mx-auto">
@@ -74,7 +124,7 @@ export default function MonsterDetail() {
             )}
           </div>
         </div>
-        
+
         {/* Sizes */}
         {/* {monster.sizes && (
           <section
@@ -100,6 +150,34 @@ export default function MonsterDetail() {
             <h2 className="text-2xl font-semibold mb-4 text-[#6B3E1B]">
               Hitzones
             </h2>
+
+            {(suggestedWeapon || suggestedElement) && (
+              <div className="mb-6 rounded-lg p-4 bg-[#E2C29B] shadow-inner">
+                <h3 className="text-lg font-semibold text-[#6B3E1B] mb-3">
+                  Suggested Damage Types
+                </h3>
+
+                <div className="flex flex-col gap-2 text-[#5A3F28] font-medium">
+                  {suggestedWeapon && (
+                    <p>
+                      <span className="font-semibold text-[#6B3E1B]">
+                        Suggested weapon damage:
+                      </span>{" "}
+                      {suggestedWeapon.toUpperCase()}
+                    </p>
+                  )}
+
+                  {suggestedElement && (
+                    <p>
+                      <span className="font-semibold text-[#6B3E1B]">
+                        Suggested elemental damage:
+                      </span>{" "}
+                      {suggestedElement.toUpperCase()}
+                    </p>
+                  )}
+                </div>
+              </div>
+            )}
 
             {Object.entries(monster.hitzones).map(([zone, stats]) => (
               <div key={zone} className="mb-6">

@@ -5,6 +5,7 @@ export type Pin = {
 };
 
 export type MapData = {
+  identifier: string;
   mapName: string;
   areas: Area[];
 };
@@ -20,11 +21,11 @@ export type Node = {
   nodeType: string;
 
   // Optional rank data
-  "low-rank"?: RankData;
-  "high-rank"?: RankData;
-  "g-rank"?: RankData;
-  "training-school"?: RankData;
-  "treasure-hunting"?: TreasureHuntingData;
+  "low-rank"?: RankData | null;
+  "high-rank"?: RankData | null;
+  "g-rank"?: RankData | null;
+  "training-school"?: RankData | null;
+  "treasure-hunting"?: TreasureHuntingData | null;
 
   pin?: Pin;
 };

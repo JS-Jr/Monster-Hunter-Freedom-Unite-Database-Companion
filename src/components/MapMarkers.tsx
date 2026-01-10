@@ -1,9 +1,14 @@
 import { Marker, Popup } from "react-leaflet";
-import type { MapData } from "../types/MapV2";
+import type { MapData, Node } from "../types/MapV2";
+
+type SelectedNode = {
+  node: Node;
+  areaName: string;
+};
 
 interface MapMarkersProps {
   map: MapData | undefined;
-  onSelectNode?: (node: any) => void; // callback when node is clicked
+  onSelectNode?: (selection: SelectedNode) => void; // callback when node is clicked
 }
 
 function MapMarkers({ map, onSelectNode }: MapMarkersProps) {
@@ -27,7 +32,8 @@ function MapMarkers({ map, onSelectNode }: MapMarkersProps) {
               key={key}
               position={[y, x]}
               eventHandlers={{
-                click: () => onSelectNode?.(node), // trigger selection
+                click: () =>
+                  onSelectNode?.({ node: node, areaName: area.areaName }), // trigger selection
               }}
             >
               <Popup>

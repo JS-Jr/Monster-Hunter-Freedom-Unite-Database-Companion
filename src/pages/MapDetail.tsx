@@ -3,12 +3,12 @@ import "leaflet/dist/leaflet.css";
 
 import L from "leaflet";
 import { useCallback, useMemo, useState } from "react";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 
 import type { MapData, Node } from "../types/MapV2";
 import MapMarkers from "../components/MapMarkers";
 import { useSingleDataFetch } from "../hooks/useDataFetch";
-import { decodeName } from "../utils/urlSafe";
+import { decodeName, encodeName } from "../utils/urlSafe";
 import { mapRawMapToMap } from "../utils/mapMaps";
 import ContentWrapper from "../components/ContentWrapper";
 import deepSearch from "../function/deepSearch";
@@ -108,7 +108,14 @@ function NodeDetails({
             <p className="font-medium text-[#6B3E1B]">{rankKey}:</p>
             <ul className="ml-4 list-disc text-[#5A3F28]">
               {data.items.map((item: any) => (
-                <li key={item.itemName}>{item.itemName}</li>
+                <li key={item.itemName}>
+                  <Link
+                    to={`/item/${encodeName(item.itemName)}`}
+                    className="text-[#5A3F28] hover:underline"
+                  >
+                    {item.itemName}
+                  </Link>
+                </li>
               ))}
             </ul>
           </div>

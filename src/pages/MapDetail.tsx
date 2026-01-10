@@ -12,6 +12,8 @@ import { decodeName } from "../utils/urlSafe";
 import { mapRawMapToMap } from "../utils/mapMaps";
 import ContentWrapper from "../components/ContentWrapper";
 import deepSearch from "../function/deepSearch";
+import { DetailEmptyState } from "../components/DetailEmptyState";
+import { MapDetailSkeleton } from "../components/skeletal/MapDetailSkeleton";
 
 type SelectedNode = {
   node: Node;
@@ -45,7 +47,7 @@ function NodeList({
     <ul className="space-y-4">
       {map.areas.map((area) => (
         <li key={area.areaName}>
-          <p className="font-semibold text-gray-700 mb-2">{area.areaName}</p>
+          <p className="font-semibold text-[#6B3E1B] mb-2">{area.areaName}</p>
           <ul className="space-y-2 ml-3">
             {area.nodes.map((node) => (
               <li
@@ -53,7 +55,7 @@ function NodeList({
                 onClick={() =>
                   onSelectNode({ node: node, areaName: area.areaName })
                 }
-                className="cursor-pointer p-2 rounded hover:bg-gray-200 transition"
+                className="cursor-pointer p-2 rounded hover:bg-[#DCC4A8] transition text-[#5A3F28]"
               >
                 ▶ <strong>Node {node.nodeNumber}</strong> - {node.nodeType}
               </li>
@@ -88,8 +90,13 @@ function NodeDetails({
 
   return (
     <div className="space-y-3">
-      <button onClick={onBack}>← Back to all nodes</button>
-      <h3>
+      <button
+        onClick={onBack}
+        className="text-[#5A3F28] hover:underline font-semibold"
+      >
+        ← Back to all nodes
+      </button>
+      <h3 className="text-[#6B3E1B] font-bold">
         Node {node.nodeNumber} - {node.nodeType} (Area: {areaName})
       </h3>
 
@@ -98,8 +105,8 @@ function NodeDetails({
         if (!data?.items?.length) return null;
         return (
           <div key={rankKey}>
-            <p className="font-medium">{rankKey}:</p>
-            <ul className="ml-4 list-disc">
+            <p className="font-medium text-[#6B3E1B]">{rankKey}:</p>
+            <ul className="ml-4 list-disc text-[#5A3F28]">
               {data.items.map((item: any) => (
                 <li key={item.itemName}>{item.itemName}</li>
               ))}
@@ -208,19 +215,34 @@ export default function MapDetail() {
   }, [map, search, nodeTypeFilter, rankFilter]);
 
   if (loading) {
-    return <div className="p-4">Loading…</div>;
+    return (
+      <ContentWrapper>
+        <MapDetailSkeleton />
+      </ContentWrapper>
+    );
   }
 
   if (!map) {
-    return <div className="p-4">Map not found</div>;
+    return (
+      <ContentWrapper>
+        <DetailEmptyState message="Map not found" entityName="Map" />
+      </ContentWrapper>
+    );
   }
 
   return (
     <ContentWrapper>
-      <div className="flex justify-center p-6">
-        <div className="flex gap-6 max-w-[1200px] w-full">
+      <div className="max-w-6xl mx-auto">
+        {/* Title */}
+        {/* <h1 className="text-4xl font-extrabold text-center text-[#6B3E1B] mb-6">
+          {map.mapName}
+        </h1> */}
+
+        {/* <div className="my-6 h-px bg-[#CBA986]" /> */}
+
+        <div className="flex justify-center lg:justify-start gap-6 lg:gap-8 flex-col lg:flex-row">
           {/* MAP */}
-          <div className="rounded-lg overflow-hidden shadow">
+          <div className="rounded-lg overflow-hidden shadow flex-shrink-0">
             <MapContainer
               crs={L.CRS.Simple}
               bounds={[
@@ -247,22 +269,24 @@ export default function MapDetail() {
           </div>
 
           {/* SIDEBAR */}
-          <div className="w-72 bg-gray-100 rounded-lg p-4 shadow max-h-[750px] overflow-y-auto">
-            <h2 className="text-xl font-bold mb-3">{map.mapName}</h2>
+          <div className="flex-1 bg-[#F7E7D0] rounded-lg p-6 shadow max-h-[750px] overflow-y-auto">
+            <h2 className="text-2xl font-bold mb-4 text-[#6B3E1B]">
+              {map.mapName}
+            </h2>
 
             <input
               type="text"
               placeholder="Search nodes…"
               value={search}
               onChange={(e) => setSearch(e.target.value)}
-              className="w-full mb-3 px-2 py-1 border rounded"
+              className="w-full mb-4 px-3 py-2 border border-[#CBA986] rounded bg-white text-[#5A3F28] placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-[#6B3E1B]"
             />
 
             <div className="flex gap-2 mb-4">
               <select
                 value={nodeTypeFilter}
                 onChange={(e) => setNodeTypeFilter(e.target.value)}
-                className="flex-1 border rounded px-2 py-1 text-sm"
+                className="flex-1 border border-[#CBA986] rounded px-3 py-2 text-sm bg-white text-[#5A3F28] focus:outline-none focus:ring-2 focus:ring-[#6B3E1B]"
               >
                 <option value="">All Types</option>
                 {nodeTypes.map((type) => (
@@ -275,7 +299,7 @@ export default function MapDetail() {
               <select
                 value={rankFilter}
                 onChange={(e) => setRankFilter(e.target.value)}
-                className="flex-1 border rounded px-2 py-1 text-sm"
+                className="flex-1 border border-[#CBA986] rounded px-3 py-2 text-sm bg-white text-[#5A3F28] focus:outline-none focus:ring-2 focus:ring-[#6B3E1B]"
               >
                 <option value="">All Ranks</option>
                 <option value="low-rank">Low Rank</option>

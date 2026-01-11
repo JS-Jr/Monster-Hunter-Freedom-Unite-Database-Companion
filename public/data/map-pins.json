@@ -8240,6 +8240,11 @@
                   "itemName": "Sm Barrel-Bomb×3～4"
                 }
               ]
+            },
+            "pin": {
+              "x": 424,
+              "y": 645,
+              "label": ""
             }
           },
           {
@@ -8264,6 +8269,11 @@
                   "itemName": "Prtbl Shock Trap×1"
                 }
               ]
+            },
+            "pin": {
+              "x": 232,
+              "y": 623,
+              "label": ""
             }
           },
           {
@@ -8285,6 +8295,11 @@
                   "itemName": "Sply Lg Brrl Bmb×1"
                 }
               ]
+            },
+            "pin": {
+              "x": 427,
+              "y": 299,
+              "label": ""
             }
           },
           {
@@ -8306,6 +8321,11 @@
                   "itemName": "Mega Potion×3～4"
                 }
               ]
+            },
+            "pin": {
+              "x": 308,
+              "y": 222,
+              "label": ""
             }
           }
         ]
@@ -8321,19 +8341,39 @@
         "nodes": [
           {
             "nodeNumber": "1",
-            "nodeType": "Gather"
+            "nodeType": "Gather",
+            "pin": {
+              "x": 127,
+              "y": 357,
+              "label": ""
+            }
           },
           {
             "nodeNumber": "2",
-            "nodeType": "Gather"
+            "nodeType": "Gather",
+            "pin": {
+              "x": 201,
+              "y": 334,
+              "label": ""
+            }
           },
           {
             "nodeNumber": "3",
-            "nodeType": "Gather"
+            "nodeType": "Gather",
+            "pin": {
+              "x": 200,
+              "y": 265,
+              "label": ""
+            }
           },
           {
             "nodeNumber": "4",
-            "nodeType": "Gather"
+            "nodeType": "Gather",
+            "pin": {
+              "x": 256,
+              "y": 282,
+              "label": ""
+            }
           }
         ]
       },
@@ -8343,23 +8383,48 @@
         "nodes": [
           {
             "nodeNumber": "1",
-            "nodeType": "Fishing"
+            "nodeType": "Fishing",
+            "pin": {
+              "x": 80,
+              "y": 614,
+              "label": ""
+            }
           },
           {
             "nodeNumber": "2",
-            "nodeType": "Mining"
+            "nodeType": "Mining",
+            "pin": {
+              "x": 169,
+              "y": 597,
+              "label": ""
+            }
           },
           {
             "nodeNumber": "3",
-            "nodeType": "Bugnet"
+            "nodeType": "Bugnet",
+            "pin": {
+              "x": 89,
+              "y": 557,
+              "label": ""
+            }
           },
           {
             "nodeNumber": "4",
-            "nodeType": "Gather"
+            "nodeType": "Gather",
+            "pin": {
+              "x": 102,
+              "y": 508,
+              "label": ""
+            }
           },
           {
             "nodeNumber": "5",
-            "nodeType": "Gather"
+            "nodeType": "Gather",
+            "pin": {
+              "x": 166,
+              "y": 528,
+              "label": ""
+            }
           }
         ]
       },
@@ -8369,19 +8434,39 @@
         "nodes": [
           {
             "nodeNumber": "1",
-            "nodeType": "Gather"
+            "nodeType": "Gather",
+            "pin": {
+              "x": 401,
+              "y": 693,
+              "label": ""
+            }
           },
           {
             "nodeNumber": "2",
-            "nodeType": "Mining"
+            "nodeType": "Mining",
+            "pin": {
+              "x": 376,
+              "y": 646,
+              "label": ""
+            }
           },
           {
             "nodeNumber": "3",
-            "nodeType": "Gather"
+            "nodeType": "Gather",
+            "pin": {
+              "x": 328,
+              "y": 628,
+              "label": ""
+            }
           },
           {
             "nodeNumber": "4",
-            "nodeType": "Bugnet"
+            "nodeType": "Bugnet",
+            "pin": {
+              "x": 401,
+              "y": 616,
+              "label": ""
+            }
           }
         ]
       },
@@ -8391,27 +8476,57 @@
         "nodes": [
           {
             "nodeNumber": "1",
-            "nodeType": "Fishing"
+            "nodeType": "Fishing",
+            "pin": {
+              "x": 498,
+              "y": 962,
+              "label": ""
+            }
           },
           {
             "nodeNumber": "2",
-            "nodeType": "Bugnet"
+            "nodeType": "Bugnet",
+            "pin": {
+              "x": 465,
+              "y": 932,
+              "label": ""
+            }
           },
           {
             "nodeNumber": "3",
-            "nodeType": "Bugnet"
+            "nodeType": "Bugnet",
+            "pin": {
+              "x": 549,
+              "y": 931,
+              "label": ""
+            }
           },
           {
             "nodeNumber": "4",
-            "nodeType": "Gather"
+            "nodeType": "Gather",
+            "pin": {
+              "x": 418,
+              "y": 896,
+              "label": ""
+            }
           },
           {
             "nodeNumber": "5",
-            "nodeType": "Gather"
+            "nodeType": "Gather",
+            "pin": {
+              "x": 575,
+              "y": 885,
+              "label": ""
+            }
           },
           {
             "nodeNumber": "6",
-            "nodeType": "Cat"
+            "nodeType": "Cat",
+            "pin": {
+              "x": 532,
+              "y": 970,
+              "label": ""
+            }
           }
         ]
       },
@@ -8421,19 +8536,39 @@
         "nodes": [
           {
             "nodeNumber": "1",
-            "nodeType": "Gather"
+            "nodeType": "Gather",
+            "pin": {
+              "x": 824,
+              "y": 765,
+              "label": ""
+            }
           },
           {
             "nodeNumber": "2",
-            "nodeType": "Bugnet"
+            "nodeType": "Bugnet",
+            "pin": {
+              "x": 821,
+              "y": 691,
+              "label": ""
+            }
           },
           {
             "nodeNumber": "3",
-            "nodeType": "Gather"
+            "nodeType": "Gather",
+            "pin": {
+              "x": 845,
+              "y": 619,
+              "label": ""
+            }
           },
           {
             "nodeNumber": "4",
-            "nodeType": "Gather"
+            "nodeType": "Gather",
+            "pin": {
+              "x": 925,
+              "y": 661,
+              "label": ""
+            }
           }
         ]
       },
@@ -8443,19 +8578,39 @@
         "nodes": [
           {
             "nodeNumber": "1",
-            "nodeType": "Gather"
+            "nodeType": "Gather",
+            "pin": {
+              "x": 553,
+              "y": 393,
+              "label": ""
+            }
           },
           {
             "nodeNumber": "2",
-            "nodeType": "Gather"
+            "nodeType": "Gather",
+            "pin": {
+              "x": 494,
+              "y": 302,
+              "label": ""
+            }
           },
           {
             "nodeNumber": "3",
-            "nodeType": "Gather"
+            "nodeType": "Gather",
+            "pin": {
+              "x": 643,
+              "y": 326,
+              "label": ""
+            }
           },
           {
             "nodeNumber": "4",
-            "nodeType": "Gather"
+            "nodeType": "Gather",
+            "pin": {
+              "x": 598,
+              "y": 295,
+              "label": ""
+            }
           }
         ]
       },
@@ -8465,19 +8620,39 @@
         "nodes": [
           {
             "nodeNumber": "1",
-            "nodeType": "Mining"
+            "nodeType": "Mining",
+            "pin": {
+              "x": 516,
+              "y": 680,
+              "label": ""
+            }
           },
           {
             "nodeNumber": "2",
-            "nodeType": "Gather"
+            "nodeType": "Gather",
+            "pin": {
+              "x": 545,
+              "y": 605,
+              "label": ""
+            }
           },
           {
             "nodeNumber": "3",
-            "nodeType": "Gather"
+            "nodeType": "Gather",
+            "pin": {
+              "x": 577,
+              "y": 614,
+              "label": ""
+            }
           },
           {
             "nodeNumber": "4",
-            "nodeType": "Gather"
+            "nodeType": "Gather",
+            "pin": {
+              "x": 634,
+              "y": 622,
+              "label": ""
+            }
           }
         ]
       },
@@ -8487,19 +8662,39 @@
         "nodes": [
           {
             "nodeNumber": "1",
-            "nodeType": "Gather"
+            "nodeType": "Gather",
+            "pin": {
+              "x": 398,
+              "y": 511,
+              "label": ""
+            }
           },
           {
             "nodeNumber": "2",
-            "nodeType": "Gather"
+            "nodeType": "Gather",
+            "pin": {
+              "x": 443,
+              "y": 502,
+              "label": ""
+            }
           },
           {
             "nodeNumber": "3",
-            "nodeType": "Gather"
+            "nodeType": "Gather",
+            "pin": {
+              "x": 398,
+              "y": 468,
+              "label": ""
+            }
           },
           {
             "nodeNumber": "4",
-            "nodeType": "Mining"
+            "nodeType": "Mining",
+            "pin": {
+              "x": 434,
+              "y": 471,
+              "label": ""
+            }
           }
         ]
       },
@@ -8559,6 +8754,11 @@
                   "itemName": "ShakaInheritance"
                 }
               ]
+            },
+            "pin": {
+              "x": 794,
+              "y": 238,
+              "label": ""
             }
           },
           {
@@ -8589,6 +8789,11 @@
                   "itemName": "Dragon Toadstool"
                 }
               ]
+            },
+            "pin": {
+              "x": 873,
+              "y": 229,
+              "label": ""
             }
           },
           {
@@ -8625,6 +8830,11 @@
                   "itemName": "LapisLazuliJewel"
                 }
               ]
+            },
+            "pin": {
+              "x": 906,
+              "y": 198,
+              "label": ""
             }
           },
           {
@@ -8673,6 +8883,11 @@
                   "itemName": "Divine Rhino"
                 }
               ]
+            },
+            "pin": {
+              "x": 851,
+              "y": 165,
+              "label": ""
             }
           }
         ]
@@ -12846,6 +13061,11 @@
                   "itemName": "Prtbl Shock Trap"
                 }
               ]
+            },
+            "pin": {
+              "x": 173,
+              "y": 380,
+              "label": ""
             }
           },
           {
@@ -12867,6 +13087,11 @@
                   "itemName": "Sm Barrel-Bomb"
                 }
               ]
+            },
+            "pin": {
+              "x": 171,
+              "y": 222,
+              "label": ""
             }
           },
           {
@@ -12891,6 +13116,11 @@
                   "itemName": "Mega Potion"
                 }
               ]
+            },
+            "pin": {
+              "x": 219,
+              "y": 156,
+              "label": ""
             }
           },
           {
@@ -12915,6 +13145,11 @@
                   "itemName": "Sply Lg Brrl Bmb"
                 }
               ]
+            },
+            "pin": {
+              "x": 316,
+              "y": 188,
+              "label": ""
             }
           }
         ]
@@ -15601,19 +15836,39 @@
         "nodes": [
           {
             "nodeNumber": "1",
-            "nodeType": "Gather"
+            "nodeType": "Gather",
+            "pin": {
+              "x": 254,
+              "y": 682,
+              "label": ""
+            }
           },
           {
             "nodeNumber": "2",
-            "nodeType": "Mining"
+            "nodeType": "Mining",
+            "pin": {
+              "x": 533,
+              "y": 772,
+              "label": ""
+            }
           },
           {
             "nodeNumber": "3",
-            "nodeType": "Gather"
+            "nodeType": "Gather",
+            "pin": {
+              "x": 410,
+              "y": 519,
+              "label": ""
+            }
           },
           {
             "nodeNumber": "4",
-            "nodeType": "Gather"
+            "nodeType": "Gather",
+            "pin": {
+              "x": 515,
+              "y": 403,
+              "label": ""
+            }
           }
         ]
       }
@@ -22737,7 +22992,12 @@
         "nodes": [
           {
             "nodeNumber": "1",
-            "nodeType": "Fishing"
+            "nodeType": "Fishing",
+            "pin": {
+              "x": 326,
+              "y": 113,
+              "label": ""
+            }
           }
         ]
       },
@@ -22747,19 +23007,39 @@
         "nodes": [
           {
             "nodeNumber": "1",
-            "nodeType": "Gather"
+            "nodeType": "Gather",
+            "pin": {
+              "x": 130,
+              "y": 343,
+              "label": ""
+            }
           },
           {
             "nodeNumber": "2",
-            "nodeType": "Gather"
+            "nodeType": "Gather",
+            "pin": {
+              "x": 80,
+              "y": 185,
+              "label": ""
+            }
           },
           {
             "nodeNumber": "3",
-            "nodeType": "Mining"
+            "nodeType": "Mining",
+            "pin": {
+              "x": 128,
+              "y": 238,
+              "label": ""
+            }
           },
           {
             "nodeNumber": "4",
-            "nodeType": "Mining"
+            "nodeType": "Mining",
+            "pin": {
+              "x": 69,
+              "y": 255,
+              "label": ""
+            }
           }
         ]
       },
@@ -22769,19 +23049,39 @@
         "nodes": [
           {
             "nodeNumber": "1",
-            "nodeType": "Gather"
+            "nodeType": "Gather",
+            "pin": {
+              "x": 187,
+              "y": 779,
+              "label": ""
+            }
           },
           {
             "nodeNumber": "2",
-            "nodeType": "Gather"
+            "nodeType": "Gather",
+            "pin": {
+              "x": 164,
+              "y": 684,
+              "label": ""
+            }
           },
           {
             "nodeNumber": "3",
-            "nodeType": "Gather"
+            "nodeType": "Gather",
+            "pin": {
+              "x": 82,
+              "y": 767,
+              "label": ""
+            }
           },
           {
             "nodeNumber": "4",
-            "nodeType": "Gather"
+            "nodeType": "Gather",
+            "pin": {
+              "x": 130,
+              "y": 839,
+              "label": ""
+            }
           }
         ]
       },
@@ -22791,23 +23091,48 @@
         "nodes": [
           {
             "nodeNumber": "1",
-            "nodeType": "Gather"
+            "nodeType": "Gather",
+            "pin": {
+              "x": 435,
+              "y": 110,
+              "label": ""
+            }
           },
           {
             "nodeNumber": "2",
-            "nodeType": "Bugnet"
+            "nodeType": "Bugnet",
+            "pin": {
+              "x": 432,
+              "y": 158,
+              "label": ""
+            }
           },
           {
             "nodeNumber": "3",
-            "nodeType": "Bugnet"
+            "nodeType": "Bugnet",
+            "pin": {
+              "x": 446,
+              "y": 204,
+              "label": ""
+            }
           },
           {
             "nodeNumber": "4",
-            "nodeType": "Gather"
+            "nodeType": "Gather",
+            "pin": {
+              "x": 462,
+              "y": 157,
+              "label": ""
+            }
           },
           {
             "nodeNumber": "5",
-            "nodeType": "Fishing"
+            "nodeType": "Fishing",
+            "pin": {
+              "x": 479,
+              "y": 125,
+              "label": ""
+            }
           }
         ]
       },
@@ -22817,19 +23142,39 @@
         "nodes": [
           {
             "nodeNumber": "1",
-            "nodeType": "Gather"
+            "nodeType": "Gather",
+            "pin": {
+              "x": 620,
+              "y": 287,
+              "label": ""
+            }
           },
           {
             "nodeNumber": "2",
-            "nodeType": "Bugnet"
+            "nodeType": "Bugnet",
+            "pin": {
+              "x": 563,
+              "y": 348,
+              "label": ""
+            }
           },
           {
             "nodeNumber": "3",
-            "nodeType": "Mining"
+            "nodeType": "Mining",
+            "pin": {
+              "x": 539,
+              "y": 345,
+              "label": ""
+            }
           },
           {
             "nodeNumber": "4",
-            "nodeType": "Gather"
+            "nodeType": "Gather",
+            "pin": {
+              "x": 596,
+              "y": 339,
+              "label": ""
+            }
           }
         ]
       },
@@ -22839,19 +23184,39 @@
         "nodes": [
           {
             "nodeNumber": "1",
-            "nodeType": "Gather"
+            "nodeType": "Gather",
+            "pin": {
+              "x": 812,
+              "y": 327,
+              "label": ""
+            }
           },
           {
             "nodeNumber": "2",
-            "nodeType": "Gather"
+            "nodeType": "Gather",
+            "pin": {
+              "x": 885,
+              "y": 208,
+              "label": ""
+            }
           },
           {
             "nodeNumber": "3",
-            "nodeType": "Gather"
+            "nodeType": "Gather",
+            "pin": {
+              "x": 870,
+              "y": 307,
+              "label": ""
+            }
           },
           {
             "nodeNumber": "4",
-            "nodeType": "Mining"
+            "nodeType": "Mining",
+            "pin": {
+              "x": 839,
+              "y": 320,
+              "label": ""
+            }
           }
         ]
       },
@@ -22861,19 +23226,39 @@
         "nodes": [
           {
             "nodeNumber": "1",
-            "nodeType": "Gather"
+            "nodeType": "Gather",
+            "pin": {
+              "x": 586,
+              "y": 580,
+              "label": ""
+            }
           },
           {
             "nodeNumber": "2",
-            "nodeType": "Gather"
+            "nodeType": "Gather",
+            "pin": {
+              "x": 550,
+              "y": 591,
+              "label": ""
+            }
           },
           {
             "nodeNumber": "3",
-            "nodeType": "Gather"
+            "nodeType": "Gather",
+            "pin": {
+              "x": 580,
+              "y": 635,
+              "label": ""
+            }
           },
           {
             "nodeNumber": "4",
-            "nodeType": "Gather"
+            "nodeType": "Gather",
+            "pin": {
+              "x": 577,
+              "y": 524,
+              "label": ""
+            }
           }
         ]
       },
@@ -22883,7 +23268,12 @@
         "nodes": [
           {
             "nodeNumber": "1",
-            "nodeType": "Gather"
+            "nodeType": "Gather",
+            "pin": {
+              "x": 751,
+              "y": 674,
+              "label": ""
+            }
           }
         ]
       }
@@ -22939,6 +23329,11 @@
                   "itemName": "Drgn Scl"
                 }
               ]
+            },
+            "pin": {
+              "x": 688,
+              "y": 238,
+              "label": ""
             }
           }
         ]
@@ -22954,7 +23349,12 @@
         "nodes": [
           {
             "nodeNumber": "1",
-            "nodeType": "Fishing"
+            "nodeType": "Fishing",
+            "pin": {
+              "x": 375,
+              "y": 119,
+              "label": ""
+            }
           }
         ]
       },
@@ -22964,19 +23364,39 @@
         "nodes": [
           {
             "nodeNumber": "1",
-            "nodeType": "Gather"
+            "nodeType": "Gather",
+            "pin": {
+              "x": 151,
+              "y": 343,
+              "label": ""
+            }
           },
           {
             "nodeNumber": "2",
-            "nodeType": "Gather"
+            "nodeType": "Gather",
+            "pin": {
+              "x": 91,
+              "y": 182,
+              "label": ""
+            }
           },
           {
             "nodeNumber": "3",
-            "nodeType": "Mining"
+            "nodeType": "Mining",
+            "pin": {
+              "x": 148,
+              "y": 237,
+              "label": ""
+            }
           },
           {
             "nodeNumber": "4",
-            "nodeType": "Mining"
+            "nodeType": "Mining",
+            "pin": {
+              "x": 80,
+              "y": 253,
+              "label": ""
+            }
           }
         ]
       },
@@ -22986,19 +23406,39 @@
         "nodes": [
           {
             "nodeNumber": "1",
-            "nodeType": "Gather"
+            "nodeType": "Gather",
+            "pin": {
+              "x": 216,
+              "y": 778,
+              "label": ""
+            }
           },
           {
             "nodeNumber": "2",
-            "nodeType": "Gather"
+            "nodeType": "Gather",
+            "pin": {
+              "x": 189,
+              "y": 683,
+              "label": ""
+            }
           },
           {
             "nodeNumber": "3",
-            "nodeType": "Gather"
+            "nodeType": "Gather",
+            "pin": {
+              "x": 89,
+              "y": 766,
+              "label": ""
+            }
           },
           {
             "nodeNumber": "4",
-            "nodeType": "Gather"
+            "nodeType": "Gather",
+            "pin": {
+              "x": 150,
+              "y": 839,
+              "label": ""
+            }
           }
         ]
       },
@@ -23008,23 +23448,48 @@
         "nodes": [
           {
             "nodeNumber": "1",
-            "nodeType": "Gather"
+            "nodeType": "Gather",
+            "pin": {
+              "x": 501,
+              "y": 138,
+              "label": ""
+            }
           },
           {
             "nodeNumber": "2",
-            "nodeType": "Bugnet"
+            "nodeType": "Bugnet",
+            "pin": {
+              "x": 499,
+              "y": 174,
+              "label": ""
+            }
           },
           {
             "nodeNumber": "3",
-            "nodeType": "Bugnet"
+            "nodeType": "Bugnet",
+            "pin": {
+              "x": 510,
+              "y": 207,
+              "label": ""
+            }
           },
           {
             "nodeNumber": "4",
-            "nodeType": "Gather"
+            "nodeType": "Gather",
+            "pin": {
+              "x": 524,
+              "y": 174,
+              "label": ""
+            }
           },
           {
             "nodeNumber": "5",
-            "nodeType": "Fishing"
+            "nodeType": "Fishing",
+            "pin": {
+              "x": 539,
+              "y": 148,
+              "label": ""
+            }
           }
         ]
       },
@@ -23034,19 +23499,39 @@
         "nodes": [
           {
             "nodeNumber": "1",
-            "nodeType": "Gather"
+            "nodeType": "Gather",
+            "pin": {
+              "x": 656,
+              "y": 268,
+              "label": ""
+            }
           },
           {
             "nodeNumber": "2",
-            "nodeType": "Bugnet"
+            "nodeType": "Bugnet",
+            "pin": {
+              "x": 609,
+              "y": 313,
+              "label": ""
+            }
           },
           {
             "nodeNumber": "3",
-            "nodeType": "Mining"
+            "nodeType": "Mining",
+            "pin": {
+              "x": 587,
+              "y": 310,
+              "label": ""
+            }
           },
           {
             "nodeNumber": "4",
-            "nodeType": "Gather"
+            "nodeType": "Gather",
+            "pin": {
+              "x": 637,
+              "y": 306,
+              "label": ""
+            }
           }
         ]
       },
@@ -23056,19 +23541,39 @@
         "nodes": [
           {
             "nodeNumber": "1",
-            "nodeType": "Gather"
+            "nodeType": "Gather",
+            "pin": {
+              "x": 817,
+              "y": 295,
+              "label": ""
+            }
           },
           {
             "nodeNumber": "2",
-            "nodeType": "Gather"
+            "nodeType": "Gather",
+            "pin": {
+              "x": 877,
+              "y": 208,
+              "label": ""
+            }
           },
           {
             "nodeNumber": "3",
-            "nodeType": "Gather"
+            "nodeType": "Gather",
+            "pin": {
+              "x": 867,
+              "y": 281,
+              "label": ""
+            }
           },
           {
             "nodeNumber": "4",
-            "nodeType": "Mining"
+            "nodeType": "Mining",
+            "pin": {
+              "x": 838,
+              "y": 292,
+              "label": ""
+            }
           }
         ]
       },
@@ -23078,19 +23583,39 @@
         "nodes": [
           {
             "nodeNumber": "1",
-            "nodeType": "Gather"
+            "nodeType": "Gather",
+            "pin": {
+              "x": 628,
+              "y": 481,
+              "label": ""
+            }
           },
           {
             "nodeNumber": "2",
-            "nodeType": "Gather"
+            "nodeType": "Gather",
+            "pin": {
+              "x": 597,
+              "y": 488,
+              "label": ""
+            }
           },
           {
             "nodeNumber": "3",
-            "nodeType": "Gather"
+            "nodeType": "Gather",
+            "pin": {
+              "x": 622,
+              "y": 521,
+              "label": ""
+            }
           },
           {
             "nodeNumber": "4",
-            "nodeType": "Gather"
+            "nodeType": "Gather",
+            "pin": {
+              "x": 621,
+              "y": 441,
+              "label": ""
+            }
           }
         ]
       },
@@ -23100,19 +23625,39 @@
         "nodes": [
           {
             "nodeNumber": "1",
-            "nodeType": "Gather"
+            "nodeType": "Gather",
+            "pin": {
+              "x": 658,
+              "y": 754,
+              "label": ""
+            }
           },
           {
             "nodeNumber": "2",
-            "nodeType": "Gather"
+            "nodeType": "Gather",
+            "pin": {
+              "x": 636,
+              "y": 722,
+              "label": ""
+            }
           },
           {
             "nodeNumber": "3",
-            "nodeType": "Gather"
+            "nodeType": "Gather",
+            "pin": {
+              "x": 641,
+              "y": 672,
+              "label": ""
+            }
           },
           {
             "nodeNumber": "4",
-            "nodeType": "Gather"
+            "nodeType": "Gather",
+            "pin": {
+              "x": 662,
+              "y": 691,
+              "label": ""
+            }
           }
         ]
       },
@@ -23122,7 +23667,12 @@
         "nodes": [
           {
             "nodeNumber": "1",
-            "nodeType": "Gather"
+            "nodeType": "Gather",
+            "pin": {
+              "x": 689,
+              "y": 975,
+              "label": ""
+            }
           }
         ]
       }
@@ -23137,23 +23687,48 @@
         "nodes": [
           {
             "nodeNumber": "1",
-            "nodeType": "Gather"
+            "nodeType": "Gather",
+            "pin": {
+              "x": 935,
+              "y": 771,
+              "label": ""
+            }
           },
           {
             "nodeNumber": "2",
-            "nodeType": "Gather"
+            "nodeType": "Gather",
+            "pin": {
+              "x": 949,
+              "y": 732,
+              "label": ""
+            }
           },
           {
             "nodeNumber": "3",
-            "nodeType": "Gather"
+            "nodeType": "Gather",
+            "pin": {
+              "x": 887,
+              "y": 753,
+              "label": ""
+            }
           },
           {
             "nodeNumber": "4",
-            "nodeType": "Gather"
+            "nodeType": "Gather",
+            "pin": {
+              "x": 917,
+              "y": 725,
+              "label": ""
+            }
           },
           {
             "nodeNumber": "5",
-            "nodeType": "Fishing"
+            "nodeType": "Fishing",
+            "pin": {
+              "x": 889,
+              "y": 698,
+              "label": ""
+            }
           }
         ]
       },
@@ -23163,19 +23738,39 @@
         "nodes": [
           {
             "nodeNumber": "1",
-            "nodeType": "Gather"
+            "nodeType": "Gather",
+            "pin": {
+              "x": 546,
+              "y": 528,
+              "label": ""
+            }
           },
           {
             "nodeNumber": "2",
-            "nodeType": "Gather"
+            "nodeType": "Gather",
+            "pin": {
+              "x": 583,
+              "y": 542,
+              "label": ""
+            }
           },
           {
             "nodeNumber": "3",
-            "nodeType": "Gather"
+            "nodeType": "Gather",
+            "pin": {
+              "x": 552,
+              "y": 485,
+              "label": ""
+            }
           },
           {
             "nodeNumber": "4",
-            "nodeType": "Gather"
+            "nodeType": "Gather",
+            "pin": {
+              "x": 586,
+              "y": 485,
+              "label": ""
+            }
           }
         ]
       }

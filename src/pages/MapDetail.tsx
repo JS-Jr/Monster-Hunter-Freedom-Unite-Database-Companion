@@ -32,9 +32,16 @@ function getAllNodeTypes(map: MapData | null): string[] {
 
 function getMapImageUrl(mapName: string) {
   const cleanFileName = mapName.replaceAll(" ", "");
+  // if (cleanFileName.toLowerCase().includes("Tower")) {
+  //   return getTowerMapImageUrl(mapName);
+  // }
   const mapImageUrl = `/img/maps/Map-${cleanFileName}.png`;
   return mapImageUrl;
 }
+
+// function getTowerMapImageUrl(mapName: String) {
+//   return null;
+// }
 
 function NodeList({
   map,
@@ -191,6 +198,7 @@ export default function MapDetail() {
   const [rankFilter, setRankFilter] = useState("");
   const [selectedNode, setSelectedNode] = useState<SelectedNode | null>(null);
 
+  console.log("mapName", mapName);
   // console.log("selectedNode", selectedNode);
 
   const mapMapper = useCallback(

@@ -7,6 +7,8 @@ import { useDataFetchArray } from "../hooks/useDataFetch";
 import { useUrlFilters } from "../hooks/useUrlFilters";
 import type { Decoration } from "../types/Decoration";
 import { encodeName } from "../utils/urlSafe";
+import { mapRawDecorationtoDecoration } from "../utils/mapDecoration";
+import { useCallback } from "react";
 
 export default function Decoration() {
   const {
@@ -18,8 +20,16 @@ export default function Decoration() {
     handleSortingChange,
   } = useUrlFilters();
 
+  const decorationMapper = useCallback(
+    (rawData: any[]) => rawData.map(mapRawDecorationtoDecoration),
+    []
+  );
+
   const { data: decoration, loading } = useDataFetchArray<Decoration>(
-    "/data/decoration-modified.json"
+    "/data/decoration-modified.json",
+    {
+      mapper: decorationMapper
+    }
   );
 
   const columnHelper = createColumnHelper<Decoration>();
@@ -58,9 +68,14 @@ export default function Decoration() {
         ).sort((a, b) => a - b),
       },
     }),
-    columnHelper.accessor((row: Decoration) => row.skills.join(", "), {
-      id: "skills",
-      header: "Skills",
+    columnHelper.accessor((row) =>
+      row.skills
+        .map((s) => `${s.name} ${s.positive ? "+" : "-"}${s.amount}`)
+        .join(", "),
+      { id: "skills", header: "Skills" }),
+    columnHelper.accessor((row: Decoration) => row.slots, {
+      id: "slots",
+      header: "Slots",
     }),
   ];
 
@@ -81,6 +96,8 @@ export default function Decoration() {
       </div>
     );
   }
+
+  console.log("decoration", decoration[0]);
 
   return (
     <div className="p-4 min-h-[calc(100vh-4rem)] bg-[#E9D3B4] text-[#5A3F28]">

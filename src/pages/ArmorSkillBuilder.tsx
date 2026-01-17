@@ -241,11 +241,10 @@ export default function ArmorSkillBuilder() {
               {totalSkills.map((skill) => (
                 <li
                   key={skill.name}
-                  className={`rounded px-3 py-2 ${
-                    skill.positive
+                  className={`rounded px-3 py-2 ${skill.positive
                       ? "bg-green-200 text-green-800"
                       : "bg-red-200 text-red-800"
-                  }`}
+                    }`}
                 >
                   {skill.name} {skill.positive ? "+" : "-"}
                   {skill.amount}

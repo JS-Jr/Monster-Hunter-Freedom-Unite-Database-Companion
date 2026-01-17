@@ -20,6 +20,15 @@ const SLOTS: SlotConfig[] = [
   { type: "Waist", label: "Waist", selectPath: "/select/waist" },
   { type: "Leggings", label: "Leggings", selectPath: "/select/leggings" },
 ];
+// const decorationLink: string = ;
+// const decorationLink: string = (armorType: string) => {
+//   (
+//   return `/select/decoration?armor_type{}`
+// )}
+const decorationLink = (armorType: string): string => {
+  return `/select/decoration?armor_type=${armorType}`;
+};
+
 
 export default function ArmorSkillBuilder() {
   // const [armors, setArmors] = useState<Armor[]>([]);
@@ -143,6 +152,8 @@ export default function ArmorSkillBuilder() {
                 <th className="px-4 py-3">Selection / Actions</th>
                 <th className="px-4 py-3">Defense</th>
                 <th className="px-4 py-3">Skills</th>
+                <th className="px-4 py-3">Slots</th>
+                <th className="px-4 py-3">Additional Skills</th>
               </tr>
             </thead>
 
@@ -211,6 +222,36 @@ export default function ArmorSkillBuilder() {
                         <span className="italic text-[#8A6A4A]">—</span>
                       )}
                     </td>
+
+                    <td className="px-4 py-4">
+                      {armor ? armor.slots :
+                        <span className="italic text-[#8A6A4A]">—</span>
+                      }
+                    </td>
+
+                    <td className="px-4 py-4 align-middle">
+                      {armor?.slots && armor.slots > 0 ? (
+                        <div className="flex items-center justify-between gap-2">
+                          {/* <span className="font-medium">{armor.name}</span> */}
+
+                          <div className="flex gap-2">
+                            <Link to={decorationLink(armor.type)}>
+                              <button
+                                className="px-4 py-2 rounded-md text-sm font-semibold
+                                  bg-[#6B3E1B] text-[#F7E7D0]
+                                  hover:bg-[#5A3215]
+                                  active:scale-95 transition-all"
+                              >
+                                + Choose Decoration
+                              </button>
+                            </Link>
+                          </div>
+                        </div>
+                      ) : (
+                        <span className="italic text-[#8A6A4A]">—</span>
+                      )}
+                    </td>
+
                   </tr>
                 );
               })}
@@ -242,8 +283,8 @@ export default function ArmorSkillBuilder() {
                 <li
                   key={skill.name}
                   className={`rounded px-3 py-2 ${skill.positive
-                      ? "bg-green-200 text-green-800"
-                      : "bg-red-200 text-red-800"
+                    ? "bg-green-200 text-green-800"
+                    : "bg-red-200 text-red-800"
                     }`}
                 >
                   {skill.name} {skill.positive ? "+" : "-"}
@@ -256,6 +297,6 @@ export default function ArmorSkillBuilder() {
           )}
         </section>
       </div>
-    </ContentWrapperProps>
+    </ContentWrapperProps >
   );
 }

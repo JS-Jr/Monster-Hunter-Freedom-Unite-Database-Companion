@@ -5,7 +5,7 @@ import { TableEmptyState } from "../components/TableEmptyState";
 import { TableSkeleton } from "../components/TableSkeletonProps";
 import { useDataFetchArray } from "../hooks/useDataFetch";
 import { useUrlFilters } from "../hooks/useUrlFilters";
-import type { Decoration, Decoration } from "../types/Decoration";
+import type { Decoration } from "../types/Decoration";
 import { encodeName } from "../utils/urlSafe";
 import { mapRawDecorationtoDecoration } from "../utils/mapDecoration";
 import { useCallback } from "react";
@@ -32,20 +32,19 @@ export default function Decoration() {
     }
   );
 
-  const navigate = useNavigate();
-  const handleAddToBuilder = (decorationItem: Decoration) => {
-    // localStorage.setItem(`selected${armorItem.type}`, armorItem.identifier);
-    navigate("/skill-builder");
-  };
-
-  // const location = useLocation();
-  // const queryParams = new URLSearchParams(location.search);
-  // const armorTypeValue = queryParams.get('armor_type');
+  const location = useLocation();
+  const queryParams = new URLSearchParams(location.search);
+  const armorTypeValue = queryParams.get('armor_type');
   // const availableSlotsValue = queryParams.get('available_slots');
   // console.log("armorTypeValue", armorTypeValue);
   // console.log("availableSlotsValue", availableSlotsValue);
 
-
+  const navigate = useNavigate();
+  const handleAddToBuilder = (decorationItem: Decoration) => {
+    // localStorage.setItem(`selected${armorTypeValue}`, decorationItem.identifier);
+    localStorage.setItem(`selectedDecoration${armorTypeValue}`, decorationItem.identifier);
+    navigate("/skill-builder");
+  };
 
   const columnHelper = createColumnHelper<Decoration>();
 

@@ -6,6 +6,8 @@ import { decodeName } from "../utils/urlSafe";
 import { mapRawArmorToArmor } from "../utils/mapArmor";
 import { useDataFetchArray } from "../hooks/useDataFetch";
 import { ArmorSkillBuilderSkeleton } from "../components/skeletal/ArmorSkillBuilderSkeleton";
+import type { Decoration } from "../types/Decoration";
+import { mapRawDecorationtoDecoration } from "../utils/mapDecoration";
 
 type SlotConfig = {
   type: ArmorType;
@@ -43,6 +45,18 @@ export default function ArmorSkillBuilder() {
     "/data/armor.json",
     {
       mapper: armorMapper,
+    }
+  );
+
+  const decorationMapper = useCallback(
+    (rawData: any[]) => rawData.map(mapRawDecorationtoDecoration),
+    []
+  );
+
+  const { data: decoration, } = useDataFetchArray<Decoration>(
+    "/data/decoration-modified.json",
+    {
+      mapper: decorationMapper
     }
   );
 

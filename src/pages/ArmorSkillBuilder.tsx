@@ -25,8 +25,8 @@ const SLOTS: SlotConfig[] = [
 //   (
 //   return `/select/decoration?armor_type{}`
 // )}
-const decorationLink = (armorType: string): string => {
-  return `/select/decoration?armor_type=${armorType}`;
+const decorationLink = (armorType: string, availableSlots: number): string => {
+  return `/select/decoration?armor_type=${armorType}&slots=${availableSlots}`;
 };
 
 
@@ -235,7 +235,7 @@ export default function ArmorSkillBuilder() {
                           {/* <span className="font-medium">{armor.name}</span> */}
 
                           <div className="flex gap-2">
-                            <Link to={decorationLink(armor.type)}>
+                            <Link to={decorationLink(armor.type, armor.slots)}>
                               <button
                                 className="px-4 py-2 rounded-md text-sm font-semibold
                                   bg-[#6B3E1B] text-[#F7E7D0]

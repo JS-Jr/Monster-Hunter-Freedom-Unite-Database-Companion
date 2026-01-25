@@ -42,7 +42,7 @@ export function useUrlFilters(): UseUrlFiltersResult & {
 
   // Existing column filters
   const columnFilters: ColumnFiltersState = Array.from(searchParams.entries())
-    .filter(([key]) => key !== "q" && key !== "sort")
+    .filter(([key]) => key !== "q" && key !== "sort" && key != "armor_type")
     .map(([id, value]) => ({
       id,
       value,
@@ -55,9 +55,9 @@ export function useUrlFilters(): UseUrlFiltersResult & {
   const sortParam = searchParams.get("sort") ?? "";
   const sorting: SortingState = sortParam
     ? sortParam.split(",").map((s) => {
-        const [id, desc] = s.split(":");
-        return { id, desc: desc === "desc" };
-      })
+      const [id, desc] = s.split(":");
+      return { id, desc: desc === "desc" };
+    })
     : [];
 
   // Existing handlers

@@ -1,11 +1,11 @@
 import { createColumnHelper } from "@tanstack/react-table";
 import { Table } from "../components/Table";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { TableEmptyState } from "../components/TableEmptyState";
 import { TableSkeleton } from "../components/TableSkeletonProps";
 import { useDataFetchArray } from "../hooks/useDataFetch";
 import { useUrlFilters } from "../hooks/useUrlFilters";
-import type { Decoration } from "../types/Decoration";
+import type { Decoration, Decoration } from "../types/Decoration";
 import { encodeName } from "../utils/urlSafe";
 import { mapRawDecorationtoDecoration } from "../utils/mapDecoration";
 import { useCallback } from "react";
@@ -31,6 +31,21 @@ export default function Decoration() {
       mapper: decorationMapper
     }
   );
+
+  const navigate = useNavigate();
+  const handleAddToBuilder = (decorationItem: Decoration) => {
+    // localStorage.setItem(`selected${armorItem.type}`, armorItem.identifier);
+    navigate("/skill-builder");
+  };
+
+  // const location = useLocation();
+  // const queryParams = new URLSearchParams(location.search);
+  // const armorTypeValue = queryParams.get('armor_type');
+  // const availableSlotsValue = queryParams.get('available_slots');
+  // console.log("armorTypeValue", armorTypeValue);
+  // console.log("availableSlotsValue", availableSlotsValue);
+
+
 
   const columnHelper = createColumnHelper<Decoration>();
 
@@ -76,6 +91,26 @@ export default function Decoration() {
     columnHelper.accessor((row: Decoration) => row.slots, {
       id: "slots",
       header: "Slots",
+      filterFn: "equalsString",
+      meta: {
+        type: "select",
+        options: [1, 2, 3],
+      },
+    }),
+    // ---------------- Add to Skill Builder button ----------------
+    columnHelper.display({
+      id: "addToBuilder",
+      header: "Builder",
+      cell: ({ row }) => (
+        <button
+          onClick={() => handleAddToBuilder(row.original)}
+          className="px-3 py-1 rounded-md text-sm font-semibold
+                     bg-[#6B3E1B] text-[#F7E7D0]
+                     hover:bg-[#5A3215] transition-all"
+        >
+          Add to Builder
+        </button>
+      ),
     }),
   ];
 
@@ -97,7 +132,7 @@ export default function Decoration() {
     );
   }
 
-  console.log("decoration", decoration[0]);
+  // console.log("decoration", decoration[0]);
 
   return (
     <div className="p-4 min-h-[calc(100vh-4rem)] bg-[#E9D3B4] text-[#5A3F28]">

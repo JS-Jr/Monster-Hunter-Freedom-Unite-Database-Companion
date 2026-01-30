@@ -91,6 +91,31 @@ export default function ArmorSkillBuilder() {
     }, {} as any);
   }, [armors]);
 
+  const selectedDecorationBySlot = useMemo(() => {
+    return SLOTS.reduce<Record<ArmorType, Decoration[]>>((acc, slot) => {
+      const stored = localStorage.getItem(`selectedDecoration${slot.type}`);
+      if (!stored) {
+        acc[slot.type] = [];
+        return acc;
+      }
+
+      let ids: string[] = [];
+      try {
+        const parsed = JSON.parse(stored);
+        if (Array.isArray(parsed)) ids = parsed;
+        else if (typeof parsed === "string") ids = [parsed];
+      } catch {
+        ids = [stored];
+      }
+
+      acc[slot.type] =
+        decoration?.filter((d) => ids.includes(d.identifier)) ?? [];
+
+      return acc;
+    }, {} as any);
+  }, [decoration]);
+
+
   /* ---------------- Totals ---------------- */
   const totalDefense = useMemo(() => {
     return Object.values(selectedArmorBySlot).reduce(
@@ -174,6 +199,7 @@ export default function ArmorSkillBuilder() {
             <tbody>
               {SLOTS.map((slot) => {
                 const armor = selectedArmorBySlot[slot.type];
+                const decorations = selectedDecorationBySlot[slot.type] ?? [];
 
                 return (
                   <tr
@@ -212,6 +238,18 @@ export default function ArmorSkillBuilder() {
                             + Choose {slot.label}
                           </button>
                         </Link>
+                      )}
+
+                      {decorations && decorations.length > 0 && (
+                        <div className="mt-2">
+                          <ul className="list-disc list-inside text-sm">
+                            {decorations.map((d, i) => (
+                              <li key={i} className="italic text-[#5A3F28]">
+                                {d.name} {d.slots ? `(${d.slots} slot${d.slots > 1 ? "s" : ""})` : ""}
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
                       )}
                     </td>
 

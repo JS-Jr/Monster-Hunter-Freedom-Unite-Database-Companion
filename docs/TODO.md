@@ -48,3 +48,12 @@ create like a decoration/skill builder ie like use armor set this and use this d
 If you want, I can also **turn this into a checklist version** that works nicely in GitHub or Markdown for progress tracking—you can tick off items as you go. It won’t change your wording, just adds checkboxes.
 
 Do you want me to do that?
+
+if there are available slots show add button for decoation
+click add decoration
+show decorations that can be put
+sotre in localstorage
+display the selected decoration on below the armor type
+go to 1
+else
+put change or remove button

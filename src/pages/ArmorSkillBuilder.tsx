@@ -22,11 +22,7 @@ const SLOTS: SlotConfig[] = [
   { type: "Waist", label: "Waist", selectPath: "/select/waist" },
   { type: "Leggings", label: "Leggings", selectPath: "/select/leggings" },
 ];
-// const decorationLink: string = ;
-// const decorationLink: string = (armorType: string) => {
-//   (
-//   return `/select/decoration?armor_type{}`
-// )}
+
 const decorationLink = (armorType: string, availableSlots: number): string => {
   return `/select/decoration?armor_type=${armorType}&slots=${availableSlots}`;
 };
@@ -59,16 +55,6 @@ export default function ArmorSkillBuilder() {
       mapper: decorationMapper
     }
   );
-
-  /* ---------------- Load armor data ---------------- */
-  // useEffect(() => {
-  //   fetch("/data/armor.json")
-  //     .then((res) => res.json())
-  //     .then((data: any[]) => {
-  //       setArmors(data.map(mapRawArmorToArmor));
-  //     })
-  //     .catch((err) => console.error("Failed to load armor data:", err));
-  // }, []);
 
   /* ---------------- Selected armor per slot ---------------- */
   const selectedArmorBySlot = useMemo(() => {

@@ -27,6 +27,7 @@ import Skill from "./pages/Skill";
 
 import ArmorSkillBuilder from "./pages/ArmorSkillBuilder";
 import SelectRedirect from "./pages/SelectRedirect";
+import ArmorSkillBuilderV1 from "./pages/ArmorSkillBuilderV1";
 
 function App() {
   const [forceDesktop, setForceDesktop] = useState(false);
@@ -64,7 +65,8 @@ function App() {
                 element={<DecorationDetail />}
               />
               <Route path="/skills" element={<Skill />} />
-              <Route path="/skill-builder" element={<ArmorSkillBuilder />} />
+              {/* <Route path="/skill-builder" element={<ArmorSkillBuilder />} /> */}
+              <Route path="/skill-builder" element={<ArmorSkillBuilderV1 />} />
               <Route path="/select/:type" element={<SelectRedirect />} />
               <Route path="*" element={<NotFound />} />
             </Routes>

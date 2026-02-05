@@ -1,7 +1,7 @@
 import { getArmorSkillBuilderData } from "../utils/armorSkillBuilderParser";
 import ContentWrapperProps from "../components/ContentWrapper";
 import { Link } from "react-router-dom";
-import type { ArmorType } from "../types/Armor";
+
 
 function Title() {
   return <h1 className="text-3xl font-extrabold text-center text-[#6B3E1B] mb-6">
@@ -40,42 +40,42 @@ function Table() {
         </thead>
 
         <tbody>
-          {SLOTS.map((slotElement) => {
-            console.log(slotElement.type.toLocaleLowerCase());
+          {
+            SLOTS.map((slotElement) => {
+              console.log(slotElement.type.toLocaleLowerCase());
 
-            if (slotElement.type.toLocaleLowerCase().includes("decoration")) {
-              return (
-                <tr key={slotElement.type}>
-                  <td className="px-4 py-4 font-semibold">
-                    <section>
-                      <p>{slotElement.label}</p>
-                    </section>
-                  </td>
-                  <td className="px-4 py-4 align-middle">
-                    <Link to="">
-                      <button
-                        className="
+              if (slotElement.type.toLocaleLowerCase().includes("decoration")) {
+                return (
+                  <tr key={slotElement.type} className="border-t border-[#CBA986] hover:bg-[#F3DFC4]">
+                    <td className="px-4 py-4 font-semibold">
+                      <section>
+                        <p>{slotElement.label}</p>
+                      </section>
+                    </td>
+                    <td className="px-4 py-4 align-middle">
+                      <Link to="">
+                        <button
+                          className="
                         px-4 py-2 rounded-md text-sm font-semibold
                         bg-[#6B3E1B] text-[#F7E7D0]
                         hover:bg-[#5A3215]
                         active:scale-95 transition-all"
-                      >
-                        + Choose {slotElement.label}
-                      </button>
-                    </Link>
-                  </td>
-                  <td className="px-4 py-4">—</td>
-                  <td className="px-4 py-4 text-sm">
-                    <span className="italic text-[#8A6A4A]">—</span>
-                  </td>
-                  <td className="px-4 py-4">
-                    <span className="italic text-[#8A6A4A]">—</span>
-                  </td>
-                </tr>
-              );
-            }
+                        >
+                          + Choose {slotElement.label}
+                        </button>
+                      </Link>
+                    </td>
+                    <td className="px-4 py-4">—</td>
+                    <td className="px-4 py-4 text-sm">
+                      <span className="italic text-[#8A6A4A]">—</span>
+                    </td>
+                    <td className="px-4 py-4">
+                      <span className="italic text-[#8A6A4A]">—</span>
+                    </td>
+                  </tr>
+                );
+              }
 
-            else {
               return (
                 <tr key={slotElement.type} className="border-t border-[#CBA986] hover:bg-[#F3DFC4]">
                   <td className="px-4 py-4 font-semibold">
@@ -105,50 +105,22 @@ function Table() {
                   </td>
                 </tr>
               );
+
+
+
+
+
+
+
+
+
             }
+            )
+
+          }
 
 
 
-
-
-
-
-
-          })
-          };
-
-
-          {/* <tr className="border-t border-[#CBA986] hover:bg-[#F3DFC4]">
-            <td className="px-4 py-4 font-semibold">
-              <section>
-                <p>slotElement.decoration.label</p>
-              </section>
-            </td>
-            <td className="px-4 py-4 align-middle">
-
-              <Link to="">
-                <button
-                  className="px-4 py-2 rounded-md text-sm font-semibold
-                   bg-[#6B3E1B] text-[#F7E7D0]
-                   hover:bg-[#5A3215]
-                   active:scale-95 transition-all"
-                >
-                  + Choose slotElement.decoration.label
-                </button>
-              </Link>
-            </td>
-
-            <td className="px-4 py-4">—</td>
-
-            <td className="px-4 py-4 text-sm">
-              <span className="italic text-[#8A6A4A]">—</span>
-            </td>
-
-            <td className="px-4 py-4">
-              <span className="italic text-[#8A6A4A]">—</span>
-            </td>
-
-          </tr> */}
 
         </tbody>
       </table>

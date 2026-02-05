@@ -33,23 +33,24 @@ export function getArmorSkillBuilderData(): ArmorSkillBuilder[] {
         }
     );
 
+    const armorMapper = useCallback(
+        (rawData: any) => rawData.map(mapRawArmorToArmor),
+        []
+    );
+
+    const { data: armorData } = useDataFetchArray<Armor>(
+        "/data/armor.json",
+        {
+            mapper: armorMapper,
+        }
+    );
+
     let armorSkillBuilderArray: ArmorSkillBuilder[] = [];
     for (const armorTypeItem of ARMOR_TYPES) {
         // const currentArmorId: string = localStorage.getItem(`selected${armorTypeItem}`) ?? "";
         const currentArmorId: string = localStorage.getItem(LOCAL_STORAGE_ARMOR_KEY(armorTypeItem)) ?? "";
 
-        const armorMapper = useCallback(
-            (rawData: any) => rawData.map(mapRawArmorToArmor),
-            []
-        );
-
-        const { data: armor } = useSingleDataFetch<Armor>(
-            "/data/armor.json",
-            currentArmorId,
-            {
-                mapper: armorMapper,
-            }
-        );
+        const armor = armorData?.find(armorDataItem => armorDataItem?.identifier === currentArmorId)
 
         console.log("armor", armor);
 

@@ -1,11 +1,6 @@
-import { useCallback } from "react";
-import { useSingleDataFetch } from "../hooks/useDataFetch";
 import type { Armor } from "../types/Armor";
 import type { ArmorSkillBuilder } from "../types/ArmorSkillBuilder";
-import { mapRawArmorToArmor } from "./mapArmor";
 import type { Decoration } from "../types/Decoration";
-import { useDataFetchArray } from "../hooks/useDataFetch";
-import { mapRawDecorationtoDecoration } from "./mapDecoration";
 
 const ARMOR_TYPES = ["Helmet", "Plate", "Gauntlets", "Waist", "Leggings"];
 
@@ -17,35 +12,11 @@ export const LOCAL_STORAGE_DECORATION_KEY = (armorTypeName: string) => {
 }
 
 
-export function getArmorSkillBuilderData(): ArmorSkillBuilder[] {
+export function getArmorSkillBuilderData(armorData: Armor[], decorationData: Decoration[]): ArmorSkillBuilder[] {
 
     console.log("<getArmorSkillBuilderData>");
 
-    const decorationMapper = useCallback(
-        (rawData: any[]) => rawData.map(mapRawDecorationtoDecoration),
-        []
-    );
-
-    const { data: decorationData } = useDataFetchArray<Decoration>(
-        "/data/decoration-modified.json",
-        {
-            mapper: decorationMapper
-        }
-    );
-
-    const armorMapper = useCallback(
-        (rawData: any) => rawData.map(mapRawArmorToArmor),
-        []
-    );
-
-    const { data: armorData } = useDataFetchArray<Armor>(
-        "/data/armor.json",
-        {
-            mapper: armorMapper,
-        }
-    );
-
-    let armorSkillBuilderArray: ArmorSkillBuilder[] = [];
+    const armorSkillBuilderArray: ArmorSkillBuilder[] = [];
     for (const armorTypeItem of ARMOR_TYPES) {
         // const currentArmorId: string = localStorage.getItem(`selected${armorTypeItem}`) ?? "";
         const currentArmorId: string = localStorage.getItem(LOCAL_STORAGE_ARMOR_KEY(armorTypeItem)) ?? "";

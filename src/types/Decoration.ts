@@ -20,3 +20,15 @@ export type Decoration = {
   materials: Material[];
   alt_materials: Material[];
 };
+
+// For decoration json
+export type DecorationJson = {
+  name: string;
+  skill_group: string;
+  skills: string[];
+  slots: number;
+  rarity: number;
+  cost: number;
+  materials: Material[];
+  alt_materials: Material[];
+};

@@ -6,8 +6,14 @@ import type { Armor, ArmorJson } from "../types/Armor";
 import { mapRawArmorToArmor } from "../utils/mapArmor";
 import { mapRawDecorationtoDecoration } from "../utils/mapDecoration";
 import type { DecorationJson, Decoration } from "../types/Decoration";
-import type { ArmorSkillBuilder } from "../types/ArmorSkillBuilder";
-import { getArmorSkillBuilderData } from "../utils/armorSkillBuilderParser";
+import type {
+  ArmorSkillBuilder,
+  ArmorSkillBuilderTableRowData,
+} from "../types/ArmorSkillBuilder";
+import {
+  getArmorSkillBuilderData,
+  getArmorSkillBuilderTableRowData,
+} from "../utils/armorSkillBuilderParser";
 
 function Title() {
   return (
@@ -20,8 +26,102 @@ function Title() {
 function Table({
   armorSkillBuilderDataProps,
 }: {
-  armorSkillBuilderDataProps: ArmorSkillBuilder[];
+  armorSkillBuilderDataProps: ArmorSkillBuilderTableRowData[];
 }) {
+  console.log("ello", armorSkillBuilderDataProps);
+
+  const tableContent = (
+    <>
+      {armorSkillBuilderDataProps.map((armorSkillBuilderDataItem) => {
+        return (
+          <tr className="border-t border-[#CBA986] hover:bg-[#F3DFC4]">
+            <td className="px-4 py-4 font-semibold">
+              {armorSkillBuilderDataItem.typeColumn}
+            </td>
+            <td className="px-4 py-4 align-middle">
+                {armorSkillBuilderDataItem.selectionActionColumn === "" ? (
+                  <Link to="">
+                    <button
+                      className="px-4 py-2 rounded-md text-sm font-semibold
+                   bg-[#6B3E1B] text-[#F7E7D0]
+                   hover:bg-[#5A3215]
+                   active:scale-95 transition-all"
+                    >
+                      + Choose {armorSkillBuilderDataItem.typeColumn}
+                    </button>
+                  </Link>
+                ) : (
+                  <div className="flex items-center justify-between gap-2">
+                    <span className="font-medium">
+                      {armorSkillBuilderDataItem.selectionActionColumn}
+                    </span>
+                    <div className="flex gap-2">
+                      <Link
+                        to=""
+                        className="text-sm text-[#6B3E1B] hover:underline"
+                      >
+                        Change
+                      </Link>
+                      <button
+                        onClick={() => {}}
+                        className="text-sm text-red-600 hover:underline"
+                      >
+                        Remove
+                      </button>
+                    </div>
+                  </div>
+                )}
+            </td>
+            <td className="px-4 py-4">
+              {armorSkillBuilderDataItem.skillsColumn.length == 0
+                ? `—`
+                : armorSkillBuilderDataItem.skillsColumn.map(
+                    (skillItem, index) => {
+                      return (
+                        <ul className="list-disc list-inside">
+                          <li
+                            key={index}
+                            className={
+                              skillItem.positive
+                                ? "text-green-700"
+                                : "text-red-600"
+                            }
+                          >
+                            {skillItem.name} {skillItem.positive ? "+" : "-"}
+                            {skillItem.amount}
+                          </li>
+                        </ul>
+                      );
+                    },
+                  )}
+
+              {/* <ul className="list-disc list-inside">
+                <li className="text-green-700">Rec Speed +1</li>
+                <li className="text-green-700">Attack +2</li>
+                <li className="text-red-600">Defence -2</li>
+                <li className="text-green-700">PsychicVis +4</li>
+              </ul> */}
+            </td>
+            <td className="px-4 py-4 text-sm">
+              <span className="italic text-[#8A6A4A]">
+                {armorSkillBuilderDataItem.defenseColumn === 0
+                  ? `—`
+                  : armorSkillBuilderDataItem.defenseColumn}
+              </span>
+            </td>
+            <td className="px-4 py-4">
+              <span className="italic text-[#8A6A4A]">
+                {armorSkillBuilderDataItem.slotsColumn}
+              </span>
+            </td>
+          </tr>
+        );
+      })}
+    </>
+  );
+
+  console.log(tableContent);
+
   return (
     <div className="overflow-x-auto">
       <table className="w-full bg-[#F7E7D0] rounded-lg shadow border-collapse">
@@ -34,194 +134,7 @@ function Table({
             <th className="px-4 py-3">Slots</th>
           </tr>
         </thead>
-        <tbody>
-          <tr className="border-t border-[#CBA986] hover:bg-[#F3DFC4]">
-            <td className="px-4 py-4 font-semibold">
-              <section>
-                <p>Helmet</p>
-              </section>
-            </td>
-            <td className="px-4 py-4 align-middle">
-              <a href="/armor?type=helmet" data-discover="true">
-                <button
-                  className="px-4 py-2 rounded-md text-sm font-semibold
-                   bg-[#6B3E1B] text-[#F7E7D0]
-                   hover:bg-[#5A3215]
-                   active:scale-95 transition-all"
-                >
-                  + Choose Helmet
-                </button>
-              </a>
-            </td>
-            <td className="px-4 py-4">-</td>
-            <td className="px-4 py-4 text-sm">
-              <span className="italic text-[#8A6A4A]">—</span>
-            </td>
-            <td className="px-4 py-4">
-              <span className="italic text-[#8A6A4A]">—</span>
-            </td>
-          </tr>
-          Helmet Decoration
-          <tr className="border-t border-[#CBA986] hover:bg-[#F3DFC4]">
-            <td className="px-4 py-4 font-semibold">
-              <section>
-                <p>Plate</p>
-              </section>
-            </td>
-            <td className="px-4 py-4 align-middle">
-              <a href="/armor?type=plate" data-discover="true">
-                <button
-                  className="px-4 py-2 rounded-md text-sm font-semibold
-                   bg-[#6B3E1B] text-[#F7E7D0]
-                   hover:bg-[#5A3215]
-                   active:scale-95 transition-all"
-                >
-                  + Choose Plate
-                </button>
-              </a>
-            </td>
-            <td className="px-4 py-4">-</td>
-            <td className="px-4 py-4 text-sm">
-              <span className="italic text-[#8A6A4A]">—</span>
-            </td>
-            <td className="px-4 py-4">
-              <span className="italic text-[#8A6A4A]">—</span>
-            </td>
-          </tr>
-          Plate Decoration
-          <tr className="border-t border-[#CBA986] hover:bg-[#F3DFC4]">
-            <td className="px-4 py-4 font-semibold">
-              <section>
-                <p>Gauntlets</p>
-              </section>
-            </td>
-            <td className="px-4 py-4 align-middle">
-              <div className="flex items-center justify-between gap-2">
-                <span className="font-medium">Kut-Ku Vambraces X</span>
-                <div className="flex gap-2">
-                  <a
-                    className="text-sm text-[#6B3E1B] hover:underline"
-                    href="/armor?type=gauntlets"
-                    data-discover="true"
-                  >
-                    Change
-                  </a>
-                  <button className="text-sm text-red-600 hover:underline">
-                    Remove
-                  </button>
-                </div>
-              </div>
-            </td>
-            <td className="px-4 py-4">78</td>
-            <td className="px-4 py-4 text-sm">
-              <ul className="list-disc list-inside">
-                <li className="text-green-700">Rec Speed +1</li>
-                <li className="text-green-700">Attack +2</li>
-                <li className="text-red-600">Defence -2</li>
-                <li className="text-green-700">PsychicVis +4</li>
-              </ul>
-            </td>
-            <td className="px-4 py-4">2</td>
-          </tr>
-          <tr className="border-t border-[#CBA986] hover:bg-[#F3DFC4]">
-            <td className="px-4 py-4 font-semibold">
-              <section>
-                <p>Deocration</p>
-              </section>
-            </td>{" "}
-            <td className="px-4 py-4 align-middle">
-              <div>
-                <p className="font-medium">Attack Jewel</p>
-                <button className="text-sm text-[#6B3E1B] hover:underline">
-                  Change
-                </button>
-                <button className="text-red-600 text-sm hover:underline">
-                  Remove
-                </button>
-              </div>
-              <div>
-                <p className="font-medium">Map Jewel</p>
-                <button className="text-sm text-[#6B3E1B] hover:underline">
-                  Change
-                </button>
-                <button className="text-red-600 text-sm hover:underline">
-                  Remove
-                </button>
-              </div>
-            </td>
-            <td></td>
-            <td className="px-4 py-4 text-sm">
-              <ul className="list-disc list-inside">
-                <li className="text-green-700">Attack +1</li>
-              </ul>
-              <ul className="list-disc list-inside">
-                <li className="text-green-700">Map +2</li>
-              </ul>
-            </td>
-            <td className="px-4 py-4">
-              <span>
-                <p>1</p>
-              </span>
-              <span>
-                <p>1</p>
-              </span>
-            </td>
-          </tr>
-          <tr className="border-t border-[#CBA986] hover:bg-[#F3DFC4]">
-            <td className="px-4 py-4 font-semibold">
-              <section>
-                <p>Waist</p>
-              </section>
-            </td>
-            <td className="px-4 py-4 align-middle">
-              <a href="/armor?type=waist" data-discover="true">
-                <button
-                  className="px-4 py-2 rounded-md text-sm font-semibold
-                   bg-[#6B3E1B] text-[#F7E7D0]
-                   hover:bg-[#5A3215]
-                   active:scale-95 transition-all"
-                >
-                  + Choose Waist
-                </button>
-              </a>
-            </td>
-            <td className="px-4 py-4">-</td>
-            <td className="px-4 py-4 text-sm">
-              <span className="italic text-[#8A6A4A]">—</span>
-            </td>
-            <td className="px-4 py-4">
-              <span className="italic text-[#8A6A4A]">—</span>
-            </td>
-          </tr>
-          Waist Decoration
-          <tr className="border-t border-[#CBA986] hover:bg-[#F3DFC4]">
-            <td className="px-4 py-4 font-semibold">
-              <section>
-                <p>Leggings</p>
-              </section>
-            </td>
-            <td className="px-4 py-4 align-middle">
-              <a href="/armor?type=leggings" data-discover="true">
-                <button
-                  className="px-4 py-2 rounded-md text-sm font-semibold
-                   bg-[#6B3E1B] text-[#F7E7D0]
-                   hover:bg-[#5A3215]
-                   active:scale-95 transition-all"
-                >
-                  + Choose Leggings
-                </button>
-              </a>
-            </td>
-            <td className="px-4 py-4">-</td>
-            <td className="px-4 py-4 text-sm">
-              <span className="italic text-[#8A6A4A]">—</span>
-            </td>
-            <td className="px-4 py-4">
-              <span className="italic text-[#8A6A4A]">—</span>
-            </td>
-          </tr>
-          Leggings Decoration
-        </tbody>
+        <tbody>{tableContent}</tbody>
       </table>
     </div>
   );
@@ -277,8 +190,8 @@ export default function ArmorSkillBuilderV1() {
       mapper: decorationMapper,
     });
 
-  console.log("armorData", armorData);
-  console.log("decorationData", decorationData);
+  // console.log("armorData", armorData);
+  // console.log("decorationData", decorationData);
 
   if (armorData == null || decorationData == null) {
     return <></>;
@@ -289,11 +202,16 @@ export default function ArmorSkillBuilderV1() {
     decorationData,
   );
 
+  const armorSkillBuilderDataArray = getArmorSkillBuilderTableRowData(
+    armorSkillBuilderData,
+  );
+  // console.log("tempData:", tempData);
+
   return (
     <ContentWrapperProps>
       <div className="max-w-5xl mx-auto px-4 py-8 text-[#5A3F28]">
         <Title />
-        <Table armorSkillBuilderDataProps={armorSkillBuilderData} />
+        <Table armorSkillBuilderDataProps={armorSkillBuilderDataArray} />
         <SummaryTable />
       </div>
     </ContentWrapperProps>

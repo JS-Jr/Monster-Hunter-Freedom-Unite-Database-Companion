@@ -1,8 +1,11 @@
 import type { Armor } from "../types/Armor";
-import type { ArmorSkillBuilder } from "../types/ArmorSkillBuilder";
+import type {
+  ArmorSkillBuilder,
+  ArmorSkillBuilderTableRowData,
+} from "../types/ArmorSkillBuilder";
 import type { Decoration } from "../types/Decoration";
 
-const ARMOR_TYPES = ["Helmet", "Plate", "Gauntlets", "Waist", "Leggings"];
+export const ARMOR_TYPES = ["Helmet", "Plate", "Gauntlets", "Waist", "Leggings"];
 
 export const LOCAL_STORAGE_ARMOR_KEY = (armorTypeName: string) => {
   return `selected${armorTypeName}`;
@@ -145,24 +148,96 @@ set another for the decoration
 
 */
 
-function getArmorSkillBuilderTableRowData(
+export function getArmorSkillBuilderTableRowData(
   armorSkillBuilderArray: ArmorSkillBuilder[],
 ) {
+  const armorSkillBuilderTableRowDataArray: ArmorSkillBuilderTableRowData[] =
+    [];
+
   for (const armorTypeItem of ARMOR_TYPES) {
+    const foundarmorSkillBuilder = findArmor(
+      armorTypeItem,
+      armorSkillBuilderArray,
+    );
+
+    if (!foundarmorSkillBuilder) {
+      const armorSkillBuilderTableRowDataArmor: ArmorSkillBuilderTableRowData =
+        {
+          typeColumn: armorTypeItem,
+          selectionActionColumn: "",
+          defenseColumn: 0,
+          skillsColumn: [],
+          slotsColumn: 0,
+        };
+      armorSkillBuilderTableRowDataArray.push(
+        armorSkillBuilderTableRowDataArmor,
+      );
+
+      const armorSkillBuilderTableRowDataDecoration: ArmorSkillBuilderTableRowData =
+        {
+          typeColumn: `${armorTypeItem} Decoration`,
+          selectionActionColumn: "",
+          defenseColumn: 0,
+          skillsColumn: [],
+          slotsColumn: 0,
+        };
+      armorSkillBuilderTableRowDataArray.push(
+        armorSkillBuilderTableRowDataDecoration,
+      );
+
+      continue;
+    }
+
+    // For Armor
+    const armorSkillBuilderTableRowDataArmor: ArmorSkillBuilderTableRowData = {
+      typeColumn: foundarmorSkillBuilder.armor.type,
+      selectionActionColumn: foundarmorSkillBuilder.armor.name,
+      defenseColumn: foundarmorSkillBuilder.armor.defense,
+      skillsColumn: foundarmorSkillBuilder.armor.skills,
+      slotsColumn: foundarmorSkillBuilder.armor.slots,
+    };
+    armorSkillBuilderTableRowDataArray.push(armorSkillBuilderTableRowDataArmor);
+
+    // For Decoration
+    const attachedDecoration: Decoration[] =
+      foundarmorSkillBuilder.attachedDecoration;
+
+    for (const decorationItem of attachedDecoration) {
+      const armorSkillBuilderTableRowDataDecoration: ArmorSkillBuilderTableRowData =
+        {
+          typeColumn: `${foundarmorSkillBuilder.armor.type} Decoration`,
+          selectionActionColumn: decorationItem.name,
+          defenseColumn: 0,
+          skillsColumn: decorationItem.skills,
+          slotsColumn: decorationItem.slots,
+        };
+      armorSkillBuilderTableRowDataArray.push(
+        armorSkillBuilderTableRowDataDecoration,
+      );
+    }
   }
+
+  return armorSkillBuilderTableRowDataArray;
 }
 
 function findArmor(
   armorType: string,
   armorSkillBuilderArray: ArmorSkillBuilder[],
-): Armor | undefined {
+): ArmorSkillBuilder | undefined {
   const targetArmorType = armorType.toLocaleLowerCase();
 
-  armorSkillBuilderArray.map((armorSkillBuilderItem) => {
-    const itemArmorType = armorSkillBuilderItem.armor.type.toLocaleLowerCase();
+  const foundarmorSkillBuilder = armorSkillBuilderArray.find(
+    (armorSkillBuilderItem) => {
+      const itemArmorType =
+        armorSkillBuilderItem.armor.type.toLocaleLowerCase();
 
-    if (itemArmorType === targetArmorType) return armorSkillBuilderItem.armor;
-  });
+      console.log(targetArmorType, " = comparing to = ", itemArmorType);
 
-  return undefined;
+      if (itemArmorType == targetArmorType) {
+        return armorSkillBuilderItem;
+      }
+    },
+  );
+
+  return foundarmorSkillBuilder;
 }

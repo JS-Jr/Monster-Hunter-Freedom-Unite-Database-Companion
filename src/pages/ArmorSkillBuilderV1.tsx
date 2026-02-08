@@ -17,11 +17,11 @@ function Title() {
   );
 }
 
-type TableProps = {
+function Table({
+  armorSkillBuilderDataProps,
+}: {
   armorSkillBuilderDataProps: ArmorSkillBuilder[];
-};
-
-function Table({ armorSkillBuilderDataProps }: TableProps) {
+}) {
   return (
     <div className="overflow-x-auto">
       <table className="w-full bg-[#F7E7D0] rounded-lg shadow border-collapse">
@@ -288,21 +288,6 @@ export default function ArmorSkillBuilderV1() {
     armorData,
     decorationData,
   );
-
-  console.log("armorSkillBuilderData", armorSkillBuilderData);
-
-  // useEffect(() => {
-  //   const data = getArmorSkillBuilderData();
-  //   setArmorData(data);
-  //   const computedData = computeSummary(data);
-  //   setSummaryData(computedData);
-  // }, []);
-
-  // function
-
-  // const computeSummary = (data) => {
-  //   return data.length; // Example summary computation
-  // };
 
   return (
     <ContentWrapperProps>

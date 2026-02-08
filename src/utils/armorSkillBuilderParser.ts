@@ -5,142 +5,164 @@ import type { Decoration } from "../types/Decoration";
 const ARMOR_TYPES = ["Helmet", "Plate", "Gauntlets", "Waist", "Leggings"];
 
 export const LOCAL_STORAGE_ARMOR_KEY = (armorTypeName: string) => {
-    return `selected${armorTypeName}`
-}
+  return `selected${armorTypeName}`;
+};
 export const LOCAL_STORAGE_DECORATION_KEY = (armorTypeName: string) => {
-    return `selected${armorTypeName}Decoration`
-}
+  return `selected${armorTypeName}Decoration`;
+};
 
+export function getArmorSkillBuilderData(
+  armorData: Armor[],
+  decorationData: Decoration[],
+): ArmorSkillBuilder[] {
+  console.log("<getArmorSkillBuilderData>");
 
-export function getArmorSkillBuilderData(armorData: Armor[], decorationData: Decoration[]): ArmorSkillBuilder[] {
+  const armorSkillBuilderArray: ArmorSkillBuilder[] = [];
+  for (const armorTypeItem of ARMOR_TYPES) {
+    // const currentArmorId: string = localStorage.getItem(`selected${armorTypeItem}`) ?? "";
+    const currentArmorId: string =
+      localStorage.getItem(LOCAL_STORAGE_ARMOR_KEY(armorTypeItem)) ?? "";
 
-    console.log("<getArmorSkillBuilderData>");
+    const armor = armorData?.find(
+      (armorDataItem) => armorDataItem?.identifier === currentArmorId,
+    );
 
-    const armorSkillBuilderArray: ArmorSkillBuilder[] = [];
-    for (const armorTypeItem of ARMOR_TYPES) {
-        // const currentArmorId: string = localStorage.getItem(`selected${armorTypeItem}`) ?? "";
-        const currentArmorId: string = localStorage.getItem(LOCAL_STORAGE_ARMOR_KEY(armorTypeItem)) ?? "";
+    console.log("armor", armor);
 
-        const armor = armorData?.find(armorDataItem => armorDataItem?.identifier === currentArmorId)
-
-        console.log("armor", armor);
-
-
-        // Temp Fix: for null return
-        if (!armor) {
-            continue;
-            // return armorSkillBuilderArray;
-        }
-
-        const decorationArray: Decoration[] = [];
-
-        // const decoration: string = localStorage.getItem(`selected${armorTypeItem}Decoration`) ?? "{}";
-        // const decorationJson = JSON.parse(decoration);
-
-        const decorationJson = getLocalStorageDecoration(armorTypeItem)
-        console.log('decorationJson', decorationJson);
-
-        if (!(Array.isArray(decorationJson) || typeof decorationJson === 'string')) { continue; }
-
-
-        for (const decoationJsonItem of decorationJson) {
-            const decorationId = decoationJsonItem.name
-            // const { data: decoration } = useSingleDataFetch<Decoration>(
-            //     "/data/decoration-modified.json",
-            //     decorationId
-            // );
-
-            const decoration = decorationData?.find(decorationItem => decorationItem?.name === decorationId)
-
-            // Temp Fix: for null return
-            if (!decoration) {
-                continue;
-                // return armorSkillBuilderArray;
-            }
-
-            decorationArray.push(decoration)
-        }
-
-        const armorSkillBuilder: ArmorSkillBuilder = {
-            armor: armor,
-            attachedDecoration: decorationArray
-        };
-
-
-        armorSkillBuilderArray.push(armorSkillBuilder);
-
+    // Temp Fix: for null return
+    if (!armor) {
+      continue;
+      // return armorSkillBuilderArray;
     }
 
-    console.log('armorSkillBuilderArray', armorSkillBuilderArray);
-    return armorSkillBuilderArray;
-}
+    const decorationArray: Decoration[] = [];
 
-export function addDecorationToArmorSkillBuilderData(armorType: string, decorationName: string) {
-    const decorationJson = getLocalStorageDecoration(armorType);
+    // const decoration: string = localStorage.getItem(`selected${armorTypeItem}Decoration`) ?? "{}";
+    // const decorationJson = JSON.parse(decoration);
 
+    const decorationJson = getLocalStorageDecoration(armorTypeItem);
+    console.log("decorationJson", decorationJson);
 
-    const exists = decorationJson.some((decorationItem: { name: string; }) => decorationItem.name === decorationName);
-    if (!exists) {
-        decorationJson.push({ name: decorationName });
+    if (
+      !(Array.isArray(decorationJson) || typeof decorationJson === "string")
+    ) {
+      continue;
     }
-    // [{ "name": "Attack Jewel" }, { "name": "Map Jewel" }]
 
-    // [
-    //     { "name": "Decoration 1" },
-    //     { "name": "Decoration 2" }
-    // ]
+    for (const decoationJsonItem of decorationJson) {
+      const decorationId = decoationJsonItem.name;
+      // const { data: decoration } = useSingleDataFetch<Decoration>(
+      //     "/data/decoration-modified.json",
+      //     decorationId
+      // );
 
-    const decorationContent = JSON.stringify(decorationJson);
+      const decoration = decorationData?.find(
+        (decorationItem) => decorationItem?.name === decorationId,
+      );
 
-    localStorage.setItem(LOCAL_STORAGE_DECORATION_KEY(armorType), decorationContent);
+      // Temp Fix: for null return
+      if (!decoration) {
+        continue;
+        // return armorSkillBuilderArray;
+      }
+
+      decorationArray.push(decoration);
+    }
+
+    const armorSkillBuilder: ArmorSkillBuilder = {
+      armor: armor,
+      attachedDecoration: decorationArray,
+    };
+
+    armorSkillBuilderArray.push(armorSkillBuilder);
+  }
+
+  console.log("armorSkillBuilderArray", armorSkillBuilderArray);
+  return armorSkillBuilderArray;
 }
 
+export function addDecorationToArmorSkillBuilderData(
+  armorType: string,
+  decorationName: string,
+) {
+  const decorationJson = getLocalStorageDecoration(armorType);
+
+  const exists = decorationJson.some(
+    (decorationItem: { name: string }) =>
+      decorationItem.name === decorationName,
+  );
+  if (!exists) {
+    decorationJson.push({ name: decorationName });
+  }
+  // [{ "name": "Attack Jewel" }, { "name": "Map Jewel" }]
+
+  // [
+  //     { "name": "Decoration 1" },
+  //     { "name": "Decoration 2" }
+  // ]
+
+  const decorationContent = JSON.stringify(decorationJson);
+
+  localStorage.setItem(
+    LOCAL_STORAGE_DECORATION_KEY(armorType),
+    decorationContent,
+  );
+}
 
 function getLocalStorageDecoration(armorType: string) {
-    const decoration: string = localStorage.getItem(LOCAL_STORAGE_DECORATION_KEY(armorType)) ?? "{}";
-    let decorationJson;
-    try {
-        decorationJson = JSON.parse(decoration);
-    }
-    catch {
-        decorationJson = {};
-    }
+  const decoration: string =
+    localStorage.getItem(LOCAL_STORAGE_DECORATION_KEY(armorType)) ?? "{}";
+  let decorationJson;
+  try {
+    decorationJson = JSON.parse(decoration);
+  } catch {
+    decorationJson = {};
+  }
 
-    return decorationJson;
+  return decorationJson;
 }
 
-// export function canAddToArmor(armorType: string, decorationName: string): boolean {
+/* Plan 
+return ArmorSkillBuilderTableRowData (for easier display of data)
+Loop ARMOR_TYPES
+set the typeColumn same as ARMOR_TYPE_ITEM
+find the ARMOR_TYPE_ITEM in the ArmorSkillBuilder in ARMOR
+ - (old IGNORE THIS) just a match with the armortype is fine since we store decoration with the same armor type
 
-//     const decorationMapper = useCallback(
-//         (rawData: any[]) => rawData.map(mapRawDecorationtoDecoration),
-//         []
-//     );
+!!! not found
+    set other as undefined or null or something similar save it
+    also create another for the decoration and just make it null
 
-//     const { data: decorationCollection } = useDataFetchArray<Decoration>(
-//         "/data/decoration-modified.json",
-//         {
-//             mapper: decorationMapper
-//         }
-//     );
+found
+set the selectionActionColumn to armor name
+set the defenseColumn to armor defense
+set the skills 
+set the slot column
+save it
 
-//     // const selectedDecorationIdentificationArray = localStorage.getItem(`selectedDecoration${armorType}`);
-//     const selectedDecorationIdentificationArray = localStorage.getItem(LOCAL_STORAGE_DECORATION_KEY(armorType));
-//     const selectedDecorations = selectedDecorationIdentificationArray ? JSON.parse(selectedDecorationIdentificationArray) : [];
+set another for the decoration
 
-//     // Filter current decorations based on selected identifiers
-//     const currentDecoration: Decoration[] = decorationCollection?.filter(decorationItem =>
-//         selectedDecorations.includes(decorationItem.identifier)
-//     ) || []; // Fallback to an empty array if decoration is null or undefined
 
-//     let usedDecorationSlot = (currentDecoration.map((decorationItem) => decorationItem.slots)).reduce((total, slotNumber) => total + slotNumber, 0);
+*/
 
-//     const decoration = decorationCollection?.find(decorationItem => decorationItem.name === decorationName);
-//     const currentDecorationSlot: number = decoration ? decoration.slots : 0;
-//     usedDecorationSlot += currentDecorationSlot;
+function getArmorSkillBuilderTableRowData(
+  armorSkillBuilderArray: ArmorSkillBuilder[],
+) {
+  for (const armorTypeItem of ARMOR_TYPES) {
+  }
+}
 
-//     if (0 > usedDecorationSlot) {
-//         return true;
-//     }
+function findArmor(
+  armorType: string,
+  armorSkillBuilderArray: ArmorSkillBuilder[],
+): Armor | undefined {
+  const targetArmorType = armorType.toLocaleLowerCase();
 
-//     return false;
-// }
+  armorSkillBuilderArray.map((armorSkillBuilderItem) => {
+    const itemArmorType = armorSkillBuilderItem.armor.type.toLocaleLowerCase();
+
+    if (itemArmorType === targetArmorType) return armorSkillBuilderItem.armor;
+  });
+
+  return undefined;
+}

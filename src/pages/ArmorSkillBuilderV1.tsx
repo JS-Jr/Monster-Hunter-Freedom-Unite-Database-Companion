@@ -228,6 +228,43 @@ function Table({ armorSkillBuilderDataProps }: TableProps) {
               return <>{content}</>;
             }
 
+            function getAttachedDecorationSkills(
+              decorationData: Decoration[],
+            ): JSX.Element {
+              const content: JSX.Element[] = decorationData.map(
+                (decorationDataItem, index) => (
+                  <ul className="list-disc list-inside" key={index}>
+                    {decorationDataItem.skills.map((skillItem, skillIndex) => (
+                      <li
+                        key={skillIndex} // Use skillIndex for unique keys within the list
+                        className={
+                          skillItem.positive ? "text-green-700" : "text-red-600"
+                        }
+                      >
+                        {skillItem.name} {skillItem.positive ? "+" : "-"}
+                        {skillItem.amount}
+                      </li>
+                    ))}
+                  </ul>
+                ),
+              );
+
+              return <>{content}</>;
+            }
+
+            {
+              armor.armor.skills.map((skillItem, index) => (
+                <li
+                  key={index}
+                  className={
+                    skillItem.positive ? "text-green-700" : "text-red-600"
+                  }
+                >
+                  {skillItem.name} {skillItem.positive ? "+" : "-"}
+                  {skillItem.amount}
+                </li>
+              ));
+            }
             function getAttachedDecorationSlotConsumption(
               decorationData: Decoration[],
             ): JSX.Element {
@@ -253,6 +290,7 @@ function Table({ armorSkillBuilderDataProps }: TableProps) {
             );
 
             selectionActionRow = getAttachedDecorationNames(attachedDecoration);
+            skillRow = getAttachedDecorationSkills(attachedDecoration);
             slotRow = getAttachedDecorationSlotConsumption(attachedDecoration);
 
             return (

@@ -66,6 +66,7 @@ function App() {
               <Route path="/skills" element={<Skill />} />
               <Route path="/skill-builder" element={<ArmorSkillBuilder />} />
               <Route path="/select/:type" element={<SelectRedirect />} />
+              <Route path="/cwcheats" element={<SelectRedirect />} />
               <Route path="*" element={<NotFound />} />
             </Routes>
           </main>

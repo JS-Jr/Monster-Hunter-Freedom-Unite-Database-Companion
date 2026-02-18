@@ -20,6 +20,10 @@ export default function Header() {
 
   const otherLinks = [{ path: "/cwcheats", label: "CW Cheats" }];
 
+  function handleDropDownVisibility() {
+    setIsDropdownOpen(() => !isDropdownOpen);
+  }
+
   return (
     <header className="h-16 w-full bg-[#3b2f24] text-[#f7e7d0] flex items-center justify-between px-6 shadow-md">
       {/* Logo / Title */}
@@ -37,8 +41,9 @@ export default function Header() {
         ))}
         <div
           className="relative"
-          onMouseEnter={() => setIsDropdownOpen(true)}
-          onMouseLeave={() => setIsDropdownOpen(false)}
+          onClick={() => handleDropDownVisibility()}
+          // onMouseEnter={() => handleDropDownVisibility(true)}
+          // onMouseLeave={() => handleDropDownVisibility(false)}
         >
           <button
             className="hover:text-[#d0b38a] transition-colors"
@@ -47,10 +52,10 @@ export default function Header() {
             Others
           </button>
           {isDropdownOpen && (
-            <div className="absolute top-full right-0 mt-1 bg-[#3b2f24] border border-[#d0b38a] rounded-md shadow-lg z-20 min-w-[150px] transition transform origin-top-right">
+            <div className="absolute right-0 mt-1 bg-[#3b2f24] border border-[#d0b38a] rounded-md shadow-lg z-20 min-w-[150px]">
               {otherLinks.map((otherLinksItem) => (
                 <Link
-                  className="block px-4 py-2 hover:text-[#d0b38a] transition-colors"
+                  className="block px-4 py-2 hover:text-[#d0b38a]"
                   to={otherLinksItem.path}
                   key={otherLinksItem.label}
                 >

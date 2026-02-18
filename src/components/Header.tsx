@@ -18,6 +18,8 @@ export default function Header() {
     { path: "/status", label: "Status/State" },
   ];
 
+  const otherLinks = [{ path: "/cwcheats", label: "CW Cheats" }];
+
   return (
     <header className="h-16 w-full bg-[#3b2f24] text-[#f7e7d0] flex items-center justify-between px-6 shadow-md">
       {/* Logo / Title */}
@@ -45,8 +47,16 @@ export default function Header() {
             Others
           </button>
           {isDropdownOpen && (
-            <div className="absolute top-full left-0 bg-[#3b2f24] border border-[#d0b38a] rounded-md shadow-lg z-10 min-w-[150px]">
-              {/* Placeholder for future navigation items */}
+            <div className="absolute top-full right-0 mt-1 bg-[#3b2f24] border border-[#d0b38a] rounded-md shadow-lg z-20 min-w-[150px] transition transform origin-top-right">
+              {otherLinks.map((otherLinksItem) => (
+                <Link
+                  className="block px-4 py-2 hover:text-[#d0b38a] transition-colors"
+                  to={otherLinksItem.path}
+                  key={otherLinksItem.label}
+                >
+                  {otherLinksItem.label}
+                </Link>
+              ))}
               <div className="p-2 text-xs text-gray-400">
                 Other sections coming soon...
               </div>

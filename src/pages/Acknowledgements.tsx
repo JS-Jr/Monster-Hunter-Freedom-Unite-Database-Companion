@@ -18,35 +18,42 @@ export default function Acknowledgements() {
     {
       name: "vallode",
       description:
-        "Data set used: content/decorations/decorations-crafting.json",
+        "Consolidated armor,weapon and monster. Used decoration but tranformed it using a python script for my use",
+      link: "https://github.com/vallode/mhfu-blacksmith",
+      // decorations
+      // https://github.com/vallode/mhfu-blacksmith/blob/750758793e09ce55bb961f13767e838d1710925b/content/decorations/decorations-crafting.json
 
-      //   decorations - https://github.com/vallode/mhfu-blacksmith/blob/750758793e09ce55bb961f13767e838d1710925b/content/decorations/decorations-crafting.json
-      /*
-  armors 
-https://github.com/vallode/mhfu-blacksmith/tree/750758793e09ce55bb961f13767e838d1710925b/content/armorsmith
+      // armors
+      // https://github.com/vallode/mhfu-blacksmith/tree/750758793e09ce55bb961f13767e838d1710925b/content/armorsmith
 
-weapons
-https://github.com/vallode/mhfu-blacksmith/tree/750758793e09ce55bb961f13767e838d1710925b/content/blacksmith
+      // weapons
+      // https://github.com/vallode/mhfu-blacksmith/tree/750758793e09ce55bb961f13767e838d1710925b/content/blacksmith
 
-decorations
-https://github.com/vallode/mhfu-blacksmith/tree/750758793e09ce55bb961f13767e838d1710925b/content/decorations
+      // decorations
+      // https://github.com/vallode/mhfu-blacksmith/tree/750758793e09ce55bb961f13767e838d1710925b/content/decorations
 
-monsters 
-https://github.com/vallode/mhfu-blacksmith/tree/750758793e09ce55bb961f13767e838d1710925b/content/monsters
-*/
-      link: "mhfu.vallode.com",
+      // monsters
+      // https://github.com/vallode/mhfu-blacksmith/tree/750758793e09ce55bb961f13767e838d1710925b/content/monsters
     },
     {
       name: "Monster Hunter Wiki",
-      description: "For the item list",
+      description:
+        "Used reference/data for item list and used python script to extract and tranform it to json",
+      //   description: "For the item list",
       link: "https://monsterhunter.fandom.com/wiki/MHFU:_Item_List",
     },
+    // {
+    //   name: "ryin77",
+    //   description: "For the resource maps and armor skills",
+    //   link: "https://gamefaqs.gamespot.com/psp/943356-monster-hunter-freedom-unite/faqs/78652/resource-maps",
+    // },
     {
       name: "ryin77",
-      description: "For the resource maps and armor skills",
+      description:
+        "Used reference/data for maps and armor skills and used python script to extract and tranform it to json",
+      link: "https://gamefaqs.gamespot.com/psp/943356-monster-hunter-freedom-unite/faqs/78652",
       // maps -  https://gamefaqs.gamespot.com/psp/943356-monster-hunter-freedom-unite/faqs/78652/resource-maps
-      //   armor skills - https://gamefaqs.gamespot.com/psp/943356-monster-hunter-freedom-unite/faqs/78652/armor-skills
-      link: "https://gamefaqs.gamespot.com/psp/943356-monster-hunter-freedom-unite/faqs/78652/resource-maps",
+      // armor skills - https://gamefaqs.gamespot.com/psp/943356-monster-hunter-freedom-unite/faqs/78652/armor-skills
     },
   ];
 

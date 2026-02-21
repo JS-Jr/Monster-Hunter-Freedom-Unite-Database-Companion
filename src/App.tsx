@@ -28,6 +28,7 @@ import Skill from "./pages/Skill";
 import ArmorSkillBuilder from "./pages/ArmorSkillBuilder";
 import SelectRedirect from "./pages/SelectRedirect";
 import Acknowledgements from "./pages/Acknowledgements";
+import CWCheats from "./components/CWCheats";
 
 function App() {
   const [forceDesktop, setForceDesktop] = useState(false);
@@ -67,6 +68,7 @@ function App() {
               <Route path="/skills" element={<Skill />} />
               <Route path="/skill-builder" element={<ArmorSkillBuilder />} />
               <Route path="/select/:type" element={<SelectRedirect />} />
+              <Route path="/cwcheats" element={<CWCheats />} />
               <Route path="/acknowledgements" element={<Acknowledgements />} />
               <Route path="*" element={<NotFound />} />
             </Routes>

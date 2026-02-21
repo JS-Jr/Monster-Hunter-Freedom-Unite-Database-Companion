@@ -71,15 +71,13 @@ export default function Acknowledgements() {
         </h1>
       </section>
 
-      {/* CONTENT (full-width flesh) */}
       <section className="w-full py-12 px-6 sm:px-12 shadow-inner bg-[#E9D3B4]">
         <div className="mx-auto max-w-4xl">
           <h2 className="text-2xl font-bold mb-6 text-[#5A3F28]">
             Inspirations
           </h2>
           <p className="text-lg leading-relaxed mb-8 text-[#5A3F28]">
-            This project was inspired by various sources and individuals. Add
-            your acknowledgements here.
+            This project was inspired by various sources and individuals.
           </p>
           <ul className="list-disc list-inside mb-8 space-y-2 text-[#5A3F28]">
             {inspirations.map((item, index) => (

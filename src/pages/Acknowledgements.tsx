@@ -3,7 +3,7 @@ export default function Acknowledgements() {
     {
       name: "vallode",
       description:
-        "I really dig this site because it has a great dataset laid out in a tree structure. But, it's missing some essential filtering options, like showing only specific items. This pushed me to kick off my own project because I think I can make the user experience a lot better with the data that's already there.",
+        "I really like this site because it has a great dataset laid out in a tree structure. But, it's missing some essential filtering options, like showing only specific items. This pushed me to kick off my own project because I think I can make the user experience a lot better with the data that's already there.",
       link: "https://mhfu.vallode.com/",
     },
     {

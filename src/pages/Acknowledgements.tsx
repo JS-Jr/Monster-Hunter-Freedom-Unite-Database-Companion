@@ -2,17 +2,16 @@ export default function Acknowledgements() {
   const inspirations = [
     {
       name: "vallode",
-      description: "For creating my own site that has the data set",
-      link: "mhfu.vallode.com",
-      //   https://github.com/vallode/mhfu-blacksmith
+      description:
+        "I really dig this site because it has a great dataset laid out in a tree structure. But, it's missing some essential filtering options, like showing only specific items. This pushed me to kick off my own project because I think I can make the user experience a lot better with the data that's already there.",
+      link: "https://mhfu.vallode.com/",
     },
     {
       name: "MapGenie",
       description:
-        "For creating my own viewable with pins and easy searchable resource map.",
+        "MapGenie caught my eye and got me thinking about creating my own version for Monster Hunter Freedom Unite (MHFU). I love how interactive their site is, and it inspires me to build a resource map that's super user-friendly.",
       link: "https://mapgenie.io/",
     },
-    // Add more inspirations as needed
   ];
 
   const dataSources = [

@@ -18,7 +18,7 @@ export default function Acknowledgements() {
     {
       name: "vallode",
       description:
-        "Consolidated armor,weapon and monster. Used decoration but tranformed it using a python script for my use",
+        "Consolidated armor, weapon and monster data set. Used decoration but tranformed it using a python script for my use",
       link: "https://github.com/vallode/mhfu-blacksmith",
       // decorations
       // https://github.com/vallode/mhfu-blacksmith/blob/750758793e09ce55bb961f13767e838d1710925b/content/decorations/decorations-crafting.json
@@ -50,7 +50,7 @@ export default function Acknowledgements() {
     {
       name: "ryin77",
       description:
-        "Used reference/data for maps and armor skills and used python script to extract and tranform it to json",
+        "Used reference/data for maps and armor skills and used python script to extract and tranform it to json. Used also the images for the amps",
       link: "https://gamefaqs.gamespot.com/psp/943356-monster-hunter-freedom-unite/faqs/78652",
       // maps -  https://gamefaqs.gamespot.com/psp/943356-monster-hunter-freedom-unite/faqs/78652/resource-maps
       // armor skills - https://gamefaqs.gamespot.com/psp/943356-monster-hunter-freedom-unite/faqs/78652/armor-skills

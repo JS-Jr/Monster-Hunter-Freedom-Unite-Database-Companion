@@ -97,7 +97,7 @@ export default function Acknowledgements() {
             Data Sources
           </h2>
           <p className="text-lg leading-relaxed mb-8 text-[#5A3F28]">
-            Data was extracted from various sources. Acknowledge them here.
+            Data was extracted from various sources.
           </p>
           <ul className="list-disc list-inside mb-8 space-y-2 text-[#5A3F28]">
             {dataSources.map((item, index) => (

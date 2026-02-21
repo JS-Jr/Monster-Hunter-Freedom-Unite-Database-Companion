@@ -18,7 +18,10 @@ export default function Header() {
     { path: "/status", label: "Status/State" },
   ];
 
-  const otherLinks = [{ path: "/cwcheats", label: "CW Cheats" }];
+  const otherLinks = [
+    { path: "/cwcheats", label: "CW Cheats" },
+    { path: "/acknowledgements", label: "Acknowledgements" },
+  ];
 
   function handleDropDownVisibility() {
     setIsDropdownOpen(() => !isDropdownOpen);

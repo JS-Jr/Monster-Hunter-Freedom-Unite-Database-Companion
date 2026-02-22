@@ -55,6 +55,21 @@ export default function Acknowledgements() {
       // maps -  https://gamefaqs.gamespot.com/psp/943356-monster-hunter-freedom-unite/faqs/78652/resource-maps
       // armor skills - https://gamefaqs.gamespot.com/psp/943356-monster-hunter-freedom-unite/faqs/78652/armor-skills
     },
+    {
+      name: "almarsguides",
+      description: "Used data for CWCheats",
+      link: "https://www.almarsguides.com/retro/walkthroughs/psp/games/monsterhunterfreedomunite/cwcheat/usa/",
+    },
+    {
+      name: "Kolyn090",
+      description: "Used data for quests",
+      link: "https://github.com/Kolyn090/mhfu-db/tree/main/Quests",
+    },
+    // {
+    //   name: "monsterhunterwiki",
+    //   description: "Used mored data for quests",
+    //   link: "https://monsterhunterwiki.org/wiki/MHFU/Quests/Village_Quests",
+    // },
   ];
 
   return (

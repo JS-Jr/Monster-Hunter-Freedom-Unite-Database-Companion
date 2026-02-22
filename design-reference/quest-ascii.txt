@@ -1,0 +1,26 @@
++-------------------------------------------------------------+
+|                   Monster Hunter Freedom Unite              |
+|                          [ Search Bar ]                    |
++-------------------------------------------------------------+
+| [Village] [Hub] [Urgent] [G-Rank] [Special]                |
++-------------------------------------------------------------+
+|             Quest List                                       |
+|                                                             |
+|  +-------------------------------+   +-------------------+  |
+|  |  Quest Name                  |   |  Quest Name       |  |
+|  |  [Village]    [Monster]      |   |  [Hub]           |  |
+|  |  Objective: Hunt X Monster    |   |  Objective: Hunt Y|  |
+|  |  Rewards: 500z, Item A       |   |  Rewards: 700z   |  |
+|  +-------------------------------+   +-------------------+  |
+|  |  Quest Name                  |   |  Quest Name       |  |
+|  |  [Urgent]     [Monster]      |   |  [Special]       |  |
+|  |  Objective: Collect Items     |   |  Objective: ...  |  |
+|  |  Rewards: 300z, Item B       |   |  Rewards: ...     |  |
+|  +-------------------------------+   +-------------------+  |
+|                                                             |
+|  [Sort by: Quest Name ▼] [Show More ▼]                    |
++-------------------------------------------------------------+
+| [] Click here for more details about selected quest        |
++-------------------------------------------------------------+
+|                     [ Feedback / Help Links ]               |
++-------------------------------------------------------------+

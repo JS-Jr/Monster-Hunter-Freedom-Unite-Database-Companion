@@ -1766,7 +1766,7 @@
   {
     "category": "village-cat",
     "name": "The Empress's Blazing Throne",
-    "quest-type": "",
+    "quest-type": "optional",
     "reward": 11400,
     "contract-fee": 1900,
     "time-limit": 50,
@@ -2354,7 +2354,7 @@
   {
     "category": "guild-girl-1",
     "name": "Water Wyvern in the Desert",
-    "quest-type": "optioanl",
+    "quest-type": "optional",
     "reward": 2400,
     "contract-fee": 200,
     "time-limit": 50,
@@ -3068,7 +3068,7 @@
   {
     "category": "guild-girl-1",
     "name": "Great Ore Discovery",
-    "quest-type": "optional ",
+    "quest-type": "optional",
     "reward": 3000,
     "contract-fee": 250,
     "time-limit": 50,
@@ -3698,7 +3698,7 @@
   {
     "category": "guild-girl-2",
     "name": "The Poison Gas",
-    "quest-type": "optonal",
+    "quest-type": "optional",
     "reward": 9000,
     "contract-fee": 750,
     "time-limit": 50,
@@ -4300,7 +4300,7 @@
   {
     "category": "guild-girl-2",
     "name": "The End Times",
-    "quest-type": "speical",
+    "quest-type": "special",
     "reward": 36000,
     "contract-fee": 3000,
     "time-limit": 50,
@@ -4314,7 +4314,7 @@
   {
     "category": "guild-girl-2",
     "name": "Ancestral Dragon",
-    "quest-type": "speical",
+    "quest-type": "special",
     "reward": 36000,
     "contract-fee": 3000,
     "time-limit": 50,
@@ -5504,7 +5504,7 @@
   {
     "category": "guild-girl-3",
     "name": "Diamond Dust",
-    "quest-type": "optioanl",
+    "quest-type": "optional",
     "reward": 30000,
     "contract-fee": 2500,
     "time-limit": 50,
@@ -5686,7 +5686,7 @@
   {
     "category": "guild-girl-3",
     "name": "Ancestral Dragon",
-    "quest-type": "speical",
+    "quest-type": "special",
     "reward": 54000,
     "contract-fee": 4500,
     "time-limit": 50,

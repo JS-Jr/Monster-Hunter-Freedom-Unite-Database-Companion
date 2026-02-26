@@ -1,4 +1,4 @@
-Type|Number|Result|Material A|Material B|Success Rate|Result
+Type|Number|Item Result|Material A|Material B|Success Rate|Result
 Regular|001|Potion|Herb|Blue Mushroom|95%|1
 Regular|002|Mega Potion|Potion|Honey|90%|1
 Regular|003|Nutrients|Blue Mushroom|Godbug|90%|1

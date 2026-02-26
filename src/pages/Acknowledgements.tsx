@@ -65,11 +65,17 @@ export default function Acknowledgements() {
       description: "Used data for quests",
       link: "https://github.com/Kolyn090/mhfu-db/tree/main/Quests",
     },
+    // Not Used as quest reference but goods
     // {
     //   name: "monsterhunterwiki",
     //   description: "Used mored data for quests",
     //   link: "https://monsterhunterwiki.org/wiki/MHFU/Quests/Village_Quests",
     // },
+    {
+      name: "monsterhunterwiki",
+      description: "Used data for item combination",
+      link: "https://monsterhunterwiki.org/wiki/MHFU/Crafting",
+    },
   ];
 
   return (

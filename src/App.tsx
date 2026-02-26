@@ -29,6 +29,7 @@ import ArmorSkillBuilder from "./pages/ArmorSkillBuilder";
 import SelectRedirect from "./pages/SelectRedirect";
 import Acknowledgements from "./pages/Acknowledgements";
 import CWCheats from "./components/CWCheats";
+import Quest from "./pages/Quest";
 import ItemCombination from "./pages/ItemCombination";
 
 function App() {
@@ -71,6 +72,7 @@ function App() {
               <Route path="/select/:type" element={<SelectRedirect />} />
               <Route path="/cwcheats" element={<CWCheats />} />
               <Route path="/acknowledgements" element={<Acknowledgements />} />
+              <Route path="/quests" element={<Quest />} />
               <Route path="/item-combination" element={<ItemCombination />} />
               <Route path="*" element={<NotFound />} />
             </Routes>

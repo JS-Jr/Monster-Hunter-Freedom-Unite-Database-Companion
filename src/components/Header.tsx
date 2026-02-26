@@ -21,6 +21,7 @@ export default function Header() {
   const otherLinks = [
     { path: "/cwcheats", label: "CW Cheats" },
     { path: "/acknowledgements", label: "Acknowledgements" },
+    { path: "/quests", label: "Quests" },
     { path: "/item-combination", label: "Item Combination" },
   ];
 

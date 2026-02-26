@@ -22,6 +22,7 @@ export default function Header() {
     { path: "/cwcheats", label: "CW Cheats" },
     { path: "/acknowledgements", label: "Acknowledgements" },
     { path: "/quests", label: "Quests" },
+    { path: "/item-combination", label: "Item Combination" },
   ];
 
   function handleDropDownVisibility() {

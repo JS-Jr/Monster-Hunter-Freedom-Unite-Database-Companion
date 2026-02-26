@@ -30,6 +30,7 @@ import SelectRedirect from "./pages/SelectRedirect";
 import Acknowledgements from "./pages/Acknowledgements";
 import CWCheats from "./components/CWCheats";
 import Quest from "./pages/Quest";
+import ItemCombination from "./pages/ItemCombination";
 
 function App() {
   const [forceDesktop, setForceDesktop] = useState(false);
@@ -72,6 +73,7 @@ function App() {
               <Route path="/cwcheats" element={<CWCheats />} />
               <Route path="/acknowledgements" element={<Acknowledgements />} />
               <Route path="/quests" element={<Quest />} />
+              <Route path="/item-combination" element={<ItemCombination />} />
               <Route path="*" element={<NotFound />} />
             </Routes>
           </main>

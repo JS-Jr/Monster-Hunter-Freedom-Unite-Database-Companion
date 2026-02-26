@@ -21,6 +21,7 @@ export default function Header() {
   const otherLinks = [
     { path: "/cwcheats", label: "CW Cheats" },
     { path: "/acknowledgements", label: "Acknowledgements" },
+    { path: "/item-combination", label: "Item Combination" },
   ];
 
   function handleDropDownVisibility() {

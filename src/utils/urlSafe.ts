@@ -1,4 +1,5 @@
 export const encodeName = (value: string): string => {
+  console.log("Encoding value:", value);
   return encodeURIComponent(value.replace(/\+/g, "plus"));
 };
 

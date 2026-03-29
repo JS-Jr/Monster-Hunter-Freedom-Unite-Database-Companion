@@ -48,3 +48,20 @@ create like a decoration/skill builder ie like use armor set this and use this d
 If you want, I can also **turn this into a checklist version** that works nicely in GitHub or Markdown for progress tracking—you can tick off items as you go. It won’t change your wording, just adds checkboxes.
 
 Do you want me to do that?
+
+
+issue is improve_from due to it been an array isntead of string, plan to recheck data source
+"improve_from": [
+
+
+    "name": "Steel Lance",
+    "attack": 207,
+    "sharpness": ["5", "5", "9", "6"],
+    "affinity": "0%",
+    "slots": "---",
+    "bonus": null,
+    "rarity": 1,
+    "type": "lance",
+    "create_cost": null,
+    "improve_cost": 1400,
+    "improve_from": ["Iron Lance+"],

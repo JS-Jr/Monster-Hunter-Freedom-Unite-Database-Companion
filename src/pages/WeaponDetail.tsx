@@ -10,8 +10,10 @@ export default function WeaponDetail() {
 
   const { data: weapon, loading } = useSingleDataFetch<Weapon>(
     "/data/weapons.json",
-    weaponName
+    weaponName,
   );
+
+  console.log("Fetched weapon:", weapon);
 
   // console.log("weaponName", weaponName);
 

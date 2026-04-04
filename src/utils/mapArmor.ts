@@ -1,62 +1,65 @@
-import type { Armor, ArmorType, Gender } from "../types/Armor";
+import { type Armor, type Material, type SkillPoint } from "../types/Armor";
 
-const armorTypeMap: Record<string, ArmorType> = {
-  helmet: "Helmet",
-  plate: "Plate",
-  gauntlets: "Gauntlets",
-  waist: "Waist",
-  leggings: "Leggings",
-};
+export default function mapArmor(raw: any): Armor {
+  const identifier: string =
+    String(raw.name ?? "") + " " + String(raw.sex ?? "");
+  const part: string = String(raw.part ?? "");
+  const name: string = String(raw.name ?? "");
+  const rarity: number = Number(raw.rarity ?? 0);
+  const price: number = Number(raw.price ?? raw.create_cost ?? 0);
+  const hunterType: string = String(
+    raw.hunter_type ?? raw["hunter-type"] ?? "",
+  );
+  const defense: number = Number(raw.defence ?? raw.defense ?? 0);
+  const slots: number = Number(raw.slots ?? 0);
+  const description: string = String(raw.description ?? "");
+  const fireRes: number = Number(raw.fire_res ?? raw["fire-res"] ?? 0);
+  const thundrRes: number = Number(raw.thundr_res ?? raw["thundr-res"] ?? 0);
+  const dragonRes: number = Number(raw.dragon_res ?? raw["dragon-res"] ?? 0);
+  const waterRes: number = Number(raw.water_res ?? raw["water-res"] ?? 0);
+  const iceRes: number = Number(raw.ice_res ?? raw["ice-res"] ?? 0);
+  const sex: string = String(raw.sex ?? "");
+  const imageMale: string = String(raw.image_male ?? raw["image-male"] ?? "");
+  const imageFemale: string = String(
+    raw.image_female ?? raw["image-female"] ?? "",
+  );
 
-const genderMap: Record<string, Gender> = {
-  male: "Male",
-  female: "Female",
-  "male/female": "Both",
-  both: "Both",
-};
+  const skillPoints: SkillPoint[] = (raw["skill-points"] || []).map(
+    (skillItem: any) => {
+      const sName: string = String(skillItem.name);
+      const sPoints: number = Math.abs(Number(skillItem.points ?? 0));
+      const sIsPositive: boolean = Number(skillItem.points ?? 0) >= 0;
+      return { name: sName, points: sPoints, isPositive: sIsPositive };
+    },
+  );
 
-export function mapRawArmorToArmor(raw: any): Armor {
-  // normalize type
-  const rawType = raw.type?.toLowerCase() || "";
-  const type: ArmorType = armorTypeMap[rawType] ?? "Body"; // fallback
-
-  // normalize gender
-  const rawSex = raw.sex?.toLowerCase() || "male";
-  const gender: Gender = genderMap[rawSex] ?? "Male";
-
-  // convert slots from string like "OO-" to number
-  const slotsString: string = raw.slots || "";
-  const slots = (slotsString.match(/O/g) || []).length;
-
-  const identifier = raw.name + " " + gender;
+  const materials: Material[] = (raw.create_mats || raw.materials || []).map(
+    (materialItem: any) => {
+      const materialName: string = String(materialItem.name);
+      const materialAmount: number = Number(materialItem.amount ?? 0);
+      return { name: materialName, amount: materialAmount };
+    },
+  );
 
   return {
-    identifier: identifier,
-    name: raw.name,
-    type: type,
-    hunter_type: raw.hunter_type,
-    gender: gender,
-    rarity: Number(raw.rarity),
-    defense: Number(raw.defence),
-    resistances: {
-      fire: Number(raw.fire_res),
-      water: Number(raw.water_res),
-      thunder: Number(raw.thunder_res),
-      ice: Number(raw.ice_res),
-      dragon: Number(raw.dragon_res),
-    },
-    slots: slots,
-    skills: (raw.skills || []).map((s: any) => ({
-      name: s.name,
-      amount: Math.abs(Number(s.amount)), // always positive
-      positive: Number(s.amount) >= 0, // store original sign
-    })),
-    create_cost: Number(raw.create_cost),
-    create_mats: (raw.create_mats || []).map((m: any) => ({
-      name: m.name,
-      amount: m.amount,
-      type: m.type,
-      color: m.color,
-    })),
+    identifier,
+    part,
+    name,
+    rarity,
+    price,
+    hunterType,
+    defense,
+    skillPoints,
+    description,
+    slots,
+    fireRes,
+    thundrRes,
+    dragonRes,
+    waterRes,
+    iceRes,
+    materials,
+    sex,
+    imageMale,
+    imageFemale,
   };
 }

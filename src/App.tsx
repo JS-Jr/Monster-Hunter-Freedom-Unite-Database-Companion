@@ -2,7 +2,7 @@
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Home from "./pages/Home";
 import Monsters from "./pages/Monster";
-import Armor from "./pages/Armor";
+import ArmorPage from "./pages/Armor";
 import ArmorDetail from "./pages/ArmorDetail";
 import Weapons from "./pages/Weapon";
 import Map from "./pages/Map";
@@ -50,7 +50,7 @@ function App() {
               <Route path="/" element={<Home />} />
               <Route path="/monsters" element={<Monsters />} />
               <Route path="/monster/:monsterName" element={<MonsterDetail />} />
-              <Route path="/armor" element={<Armor />} />
+              <Route path="/armor" element={<ArmorPage />} />
               <Route path="/armor/:armorName" element={<ArmorDetail />} />
               <Route path="/weapons" element={<Weapons />} />
               <Route path="/weapons/:weaponName" element={<WeaponDetail />} />

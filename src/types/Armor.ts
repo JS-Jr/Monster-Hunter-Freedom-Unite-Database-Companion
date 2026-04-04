@@ -1,40 +1,36 @@
 // src/types/Armor.ts
-export type ArmorType = "Helmet" | "Plate" | "Gauntlets" | "Waist" | "Leggings";
-export type Gender = "Male" | "Female" | "Both";
-export type HunterType = "Blademaster" | "Gunner";
+interface ArmorInterface {
+  part: string;
+  name: string;
+  rarity: number;
+  price: number;
+  hunterType: string;
+  defense: number;
+  skillPoints: SkillPoint[];
+  description: string;
+  slots: number;
+  fireRes: number;
+  thundrRes: number;
+  dragonRes: number;
+  waterRes: number;
+  iceRes: number;
+  materials: Material[];
+  sex: string;
+  imageMale: string;
+  imageFemale: string;
+}
 
-export type Skills = {
+export interface Material {
   name: string;
   amount: number;
-  positive: boolean;
-};
+}
 
-export type ArmorResistances = {
-  fire: number;
-  water: number;
-  thunder: number;
-  ice: number;
-  dragon: number;
-};
-
-export type ArmorMaterial = {
+export interface SkillPoint {
   name: string;
-  amount: string;
-  type: string; // e.g. "ore", "pelt"
-  color: string; // display color hint
-};
+  points: number;
+  isPositive?: boolean;
+}
 
-export type Armor = {
-  identifier: string;
-  name: string;
-  type: ArmorType;
-  hunter_type: HunterType;
-  gender: Gender;
-  rarity: number;
-  defense: number;
-  resistances: ArmorResistances;
-  slots: number;
-  skills: Skills[];
-  create_cost: number;
-  create_mats: ArmorMaterial[];
-};
+export interface Armor extends ArmorInterface {
+  identifier: string; // unique identifier
+}

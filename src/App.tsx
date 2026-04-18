@@ -1,5 +1,5 @@
-// import "./App.css";
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+// App.tsx
+import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
 import Home from "./pages/Home";
 import Monsters from "./pages/Monster";
 import ArmorPage from "./pages/Armor";
@@ -12,25 +12,143 @@ import WeaponTree from "./pages/WeaponTree";
 import MonsterDetail from "./pages/MonsterDetail";
 import Item from "./pages/Item";
 import ItemDetail from "./pages/ItemDetail";
-// import SnowyMountainsMap from "./pages/MapDetail-leaflet";
 import MapDetail from "./pages/MapDetail";
 import MapDetailDev from "./pages/MapDetailDev";
 import Decoration from "./pages/Decoration";
-
-import { MobilePendingPage } from "./pages/MobilePendingPage";
-import DevBanner from "./components/DevBanner";
-import { Status } from "./pages/Status";
-import { useState } from "react";
 import DecorationDetail from "./pages/DecorationDetail";
 import NotFound from "./pages/NotFound";
 import Skill from "./pages/Skill";
-
 import ArmorSkillBuilder from "./pages/ArmorSkillBuilder";
 import SelectRedirect from "./pages/SelectRedirect";
 import Acknowledgements from "./pages/Acknowledgements";
 import CWCheats from "./components/CWCheats";
 import Quest from "./pages/Quest";
 import ItemCombination from "./pages/ItemCombination";
+
+import { MobilePendingPage } from "./pages/MobilePendingPage";
+import DevBanner from "./components/DevBanner";
+import { Status } from "./pages/Status";
+import { useState } from "react";
+import { ArmorLoader } from "./loaders/ArmorLoader";
+
+// Layout wrapper to include Header on all routes
+function RootLayout() {
+  return (
+    <>
+      <DevBanner />
+      <Header />
+      <main>
+        <Outlet />
+      </main>
+    </>
+  );
+}
+
+const router = createBrowserRouter([
+  {
+    element: <RootLayout />,
+    errorElement: <NotFound />,
+    children: [
+      {
+        path: "/",
+        element: <Home />,
+      },
+      {
+        path: "/monsters",
+        element: <Monsters />,
+      },
+      {
+        path: "/monster/:monsterName",
+        element: <MonsterDetail />,
+      },
+      {
+        path: "/armor",
+        element: <ArmorPage />,
+        loader: ArmorLoader,
+      },
+      {
+        path: "/armor/:armorName",
+        element: <ArmorDetail />,
+      },
+      {
+        path: "/weapons",
+        element: <Weapons />,
+      },
+      {
+        path: "/weapons/:weaponName",
+        element: <WeaponDetail />,
+      },
+      {
+        path: "/weapons/tree",
+        element: <WeaponTree />,
+      },
+      {
+        path: "/item",
+        element: <Item />,
+      },
+      {
+        path: "/item/:itemName",
+        element: <ItemDetail />,
+      },
+      {
+        path: "/maps",
+        element: <Map />,
+      },
+      {
+        path: "/maps/:mapName",
+        element: <MapDetail />,
+      },
+      {
+        path: "/maps/dev/:mapName",
+        element: <MapDetailDev />,
+      },
+      {
+        path: "/status",
+        element: <Status />,
+      },
+      {
+        path: "/decorations",
+        element: <Decoration />,
+      },
+      {
+        path: "/decorations/:decorationName",
+        element: <DecorationDetail />,
+      },
+      {
+        path: "/skills",
+        element: <Skill />,
+      },
+      {
+        path: "/skill-builder",
+        element: <ArmorSkillBuilder />,
+      },
+      {
+        path: "/select/:type",
+        element: <SelectRedirect />,
+      },
+      {
+        path: "/cwcheats",
+        element: <CWCheats />,
+      },
+      {
+        path: "/acknowledgements",
+        element: <Acknowledgements />,
+      },
+      {
+        path: "/quests",
+        element: <Quest />,
+      },
+      {
+        path: "/item-combination",
+        element: <ItemCombination />,
+      },
+      {
+        path: "*",
+        element: <NotFound />,
+      },
+    ],
+  },
+]);
 
 function App() {
   const [forceDesktop, setForceDesktop] = useState(false);
@@ -41,43 +159,7 @@ function App() {
         <MobilePendingPage onContinue={() => setForceDesktop(true)} />
       </div>
       <div className={`${forceDesktop ? "block" : "hidden md:block"}`}>
-        <Router>
-          <DevBanner />
-          <Header />
-          {/* <main style={{ padding: "1rem" }}> */}
-          <main>
-            <Routes>
-              <Route path="/" element={<Home />} />
-              <Route path="/monsters" element={<Monsters />} />
-              <Route path="/monster/:monsterName" element={<MonsterDetail />} />
-              <Route path="/armor" element={<ArmorPage />} />
-              <Route path="/armor/:armorName" element={<ArmorDetail />} />
-              <Route path="/weapons" element={<Weapons />} />
-              <Route path="/weapons/:weaponName" element={<WeaponDetail />} />
-              <Route path="/weapons/tree" element={<WeaponTree />} />
-              <Route path="/item" element={<Item />} />
-              <Route path="/item/:itemName" element={<ItemDetail />} />
-              <Route path="/maps" element={<Map />} />
-              <Route path="/maps/:mapName" element={<MapDetail />} />
-              <Route path="/maps/dev/:mapName" element={<MapDetailDev />} />
-              <Route path="/status" element={<Status />} />
-              {/* <Route path="/map-detail" element={<SnowyMountainsMap />} /> */}
-              <Route path="/decorations" element={<Decoration />} />
-              <Route
-                path="/decorations/:decorationName"
-                element={<DecorationDetail />}
-              />
-              <Route path="/skills" element={<Skill />} />
-              <Route path="/skill-builder" element={<ArmorSkillBuilder />} />
-              <Route path="/select/:type" element={<SelectRedirect />} />
-              <Route path="/cwcheats" element={<CWCheats />} />
-              <Route path="/acknowledgements" element={<Acknowledgements />} />
-              <Route path="/quests" element={<Quest />} />
-              <Route path="/item-combination" element={<ItemCombination />} />
-              <Route path="*" element={<NotFound />} />
-            </Routes>
-          </main>
-        </Router>
+        <RouterProvider router={router} />
       </div>
     </>
   );

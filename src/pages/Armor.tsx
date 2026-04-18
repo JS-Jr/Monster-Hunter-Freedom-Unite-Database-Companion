@@ -2,7 +2,12 @@ import { type Armor } from "../types/Armor";
 import mapArmor from "../utils/mapArmor";
 import { createColumnHelper } from "@tanstack/react-table";
 import { Table } from "../components/Table";
-import { Link, useNavigate } from "react-router-dom";
+import {
+  Link,
+  useLoaderData,
+  useNavigate,
+  useNavigation,
+} from "react-router-dom";
 import { TableEmptyState } from "../components/TableEmptyState";
 import { TableSkeleton } from "../components/TableSkeletonProps";
 import { useDataFetchArray } from "../hooks/useDataFetch";
@@ -20,13 +25,17 @@ export default function ArmorPage() {
     handleSortingChange,
   } = useUrlFilters();
 
-  const {
-    data: armorData,
-    loading,
-    error,
-  } = useDataFetchArray<Armor>("/data/armors.json", {
-    mapper: useCallback((raw: any[]) => raw.map(mapArmor), []),
-  });
+  // const {
+  //   data: armorData,
+  //   loading,
+  //   error,
+  // } = useDataFetchArray<Armor>("/data/armors.json", {
+  //   mapper: useCallback((raw: any[]) => raw.map(mapArmor), []),
+  // });
+
+  const armorData: Armor[] = useLoaderData() as Armor[];
+  const navigation = useNavigation();
+  const isLoading = navigation.state === "loading";
 
   // const navigate = useNavigate();
   // const handleAddToBuilder = (armorItem: ArmorInterface) => {
@@ -102,7 +111,7 @@ export default function ArmorPage() {
     // }),
   ];
 
-  if (loading) {
+  if (isLoading) {
     return (
       <div className="p-4 min-h-[calc(100vh-4rem)] bg-[#E9D3B4] text-[#5A3F28]">
         <h1 className="text-3xl font-bold mb-6">Armor</h1>

@@ -1,5 +1,4 @@
 import { type Armor } from "../types/Armor";
-import mapArmor from "../utils/mapArmor";
 import { createColumnHelper } from "@tanstack/react-table";
 import { Table } from "../components/Table";
 import {
@@ -10,10 +9,9 @@ import {
 } from "react-router-dom";
 import { TableEmptyState } from "../components/TableEmptyState";
 import { TableSkeleton } from "../components/TableSkeletonProps";
-import { useDataFetchArray } from "../hooks/useDataFetch";
 import { useUrlFilters } from "../hooks/useUrlFilters";
-import { useCallback } from "react";
 import { encodeName } from "../utils/urlSafe";
+import { ArmorLoader } from "../hooks/importJsonFile";
 
 export default function ArmorPage() {
   const {
@@ -25,23 +23,9 @@ export default function ArmorPage() {
     handleSortingChange,
   } = useUrlFilters();
 
-  // const {
-  //   data: armorData,
-  //   loading,
-  //   error,
-  // } = useDataFetchArray<Armor>("/data/armors.json", {
-  //   mapper: useCallback((raw: any[]) => raw.map(mapArmor), []),
-  // });
-
-  const armorData: Armor[] = useLoaderData() as Armor[];
-  const navigation = useNavigation();
-  const isLoading = navigation.state === "loading";
-
-  // const navigate = useNavigate();
-  // const handleAddToBuilder = (armorItem: ArmorInterface) => {
-  //   localStorage.setItem(`selected${armorItem.}`, armorItem.identifier);
-  //   navigate("/skill-builder");
-  // };
+  const armorData: Armor[] = ArmorLoader();
+  // const navigation = useNavigation();
+  // const isLoading = navigation.state === "loading";
 
   const columnHelper = createColumnHelper<Armor>();
 
@@ -111,14 +95,14 @@ export default function ArmorPage() {
     // }),
   ];
 
-  if (isLoading) {
-    return (
-      <div className="p-4 min-h-[calc(100vh-4rem)] bg-[#E9D3B4] text-[#5A3F28]">
-        <h1 className="text-3xl font-bold mb-6">Armor</h1>
-        <TableSkeleton rows={10} columns={armorColumns.length} />
-      </div>
-    );
-  }
+  // if (isLoading) {
+  //   return (
+  //     <div className="p-4 min-h-[calc(100vh-4rem)] bg-[#E9D3B4] text-[#5A3F28]">
+  //       <h1 className="text-3xl font-bold mb-6">Armor</h1>
+  //       <TableSkeleton rows={10} columns={armorColumns.length} />
+  //     </div>
+  //   );
+  // }
 
   if (!armorData || armorData.length === 0) {
     return (

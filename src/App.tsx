@@ -64,7 +64,7 @@ const router = createBrowserRouter([
       {
         path: "/armor",
         element: <ArmorPage />,
-        loader: ArmorLoader,
+        // loader: ArmorLoader,
       },
       {
         path: "/armor/:armorName",

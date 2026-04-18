@@ -1,17 +1,10 @@
 import { type Armor } from "../types/Armor";
-import { createColumnHelper } from "@tanstack/react-table";
+import { createColumnHelper, type ColumnHelper } from "@tanstack/react-table";
 import { Table } from "../components/Table";
-import {
-  Link,
-  useLoaderData,
-  useNavigate,
-  useNavigation,
-} from "react-router-dom";
-import { TableEmptyState } from "../components/TableEmptyState";
-import { TableSkeleton } from "../components/TableSkeletonProps";
+import { Link } from "react-router-dom";
 import { useUrlFilters } from "../hooks/useUrlFilters";
 import { encodeName } from "../utils/urlSafe";
-import { ArmorLoader } from "../hooks/importJsonFile";
+import { GetArmorData } from "../hooks/importJsonFile";
 
 export default function ArmorPage() {
   const {
@@ -23,11 +16,30 @@ export default function ArmorPage() {
     handleSortingChange,
   } = useUrlFilters();
 
-  const armorData: Armor[] = ArmorLoader();
-  // const navigation = useNavigation();
-  // const isLoading = navigation.state === "loading";
+  const armorData: Armor[] = GetArmorData();
+  const armorColumns = generateArmorColumns(armorData);
 
-  const columnHelper = createColumnHelper<Armor>();
+  return (
+    <div className="p-4 min-h-[calc(100vh-4rem)] bg-[#E9D3B4] text-[#5A3F28]">
+      <h1 className="text-3xl font-bold mb-6">Armor</h1>
+      <Table
+        data={armorData}
+        columns={armorColumns}
+        initialPageSize={10}
+        globalFilterable
+        initialColumnFilters={columnFilters}
+        onFiltersChange={handleFiltersChange}
+        initialGlobalFilter={globalFilter}
+        onGlobalFilterChange={handleGlobalFilterChange}
+        initialSorting={sorting} // new
+        onSortingChange={handleSortingChange} // new
+      />
+    </div>
+  );
+}
+
+function generateArmorColumns(armorData: Armor[]) {
+  const columnHelper: ColumnHelper<Armor> = createColumnHelper<Armor>();
 
   const armorColumns = [
     columnHelper.accessor("name", {
@@ -95,39 +107,5 @@ export default function ArmorPage() {
     // }),
   ];
 
-  // if (isLoading) {
-  //   return (
-  //     <div className="p-4 min-h-[calc(100vh-4rem)] bg-[#E9D3B4] text-[#5A3F28]">
-  //       <h1 className="text-3xl font-bold mb-6">Armor</h1>
-  //       <TableSkeleton rows={10} columns={armorColumns.length} />
-  //     </div>
-  //   );
-  // }
-
-  if (!armorData || armorData.length === 0) {
-    return (
-      <div className="p-4 min-h-[calc(100vh-4rem)] bg-[#E9D3B4] text-[#5A3F28]">
-        <h1 className="text-3xl font-bold mb-6">Armor</h1>
-        <TableEmptyState message="No armor found." />
-      </div>
-    );
-  }
-
-  return (
-    <div className="p-4 min-h-[calc(100vh-4rem)] bg-[#E9D3B4] text-[#5A3F28]">
-      <h1 className="text-3xl font-bold mb-6">Armor</h1>
-      <Table
-        data={armorData}
-        columns={armorColumns}
-        initialPageSize={10}
-        globalFilterable
-        initialColumnFilters={columnFilters}
-        onFiltersChange={handleFiltersChange}
-        initialGlobalFilter={globalFilter}
-        onGlobalFilterChange={handleGlobalFilterChange}
-        initialSorting={sorting} // new
-        onSortingChange={handleSortingChange} // new
-      />
-    </div>
-  );
+  return armorColumns;
 }

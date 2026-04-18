@@ -8,160 +8,139 @@ import type { Armor } from "../types/Armor";
 import { decodeName, encodeName } from "../utils/urlSafe";
 
 export default function ArmorDetail() {
-  return <div>Armor Detail Page</div>;
+  const armorName = decodeName(
+    useParams<{ armorName: string }>().armorName ?? "",
+  );
+  const armorMapper = useCallback((rawData: any) => rawData.map(mapArmor), []);
+
+  const { data: armor, loading } = useSingleDataFetch<Armor>(
+    "/data/armor.json",
+    armorName,
+    {
+      mapper: armorMapper,
+    },
+  );
+
+  const navigate = useNavigate();
+  const handleAddToBuilder = () => {
+    const armorType = armor?.type;
+    localStorage.setItem("selected" + armorType, encodeName(armorName));
+
+    navigate("/skill-builder");
+  };
+
+  return (
+    <div className="min-h-[calc(100vh-4rem)] px-4 py-10 bg-[#E9D3B4] text-[#5A3F28]">
+      <div className="max-w-4xl mx-auto">
+        {/* Title */}
+        <h1 className="text-4xl font-extrabold text-center text-[#6B3E1B]">
+          {armor.name}
+        </h1>
+        <p className="text-center mt-1">
+          {armor.type} • {armor.hunter_type}
+        </p>
+
+        <div className="my-6 h-px bg-[#CBA986]" />
+
+        <div className="flex justify-center my-6">
+          <button
+            onClick={handleAddToBuilder}
+            className="px-6 py-3 rounded-lg font-semibold
+               bg-[#6B3E1B] text-[#F7E7D0]
+               hover:bg-[#5A3215]
+               active:scale-95
+               transition-all shadow-md"
+          >
+            Add to Skill Builder
+          </button>
+        </div>
+
+        {/* Main Card */}
+        <section className="bg-[#F7E7D0] rounded-lg shadow p-6 space-y-6">
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
+            <p>
+              <strong>Rarity:</strong> {armor.rarity}
+            </p>
+            <p>
+              <strong>Defense:</strong> {armor.defense}
+            </p>
+            <p>
+              <strong>Slots:</strong> {armor.slots}
+            </p>
+            <p>
+              <strong>Gender:</strong> {armor.gender}
+            </p>
+          </div>
+
+          {/* Resistances */}
+          {armor.resistances && (
+            <div>
+              <h2 className="font-semibold text-[#6B3E1B] mb-2">
+                Elemental Resistances
+              </h2>
+              <div className="grid grid-cols-2 sm:grid-cols-5 gap-2">
+                {Object.entries(armor.resistances).map(([el, val]) => (
+                  <div
+                    key={el}
+                    className="bg-[#E9D3B4] rounded p-2 text-center"
+                  >
+                    <p className="capitalize font-semibold">{el}</p>
+                    <p>{val}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
+
+          {/* Skills */}
+          {armor.skills?.length > 0 && (
+            <div>
+              <h2 className="font-semibold text-[#6B3E1B] mb-2">Skills</h2>
+              <ul className="list-disc list-inside">
+                {armor.skills.map((skill, i) => (
+                  <li
+                    key={i}
+                    className={
+                      skill.positive ? "text-green-700" : "text-red-600"
+                    }
+                  >
+                    {skill.name} {skill.positive ? "+" : "-"}
+                    {skill.amount}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
+
+          {/* Materials */}
+          {armor.create_mats?.length > 0 && (
+            <div>
+              <h2 className="font-semibold text-[#6B3E1B] mb-2">
+                Crafting Materials
+              </h2>
+              <ul className="list-disc list-inside">
+                {armor.create_mats.map((mat, i) => (
+                  <li key={i}>
+                    <Link
+                      to={`/item/${encodeName(mat.name)}`}
+                      className="text-[#5A3F28] hover:underline"
+                    >
+                      {mat.name} x{mat.amount}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
+
+          {/* Cost */}
+          {typeof armor.create_cost === "number" && (
+            <p className="italic text-sm">
+              Creation cost: {armor.create_cost} z
+            </p>
+          )}
+        </section>
+      </div>
+    </div>
+  );
 }
-
-// export default function ArmorDetail() {
-//   const armorName = decodeName(
-//     useParams<{ armorName: string }>().armorName ?? ""
-//   );
-//   const armorMapper = useCallback(
-//     (rawData: any) => rawData.map(mapArmor),
-//     []
-//   );
-
-//   const { data: armor, loading } = useSingleDataFetch<Armor>(
-//     "/data/armor.json",
-//     armorName,
-//     {
-//       mapper: armorMapper,
-//     }
-//   );
-
-//   const navigate = useNavigate();
-//   const handleAddToBuilder = () => {
-//     const armorType = armor?.type;
-//     localStorage.setItem("selected" + armorType, encodeName(armorName));
-
-//     navigate("/skill-builder");
-//   };
-
-//   if (loading)
-//     return (
-//       <div className="min-h-[calc(100vh-4rem)] px-4 py-10 bg-[#E9D3B4] text-[#5A3F28]">
-//         <DetailSkeleton />
-//       </div>
-//     );
-
-//   if (!armor)
-//     return (
-//       <div className="min-h-[calc(100vh-4rem)] px-4 py-10 bg-[#E9D3B4] text-[#5A3F28]">
-//         <DetailEmptyState message="Armor not found" entityName="Armor" />
-//       </div>
-//     );
-
-//   return (
-//     <div className="min-h-[calc(100vh-4rem)] px-4 py-10 bg-[#E9D3B4] text-[#5A3F28]">
-//       <div className="max-w-4xl mx-auto">
-//         {/* Title */}
-//         <h1 className="text-4xl font-extrabold text-center text-[#6B3E1B]">
-//           {armor.name}
-//         </h1>
-//         <p className="text-center mt-1">
-//           {armor.type} • {armor.hunter_type}
-//         </p>
-
-//         <div className="my-6 h-px bg-[#CBA986]" />
-
-//         <div className="flex justify-center my-6">
-//           <button
-//             onClick={handleAddToBuilder}
-//             className="px-6 py-3 rounded-lg font-semibold
-//                bg-[#6B3E1B] text-[#F7E7D0]
-//                hover:bg-[#5A3215]
-//                active:scale-95
-//                transition-all shadow-md"
-//           >
-//             Add to Skill Builder
-//           </button>
-//         </div>
-
-//         {/* Main Card */}
-//         <section className="bg-[#F7E7D0] rounded-lg shadow p-6 space-y-6">
-//           <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
-//             <p>
-//               <strong>Rarity:</strong> {armor.rarity}
-//             </p>
-//             <p>
-//               <strong>Defense:</strong> {armor.defense}
-//             </p>
-//             <p>
-//               <strong>Slots:</strong> {armor.slots}
-//             </p>
-//             <p>
-//               <strong>Gender:</strong> {armor.gender}
-//             </p>
-//           </div>
-
-//           {/* Resistances */}
-//           {armor.resistances && (
-//             <div>
-//               <h2 className="font-semibold text-[#6B3E1B] mb-2">
-//                 Elemental Resistances
-//               </h2>
-//               <div className="grid grid-cols-2 sm:grid-cols-5 gap-2">
-//                 {Object.entries(armor.resistances).map(([el, val]) => (
-//                   <div
-//                     key={el}
-//                     className="bg-[#E9D3B4] rounded p-2 text-center"
-//                   >
-//                     <p className="capitalize font-semibold">{el}</p>
-//                     <p>{val}</p>
-//                   </div>
-//                 ))}
-//               </div>
-//             </div>
-//           )}
-
-//           {/* Skills */}
-//           {armor.skills?.length > 0 && (
-//             <div>
-//               <h2 className="font-semibold text-[#6B3E1B] mb-2">Skills</h2>
-//               <ul className="list-disc list-inside">
-//                 {armor.skills.map((skill, i) => (
-//                   <li
-//                     key={i}
-//                     className={
-//                       skill.positive ? "text-green-700" : "text-red-600"
-//                     }
-//                   >
-//                     {skill.name} {skill.positive ? "+" : "-"}
-//                     {skill.amount}
-//                   </li>
-//                 ))}
-//               </ul>
-//             </div>
-//           )}
-
-//           {/* Materials */}
-//           {armor.create_mats?.length > 0 && (
-//             <div>
-//               <h2 className="font-semibold text-[#6B3E1B] mb-2">
-//                 Crafting Materials
-//               </h2>
-//               <ul className="list-disc list-inside">
-//                 {armor.create_mats.map((mat, i) => (
-//                   <li key={i}>
-//                     <Link
-//                       to={`/item/${encodeName(mat.name)}`}
-//                       className="text-[#5A3F28] hover:underline"
-//                     >
-//                       {mat.name} x{mat.amount}
-//                     </Link>
-//                   </li>
-//                 ))}
-//               </ul>
-//             </div>
-//           )}
-
-//           {/* Cost */}
-//           {typeof armor.create_cost === "number" && (
-//             <p className="italic text-sm">
-//               Creation cost: {armor.create_cost} z
-//             </p>
-//           )}
-//         </section>
-//       </div>
-//     </div>
-//   );
-// }

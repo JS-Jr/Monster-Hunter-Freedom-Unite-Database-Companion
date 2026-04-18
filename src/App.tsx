@@ -29,7 +29,6 @@ import { MobilePendingPage } from "./pages/MobilePendingPage";
 import DevBanner from "./components/DevBanner";
 import { Status } from "./pages/Status";
 import { useState } from "react";
-import { ArmorLoader } from "./loaders/ArmorLoader";
 
 // Layout wrapper to include Header on all routes
 function RootLayout() {
@@ -64,7 +63,6 @@ const router = createBrowserRouter([
       {
         path: "/armor",
         element: <ArmorPage />,
-        // loader: ArmorLoader,
       },
       {
         path: "/armor/:armorName",

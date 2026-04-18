@@ -3,10 +3,12 @@ import type { Weapon } from "../types/Weapon";
 import WeaponSkeleton from "../components/skeletal/WeaponSkeletal";
 import { DetailEmptyState } from "../components/DetailEmptyState";
 import { useSingleDataFetch } from "../hooks/useDataFetch";
-import { encodeName } from "../utils/urlSafe";
+import { decodeName, encodeName } from "../utils/urlSafe";
 
 export default function WeaponDetail() {
-  const { weaponName } = useParams<{ weaponName: string }>();
+  const weaponName = decodeName(
+    useParams<{ weaponName: string }>().weaponName ?? "",
+  );
 
   const { data: weapon, loading } = useSingleDataFetch<Weapon>(
     "/data/weapons.json",
@@ -87,12 +89,21 @@ export default function WeaponDetail() {
             {weapon.improve_from && (
               <p className="mb-2">
                 <strong>Upgrades from:</strong>{" "}
-                <Link
-                  to={`/weapons/${encodeName(weapon.improve_from)}`}
-                  className="text-[#6B3E1B] font-semibold hover:underline"
-                >
-                  {weapon.improve_from}
-                </Link>
+                <ul className="list-disc list-inside mt-1">
+                  {(Array.isArray(weapon.improve_from)
+                    ? weapon.improve_from
+                    : [weapon.improve_from]
+                  ).map((name) => (
+                    <li key={name}>
+                      <Link
+                        to={`/weapons/${encodeName(name)}`}
+                        className="text-[#6B3E1B] font-semibold hover:underline"
+                      >
+                        {name}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
               </p>
             )}
 

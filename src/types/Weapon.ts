@@ -21,7 +21,7 @@ export type Weapon = {
   type?: string;
   create_cost?: number | null;
   improve_cost?: number;
-  improve_from?: string;
+  improve_from?: string | string[];
   improve_to?: string[];
   create_mats?: WeaponMaterial[] | null;
   improve_mats?: WeaponMaterial[] | null;

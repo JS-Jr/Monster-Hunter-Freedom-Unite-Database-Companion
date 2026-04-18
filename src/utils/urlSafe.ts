@@ -4,5 +4,6 @@ export const encodeName = (value: string): string => {
 };
 
 export const decodeName = (value: string): string => {
+  console.log("Decoding value:", value);
   return decodeURIComponent(value.replace(/plus/g, "+"));
 };

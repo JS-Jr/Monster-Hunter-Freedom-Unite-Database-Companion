@@ -76,6 +76,18 @@ export default function Acknowledgements() {
       description: "Used data for item combination",
       link: "https://monsterhunterwiki.org/wiki/MHFU/Crafting",
     },
+    {
+      name: "Kolyn090",
+      description:
+        "Used data for farm(Kolyn090) and added additional data(ryin77)",
+      link: "https://github.com/Kolyn090/mhfu-db/tree/main/Farm",
+    },
+    {
+      name: "ryin77",
+      description:
+        "Used data for farm(Kolyn090) and added additional data(ryin77)",
+      link: "https://gamefaqs.gamespot.com/psp/943356-monster-hunter-freedom-unite/faqs/78652/farm",
+    },
   ];
 
   return (

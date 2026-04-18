@@ -31,6 +31,7 @@ import Acknowledgements from "./pages/Acknowledgements";
 import CWCheats from "./components/CWCheats";
 import Quest from "./pages/Quest";
 import ItemCombination from "./pages/ItemCombination";
+import Farm from "./pages/Farm";
 
 function App() {
   const [forceDesktop, setForceDesktop] = useState(false);
@@ -74,6 +75,7 @@ function App() {
               <Route path="/acknowledgements" element={<Acknowledgements />} />
               <Route path="/quests" element={<Quest />} />
               <Route path="/item-combination" element={<ItemCombination />} />
+              <Route path="/farm" element={<Farm />} />
               <Route path="*" element={<NotFound />} />
             </Routes>
           </main>

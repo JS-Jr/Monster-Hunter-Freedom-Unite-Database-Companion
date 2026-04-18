@@ -23,6 +23,7 @@ export default function Header() {
     { path: "/acknowledgements", label: "Acknowledgements" },
     { path: "/quests", label: "Quests" },
     { path: "/item-combination", label: "Item Combination" },
+    { path: "/farm", label: "Farm" },
   ];
 
   function handleDropDownVisibility() {

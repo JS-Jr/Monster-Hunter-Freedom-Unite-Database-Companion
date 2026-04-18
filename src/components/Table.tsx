@@ -38,6 +38,9 @@ interface TableProps<T> {
 
   initialSorting?: SortingState;
   onSortingChange?: (sorting: SortingState) => void;
+
+  showSearch?: boolean;
+  showPagination?: boolean;
 }
 
 export function Table<T>({
@@ -52,11 +55,12 @@ export function Table<T>({
   onGlobalFilterChange,
   initialSorting,
   onSortingChange,
+  showPagination = true,
 }: TableProps<T>) {
   const [sorting, setSorting] = useState<SortingState>(initialSorting ?? []);
   const [globalFilter, setGlobalFilter] = useState(initialGlobalFilter ?? "");
   const [filters, setFilters] = useState<ColumnFiltersState>(
-    initialColumnFilters ?? []
+    initialColumnFilters ?? [],
   );
   const [pageIndex, setPageIndex] = useState(0);
   const [pageSize, setPageSize] = useState(initialPageSize);
@@ -137,14 +141,14 @@ export function Table<T>({
                 >
                   {flexRender(
                     header.column.columnDef.header,
-                    header.getContext()
+                    header.getContext(),
                   )}
                   <span>
                     {header.column.getIsSorted() === "asc"
                       ? " 🔼"
                       : header.column.getIsSorted() === "desc"
-                      ? " 🔽"
-                      : ""}
+                        ? " 🔽"
+                        : ""}
                   </span>
                 </th>
               ))}
@@ -223,42 +227,44 @@ export function Table<T>({
       </div>
 
       {/* Pagination */}
-      <div className="flex items-center justify-between mt-2 px-4 py-2 rounded-b-lg bg-[#F9EEDC] text-[#5A3F28]">
-        <div className="flex items-center gap-2">
-          <button
-            className="px-2 py-1 border rounded disabled:opacity-50 bg-[#5A3F28] text-white border-[#5A3F28] hover:bg-[#7B543A]"
-            onClick={() => table.previousPage()}
-            disabled={!table.getCanPreviousPage()}
+      {showPagination && (
+        <div className="flex items-center justify-between mt-2 px-4 py-2 rounded-b-lg bg-[#F9EEDC] text-[#5A3F28]">
+          <div className="flex items-center gap-2">
+            <button
+              className="px-2 py-1 border rounded disabled:opacity-50 bg-[#5A3F28] text-white border-[#5A3F28] hover:bg-[#7B543A]"
+              onClick={() => table.previousPage()}
+              disabled={!table.getCanPreviousPage()}
+            >
+              Previous
+            </button>
+            <button
+              className="px-2 py-1 border rounded disabled:opacity-50 bg-[#5A3F28] text-white border-[#5A3F28] hover:bg-[#7B543A]"
+              onClick={() => table.nextPage()}
+              disabled={!table.getCanNextPage()}
+            >
+              Next
+            </button>
+          </div>
+          <span>
+            Page <strong>{table.getState().pagination.pageIndex + 1}</strong> of{" "}
+            {table.getPageCount()}
+          </span>
+          <select
+            className="border rounded px-2 py-1 bg-[#F9EEDC] text-[#5A3F28] border-[#5A3F28]"
+            value={table.getState().pagination.pageSize}
+            onChange={(e) => {
+              setPageSize(Number(e.target.value));
+              setPageIndex(0);
+            }}
           >
-            Previous
-          </button>
-          <button
-            className="px-2 py-1 border rounded disabled:opacity-50 bg-[#5A3F28] text-white border-[#5A3F28] hover:bg-[#7B543A]"
-            onClick={() => table.nextPage()}
-            disabled={!table.getCanNextPage()}
-          >
-            Next
-          </button>
+            {[5, 10, 20, 50].map((size) => (
+              <option key={size} value={size}>
+                Show {size}
+              </option>
+            ))}
+          </select>
         </div>
-        <span>
-          Page <strong>{table.getState().pagination.pageIndex + 1}</strong> of{" "}
-          {table.getPageCount()}
-        </span>
-        <select
-          className="border rounded px-2 py-1 bg-[#F9EEDC] text-[#5A3F28] border-[#5A3F28]"
-          value={table.getState().pagination.pageSize}
-          onChange={(e) => {
-            setPageSize(Number(e.target.value));
-            setPageIndex(0);
-          }}
-        >
-          {[5, 10, 20, 50].map((size) => (
-            <option key={size} value={size}>
-              Show {size}
-            </option>
-          ))}
-        </select>
-      </div>
+      )}
     </div>
   );
 }

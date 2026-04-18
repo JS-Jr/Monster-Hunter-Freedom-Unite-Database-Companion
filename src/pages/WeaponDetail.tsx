@@ -90,7 +90,10 @@ export default function WeaponDetail() {
               <p className="mb-2">
                 <strong>Upgrades from:</strong>{" "}
                 <ul className="list-disc list-inside mt-1">
-                  {weapon.improve_from.map((name) => (
+                  {(Array.isArray(weapon.improve_from)
+                    ? weapon.improve_from
+                    : [weapon.improve_from]
+                  ).map((name) => (
                     <li key={name}>
                       <Link
                         to={`/weapons/${encodeName(name)}`}
@@ -101,12 +104,6 @@ export default function WeaponDetail() {
                     </li>
                   ))}
                 </ul>
-                {/* <Link
-                  to={`/weapons/${encodeName(weapon.improve_from)}`}
-                  className="text-[#6B3E1B] font-semibold hover:underline"
-                >
-                  {weapon.improve_from}
-                </Link> */}
               </p>
             )}
 

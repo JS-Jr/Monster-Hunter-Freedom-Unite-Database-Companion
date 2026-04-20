@@ -8,6 +8,8 @@ import { TableSkeleton } from "../components/TableSkeletonProps";
 import { TableEmptyState } from "../components/TableEmptyState";
 import deepSearch from "../function/deepSearch";
 import { encodeName } from "../utils/urlSafe";
+import { mapRawMapToMap } from "../utils/mapMaps";
+import { useCallback } from "react";
 
 export default function Map() {
   const deepMapGlobalFilter: FilterFn<MapData> = (row, _, filterValue) => {
@@ -26,8 +28,16 @@ export default function Map() {
     handleSortingChange,
   } = useUrlFilters();
 
+  const mapMapper = useCallback(
+    (rawData: any[]) => rawData.map(mapRawMapToMap),
+    [],
+  );
+
   const { data: maps, loading } = useDataFetchArray<MapData>(
-    "/data/map-pins.json"
+    "/data/map-pins.json",
+    {
+      mapper: mapMapper,
+    },
   );
 
   const columnHelper = createColumnHelper<MapData>();

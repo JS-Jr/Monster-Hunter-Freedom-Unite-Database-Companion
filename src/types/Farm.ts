@@ -11,3 +11,15 @@ export type BeehiveChance = {
   chance: number;
   amount: string;
 };
+
+
+export type InsectThicketItem = {
+  name: string;
+  chances: InsectThicketChance[];
+}
+
+export type InsectThicketChance = {
+  level: number;
+  levelName: string;
+  chance: number;
+};

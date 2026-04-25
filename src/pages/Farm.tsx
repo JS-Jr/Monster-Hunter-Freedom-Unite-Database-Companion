@@ -1,4 +1,5 @@
 import Beehive from "../components/Beehive";
+import BugTree from "../components/BugTree";
 import InsectThicket from "../components/InsectThicket";
 
 export default function Farm() {
@@ -7,6 +8,8 @@ export default function Farm() {
       <Beehive />
       <br />
       < InsectThicket />
+      <br />
+      < BugTree/>
     </div>
   );
 }

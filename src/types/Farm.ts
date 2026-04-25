@@ -23,3 +23,8 @@ export type InsectThicketChance = {
   levelName: string;
   chance: number;
 };
+
+export type BugTreeItem = {
+  hammer: string;
+  items: string[];
+};

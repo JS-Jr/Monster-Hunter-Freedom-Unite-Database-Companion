@@ -42,3 +42,14 @@ export type CastingMachineChance = {
   chance: number;
   amount: string;
 };
+
+export type FishingSpotItem = {
+  name: string;
+  chances: FishingSpotChance[];
+};
+
+export type FishingSpotChance = {
+  level: number;
+  levelName: string;
+  chance: number;
+};

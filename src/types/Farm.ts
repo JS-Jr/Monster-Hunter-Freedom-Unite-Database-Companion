@@ -23,6 +23,11 @@ export type InsectThicketChance = {
   chance: number;
 };
 
+export type CaveItem = {
+  name: string;
+  chance: number;
+};
+
 export type BugTreeItem = {
   hammer: string;
   items: string[];

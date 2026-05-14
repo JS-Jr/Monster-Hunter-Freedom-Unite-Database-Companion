@@ -2,6 +2,7 @@ import Beehive from "../components/Beehive";
 import BugTree from "../components/BugTree";
 import CastingMachine from "../components/CastingMachine";
 import InsectThicket from "../components/InsectThicket";
+import GreatSwordCave from "../components/GreatSwordCave";
 
 export default function Farm() {
   return (
@@ -13,6 +14,8 @@ export default function Farm() {
       <BugTree />
       <br />
       <CastingMachine />
+      <br />
+      <GreatSwordCave />
     </div>
   );
 }

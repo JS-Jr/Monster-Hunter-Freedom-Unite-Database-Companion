@@ -12,11 +12,10 @@ export type BeehiveChance = {
   amount: string;
 };
 
-
 export type InsectThicketItem = {
   name: string;
   chances: InsectThicketChance[];
-}
+};
 
 export type InsectThicketChance = {
   level: number;
@@ -27,4 +26,14 @@ export type InsectThicketChance = {
 export type BugTreeItem = {
   hammer: string;
   items: string[];
+};
+
+export type CastingMachineItem = {
+  name: string;
+  chances: CastingMachineChance[];
+};
+
+export type CastingMachineChance = {
+  chance: number;
+  amount: string;
 };
